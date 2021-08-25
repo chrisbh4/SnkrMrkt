@@ -8,9 +8,9 @@ module.exports = {
      * Example:
      */
     await queryInterface.bulkInsert('Shoes', [
-      {sellerId:1, title:'test', shoeSize:3, image:null ,price:33.3, createdAt: new Date(), updatedAt:new Date()},
-      {sellerId:1, title:'test2', shoeSize:3, image:null ,price:44.4, createdAt: new Date(), updatedAt:new Date()},
-      {sellerId:2, title:'test3', shoeSize:3, image:null ,price:44.4, createdAt: new Date(), updatedAt:new Date()}
+      {sellerId:1, title:'test', shoeSize:3, image:null ,price:33.30, createdAt: new Date(), updatedAt:new Date()},
+      {sellerId:1, title:'test2', shoeSize:3, image:null ,price:44.41, createdAt: new Date(), updatedAt:new Date()},
+      {sellerId:2, title:'test3', shoeSize:3, image:null ,price:44.42, createdAt: new Date(), updatedAt:new Date()}
     ], {});
   },
 
