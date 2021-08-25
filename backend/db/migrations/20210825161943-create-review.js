@@ -10,19 +10,23 @@ module.exports = {
       },
       shoeId: {
         type: Sequelize.INTEGER,
-        references:{model:"Shoes"},
-        nullable:false
+        allowNull:false,
+        // unique:true,
+        references:{model:'Shoes'}
       },
       userId: {
         type: Sequelize.INTEGER,
-        references:{model:"Users"},
-        nullable:false
+        allowNull:false,
+        // unique:true,
+        references:{model:"Users"}
       },
       comment: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false,
       },
       rating: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull:false,
       },
       image: {
         type: Sequelize.TEXT

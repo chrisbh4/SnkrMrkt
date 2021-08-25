@@ -10,20 +10,26 @@ module.exports = {
       },
       sellerId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references:{model :'Users'}
+        allowNull:false,
+        // will not allow the same user to sell multiple shoes
+        // unique:true,
+        references:{model:"Users"}
       },
       title: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull:false,
       },
       shoeSize: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull:false,
+      },
+      image: {
+        type: Sequelize.TEXT,
+        allowNull:true,
       },
       price: {
         type: Sequelize.DECIMAL,
-        allowNull: false,
+        allowNull:false,
       },
       createdAt: {
         allowNull: false,

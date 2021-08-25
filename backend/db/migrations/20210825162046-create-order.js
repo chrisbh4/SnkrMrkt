@@ -8,14 +8,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      sellerId: {
-        type: Sequelize.INTEGER
+      //! Used to be sellerId to be able to find the
+      // Needs to be shoeId to be able to locate the shoe thats being purchase
+      shoeId: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        unique:true,
+        references:{model:'Shoes'}
       },
       shippingOption: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull:false,
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false,
       },
       createdAt: {
         allowNull: false,
