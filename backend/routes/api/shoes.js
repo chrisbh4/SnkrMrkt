@@ -27,6 +27,18 @@ router.get('/:id', asyncHandler(async ( req , res )=>{
     return res.send(shoe)
 }))
 
+router.put('/:id', asyncHandler(async( req , res )=>{
+    const shoe = await Shoe.findByPk(req.params.id)
+
+    shoe.title = req.body.title
+    shoe.shoeSize = req.body.shoeSize
+    shoe.price = req.body.price
+    shoe.image = req.body.image
+
+    await shoe.save()
+    return res.json({shoe})
+
+}))
 
 router.delete('/:id', asyncHandler( async ( req, res )=>{
     const shoe = await Shoes.findByPk(req.params.id,{
@@ -36,7 +48,7 @@ router.delete('/:id', asyncHandler( async ( req, res )=>{
     if (!shoe) new Error('Shoe does not exist')
 
      await shoe.destroy()
-     
+
     // await shoe.destroy({
     //     where:{
     //         id:id
