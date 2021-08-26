@@ -44,8 +44,17 @@ router.delete('/:id', asyncHandler( async ( req, res )=>{
     const shoe = await Shoes.findByPk(req.params.id,{
         include:[Reviews]
     })
+    const allReviews = await Reviews.findAll()
 
     if (!shoe) new Error('Shoe does not exist')
+
+//! Will need to figure out how to be able to delete a shoe with its reviews
+//! but not delete the orders.shoeId so we can still keep track of the orders
+    allReviews.map((review)=>{
+        if (review.shoeId === shoe.id){
+            review.destroy()
+        }
+    })
 
      await shoe.destroy()
 
