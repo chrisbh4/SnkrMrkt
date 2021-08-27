@@ -90,7 +90,7 @@ function reducer( state=initialState, action){
     let newState;
     switch(action.type){
         case LOAD_SHOES:
-        console.log(action.shoes)
+        // console.log(action.shoes)
             return {...state,...action.shoes}
         // case CREATE_SHOE:
         //     newState={...state}

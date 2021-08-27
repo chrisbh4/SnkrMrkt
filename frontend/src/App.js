@@ -34,7 +34,7 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
-          <Route path='/shoes'>
+          <Route exact path='/'>
             <HomePage />
           </Route>
         </Switch>
