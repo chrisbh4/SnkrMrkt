@@ -11,6 +11,7 @@ function ShoeList({ shoe }) {
                 the user to the single Shoe's details page */}
             <div className="shoe-container" key={shoe.id}>
                 <div>
+                    <h2>{shoe.id}</h2>
                     <div className="shoes-image">
                         <a href={`/shoes/${shoe.id}`} >
                             <img src={shoe.image} alt={shoe.title}></img>
