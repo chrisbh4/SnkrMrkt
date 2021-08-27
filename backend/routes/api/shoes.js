@@ -11,9 +11,22 @@ const router = express.Router()
 
 
 router.get('/', asyncHandler(async (req, res )=>{
-    const allShoes = await Shoes.findAll({
+    // const allShoes = await Shoes.findAll({
+    //     include:[Reviews]
+    // })
+    const shoes = await Shoes.findAll({
         include:[Reviews]
     })
+
+    const allShoes = {}
+
+    // Sets the Key's to the shoes.id so that each key matches the id of the shoe
+    shoes.forEach((shoe)=>{
+        if (!allShoes[shoe.id]){
+            allShoes[shoe.id]= shoe
+        }
+    })
+    //  console.log(allShoes)
 
     return res.json(allShoes)
 }));
