@@ -8,6 +8,11 @@ import Navigation from './components/Navigation';
 import { Modal } from './context/Modal';
 import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
+import NewShoesForm from './components/Shoes/NewShoesForm';
+import ShoesDetailsPage from './components/Shoes/ShoeDetailPage';
+
+
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,6 +41,12 @@ function App() {
           </Route>
           <Route exact path='/'>
             <HomePage />
+          </Route>
+          <Route path='/shoes/new'>
+            <NewShoesForm />
+          </Route>
+          <Route exact path='/shoes/:id'>
+            <ShoesDetailsPage />
           </Route>
         </Switch>
       )}

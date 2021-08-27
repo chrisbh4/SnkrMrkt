@@ -6,14 +6,10 @@ import './ShoeList.css'
 function HomePage(){
 
 
-    // const shoesObject = useSelector((state)=> state.shoes.Array)
+
     const shoes= useSelector((state)=> state.shoes)
-
-
+    // turns the obejct into an array but still don't understand how the keys are iterable now??
     const shoesArray = Object.values(shoes)
-
-
-
 
     return(
         <>
