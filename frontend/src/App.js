@@ -6,12 +6,15 @@ import SignupFormPage from './components/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import { Modal } from './context/Modal';
+import { getAllShoes } from './store/shoes';
+import HomePage from './components/HomePage/HomePage';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getAllShoes())
   }, [dispatch]);
 
   return (
@@ -30,6 +33,9 @@ function App() {
           </Route> */}
           <Route path='/signup'>
             <SignupFormPage />
+          </Route>
+          <Route exact path='/'>
+            <HomePage />
           </Route>
         </Switch>
       )}

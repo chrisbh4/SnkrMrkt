@@ -1,0 +1,23 @@
+
+
+.homepage-title{
+    text-align: center;
+}
+
+
+
+.all-shoes-container{
+    display: flex;
+    justify-content: space-evenly;
+    /* need to figure out how to have the products be evenly placed */
+    flex-wrap: wrap;
+}
+
+
+
+.shoe-container{
+    text-align: center;
+    border: 2px solid black;
+    width:350px;
+    margin-bottom: 10px;
+}

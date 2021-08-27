@@ -8,14 +8,14 @@ const Reviews = Review
 
 const router = express.Router()
 
+
+
 router.get('/', asyncHandler(async (req, res )=>{
     const allShoes = await Shoes.findAll({
         include:[Reviews]
     })
-    return res.send(allShoes)
 
-    // const allReviews = await Reviews.findAll()
-    // return res.send(allReviews)
+    return res.json(allShoes)
 }));
 
 
@@ -50,6 +50,7 @@ router.delete('/:id', asyncHandler( async ( req, res )=>{
 
 //! Will need to figure out how to be able to delete a shoe with its reviews
 //! but not delete the orders.shoeId so we can still keep track of the orders
+//TODO: Look into sequelize casacading to be able to delete a shoe and all of its reviews without deleting the shoeId in an Orders table
     allReviews.map((review)=>{
         if (review.shoeId === shoe.id){
             review.destroy()
@@ -57,12 +58,6 @@ router.delete('/:id', asyncHandler( async ( req, res )=>{
     })
 
      await shoe.destroy()
-
-    // await shoe.destroy({
-    //     where:{
-    //         id:id
-    //     }
-    // })
     return
 }))
 
