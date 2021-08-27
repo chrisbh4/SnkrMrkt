@@ -34,10 +34,10 @@ const deleteShoe = (shoeId) => ({
 export const getAllShoes = () => async (dispatch) => {
     const res = await csrfFetch('/api/shoes')
     const data = await res.json()
-    if (data.ok) {
+    if (res.ok) {
         dispatch(loadShoes(data))
+        return data
     }
-    return data
 };
 
 export const getOneShoe = (shoeId) => async (dispatch) => {
@@ -90,8 +90,12 @@ function reducer( state=initialState, action){
     let newState;
     switch(action.type){
         case LOAD_SHOES:
+        console.log(action.shoes)
             return {...state,...action.shoes}
-        // case CREATE_SHOE
+        // case CREATE_SHOE:
+        //     newState={...state}
+        default:
+            return state
     }
 }
 

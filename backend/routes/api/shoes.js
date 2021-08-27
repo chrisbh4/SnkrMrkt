@@ -8,14 +8,14 @@ const Reviews = Review
 
 const router = express.Router()
 
+
+
 router.get('/', asyncHandler(async (req, res )=>{
     const allShoes = await Shoes.findAll({
         include:[Reviews]
     })
-    return res.send(allShoes)
 
-    // const allReviews = await Reviews.findAll()
-    // return res.send(allReviews)
+    return res.json(allShoes)
 }));
 
 
