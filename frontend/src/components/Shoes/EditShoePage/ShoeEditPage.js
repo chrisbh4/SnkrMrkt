@@ -13,9 +13,9 @@ function EditShoesForm() {
 
 
     return (
-        <div>
+        <div className="form-container">
             <form>
-                <div>
+                <div >
                     <label>Shoe Title: </label>
                     <input
                         type="text"

@@ -9,17 +9,17 @@ import { useSelector } from "react-redux"
 function NewShoesForm() {
 
     const user = useSelector((state) => state.session.user.id)
-    console.log('User Id: ',user)
+    // console.log('User Id: ',user)
 
 
     return (
-        <div>
+        <div className="form-container">
             <form>
                 <div>
                     <label>Shoe Title: </label>
                     <input
                         type="text"
-                        
+
                         name="title"
                         required
                     ></input>

@@ -8,12 +8,21 @@ function ShoesDetailsPage() {
     const params = useParams()
 
     const shoeId = params.id
-    console.log("Parmas Id: ", shoeId)
 
-    const shoe = (useSelector((state) => state.shoes[shoeId]))
+    const userId = useSelector((state)=> state.session.user.id)
+    const shoe = useSelector((state) => state.shoes[shoeId])
 
-    //  console.log('Shoes :' , shoe.Reviews[0])
+    const shoeSellerId = shoe?.sellerId
 
+    console.log('Shoe :', shoe?.id)
+    let sellerChecker;
+   if(userId === shoeSellerId){
+        sellerChecker =(
+            <div>
+                <button><a  to={`/shoes/${shoe?.id}/edit`}></a> Edit </button>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -37,6 +46,9 @@ function ShoesDetailsPage() {
                     </div>
                 </div>
             </div>
+                <div className="seller-checker">
+                   {sellerChecker}
+                </div>
             {/* Reviews is outside of the ' detials-container ' */}
                 <div className="reviews-container">
                     <h3>Reviews</h3>
