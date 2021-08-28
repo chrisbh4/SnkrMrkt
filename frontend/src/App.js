@@ -8,9 +8,9 @@ import Navigation from './components/Navigation';
 import { Modal } from './context/Modal';
 import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
-import NewShoesForm from './components/Shoes/NewShoesForm';
-import ShoesDetailsPage from './components/Shoes/ShoeDetailPage';
-
+import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
+import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage';
+import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
 
 
 function App() {
@@ -36,18 +36,26 @@ function App() {
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
+
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
-          <Route exact path='/'>
-            <HomePage />
-          </Route>
+
           <Route path='/shoes/new'>
             <NewShoesForm />
           </Route>
+
           <Route exact path='/shoes/:id'>
             <ShoesDetailsPage />
           </Route>
+          <Route exact path ='/shoes/:id/edit'>
+            <EditShoesForm />
+          </Route>
+
+          <Route exact path='/'>
+            <HomePage />
+          </Route>
+
         </Switch>
       )}
     </>

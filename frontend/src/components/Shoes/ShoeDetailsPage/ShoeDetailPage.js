@@ -36,10 +36,12 @@ function ShoesDetailsPage() {
                         <h3>${shoe?.price}</h3>
                     </div>
                 </div>
+            </div>
+            {/* Reviews is outside of the ' detials-container ' */}
                 <div className="reviews-container">
+                    <h3>Reviews</h3>
                     {/* Reviews go here */}
                 </div>
-            </div>
 
 
         </>
