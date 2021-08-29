@@ -21,7 +21,7 @@ module.exports = {
       },
       brand: {
         type: Sequelize.STRING(50),
-        allowNull:false,
+        allowNull: true,
       },
       shoeSize: {
         type: Sequelize.INTEGER,
