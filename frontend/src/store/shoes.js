@@ -102,6 +102,9 @@ function reducer( state=initialState, action){
         case EDIT_SHOE:
             state[action.shoe.id] = action.shoe
             return state
+        case DELETE_SHOE:
+            delete state[action.shoe.id]
+            return state
         default:
             return state
     }
