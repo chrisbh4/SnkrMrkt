@@ -1,20 +1,35 @@
-import React from "react"
+import React , from "react"
 import { useState } from "react"
-import { useSelector } from "react-redux"
-
+import { useSelector , useDispatch} from "react-redux"
+import { getCreatedShoe} from "../../../store/shoes"
+import {useHistory} from "react-router-dom"
 
 
 
 
 function NewShoesForm() {
-
+    const dispatch = useDispatch()
+    const history = useHistory()
     const user = useSelector((state) => state.session.user.id)
     // console.log('User Id: ',user)
+    
 
+
+    const onSubmit = async (e)=>{
+        e.preventDefault();
+        const data = await dispatch(getCreatedShoe())
+
+        if(data.errors){
+            history('/')
+        }
+        else{
+            // setErros(data)
+        }
+    }
 
     return (
         <div className="form-container">
-            <form>
+            <form onSubmit={onSubmit}>
                 <div>
                     <label>Shoe Title: </label>
                     <input

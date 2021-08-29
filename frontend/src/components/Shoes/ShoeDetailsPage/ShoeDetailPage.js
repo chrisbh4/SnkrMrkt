@@ -1,11 +1,17 @@
-import React from "react"
-import { useParams } from 'react-router-dom'
-import { useSelector } from "react-redux"
+import React, {useEffect} from "react"
+import { Link, useParams } from 'react-router-dom'
+import { useSelector , useDispatch} from "react-redux"
+import { getAllShoes } from "../../../store/shoes"
 import "./ShoeDetails.css"
 
 
 function ShoesDetailsPage() {
+    const dispatch = useDispatch()
     const params = useParams()
+    // useEffect(() => {
+    //     // dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    //     dispatch(getAllShoes())
+    //   }, [dispatch]);
 
     const shoeId = params.id
 
@@ -19,10 +25,24 @@ function ShoesDetailsPage() {
    if(userId === shoeSellerId){
         sellerChecker =(
             <div>
-                <button><a  to={`/shoes/${shoe?.id}/edit`}></a> Edit </button>
+                <Link to={`/shoes/${shoe?.id}/edit`}>
+                <button> Edit </button>
+                </Link>
             </div>
         )
     }
+    let purchaseChecker;
+   if(userId !== shoeSellerId){
+        purchaseChecker =(
+            <div>
+                <Link to={`/`}>
+                <button> Purchase </button>
+                </Link>
+            </div>
+        )
+    }
+
+
 
     return (
         <>
@@ -47,7 +67,8 @@ function ShoesDetailsPage() {
                 </div>
             </div>
                 <div className="seller-checker">
-                   {sellerChecker}
+                   {sellerChecker || purchaseChecker}
+
                 </div>
             {/* Reviews is outside of the ' detials-container ' */}
                 <div className="reviews-container">

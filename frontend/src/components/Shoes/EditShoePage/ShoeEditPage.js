@@ -1,15 +1,17 @@
-import React from "react"
-import { useState } from "react"
+import React, {useState} from "react"
 import { useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 
 
 
 
 
 function EditShoesForm() {
-
-    const user = useSelector((state) => state.session.user.id)
-    console.log('User Id: ',user)
+    const params = useParams()
+    const shoeId = params.id
+    // const user = useSelector((state) => state.session.user.id)
+    const shoe = useSelector((state)=> state.shoes[shoeId])
+    console.log('EDit Shoe ', shoe)
 
 
     return (
