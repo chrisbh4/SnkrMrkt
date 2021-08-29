@@ -34,6 +34,7 @@ function NewShoesForm() {
 
         if (!data.errors) {
             history.push('/')
+            throw alert("Your Shoe has now been listed for sale.")
         }
         else {
             // setErros(data)

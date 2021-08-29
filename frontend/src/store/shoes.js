@@ -95,10 +95,10 @@ function reducer( state=initialState, action){
         // console.log(action.shoes)
             return {...state,...action.shoes}
         case CREATE_SHOE:
-            state[action.shoe.id] = action.shoe
-            return state
-            // newState[action.shoe.id] = action.shoe
-            // return newState
+            // state[action.shoe.id] = action.shoe
+            // return state
+            newState[action.shoe.id] = action.shoe
+            return newState
         case EDIT_SHOE:
             state[action.shoe.id] = action.shoe
             return state

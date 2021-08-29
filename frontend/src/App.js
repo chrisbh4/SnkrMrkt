@@ -19,7 +19,6 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(getAllShoes())
   }, [dispatch]);
 
   return (

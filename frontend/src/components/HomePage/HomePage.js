@@ -1,15 +1,21 @@
-import React  from "react";
-import { useSelector } from "react-redux";
-// import { getAllShoes } from "../../store/shoes";
+import React  ,{useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllShoes } from "../../store/shoes";
+
 import ShoeList from "./ShoeList";
 import './ShoeList.css'
 function HomePage(){
 
-
+    const dispatch = useDispatch()
 
     const shoes= useSelector((state)=> state.shoes)
     // turns the obejct into an array but still don't understand how the keys are iterable now??
     const shoesArray = Object.values(shoes)
+
+    // Loads new State for the HomePage everytime.
+    useEffect(()=>{
+        dispatch(getAllShoes())
+    },[dispatch])
 
     return(
         <>
