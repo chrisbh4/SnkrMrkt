@@ -49,14 +49,16 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     return data
 };
 
-export const getCreatedShoe = (payload) => async (dispatch) => {
+export const getCreatedShoe = ( sellerId,title,shoeSize,image,price ) => async (dispatch) => {
     const res = await csrfFetch("/api/shoes/new", {
         method: "POST",
         header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ payload })
+        body: JSON.stringify({ sellerId,title,shoeSize,image,price })
     })
+    // console.log('it hits')
     const data = await res.json()
     if (data.ok) {
+        console.log(data)
         dispatch(createShoe(data))
     }
     return data
@@ -87,13 +89,22 @@ const initialState = {};
 
 
 function reducer( state=initialState, action){
-    let newState;
+    let newState={...state}
     switch(action.type){
         case LOAD_SHOES:
         // console.log(action.shoes)
             return {...state,...action.shoes}
-        // case CREATE_SHOE:
-        //     newState={...state}
+        case CREATE_SHOE:
+            // state[action.shoe.id] = action.shoe
+            // return state
+            newState[action.shoe.id] = action.shoe
+            return newState
+        case EDIT_SHOE:
+            state[action.shoe.id] = action.shoe
+            return state
+        case DELETE_SHOE:
+            delete state[action.shoe.id]
+            return state
         default:
             return state
     }

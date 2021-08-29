@@ -8,13 +8,17 @@ import Navigation from './components/Navigation';
 import { Modal } from './context/Modal';
 import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
+import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
+import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage';
+import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
+
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(getAllShoes())
   }, [dispatch]);
 
   return (
@@ -31,12 +35,26 @@ function App() {
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
+
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
+
+          <Route path='/shoes/new'>
+            <NewShoesForm />
+          </Route>
+
+          <Route exact path='/shoes/:id'>
+            <ShoesDetailsPage />
+          </Route>
+          <Route exact path ='/shoes/:id/edit'>
+            <EditShoesForm />
+          </Route>
+
           <Route exact path='/'>
             <HomePage />
           </Route>
+
         </Switch>
       )}
     </>
