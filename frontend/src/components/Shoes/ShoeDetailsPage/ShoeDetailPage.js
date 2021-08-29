@@ -25,7 +25,7 @@ function ShoesDetailsPage() {
    if(userId === shoeSellerId){
         sellerChecker =(
             <div>
-                <Link to={`/shoes/${shoe?.id}/edit`}>
+                <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
                 <button> Edit </button>
                 </Link>
             </div>
