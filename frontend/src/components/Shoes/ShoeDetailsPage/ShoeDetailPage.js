@@ -8,19 +8,19 @@ import "./ShoeDetails.css"
 function ShoesDetailsPage() {
     const dispatch = useDispatch()
     const params = useParams()
-    // useEffect(() => {
-    //     // dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    //     dispatch(getAllShoes())
-    //   }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getAllShoes())
+      }, [dispatch]);
 
     const shoeId = params.id
-
     const userId = useSelector((state)=> state.session.user.id)
     const shoe = useSelector((state) => state.shoes[shoeId])
 
     const shoeSellerId = shoe?.sellerId
 
     console.log('Shoe :', shoe?.id)
+
     let sellerChecker;
    if(userId === shoeSellerId){
         sellerChecker =(
@@ -67,7 +67,7 @@ function ShoesDetailsPage() {
                 </div>
             </div>
                 <div className="seller-checker">
-                   {sellerChecker || purchaseChecker}
+                   {sellerChecker }
 
                 </div>
             {/* Reviews is outside of the ' detials-container ' */}

@@ -33,7 +33,8 @@ function NewShoesForm() {
             // brand,
 
         if (!data.errors) {
-            history.push('/')
+            // TODO: Create User Profile and redirect user to show new shoe being listed under them
+            history.push(`/`)
             throw alert("Your Shoe has now been listed for sale.")
         }
         else {

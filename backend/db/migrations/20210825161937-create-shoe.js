@@ -16,7 +16,11 @@ module.exports = {
         references:{model:"Users"}
       },
       title: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
+        allowNull:false,
+      },
+      brand: {
+        type: Sequelize.STRING(50),
         allowNull:false,
       },
       shoeSize: {
