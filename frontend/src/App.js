@@ -19,6 +19,10 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+
+    //! Does not auto update the state for create or edit???
+    //!!! Need this to be able to load details page data
+    dispatch(getAllShoes())
   }, [dispatch]);
 
   return (
@@ -54,7 +58,9 @@ function App() {
           <Route exact path='/'>
             <HomePage />
           </Route>
-
+          <Route>
+          404 page not found
+          </Route>
         </Switch>
       )}
     </>

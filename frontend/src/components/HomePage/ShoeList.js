@@ -1,9 +1,15 @@
 import React from "react";
+// import { useDispatch } from "react-redux";
+// import { getAllShoes } from "../../store/shoes";
 import '../HomePage/ShoeList.css'
 
 
 function ShoeList({ shoe }) {
-
+    // Does not make a difference
+    // const dispatch = useDispatch()
+    // useEffect(()=>{
+    //     dispatch(getAllShoes())
+    // },[dispatch])
 
     return (
         <>

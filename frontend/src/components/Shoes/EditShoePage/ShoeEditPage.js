@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams, useHistory } from "react-router-dom"
 import { getAllShoes, getEditShoe , getDeletedShoe} from "../../../store/shoes"
 
-//! Figure out what is being hit and what is not being hit on the delete route
+
 
 function EditShoesForm() {
     const params = useParams()
@@ -11,18 +11,23 @@ function EditShoesForm() {
     const history = useHistory()
     const shoeId = params.id
 
+    //! Does not load anything in or does anything (delete any time)
     // useEffect(() => {
     //     dispatch(getAllShoes())
     //   }, [dispatch]);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     // const user = useSelector((state) => state.session.user.id)
+
     const shoe = useSelector((state) => state.shoes[shoeId])
     console.log('EDit Shoe ', shoe)
 
 
-    //! Doesn't make sense to have these but will check will Project Advisor
+    //! Doesn't make sense to have these but will check will Project Advisor for CRUD
     const [title] = useState(shoe?.title)
     const [image] = useState(shoe?.image)
     const [brand] = useState(shoe?.brand)
+    const [errors, setErrors] = useState([])
 
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
@@ -30,12 +35,11 @@ function EditShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
 
-    console.log("Price state", price)
+    // console.log("Price state", price)
 
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(getEditShoe(title, shoeSize, image, price, brand, shoeId))
-        // brand,
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show Edited shoe being listed under them
             history.push(`/`)
@@ -47,11 +51,14 @@ function EditShoesForm() {
         return data
     }
 
-    const handleDelete = async (e)=> {
-        e.preventDefault()
-        await dispatch(getDeletedShoe(shoe.id))
-        history.push('/')
+    // console.log('delete id:',shoe.id)
 
+    //! Alert and the history.push does't get touched but
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        await dispatch(getDeletedShoe(shoe.id))
+        // history.push('/')
+        throw alert("Shoe has been deleted.");
     }
 
     return (
@@ -117,8 +124,8 @@ function EditShoesForm() {
 
 
                 <div className="button-containers">
-                    <button>Edit Current Listing</button>
-                    <button type="submit" onClick={handleDelete}>Delete Listing</button>
+                    <button type='submit'>Edit Current Listing</button>
+                    <button type='button' onClick={handleDelete}>Delete Listing</button>
                 </div>
             </form>
         </div>

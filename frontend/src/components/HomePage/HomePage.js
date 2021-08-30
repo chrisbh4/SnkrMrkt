@@ -1,6 +1,6 @@
 import React  ,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllShoes } from "../../store/shoes";
+import { getAllShoes, getDeletedShoe } from "../../store/shoes";
 
 import ShoeList from "./ShoeList";
 import './ShoeList.css'
@@ -13,6 +13,7 @@ function HomePage(){
     const shoesArray = Object.values(shoes)
 
     // Loads new State for the HomePage everytime.
+    //! Need for Create & Edit feature to be able to auto update the state
     useEffect(()=>{
         dispatch(getAllShoes())
     },[dispatch])

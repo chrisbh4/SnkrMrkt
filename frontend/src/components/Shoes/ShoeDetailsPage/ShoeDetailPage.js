@@ -1,17 +1,17 @@
-import React, {useEffect} from "react"
+import React from "react"
 import { Link, useParams } from 'react-router-dom'
-import { useSelector , useDispatch} from "react-redux"
-import { getAllShoes } from "../../../store/shoes"
+import { useSelector } from "react-redux"
 import "./ShoeDetails.css"
 
 
 function ShoesDetailsPage() {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const params = useParams()
 
-    useEffect(() => {
-        dispatch(getAllShoes())
-      }, [dispatch]);
+    //! Don't need for either create/edit feature
+    // useEffect(() => {
+    //     dispatch(getAllShoes())
+    //   }, [dispatch]);
 
     const shoeId = params.id
     const userId = useSelector((state)=> state.session.user.id)
