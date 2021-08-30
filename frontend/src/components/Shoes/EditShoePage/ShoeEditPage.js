@@ -20,7 +20,7 @@ function EditShoesForm() {
     // const user = useSelector((state) => state.session.user.id)
 
     const shoe = useSelector((state) => state.shoes[shoeId])
-    console.log('EDit Shoe ', shoe)
+    // console.log('EDit Shoe ', shoe)
 
 
     //! Doesn't make sense to have these but will check will Project Advisor for CRUD
@@ -56,9 +56,7 @@ function EditShoesForm() {
     //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
         e.preventDefault();
-        debugger
         await dispatch(getDeletedShoe(shoe.id))
-        debugger
         alert("Shoe has been deleted.");
         history.push('/')
     }
