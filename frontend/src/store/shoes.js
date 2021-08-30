@@ -78,7 +78,6 @@ export const getEditShoe = (title,shoeSize,image,price,brand, shoeId) => async (
 };
 
 export const getDeletedShoe = (shoeId) => async (dispatch)=>{
-    debugger
     const res = await csrfFetch(`/api/shoes/${shoeId}`,{
         method:'DELETE'
     })
@@ -110,7 +109,6 @@ function reducer( state=initialState, action){
         case DELETE_SHOE:
             // delete state[action.shoe.id]
             // return state
-            debugger
             delete newState[action.shoeId]
             return newState
         default:

@@ -11,20 +11,19 @@ function EditShoesForm() {
     const history = useHistory()
     const shoeId = params.id
 
-    //! Does not load anything in or does anything (delete any time)
+    //TODO: Refactor to where store is only grabbing OneShoe not allShoes
     //Dispatch gets single shoe
     useEffect(() => {
         dispatch(getAllShoes())
       }, [dispatch]);
 
-    // const user = useSelector((state) => state.session.user.id)
+
 
     const shoe = useSelector((state) => state.shoes[shoeId])
-    console.log('EDit Shoe ', shoe)
 
 
     //! Doesn't make sense to have these but will check will Project Advisor for CRUD
-    const [title] = useState(shoe?.title)
+    const [title,setTitle] = useState(shoe?.title)
     const [image] = useState(shoe?.image)
     const [brand] = useState(shoe?.brand)
     const [errors, setErrors] = useState([])
@@ -32,10 +31,10 @@ function EditShoesForm() {
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
 
+    const updateTitle = (e) => setTitle(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
 
-    // console.log("Price state", price)
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -51,14 +50,9 @@ function EditShoesForm() {
         return data
     }
 
-    // console.log('delete id:',shoe.id)
-
-    //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
         e.preventDefault();
-        debugger
         await dispatch(getDeletedShoe(shoe.id))
-        debugger
         alert("Shoe has been deleted.");
         history.push('/')
     }
@@ -66,15 +60,15 @@ function EditShoesForm() {
     return (
         <div className="form-container">
             <form onSubmit={onSubmit}>
-                {/* <div >
+                <div >
                     <label>Shoe Title: </label>
                     <input
                         type="text"
-
+                        onChange={updateTitle}
                         name="title"
                         required
                     ></input>
-                </div> */}
+                </div>
                 <div>
                     <label>ShoeSize</label>
                     <input
