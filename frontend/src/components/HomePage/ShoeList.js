@@ -13,9 +13,10 @@ function ShoeList({ shoe }) {
 
     return (
         <>
+
             {/*TODO: Need to add a <a> tag to the shoes image to be able to redirect the
                 the user to the single Shoe's details page */}
-            <div className="shoe-container" key={shoe.id}>
+            {/* <div className="shoe-container" key={shoe.id}>
                 <div>
                     <h2>{shoe.id}</h2>
                     <div className="shoes-image">
@@ -33,7 +34,7 @@ function ShoeList({ shoe }) {
                         <h3>${shoe.price}</h3>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

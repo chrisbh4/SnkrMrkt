@@ -69,7 +69,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     })
 
     await shoe.destroy()
-    return
+    return res.json(shoe.id)
 }))
 
 

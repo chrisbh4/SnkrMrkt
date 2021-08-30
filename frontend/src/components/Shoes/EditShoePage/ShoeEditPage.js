@@ -1,4 +1,4 @@
-import React, { useState} from "react"
+import React, { useState, useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams, useHistory } from "react-router-dom"
 import { getAllShoes, getEditShoe , getDeletedShoe} from "../../../store/shoes"
@@ -12,10 +12,10 @@ function EditShoesForm() {
     const shoeId = params.id
 
     //! Does not load anything in or does anything (delete any time)
-    // useEffect(() => {
-    //     dispatch(getAllShoes())
-    //   }, [dispatch]);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //Dispatch gets single shoe
+    useEffect(() => {
+        dispatch(getAllShoes())
+      }, [dispatch]);
 
     // const user = useSelector((state) => state.session.user.id)
 
@@ -42,8 +42,8 @@ function EditShoesForm() {
         const data = await dispatch(getEditShoe(title, shoeSize, image, price, brand, shoeId))
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show Edited shoe being listed under them
+            alert("Your shoe has now been succesfully edited for sale.")
             history.push(`/`)
-            throw alert("Your shoe has now been succesfully edited for sale.")
         }
         else {
             // setErros(data)
@@ -56,9 +56,11 @@ function EditShoesForm() {
     //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
         e.preventDefault();
+        debugger
         await dispatch(getDeletedShoe(shoe.id))
-        // history.push('/')
-        throw alert("Shoe has been deleted.");
+        debugger
+        alert("Shoe has been deleted.");
+        history.push('/')
     }
 
     return (
