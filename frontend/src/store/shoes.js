@@ -64,11 +64,11 @@ export const getCreatedShoe = ( sellerId,title,shoeSize,image,price ) => async (
     return data
 };
 
-export const getEditShoe = (payload, shoeId) => async (dispatch)=>{
+export const getEditShoe = (title,shoeSize,image,price,brand, shoeId) => async (dispatch)=>{
     const res = await csrfFetch(`/api/shoes/${shoeId}`,{
         method:"PUT",
         header:{"Content-Type": "application/json"},
-        body:JSON.stringify({payload})
+        body:JSON.stringify({title,shoeSize,image,price,brand})
     })
 
     const data = await res.json()
@@ -78,11 +78,16 @@ export const getEditShoe = (payload, shoeId) => async (dispatch)=>{
 };
 
 export const getDeletedShoe = (shoeId) => async (dispatch)=>{
-    const res = await csrfFetch(`/api/shoes/${shoeId}`)
-    const data = res.json()
-
-    if(data.ok) dispatch(deleteShoe(data))
-    return data
+    debugger
+    const res = await csrfFetch(`/api/shoes/${shoeId}`,{
+        method:'DELETE'
+    })
+    if(res.ok){
+        const data = await res.json()
+        dispatch(deleteShoe(data))
+        return data
+    }
+    return
 };
 
 const initialState = {};
@@ -103,8 +108,11 @@ function reducer( state=initialState, action){
             state[action.shoe.id] = action.shoe
             return state
         case DELETE_SHOE:
-            delete state[action.shoe.id]
-            return state
+            // delete state[action.shoe.id]
+            // return state
+            debugger
+            delete newState[action.shoeId]
+            return newState
         default:
             return state
     }

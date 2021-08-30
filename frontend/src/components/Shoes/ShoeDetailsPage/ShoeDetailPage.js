@@ -1,14 +1,15 @@
-import React, {useEffect} from "react"
+import React,{useEffect} from "react"
 import { Link, useParams } from 'react-router-dom'
-import { useSelector , useDispatch} from "react-redux"
-import { getAllShoes } from "../../../store/shoes"
+import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
+import {getAllShoes} from "../../../store/shoes"
 
 
 function ShoesDetailsPage() {
-    const dispatch = useDispatch()
+     const dispatch = useDispatch()
     const params = useParams()
 
+    //! Don't need for either create/edit feature
     useEffect(() => {
         dispatch(getAllShoes())
       }, [dispatch]);
@@ -25,7 +26,7 @@ function ShoesDetailsPage() {
    if(userId === shoeSellerId){
         sellerChecker =(
             <div>
-                <Link to={`/shoes/${shoe?.id}/edit`}>
+                <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
                 <button> Edit </button>
                 </Link>
             </div>

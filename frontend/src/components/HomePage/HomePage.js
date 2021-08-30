@@ -1,6 +1,6 @@
 import React  ,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllShoes } from "../../store/shoes";
+import { getAllShoes, getDeletedShoe } from "../../store/shoes";
 
 import ShoeList from "./ShoeList";
 import './ShoeList.css'
@@ -13,6 +13,7 @@ function HomePage(){
     const shoesArray = Object.values(shoes)
 
     // Loads new State for the HomePage everytime.
+    //! Need for Create & Edit feature to be able to auto update the state
     useEffect(()=>{
         dispatch(getAllShoes())
     },[dispatch])
@@ -21,9 +22,30 @@ function HomePage(){
         <>
         <h1 className="homepage-title">ThePlug</h1>
         <div className="all-shoes-container">
-            {shoesArray.map((shoe)=>(
-                <ShoeList key={shoe.id} shoe={shoe} />
-            ))}
+            {shoesArray.map((shoe)=>{
+                return(
+                    <div className="shoe-container" key={shoe.id}>
+                    <div>
+                        <h2>{shoe.id}</h2>
+                        <div className="shoes-image">
+                            <a href={`/shoes/${shoe.id}`} >
+                                <img src={shoe.image} alt={shoe.title}></img>
+                            </a>
+                        </div>
+                        <div className="shoes-title">
+                            <h2>{shoe.title}</h2>
+                        </div>
+                        <div className="shoes-shoeSize">
+                            <h4>Shoe Size {shoe.shoeSize}</h4>
+                        </div>
+                        <div className="shoes-price">
+                            <h3>${shoe.price}</h3>
+                        </div>
+                    </div>
+                </div>
+                )
+                // <ShoeList key={shoe.id} shoe={shoe} />
+    })}
         </div>
         </>
 
