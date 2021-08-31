@@ -56,9 +56,9 @@ function EditShoesForm() {
     //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
         e.preventDefault();
-        debugger
+
         await dispatch(getDeletedShoe(shoe.id))
-        debugger
+
         alert("Shoe has been deleted.");
         history.push('/')
     }
