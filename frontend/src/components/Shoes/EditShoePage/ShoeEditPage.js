@@ -24,7 +24,7 @@ function EditShoesForm() {
 
 
     //! Doesn't make sense to have these but will check will Project Advisor for CRUD
-    const [title] = useState(shoe?.title)
+    const [title,setTitle] = useState(shoe?.title)
     const [image] = useState(shoe?.image)
     const [brand] = useState(shoe?.brand)
     const [errors, setErrors] = useState([])
@@ -32,6 +32,7 @@ function EditShoesForm() {
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
 
+    const updateTitle = (e) => setTitle(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
 
@@ -66,15 +67,16 @@ function EditShoesForm() {
     return (
         <div className="form-container">
             <form onSubmit={onSubmit}>
-                {/* <div >
+                <div >
                     <label>Shoe Title: </label>
                     <input
                         type="text"
-
+                        onChange={updateTitle}
+                        placeholder={title}
                         name="title"
                         required
                     ></input>
-                </div> */}
+                </div>
                 <div>
                     <label>ShoeSize</label>
                     <input
