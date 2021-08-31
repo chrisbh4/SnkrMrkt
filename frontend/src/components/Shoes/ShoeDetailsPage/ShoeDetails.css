@@ -14,3 +14,15 @@
     width: 250px;
     height: auto;
 }
+
+
+.shoe-details-checker{
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+
+.reviews-container{
+    margin-left: 15px;
+}
