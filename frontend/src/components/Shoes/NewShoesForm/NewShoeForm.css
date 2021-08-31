@@ -1,14 +1,37 @@
 .form-placement{
     display: flex;
     flex-direction: column;
+    /* align-content: center; */
+    /* align-items: flex-end; */
+    /* height: 100px; */
 }
 
 .form-container {
+    margin-top: 175px;
     padding:20px;
     display: flex;
     justify-content: center;
     align-self: center;
+    /* align-items: center; */
+    align-content: space-around;
     border: 2px solid black;
     background-color: white;
     width: 50%;
+}
+
+
+/* .form-placement-2{
+    display: flex;
+    align-items: flex-end;
+} */
+.new-shoe-button{
+    margin-left: 110px;
+}
+
+
+.form-item{
+    margin-bottom: 10px;
+}
+.form-item-new{
+    margin-bottom: 15px;
 }

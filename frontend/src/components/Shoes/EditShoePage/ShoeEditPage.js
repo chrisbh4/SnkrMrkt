@@ -65,9 +65,12 @@ function EditShoesForm() {
     }
 
     return (
+
+        <div className="form-placement">
+
         <div className="form-container">
             <form onSubmit={onSubmit}>
-                <div >
+                <div className="form-item" >
                     <label>Shoe Title: </label>
                     <input
                         type="text"
@@ -75,17 +78,18 @@ function EditShoesForm() {
                         placeholder={title}
                         name="title"
                         required
-                    ></input>
+                        ></input>
                 </div>
-                <div>
+                <div className="form-item">
                     <label>ShoeSize</label>
                     <input
                         type="number"
                         placeholder={shoeSize}
                         onChange={updateShoeSize}
-                    ></input>
+                        ></input>
                 </div>
                 {/* <div>
+
                     <div>
                         <label>Brand Name: </label>
                     </div>
@@ -114,7 +118,7 @@ function EditShoesForm() {
                     ></input>
                     <label>Adidas-Original</label>
                 </div> */}
-                <div>
+                <div className="form-item">
                     <label>Price: $</label>
                     <input
                         type="number"
@@ -132,6 +136,7 @@ function EditShoesForm() {
                     <button type='button' onClick={handleDelete}>Delete Listing</button>
                 </div>
             </form>
+        </div>
         </div>
     )
 }

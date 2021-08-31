@@ -48,7 +48,7 @@ function NewShoesForm() {
 
             <div className="form-container">
                 <form onSubmit={onSubmit}>
-                    <div>
+                    <div className="form-item">
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -57,14 +57,14 @@ function NewShoesForm() {
                             required
                         ></input>
                     </div>
-                    <div>
-                        <label>ShoeSize</label>
+                    <div className="form-item-new">
+                        <label>Shoe Size:  </label>
                         <input
                             type="number"
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    <div>
+                    <div className="form-item-new">
                         <div>
                             <label>Brand Name: </label>
                         </div>
@@ -97,22 +97,22 @@ function NewShoesForm() {
                         ></input>
                         <label>Adidas-Original</label>
                     </div>
-                    <div>
-                        <label>Price: $</label>
+                    <div className="form-item-new">
+                        <label>Price: $ </label>
                         <input
                             type="number"
                             onChange={updatePrice}
                         ></input>
                     </div>
-                    <div>
-                        <label>Image Url</label>
+                    <div className="form-item-new">
+                        <label>Image Url: </label>
                         <input
                             type="text"
                             onChange={updateImage}
                         ></input>
                     </div>
 
-                    <div className="button-containers">
+                    <div className="new-shoe-button">
                         <button>Submit New Listing</button>
                     </div>
                 </form>
