@@ -9,7 +9,7 @@ function ShoesDetailsPage() {
      const dispatch = useDispatch()
     const params = useParams()
 
-    //! Don't need for either create/edit feature
+
     useEffect(() => {
         dispatch(getAllShoes())
       }, [dispatch]);
