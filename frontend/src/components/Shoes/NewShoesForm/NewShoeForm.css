@@ -19,19 +19,21 @@
     width: 50%;
 }
 
-
-/* .form-placement-2{
-    display: flex;
-    align-items: flex-end;
-} */
 .new-shoe-button{
     margin-left: 110px;
 }
-
 
 .form-item{
     margin-bottom: 10px;
 }
 .form-item-new{
     margin-bottom: 15px;
+}
+
+.edit-button{
+    margin-right: 4px;
+}
+
+.delete-button{
+    margin-left: 4px;
 }
