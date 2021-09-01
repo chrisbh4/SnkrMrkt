@@ -1,7 +1,7 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams, useHistory } from "react-router-dom"
-import { getAllShoes, getEditShoe , getDeletedShoe} from "../../../store/shoes"
+import { getAllShoes, getEditShoe, getDeletedShoe } from "../../../store/shoes"
 
 
 
@@ -15,7 +15,7 @@ function EditShoesForm() {
     //Dispatch gets single shoe
     useEffect(() => {
         dispatch(getAllShoes())
-      }, [dispatch]);
+    }, [dispatch]);
 
     // const user = useSelector((state) => state.session.user.id)
 
@@ -24,7 +24,7 @@ function EditShoesForm() {
 
 
     //! Doesn't make sense to have these but will check will Project Advisor for CRUD
-    const [title,setTitle] = useState(shoe?.title)
+    const [title, setTitle] = useState(shoe?.title)
     const [image] = useState(shoe?.image)
     const [brand] = useState(shoe?.brand)
     const [errors, setErrors] = useState([])
@@ -65,27 +65,31 @@ function EditShoesForm() {
     }
 
     return (
-        <div className="form-container">
-            <form onSubmit={onSubmit}>
-                <div >
-                    <label>Shoe Title: </label>
-                    <input
-                        type="text"
-                        onChange={updateTitle}
-                        placeholder={title}
-                        name="title"
-                        required
-                    ></input>
-                </div>
-                <div>
-                    <label>ShoeSize</label>
-                    <input
-                        type="number"
-                        placeholder={shoeSize}
-                        onChange={updateShoeSize}
-                    ></input>
-                </div>
-                {/* <div>
+
+        <div className="form-placement">
+
+            <div className="form-container">
+                <form onSubmit={onSubmit}>
+                    <div className="form-item" >
+                        <label>Shoe Title: </label>
+                        <input
+                            type="text"
+                            onChange={updateTitle}
+                            placeholder={title}
+                            name="title"
+                            required
+                        ></input>
+                    </div>
+                    <div className="form-item">
+                        <label>ShoeSize</label>
+                        <input
+                            type="number"
+                            placeholder={shoeSize}
+                            onChange={updateShoeSize}
+                        ></input>
+                    </div>
+                    {/* <div>
+
                     <div>
                         <label>Brand Name: </label>
                     </div>
@@ -114,24 +118,29 @@ function EditShoesForm() {
                     ></input>
                     <label>Adidas-Original</label>
                 </div> */}
-                <div>
-                    <label>Price: $</label>
-                    <input
-                        type="number"
-                        placeholder={price}
-                        onChange={updatePrice}
-                    ></input>
-                </div>
+                    <div className="form-item">
+                        <label>Price: $</label>
+                        <input
+                            type="number"
+                            placeholder={price}
+                            onChange={updatePrice}
+                        ></input>
+                    </div>
 
 
 
 
 
-                <div className="button-containers">
-                    <button type='submit'>Edit Current Listing</button>
-                    <button type='button' onClick={handleDelete}>Delete Listing</button>
-                </div>
-            </form>
+                    <div className="button-containers">
+                        {/* <div className="edit-button-div"> */}
+                            <button type='submit' className="edit-button">Edit Current Listing</button>
+                        {/* </div> */}
+                        {/* <div className="delete-button-div"> */}
+                            <button type='button' className="delete-button" onClick={handleDelete}>Delete Listing</button>
+                        {/* </div> */}
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

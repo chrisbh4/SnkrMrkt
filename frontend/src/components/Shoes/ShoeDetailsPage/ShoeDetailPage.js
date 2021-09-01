@@ -20,8 +20,9 @@ function ShoesDetailsPage() {
 
     const shoeSellerId = shoe?.sellerId
 
-    console.log('Shoe :', shoe?.id)
-
+    // console.log('Shoe :', shoe?.id)
+    // console.log('Seller Id :', shoe?.sellerId)
+    //   console.log("User ID:", userId)
     let sellerChecker;
    if(userId === shoeSellerId){
         sellerChecker =(
@@ -67,8 +68,9 @@ function ShoesDetailsPage() {
                     </div>
                 </div>
             </div>
-                <div className="seller-checker">
-                   {sellerChecker }
+                <div className="shoe-details-checker">
+                   {sellerChecker}
+                   {purchaseChecker}
 
                 </div>
             {/* Reviews is outside of the ' detials-container ' */}

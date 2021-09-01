@@ -14,6 +14,7 @@ import * as sessionActions from './store/session';
 
 const store = configureStore();
 
+// Testing purposes only
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
 
@@ -47,3 +48,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
+
+ 
