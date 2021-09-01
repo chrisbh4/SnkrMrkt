@@ -9,11 +9,7 @@ const Reviews = Review
 const router = express.Router()
 
 
-
 router.get('/', asyncHandler(async (req, res) => {
-    // const allShoes = await Shoes.findAll({
-    //     include:[Reviews]
-    // })
     const shoes = await Shoes.findAll({
         include: [Reviews]
     })
@@ -26,9 +22,10 @@ router.get('/', asyncHandler(async (req, res) => {
             allShoes[shoe.id] = shoe
         }
     })
-    //  console.log(allShoes)
+
 
     return res.json(allShoes)
+
 }));
 
 
@@ -81,6 +78,9 @@ router.post('/new', asyncHandler(async (req, res) => {
 
     return res.json({ newShoe })
 }))
+
+
+
 
 
 module.exports = router
