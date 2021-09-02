@@ -26,15 +26,16 @@ const validateShoe = [
     handleValidationErrors
 ]
 //! Bug is coming from the route
-router.post('/new', validateShoe, asyncHandler(async (req, res) => {
+router.post('/new', validateShoe, asyncHandler(async (req, res, next) => {
     const { sellerId, title, shoeSize, image, price } = req.body
     const newShoe = await Shoes.create({
         sellerId, title, shoeSize, image, price
     })
-    console.log("hello from routes")
-    console.log(newShoe)
-    if(newShoe.errors){
-        return res.send("errors are hitting")
+    console.log(req.body)
+    debugger
+    if(newShoe.err){
+        console.log("hello from routes")
+        return res.json(newShoe.err)
     }
     return res.json({ newShoe })
 }))
