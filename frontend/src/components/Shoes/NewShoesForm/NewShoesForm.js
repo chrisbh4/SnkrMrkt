@@ -19,6 +19,7 @@ function NewShoesForm() {
     const [image, setImage] = useState("")
     const [brand, setBrand] = useState("")
     const [price, setPrice] = useState(0.00)
+    const [errors , setErrors] = useState([])
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
@@ -31,17 +32,21 @@ function NewShoesForm() {
         e.preventDefault();
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
         // brand,
+        console.log("NewshoeForm :", data)
+        if (!data?.errors) {
 
-        if (!data.errors) {
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
             history.push(`/`)
             throw alert("Your Shoe has now been listed for sale.")
         }
         else {
-            // setErros(data)
+            console.log("error gets hit")
+            console.log('Errors :',data?.errors)
+            setErrors(data?.errors)
         }
         return data
     }
+    //left of on solving error handling problem
 
     return (
         <div className="form-placement">
@@ -49,6 +54,14 @@ function NewShoesForm() {
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                     <div className="form-item">
+                        {errors.map((error)=>{
+                            if(error){
+
+                                return(
+                                    <p>{error}</p>
+                                    )
+                                }
+                        })}
                         <label>Shoe Title: </label>
                         <input
                             type="text"

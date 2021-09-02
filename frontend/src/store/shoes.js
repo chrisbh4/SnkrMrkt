@@ -49,6 +49,10 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     return data
 };
 
+
+//! it has something to either do with my route or the store on why its not being hit
+// I have tried to use multple console.logs to identify what is being hit and what is not
+// next use debuggers everywhere to see if i can grab the info 
 export const getCreatedShoe = ( sellerId,title,shoeSize,image,price ) => async (dispatch) => {
     const res = await csrfFetch("/api/shoes/new", {
         method: "POST",
@@ -56,12 +60,22 @@ export const getCreatedShoe = ( sellerId,title,shoeSize,image,price ) => async (
         body: JSON.stringify({ sellerId,title,shoeSize,image,price })
     })
     // console.log('it hits')
+    // const data = await res.json()
+    // if (data.ok) {
+    //     console.log(data)
+    //     dispatch(createShoe(data))
+    // }
+    // return data
     const data = await res.json()
-    if (data.ok) {
-        console.log(data)
+    if (res.ok) {
+        // console.log("in the store")
+        console.log('in the store :',data)
         dispatch(createShoe(data))
+        return data
+    }else {
+        console.log("res.errors")
+        return data
     }
-    return data
 };
 
 export const getEditShoe = (title,shoeSize,image,price,brand, shoeId) => async (dispatch)=>{

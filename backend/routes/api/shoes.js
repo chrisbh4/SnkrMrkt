@@ -1,14 +1,43 @@
 const express = require("express")
 const asyncHandler = require("express-async-handler")
 const { Shoe, Review } = require('../../db/models')
-
+const { check , validationResult} = require("express-validator")
+const { handleValidationErrors } = require("../../utils/validation")
 // Saved in pluarl form due to Model naming error
 const Shoes = Shoe
 const Reviews = Review
 
 const router = express.Router()
 
-
+//add drop table for
+const validateShoe = [
+    check('title')
+    .exists({checkFalsy:true})
+    .isLength({min:5 })
+    .withMessage("Shoe title must be greater than 5 characters"),
+    check('shoeSize')
+    .exists({checkFalsy:true})
+    .isFloat({min:4 , max:18})
+    .withMessage("Please provide a shoe size in mens between 4 and 18"),
+    check('price')
+    .exists({checkFalsy:true})
+    .isFloat({min:1})
+    .withMessage("Please provide a price value for this shoe greater than $0.99"),
+    handleValidationErrors
+]
+//! Bug is coming from the route
+router.post('/new', validateShoe, asyncHandler(async (req, res) => {
+    const { sellerId, title, shoeSize, image, price } = req.body
+    const newShoe = await Shoes.create({
+        sellerId, title, shoeSize, image, price
+    })
+    console.log("hello from routes")
+    console.log(newShoe)
+    if(newShoe.errors){
+        return res.send("errors are hitting")
+    }
+    return res.json({ newShoe })
+}))
 
 router.get('/', asyncHandler(async (req, res) => {
     // const allShoes = await Shoes.findAll({
@@ -40,7 +69,10 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.send(shoe)
 }))
 
-router.put('/:id', asyncHandler(async (req, res) => {
+// figure out how to check if the new shoe has errors if so then send res.jon("errors":shoe.errors)
+//once its sent to the frontend just render the messages in the html
+// might need to key into each error???
+router.put('/:id', validateShoe, asyncHandler(async (req, res) => {
     const shoe = await Shoe.findByPk(req.params.id)
 
     shoe.title = req.body.title
@@ -73,14 +105,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 }))
 
 
-router.post('/new', asyncHandler(async (req, res) => {
-    const { sellerId, title, shoeSize, image, price } = req.body
-    const newShoe = await Shoes.create({
-        sellerId, title, shoeSize, image, price
-    })
 
-    return res.json({ newShoe })
-}))
 
 
 module.exports = router
