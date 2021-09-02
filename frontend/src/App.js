@@ -40,9 +40,9 @@ function App() {
             <LoginFormPage />
           </Route> */}
 
-          <Route path='/signup'>
+          {/* <Route path='/signup'>
             <SignupFormPage />
-          </Route>
+          </Route> */}
 
           <Route path='/shoes/new'>
             <NewShoesForm />
