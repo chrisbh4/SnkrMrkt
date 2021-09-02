@@ -58,7 +58,8 @@ function ShoesDetailsPage() {
     return (
         <>
             <h1>
-                Shoes Details Page
+            <a href="/">Shoes Details Page</a>
+
             </h1>
             <div className="details-container">
                 <div className="shoe-details-container">
