@@ -15,7 +15,12 @@ function ShoesDetailsPage() {
       }, [dispatch]);
 
     const shoeId = params.id
-    const userId = useSelector((state)=> state.session.user.id)
+    const userId = useSelector((state)=>{
+        if(state.session.user){
+            return state.session.user.id
+        }
+        return 0.5;
+    })
     const shoe = useSelector((state) => state.shoes[shoeId])
 
     const shoeSellerId = shoe?.sellerId
@@ -24,17 +29,21 @@ function ShoesDetailsPage() {
     // console.log('Seller Id :', shoe?.sellerId)
     //   console.log("User ID:", userId)
     let sellerChecker;
-   if(userId === shoeSellerId){
-        sellerChecker =(
-            <div>
-                <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
-                <button> Edit </button>
-                </Link>
-            </div>
-        )
+    if(userId){
+        if(userId === shoeSellerId){
+             sellerChecker =(
+                 <div>
+                     <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
+                     <button> Edit </button>
+                     </Link>
+                 </div>
+             )
+         }
+    }else{
+        return sellerChecker;
     }
     let purchaseChecker;
-   if(userId !== shoeSellerId){
+   if(userId !== shoeSellerId && userId > 0.99){
         purchaseChecker =(
             <div>
                 <Link to={`/`}>
