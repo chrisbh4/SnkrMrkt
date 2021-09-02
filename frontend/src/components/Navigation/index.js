@@ -39,9 +39,6 @@ function Navigation({ isLoaded }) {
           <NavLink to="/signup">Sign Up</NavLink>
         </button>
 
-        <button className="nav-button">
-          <NavLink to="/shoes/new">New Shoe</NavLink>
-        </button>
 
         <button className="nav-button">
           <NavLink exact to="/">Home</NavLink>

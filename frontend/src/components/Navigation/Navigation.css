@@ -29,3 +29,10 @@
 .nav-profile-button{
   margin-right: 10px;
 }
+
+button > *{
+  text-decoration: none;
+}
+a{
+  text-decoration: none;
+}
