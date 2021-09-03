@@ -29,8 +29,7 @@ function ShoesDetailsPage() {
        return <p>{review.comment}</p>
     //    return <li>{review.comment}</li>
    })
-
-
+   
     const shoeSellerId = shoe?.sellerId
 
     let sellerChecker;
