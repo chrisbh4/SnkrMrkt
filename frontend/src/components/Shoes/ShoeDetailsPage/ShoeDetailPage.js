@@ -23,13 +23,6 @@ function ShoesDetailsPage() {
     })
     const shoe = useSelector((state) => state.shoes[shoeId])
 
-
-
-    const reviews = shoe?.Reviews.map((review) => {
-       return <p>{review.comment}</p>
-    //    return <li>{review.comment}</li>
-   })
-   
     const shoeSellerId = shoe?.sellerId
 
     let sellerChecker;
@@ -56,6 +49,19 @@ function ShoesDetailsPage() {
             </div>
         )
     }
+
+
+    const reviews = shoe?.Reviews.map((review) => {
+       return <p>{review.comment}</p>
+    //    return <li>{review.comment}</li>
+   })
+
+
+   let editReviewButton;
+// create a checker that checks the reviews.userId and the userId if true
+//    then have a button dispalyed next to the review and the button will redirect them to a edit review form page
+//    if (userId == shoe?.Reviews)
+
 
 
 
@@ -93,7 +99,7 @@ function ShoesDetailsPage() {
                 <div>
                 {reviews}
                 </div>
-                {/* Reviews go here */}
+
             </div>
 
 
