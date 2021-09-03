@@ -9,10 +9,10 @@ module.exports = {
      */
     await queryInterface.bulkInsert('Reviews', [
       {shoeId:1, userId:1, comment:'test reviews',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
-      {shoeId:1, userId:1, comment:'test reviews',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
-      {shoeId:1, userId:1, comment:'test review 2',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
-      {shoeId:1, userId:1, comment:'test review 2',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
-      {shoeId:1, userId:1, comment:'test reviews 3',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
+      {shoeId:1, userId:2, comment:'test reviews',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
+      {shoeId:1, userId:3, comment:'test review 2',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
+      {shoeId:1, userId:3, comment:'test review 2',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
+      {shoeId:1, userId:3, comment:'test reviews 3',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
       {shoeId:1, userId:1, comment:'test reviews 3',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
       {shoeId:1, userId:1, comment:'test reviews',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},
       {shoeId:1, userId:1, comment:'test reviews',rating:4, image:null,createdAt:new Date(), updatedAt:new Date()},

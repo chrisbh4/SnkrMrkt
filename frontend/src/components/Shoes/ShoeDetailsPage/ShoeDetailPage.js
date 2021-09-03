@@ -51,16 +51,63 @@ function ShoesDetailsPage() {
     }
 
 
-    const reviews = shoe?.Reviews.map((review) => {
-       return <p>{review.comment}</p>
+//     const reviewLists = shoe?.Reviews.map((review) => {
+//         console.log("single review:", review)
+//     //    return <div>
+//     //        <p>
+//     //        {review.comment}
+//     //        </p>
+//     //        </div>
+//     //    return <li>{review.comment}</li>
+//    })
+
+    const reviewLists = shoe?.Reviews.map((review) => {
+        // console.log("single review:", review.id)
+        if ( userId === review.userId){
+            return(
+                <div>
+            <p>{review.comment}</p>
+           <button> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+            </div>
+            )
+        }else{
+            return <div>
+                <p>
+                {review.comment}
+                </p>
+                <p>{review.userId}</p>
+                </div>
+        }
     //    return <li>{review.comment}</li>
    })
+
+
+
+
+   const allReviews = {}
+   shoe?.Reviews.forEach((review) => {
+    if (!allReviews[review.id]) {
+        allReviews[review.id] = review
+    }
+
+    // else{
+    //     allReviews[review.userId] = review
+    // }
+
+})
+
+//    console.log("Reviews :", allReviews[16]?.userId)
+//    console.log("Reviews :", allReviews)
 
 
    let editReviewButton;
 // create a checker that checks the reviews.userId and the userId if true
 //    then have a button dispalyed next to the review and the button will redirect them to a edit review form page
-//    if (userId == shoe?.Reviews)
+   if (userId === shoe?.Reviews){
+       editReviewButton = (
+           <Link to={`/reviews/edit/{}`}><button>Edit</button></Link>
+       )
+   }
 
 
 
@@ -97,7 +144,7 @@ function ShoesDetailsPage() {
             <div className="reviews-container">
                 <h3>Reviews</h3>
                 <div>
-                {reviews}
+                {reviewLists}
                 </div>
 
             </div>
