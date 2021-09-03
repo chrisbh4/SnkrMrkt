@@ -1,53 +1,58 @@
-import React,{useEffect} from "react"
+import React, { useEffect } from "react"
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
-import {getAllShoes} from "../../../store/shoes"
+import { getAllShoes } from "../../../store/shoes"
 
 
 function ShoesDetailsPage() {
-     const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const params = useParams()
 
 
     useEffect(() => {
         dispatch(getAllShoes())
-      }, [dispatch]);
+    }, [dispatch]);
 
     const shoeId = params.id
-    const userId = useSelector((state)=>{
-        if(state.session.user){
+    const userId = useSelector((state) => {
+        if (state.session.user) {
             return state.session.user.id
         }
         return 0.5;
     })
     const shoe = useSelector((state) => state.shoes[shoeId])
 
+
+
+    const reviews = shoe?.Reviews.map((review) => {
+       return <p>{review.comment}</p>
+    //    return <li>{review.comment}</li>
+   })
+
+
     const shoeSellerId = shoe?.sellerId
 
-    // console.log('Shoe :', shoe?.id)
-    // console.log('Seller Id :', shoe?.sellerId)
-    //   console.log("User ID:", userId)
     let sellerChecker;
-    if(userId){
-        if(userId === shoeSellerId){
-             sellerChecker =(
-                 <div>
-                     <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
-                     <button> Edit </button>
-                     </Link>
-                 </div>
-             )
-         }
-    }else{
+    if (userId) {
+        if (userId === shoeSellerId) {
+            sellerChecker = (
+                <div>
+                    <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
+                        <button> Edit </button>
+                    </Link>
+                </div>
+            )
+        }
+    } else {
         return sellerChecker;
     }
     let purchaseChecker;
-   if(userId !== shoeSellerId && userId > 0.99){
-        purchaseChecker =(
+    if (userId !== shoeSellerId && userId > 0.99) {
+        purchaseChecker = (
             <div>
                 <Link to={`/`}>
-                <button> Purchase </button>
+                    <button> Purchase </button>
                 </Link>
             </div>
         )
@@ -58,7 +63,7 @@ function ShoesDetailsPage() {
     return (
         <>
             <h1>
-            <a href="/">Shoes Details Page</a>
+                <a href="/">Shoes Details Page</a>
 
             </h1>
             <div className="details-container">
@@ -78,16 +83,19 @@ function ShoesDetailsPage() {
                     </div>
                 </div>
             </div>
-                <div className="shoe-details-checker">
-                   {sellerChecker}
-                   {purchaseChecker}
+            <div className="shoe-details-checker">
+                {sellerChecker}
+                {purchaseChecker}
 
-                </div>
+            </div>
             {/* Reviews is outside of the ' detials-container ' */}
-                <div className="reviews-container">
-                    <h3>Reviews</h3>
-                    {/* Reviews go here */}
+            <div className="reviews-container">
+                <h3>Reviews</h3>
+                <div>
+                {reviews}
                 </div>
+                {/* Reviews go here */}
+            </div>
 
 
         </>

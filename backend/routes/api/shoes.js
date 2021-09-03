@@ -24,7 +24,6 @@ router.get('/', asyncHandler(async (req, res) => {
 
     })
 
-   
     return res.json(allShoes)
 
 }));
