@@ -56,7 +56,6 @@ function NewShoesForm() {
                     <div className="form-item">
                         {errors.map((error)=>{
                             if(error){
-
                                 return(
                                     <p>{error}</p>
                                     )

@@ -27,13 +27,18 @@ const validateShoe = [
 ]
 //! Bug is coming from the route
 
-// const errors = validatorErrors.array().map(error => error.msg)
-router.post('/new', validateShoe, asyncHandler(async (req, res ) => {
+
+router.post('/new', validateShoe, asyncHandler(async (req, res, next,err ) => {
+    // const errors = validationResult(req);
+
+    console.log(err)
+    // if (errrors){
+    //     return res.json({"errors":errors.array()})
+    // }
     const { sellerId, title, shoeSize, image, price } = req.body
     const newShoe = await Shoes.create({
         sellerId, title, shoeSize, image, price
     })
-
     // try{
     //     return res.json({ newShoe })
 
@@ -43,7 +48,7 @@ router.post('/new', validateShoe, asyncHandler(async (req, res ) => {
     // }
 
     console.log(req.body)
-    debugger
+
     // if(newShoe.err){
     //     console.log("hello from routes")
     //     return res.json(newShoe.err)
