@@ -51,17 +51,7 @@ function ShoesDetailsPage() {
     }
 
 
-//     const reviewLists = shoe?.Reviews.map((review) => {
-//         console.log("single review:", review)
-//     //    return <div>
-//     //        <p>
-//     //        {review.comment}
-//     //        </p>
-//     //        </div>
-//     //    return <li>{review.comment}</li>
-//    })
-
-    const reviewLists = shoe?.Reviews.map((review) => {
+    const reviewsAndEditButton = shoe?.Reviews.map((review) => {
         // console.log("single review:", review.id)
         if ( userId === review.userId){
             return(
@@ -78,36 +68,17 @@ function ShoesDetailsPage() {
                 <p>{review.userId}</p>
                 </div>
         }
-    //    return <li>{review.comment}</li>
    })
 
 
 
 
-   const allReviews = {}
-   shoe?.Reviews.forEach((review) => {
-    if (!allReviews[review.id]) {
-        allReviews[review.id] = review
-    }
-
-    // else{
-    //     allReviews[review.userId] = review
-    // }
-
-})
-
-//    console.log("Reviews :", allReviews[16]?.userId)
-//    console.log("Reviews :", allReviews)
 
 
-   let editReviewButton;
+
+
 // create a checker that checks the reviews.userId and the userId if true
 //    then have a button dispalyed next to the review and the button will redirect them to a edit review form page
-   if (userId === shoe?.Reviews){
-       editReviewButton = (
-           <Link to={`/reviews/edit/{}`}><button>Edit</button></Link>
-       )
-   }
 
 
 
@@ -139,12 +110,14 @@ function ShoesDetailsPage() {
                 {sellerChecker}
                 {purchaseChecker}
 
+
             </div>
             {/* Reviews is outside of the ' detials-container ' */}
             <div className="reviews-container">
                 <h3>Reviews</h3>
+                <button><a href="/reviews/new">Leave a Review</a></button>
                 <div>
-                {reviewLists}
+                {reviewsAndEditButton}
                 </div>
 
             </div>

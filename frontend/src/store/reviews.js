@@ -26,7 +26,7 @@ const createReview = (review)=>({
 
 const editReview = (reviewId)=>({
     type:EDIT_REVIEW,
-    review
+    reviewId
 });
 
 const deleteReview = (reviewId)=>({
@@ -36,27 +36,27 @@ const deleteReview = (reviewId)=>({
 
 
 
-export const fetchAllReviews = () => async (dsipatch)=>{
+export const fetchAllReviews = () => async (dispatch)=>{
     const res = await csrfFetch('/api/reviews')
 
     if(res.ok){
         const data = await res.json()
-        dsipatch(loadReviews(data))
+        dispatch(loadReviews(data))
         return data
     }
 }
 
-export const fetchOneReview = (reviewId) => async (dsipatch)=>{
+export const fetchOneReview = (reviewId) => async (dispatch)=>{
     const res = await csrfFetch(`/api/reviews/${reviewId}`)
 
     if(res.ok){
         const data = await res.json()
-        dsipatch(loadOneReview(data))
+        dispatch(loadOneReview(data))
         return data
     }
 }
 
-export const fetchCreateReview= (shoeId, userId, comment, rating, image ) => async (dsipatch)=>{
+export const fetchCreateReview= (shoeId, userId, comment, rating, image ) => async (dispatch)=>{
     const res = await csrfFetch(`/api/reviews/new`,{
         method:"POST",
         header:{"Content-Type": "application/json"},
@@ -65,12 +65,12 @@ export const fetchCreateReview= (shoeId, userId, comment, rating, image ) => asy
 
     if(res.ok){
         const data = await res.json()
-        dsipatch(createReview(data))
+        dispatch(createReview(data))
         return data
     }
 }
 
-export const fetchEditReview= (shoeId, userId, comment, rating, image ) => async (dsipatch)=>{
+export const fetchEditReview= (shoeId, userId, comment, rating, image ) => async (dispatch)=>{
     const res = await csrfFetch(`/api/reviews/new`,{
         method:"PUT",
         header:{"Content-Type": "application/json"},
@@ -79,13 +79,13 @@ export const fetchEditReview= (shoeId, userId, comment, rating, image ) => async
 
     if(res.ok){
         const data = await res.json()
-        dsipatch(editReview(data))
+        dispatch(editReview(data))
         return data
     }
 }
 
 
-export const fetchDeleteReview= (reviewId)=> async(disatch)=>{
+export const fetchDeleteReview= (reviewId)=> async(dispatch)=>{
     const res = await csrfFetch(`/api/review/${reviewId}`,{
         method:"DELETE"
     })
