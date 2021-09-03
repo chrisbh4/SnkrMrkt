@@ -81,6 +81,17 @@ router.post('/new', asyncHandler(async (req, res) => {
 
 
 
+// router.get('/:id/reviews', asyncHandler(async (req, res )=>{
+//     const shoe = await Shoe.findByPk(req.params.id);
+
+//     let {id} = shoe
+//     // console.log(shoeId)
+//     // const allShoeReviews = await Reviews.findByPk({shoeId})
+
+//     // return ({allShoeReviews})
+//     return res.send(shoe)
+//  }))
+
 
 
 module.exports = router
