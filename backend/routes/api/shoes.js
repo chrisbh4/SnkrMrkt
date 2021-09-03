@@ -21,9 +21,10 @@ router.get('/', asyncHandler(async (req, res) => {
         if (!allShoes[shoe.id]) {
             allShoes[shoe.id] = shoe
         }
+
     })
 
-
+   
     return res.json(allShoes)
 
 }));
