@@ -1,22 +1,22 @@
-import React,{useEffect} from "react"
+import React, { useEffect } from "react"
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
-import {getAllShoes} from "../../../store/shoes"
+import { getAllShoes } from "../../../store/shoes"
 
 
 function ShoesDetailsPage() {
-     const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const params = useParams()
 
 
     useEffect(() => {
         dispatch(getAllShoes())
-      }, [dispatch]);
+    }, [dispatch]);
 
     const shoeId = params.id
-    const userId = useSelector((state)=>{
-        if(state.session.user){
+    const userId = useSelector((state) => {
+        if (state.session.user) {
             return state.session.user.id
         }
         return 0.5;
@@ -25,40 +25,68 @@ function ShoesDetailsPage() {
 
     const shoeSellerId = shoe?.sellerId
 
-    // console.log('Shoe :', shoe?.id)
-    // console.log('Seller Id :', shoe?.sellerId)
-    //   console.log("User ID:", userId)
     let sellerChecker;
-    if(userId){
-        if(userId === shoeSellerId){
-             sellerChecker =(
-                 <div>
-                     <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
-                     <button> Edit </button>
-                     </Link>
-                 </div>
-             )
-         }
-    }else{
+    if (userId) {
+        if (userId === shoeSellerId) {
+            sellerChecker = (
+                <div>
+                    <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
+                        <button> Edit </button>
+                    </Link>
+                </div>
+            )
+        }
+    } else {
         return sellerChecker;
     }
     let purchaseChecker;
-   if(userId !== shoeSellerId && userId > 0.99){
-        purchaseChecker =(
+    if (userId !== shoeSellerId && userId > 0.99) {
+        purchaseChecker = (
             <div>
                 <Link to={`/`}>
-                <button> Purchase </button>
+                    <button> Purchase </button>
                 </Link>
             </div>
         )
     }
 
 
+    const reviewsAndEditButton = shoe?.Reviews.map((review) => {
+        // console.log("single review:", review.id)
+        if ( userId === review.userId){
+            return(
+                <div>
+            <p>{review.comment}</p>
+           <button> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+            </div>
+            )
+        }else{
+            return <div>
+                <p>
+                {review.comment}
+                </p>
+                <p>{review.userId}</p>
+                </div>
+        }
+   })
+
+
+
+
+
+
+
+
+// create a checker that checks the reviews.userId and the userId if true
+//    then have a button dispalyed next to the review and the button will redirect them to a edit review form page
+
+
+
 
     return (
         <>
             <h1>
-            <a href="/">Shoes Details Page</a>
+                <a href="/">Shoes Details Page</a>
 
             </h1>
             <div className="details-container">
@@ -78,16 +106,21 @@ function ShoesDetailsPage() {
                     </div>
                 </div>
             </div>
-                <div className="shoe-details-checker">
-                   {sellerChecker}
-                   {purchaseChecker}
+            <div className="shoe-details-checker">
+                {sellerChecker}
+                {purchaseChecker}
 
-                </div>
+
+            </div>
             {/* Reviews is outside of the ' detials-container ' */}
-                <div className="reviews-container">
-                    <h3>Reviews</h3>
-                    {/* Reviews go here */}
+            <div className="reviews-container">
+                <h3>Reviews</h3>
+                <button><a href="/reviews/new">Leave a Review</a></button>
+                <div>
+                {reviewsAndEditButton}
                 </div>
+
+            </div>
 
 
         </>
