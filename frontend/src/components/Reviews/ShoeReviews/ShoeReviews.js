@@ -27,7 +27,7 @@ function ShoeReviews({shoe}){
             return(
                 <div>
             <p>{review.comment}</p>
-           <button> <a href={`/reviews/${shoe.id}/edit`}>Edit</a></button>
+           <button> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
             </div>
             )
         }else{

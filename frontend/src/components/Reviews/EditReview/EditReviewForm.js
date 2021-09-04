@@ -1,28 +1,45 @@
 import React , {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { fetchEditReview } from "../../../store/reviews"
+import { fetchEditReview , fetchOneReview , fetchAllReviews } from "../../../store/reviews"
 import "./EditReviewForm.css"
 
 
 
 function EditReviewForm(){
-    const history = useHistory()
     const dispatch = useDispatch()
     const params = useParams()
-    const [comment, setComment] = useState("")
-    const [rating, setRating] = useState(0)
+    const history = useHistory()
+
+    const reviewId = params.id
+    // console.log('review id ',reviewId)
+    useEffect(() => {
+        // dispatch(fetchAllReviews())
+        dispatch(fetchOneReview(reviewId))
+    }, [dispatch , reviewId]);
+
+    const userId = useSelector((state)=> state.session.user.id)
+    const review = useSelector((state)=> state.reviews)
+    const shoeId = review.shoeId
+
+    console.log("review", review.comment)
+
+    const [comment, setComment] = useState(review.comment)
+    const [rating, setRating] = useState(review.rating)
     const [image , setImage ] = useState("")
     const [errors , setErrors] = useState([])
 
-    const reviewId = params.id
+    const updateComment = (e) => setComment(e.target.value)
+    const updateRating = (e) => setRating(e.target.value)
+    const updateImage = (e) => setImage(e.target.value)
 
-    const userId = useSelector((state)=> state.session.user.id)
+
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(fetchEditReview(userId, comment, rating, image))
-
+        // const data = await dispatch(fetchEditReview(shoeId, userId, comment, rating, image))
+        const data = await dispatch(fetchEditReview( shoeId,userId, comment, rating, image))
 
         if (!data.errors) {
 
@@ -45,7 +62,10 @@ function EditReviewForm(){
             <form onSubmit={onSubmit}>
                 <div className="edit-review-item">
                     <label>Comment :</label>
-                    <textarea></textarea>
+                    <textarea
+                        placeholder={comment}
+                        onChange={updateComment}
+                    ></textarea>
                 </div>
                 <div className="edit-review-item">
                     <label>
@@ -53,6 +73,8 @@ function EditReviewForm(){
                     </label>
                     <input
                         type="number"
+                        placeholder={rating}
+                        onChange={updateRating}
                     ></input>
                     </div>
 
@@ -60,7 +82,7 @@ function EditReviewForm(){
                         <label>Image Url: </label>
                         <input
                             type="text"
-                            // onChange={}
+                            onChange={updateImage}
                         ></input>
                     </div>
                     <div className="edit-review-button">

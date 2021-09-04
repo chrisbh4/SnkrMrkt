@@ -69,7 +69,7 @@ export const fetchCreateReview= (shoeId, userId, comment, rating, image ) => asy
         return data
     }
 }
-
+//fix csrfFetch to grab the correct route
 export const fetchEditReview= (shoeId, userId, comment, rating, image ) => async (dispatch)=>{
     const res = await csrfFetch(`/api/reviews/new`,{
         method:"PUT",
@@ -97,3 +97,25 @@ export const fetchDeleteReview= (reviewId)=> async(dispatch)=>{
     }
     return
 }
+
+const initialState = {};
+
+function reducer ( state = initialState, action){
+    let newState = {...state}
+    switch(action.type){
+        case LOAD_REVIEWS:
+            return {...state, ...action.reviews}
+        case LOAD_ONE_REVIEW:
+            return {...state,...action.review}
+        case EDIT_REVIEW:
+            state[action.review.id] = action.review
+            return state
+        default:
+            return state
+
+    }
+}
+
+
+
+export default reducer;

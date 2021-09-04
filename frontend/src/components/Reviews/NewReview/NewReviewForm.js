@@ -10,7 +10,7 @@ function NewReviewForm(){
     const history = useHistory()
     const dispatch = useDispatch()
     const params = useParams()
-    const shoeId = params.id
+    const shoeId = params.id ;
     const userId = useSelector((state)=> state.session.user.id)
 
     const [comment, setComment] = useState("")
