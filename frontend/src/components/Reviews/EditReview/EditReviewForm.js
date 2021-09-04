@@ -13,6 +13,7 @@ function EditReviewForm(){
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(0)
     const [image , setImage ] = useState("")
+    const [errors , setErrors] = useState([])
 
     const reviewId = params.id
 
@@ -29,7 +30,7 @@ function EditReviewForm(){
             throw alert("Your Review has been changed")
         }
         else {
-            // setErros(data)
+            setErrors(data)
         }
         return data
     }

@@ -12,6 +12,7 @@ function NewReviewForm(){
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(0)
     const [image , setImage ] = useState("")
+    const [errors , setErrors] = useState([])
 
     const userId = useSelector((state)=> state.session.user.id)
 
@@ -26,7 +27,7 @@ function NewReviewForm(){
             throw alert("Your Review has been created")
         }
         else {
-            // setErros(data)
+            setErrors(data)
         }
         return data
     }
