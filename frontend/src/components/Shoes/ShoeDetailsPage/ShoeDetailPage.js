@@ -116,7 +116,7 @@ function ShoesDetailsPage() {
             {/* Reviews is outside of the ' detials-container ' */}
             {/* Take all of this and place inside a componenet and pass in the shoe as a prop */}
             <div className="reviews-container">
-               <ShoeReviews shoe={shoe} />
+               <ShoeReviews shoe={shoe} key={shoe?.id}/>
             </div>
 
 

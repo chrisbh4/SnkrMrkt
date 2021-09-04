@@ -13,6 +13,14 @@ function ShoeReviews({shoe}){
         }
         return 0.5;
     })
+
+    let createReviewButton;
+    if(userId > 0.9){
+        createReviewButton = (
+            <button><a href="/reviews/new">Leave a Review</a></button>
+        )
+    }
+
     const reviewsAndEditButton = shoe?.Reviews.map((review) => {
         // console.log("single review:", review.id)
         if ( userId === review.userId){
@@ -35,7 +43,7 @@ function ShoeReviews({shoe}){
     return(
         <>
         <h3>Reviews</h3>
-        <button><a href="/reviews/new">Leave a Review</a></button>
+        {createReviewButton}
         <div>
         {reviewsAndEditButton}
         </div>
