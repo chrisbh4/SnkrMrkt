@@ -8,17 +8,18 @@ import "./NewShoeForm.css"
 
 
 function NewShoesForm() {
-    const dispatch = useDispatch()
-    const history = useHistory()
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const sellerId = useSelector((state) => state.session.user.id)
-    // console.log('User Id: ',user)
+    const sellerId = useSelector((state) => state.session.user.id);
 
-    const [title, setTitle] = useState("")
-    const [shoeSize, setShoeSize] = useState(6)
-    const [image, setImage] = useState("")
-    const [brand, setBrand] = useState("")
-    const [price, setPrice] = useState(0.00)
+
+    const [title, setTitle] = useState("");
+    const [shoeSize, setShoeSize] = useState(6);
+    const [image, setImage] = useState("");
+    const [brand, setBrand] = useState("");
+    const [price, setPrice] = useState(0.00);
+    const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
@@ -26,29 +27,37 @@ function NewShoesForm() {
     const updateBrand = (e) => setBrand(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
 
-
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
         // brand,
+        console.log("NewshoeForm :", data)
 
-        if (!data.errors) {
+        if (!data?.errors) {
+
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
-            history.push(`/`)
-            throw alert("Your Shoe has now been listed for sale.")
+            history.push(`/`);
+            throw alert("Your Shoe has now been listed for sale.");
         }
         else {
-            // setErros(data)
+            console.log("data :", data.errors)
+            setErrors(data?.errors);
         }
         return data
     }
-
+    //left of on solving error handling problem
+    console.log("errors :",errors)
     return (
         <div className="form-placement">
-
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                     <div className="form-item">
+                        {errors.map((error)=>{
+                            return(
+                                <li className="error-handlers">{error}</li>
+                            )
+                        })}
+
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -56,6 +65,7 @@ function NewShoesForm() {
                             name="title"
                             required
                         ></input>
+                        {/* <p className="error-handlers">{errors[0]}</p> */}
                     </div>
                     <div className="form-item-new">
                         <label>Shoe Size:  </label>
@@ -63,10 +73,12 @@ function NewShoesForm() {
                             type="number"
                             onChange={updateShoeSize}
                         ></input>
+                        {/* <p className="error-handlers">{errors[1]}</p> */}
                     </div>
                     <div className="form-item-new">
                         <div>
                             <label>Brand Name: </label>
+                            {/* <p className="error-handlers">{errors[2]}</p> */}
                         </div>
                         <input
                             type="radio"
@@ -103,6 +115,7 @@ function NewShoesForm() {
                             type="number"
                             onChange={updatePrice}
                         ></input>
+                        {/* <p className="error-handlers">{errors[3]}</p> */}
                     </div>
                     <div className="form-item-new">
                         <label>Image Url: </label>
