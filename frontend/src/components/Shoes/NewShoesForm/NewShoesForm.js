@@ -8,17 +8,18 @@ import "./NewShoeForm.css"
 
 
 function NewShoesForm() {
-    const dispatch = useDispatch()
-    const history = useHistory()
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const sellerId = useSelector((state) => state.session.user.id)
+    const sellerId = useSelector((state) => state.session.user.id);
 
 
-    const [title, setTitle] = useState("")
-    const [shoeSize, setShoeSize] = useState(6)
-    const [image, setImage] = useState("")
-    const [brand, setBrand] = useState("")
-    const [price, setPrice] = useState(0.00)
+    const [title, setTitle] = useState("");
+    const [shoeSize, setShoeSize] = useState(6);
+    const [image, setImage] = useState("");
+    const [brand, setBrand] = useState("");
+    const [price, setPrice] = useState(0.00);
+    const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
@@ -32,11 +33,11 @@ function NewShoesForm() {
 
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
-            history.push(`/`)
-            throw alert("Your Shoe has now been listed for sale.")
+            history.push(`/`);
+            throw alert("Your Shoe has now been listed for sale.");
         }
         else {
-            setErros(data)
+            // setErros(data);
         }
         return data
     }
