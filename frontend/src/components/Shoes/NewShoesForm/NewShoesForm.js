@@ -19,6 +19,7 @@ function NewShoesForm() {
     const [image, setImage] = useState("")
     const [brand, setBrand] = useState("")
     const [price, setPrice] = useState(0.00)
+    const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
@@ -38,7 +39,7 @@ function NewShoesForm() {
             throw alert("Your Shoe has now been listed for sale.")
         }
         else {
-            // setErros(data)
+            setErrors(data?.errors)
         }
         return data
     }
@@ -48,6 +49,19 @@ function NewShoesForm() {
 
             <div className="form-container">
                 <form onSubmit={onSubmit}>
+
+                    {/* {errors.map((error)=>{
+                      return  <li>{error}</li>
+                    })} */}
+
+                    {errors.map((error) => {
+                        if (error) {
+                            return (
+                                <p>{error}</p>
+                            )
+                        }
+                    })}
+
                     <div className="form-item">
                         <label>Shoe Title: </label>
                         <input
