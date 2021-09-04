@@ -85,7 +85,7 @@ function ShoesDetailsPage() {
 
     return (
         <>
-            <h1>
+            <h1 className="details-page-title">
                 <a href="/">Shoes Details Page</a>
 
             </h1>

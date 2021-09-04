@@ -1,5 +1,7 @@
 
-
+.details-page-title{
+    text-align: center;
+}
 .details-container{
     width: 100%;
     display: flex;
