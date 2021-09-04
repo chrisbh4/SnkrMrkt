@@ -10,6 +10,7 @@ import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
 import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
 import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage';
+import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
 
 
@@ -28,20 +29,23 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <button onClick={() => setShowModal(true)}>Modal</button>
+      {/* <button onClick={() => setShowModal(true)}>Modal</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <h1>Hello I am a Modal</h1>
         </Modal>
-      )}
+      )} */}
       {isLoaded && (
         <Switch>
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
 
-          <Route path='/signup'>
+          {/* <Route path='/signup'>
             <SignupFormPage />
+          </Route> */}
+          <Route exact path='/'>
+            <HomePage />
           </Route>
 
           <Route path='/shoes/new'>
@@ -55,9 +59,18 @@ function App() {
             <EditShoesForm />
           </Route>
 
-          <Route exact path='/'>
-            <HomePage />
-          </Route>
+          <Route path = "/reviews/new">
+              <NewReviewForm />
+            </Route>
+
+          {/* <Route path = "/reviews/:id/edit">
+              <EditReviewForm />
+            </Route> */}
+
+
+
+
+
           <Route>
           404 page not found
           </Route>

@@ -1,0 +1,31 @@
+
+#signup-header{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+
+.signup-form{
+    margin-top: -50px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+}
+
+
+.signup-input{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    /* width: 50%; */
+}
+
+.signup-submit{
+    margin-top: 10px;
+    width: 60%;
+    text-align: center;
+    margin-left: 30px;
+}

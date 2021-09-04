@@ -8,18 +8,18 @@ import "./NewShoeForm.css"
 
 
 function NewShoesForm() {
-    const dispatch = useDispatch()
-    const history = useHistory()
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const sellerId = useSelector((state) => state.session.user.id)
-    // console.log('User Id: ',user)
+    const sellerId = useSelector((state) => state.session.user.id);
 
-    const [title, setTitle] = useState("")
-    const [shoeSize, setShoeSize] = useState(6)
-    const [image, setImage] = useState("")
-    const [brand, setBrand] = useState("")
-    const [price, setPrice] = useState(0.00)
-    const [errors , setErrors] = useState([])
+
+    const [title, setTitle] = useState("");
+    const [shoeSize, setShoeSize] = useState(6);
+    const [image, setImage] = useState("");
+    const [brand, setBrand] = useState("");
+    const [price, setPrice] = useState(0.00);
+    const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
@@ -27,22 +27,20 @@ function NewShoesForm() {
     const updateBrand = (e) => setBrand(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
 
-
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
         // brand,
         console.log("NewshoeForm :", data)
+
         if (!data?.errors) {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
-            history.push(`/`)
-            throw alert("Your Shoe has now been listed for sale.")
+            history.push(`/`);
+            throw alert("Your Shoe has now been listed for sale.");
         }
         else {
-            console.log("error gets hit")
-            console.log('Errors :',data?.errors)
-            setErrors(data?.errors)
+            setErros(data?.errors);
         }
         return data
     }
@@ -50,7 +48,6 @@ function NewShoesForm() {
 
     return (
         <div className="form-placement">
-
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                     <div className="form-item">

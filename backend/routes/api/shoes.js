@@ -43,11 +43,7 @@ router.post('/new', validateShoe, asyncHandler(async (req, res) => {
 
 
 
-
 router.get('/', asyncHandler(async (req, res) => {
-    // const allShoes = await Shoes.findAll({
-    //     include:[Reviews]
-    // })
     const shoes = await Shoes.findAll({
         include: [Reviews]
     })
@@ -59,10 +55,11 @@ router.get('/', asyncHandler(async (req, res) => {
         if (!allShoes[shoe.id]) {
             allShoes[shoe.id] = shoe
         }
+
     })
-    //  console.log(allShoes)
 
     return res.json(allShoes)
+
 }));
 
 
@@ -110,6 +107,20 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 }))
 
 
+
+
+
+
+// router.get('/:id/reviews', asyncHandler(async (req, res )=>{
+//     const shoe = await Shoe.findByPk(req.params.id);
+
+//     let {id} = shoe
+//     // console.log(shoeId)
+//     // const allShoeReviews = await Reviews.findByPk({shoeId})
+
+//     // return ({allShoeReviews})
+//     return res.send(shoe)
+//  }))
 
 
 

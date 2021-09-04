@@ -20,6 +20,7 @@ function HomePage(){
 
     return(
         <>
+        
         <h1 className="homepage-title">ThePlug</h1>
         <div className="all-shoes-container">
             {shoesArray.map((shoe)=>{

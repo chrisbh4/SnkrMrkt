@@ -3,23 +3,50 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import SignUpModal from '../SignupFormPage';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <div className="nav-logged-in">
+
+        <div className="nav-profile-button">
+          <ProfileButton user={sessionUser} />
+        </div>
+
+        <button className="nav-button">
+          <NavLink to="/shoes/new">New Shoe</NavLink>
+        </button>
+
+        <button className="nav-button">
+          <NavLink exact to="/">Home</NavLink>
+        </button>
+      </div>
 
     );
   } else {
     sessionLinks = (
-      <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
+      <div className="nav-logged-in">
+
+        <button className="nav-button">
+          <LoginFormModal />
+        </button>
+
+        <button className="nav-button">
+          <SignUpModal />
+        </button>
+
+
+
+        <button className="nav-button">
+          <NavLink exact to="/">Home</NavLink>
+        </button>
+
+      </div>
     );
   }
 
@@ -31,24 +58,19 @@ function Navigation({ isLoaded }){
     //     {isLoaded && sessionLinks}
     //   </li>
     // </ul>
-
-    <nav className="nav-logged-in" >
-
-
-    <button className="nav-profile-button">
-      {isLoaded && sessionLinks}
-
-    </button>
-    <button className="nav-button">
-      <NavLink to="/shoes/new">New Shoe</NavLink>
-    </button>
-    <button className="nav-button">
-      <NavLink exact to="/">Home</NavLink>
-    </button>
+      <nav >
+        {isLoaded && sessionLinks}
+      </nav>
+    //   {/* <button className="nav-button">
+    //   <NavLink to="/shoes/new">New Shoe</NavLink>
+    // </button>
+    // <button className="nav-button">
+    //   <NavLink exact to="/">Home</NavLink>
+    // </button> */}
 
 
 
-  </nav>
+
   );
 }
 

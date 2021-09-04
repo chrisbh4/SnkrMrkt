@@ -77,7 +77,7 @@ function EditShoesForm() {
                             onChange={updateTitle}
                             placeholder={title}
                             name="title"
-                            required
+
                         ></input>
                     </div>
                     <div className="form-item">
