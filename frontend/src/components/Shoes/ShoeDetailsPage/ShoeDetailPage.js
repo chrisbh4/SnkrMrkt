@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
+import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes } from "../../../store/shoes"
 
 
@@ -51,24 +52,24 @@ function ShoesDetailsPage() {
     }
 
 
-    const reviewsAndEditButton = shoe?.Reviews.map((review) => {
-        // console.log("single review:", review.id)
-        if ( userId === review.userId){
-            return(
-                <div>
-            <p>{review.comment}</p>
-           <button> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
-            </div>
-            )
-        }else{
-            return <div>
-                <p>
-                {review.comment}
-                </p>
-                <p>{review.userId}</p>
-                </div>
-        }
-   })
+//     const reviewsAndEditButton = shoe?.Reviews.map((review) => {
+//         // console.log("single review:", review.id)
+//         if ( userId === review.userId){
+//             return(
+//                 <div>
+//             <p>{review.comment}</p>
+//            <button> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+//             </div>
+//             )
+//         }else{
+//             return <div>
+//                 <p>
+//                 {review.comment}
+//                 </p>
+//                 <p>{review.userId}</p>
+//                 </div>
+//         }
+//    })
 
 
 
@@ -113,13 +114,9 @@ function ShoesDetailsPage() {
 
             </div>
             {/* Reviews is outside of the ' detials-container ' */}
+            {/* Take all of this and place inside a componenet and pass in the shoe as a prop */}
             <div className="reviews-container">
-                <h3>Reviews</h3>
-                <button><a href="/reviews/new">Leave a Review</a></button>
-                <div>
-                {reviewsAndEditButton}
-                </div>
-
+               <ShoeReviews shoe={shoe} />
             </div>
 
 
