@@ -19,6 +19,7 @@ function NewShoesForm() {
     const [image, setImage] = useState("")
     const [brand, setBrand] = useState("")
     const [price, setPrice] = useState(0.00)
+    const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
@@ -27,18 +28,37 @@ function NewShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
 
 
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
+    //     // brand,
+
+    //     if (!data.errors) {
+    //         // TODO: Create User Profile and redirect user to show new shoe being listed under them
+    //         history.push(`/`)
+    //         throw alert("Your Shoe has now been listed for sale.")
+    //     }
+    //     else {
+    //         setErrors(data?.errors)
+    //     }
+    //     return data
+    // }
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
         // brand,
+        console.log("NewshoeForm :", data)
+        if (!data?.errors) {
 
-        if (!data.errors) {
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
             history.push(`/`)
             throw alert("Your Shoe has now been listed for sale.")
         }
         else {
-            // setErros(data)
+            console.log("error gets hit")
+            console.log('Errors :',data?.errors)
+            setErrors(data?.errors)
         }
         return data
     }
@@ -48,6 +68,19 @@ function NewShoesForm() {
 
             <div className="form-container">
                 <form onSubmit={onSubmit}>
+
+                    {/* {errors.map((error)=>{
+                      return  <li>{error}</li>
+                    })} */}
+
+                    {errors.map((error) => {
+                        if (error) {
+                            return (
+                                <p>{error}</p>
+                            )
+                        }
+                    })}
+
                     <div className="form-item">
                         <label>Shoe Title: </label>
                         <input
