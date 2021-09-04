@@ -60,7 +60,7 @@ function App() {
             <EditShoesForm />
           </Route>
 
-          <Route path = "/reviews/new">
+          <Route exact path= "/shoes/:id/reviews/new">
               <NewReviewForm />
             </Route>
 
