@@ -60,8 +60,10 @@ export const getCreatedShoe = ( sellerId,title,shoeSize,image,price ) => async (
     if (data.ok) {
         console.log(data)
         dispatch(createShoe(data))
+    }else{
+
+        return data
     }
-    return data
 };
 
 export const getEditShoe = (title,shoeSize,image,price,brand, shoeId) => async (dispatch)=>{
