@@ -12,7 +12,7 @@ function NewShoesForm() {
     const history = useHistory()
 
     const sellerId = useSelector((state) => state.session.user.id)
-    // console.log('User Id: ',user)
+
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(6)
@@ -26,11 +26,9 @@ function NewShoesForm() {
     const updateBrand = (e) => setBrand(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
 
-
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
-        // brand,
 
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
@@ -38,14 +36,13 @@ function NewShoesForm() {
             throw alert("Your Shoe has now been listed for sale.")
         }
         else {
-            // setErros(data)
+            setErros(data)
         }
         return data
     }
 
     return (
         <div className="form-placement">
-
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                     <div className="form-item">
