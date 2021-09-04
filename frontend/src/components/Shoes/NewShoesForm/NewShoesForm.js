@@ -28,17 +28,36 @@ function NewShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
 
 
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
+    //     // brand,
+
+    //     if (!data.errors) {
+    //         // TODO: Create User Profile and redirect user to show new shoe being listed under them
+    //         history.push(`/`)
+    //         throw alert("Your Shoe has now been listed for sale.")
+    //     }
+    //     else {
+    //         setErrors(data?.errors)
+    //     }
+    //     return data
+    // }
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
         // brand,
+        console.log("NewshoeForm :", data)
+        if (!data?.errors) {
 
-        if (!data.errors) {
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
             history.push(`/`)
             throw alert("Your Shoe has now been listed for sale.")
         }
         else {
+            console.log("error gets hit")
+            console.log('Errors :',data?.errors)
             setErrors(data?.errors)
         }
         return data
