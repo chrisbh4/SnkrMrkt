@@ -40,24 +40,24 @@ function NewShoesForm() {
             throw alert("Your Shoe has now been listed for sale.");
         }
         else {
-            setErros(data?.errors);
+            console.log("data :", data.errors)
+            setErrors(data?.errors);
         }
         return data
     }
     //left of on solving error handling problem
-
+    console.log("errors :",errors)
     return (
         <div className="form-placement">
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                     <div className="form-item">
                         {errors.map((error)=>{
-                            if(error){
-                                return(
-                                    <p>{error}</p>
-                                    )
-                                }
+                            return(
+                                <li className="error-handlers">{error}</li>
+                            )
                         })}
+
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -65,6 +65,7 @@ function NewShoesForm() {
                             name="title"
                             required
                         ></input>
+                        {/* <p className="error-handlers">{errors[0]}</p> */}
                     </div>
                     <div className="form-item-new">
                         <label>Shoe Size:  </label>
@@ -72,10 +73,12 @@ function NewShoesForm() {
                             type="number"
                             onChange={updateShoeSize}
                         ></input>
+                        {/* <p className="error-handlers">{errors[1]}</p> */}
                     </div>
                     <div className="form-item-new">
                         <div>
                             <label>Brand Name: </label>
+                            {/* <p className="error-handlers">{errors[2]}</p> */}
                         </div>
                         <input
                             type="radio"
@@ -112,6 +115,7 @@ function NewShoesForm() {
                             type="number"
                             onChange={updatePrice}
                         ></input>
+                        {/* <p className="error-handlers">{errors[3]}</p> */}
                     </div>
                     <div className="form-item-new">
                         <label>Image Url: </label>
