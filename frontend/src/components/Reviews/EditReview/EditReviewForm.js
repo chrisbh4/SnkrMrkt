@@ -10,9 +10,10 @@ function EditReviewForm(){
     const history = useHistory()
     const dispatch = useDispatch()
     const params = useParams()
-    // const [comment, setComment] = useState("")
-    // const [rating, setRating] = useState(0)
-    // const [image , setImage ] = useState("")
+    const [comment, setComment] = useState("")
+    const [rating, setRating] = useState(0)
+    const [image , setImage ] = useState("")
+    const [errors , setErrors] = useState([])
 
     const reviewId = params.id
 
@@ -29,20 +30,24 @@ function EditReviewForm(){
             throw alert("Your Review has been changed")
         }
         else {
-            // setErros(data)
+            setErrors(data)
         }
         return data
     }
 
     return(
-        <div className="">
-            <div className="">
+        <div className="edit-review-placement">
+               <h1 className="edit-page-title">
+                <a href="/">Edit Review</a>
+
+            </h1>
+            <div className="edit-review-form">
             <form onSubmit={onSubmit}>
-                <div>
+                <div className="edit-review-item">
                     <label>Comment :</label>
                     <textarea></textarea>
                 </div>
-                <div>
+                <div className="edit-review-item">
                     <label>
                         Rating :
                     </label>
@@ -51,14 +56,14 @@ function EditReviewForm(){
                     ></input>
                     </div>
 
-                <div className="">
+                <div className="edit-review-item">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             // onChange={}
                         ></input>
                     </div>
-                    <div>
+                    <div className="edit-review-button">
                         <button type="submit">Submit</button>
                     </div>
             </form>

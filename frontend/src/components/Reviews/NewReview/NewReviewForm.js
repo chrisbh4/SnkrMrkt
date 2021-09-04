@@ -12,6 +12,7 @@ function NewReviewForm(){
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(0)
     const [image , setImage ] = useState("")
+    const [errors , setErrors] = useState([])
 
     const userId = useSelector((state)=> state.session.user.id)
 
@@ -26,20 +27,24 @@ function NewReviewForm(){
             throw alert("Your Review has been created")
         }
         else {
-            // setErros(data)
+            setErrors(data)
         }
         return data
     }
 
     return(
-        <div className="">
-            <div className="">
+        <div className="create-review-placement">
+             <h1 className="page-title">
+                <a href="/">New Review</a>
+
+            </h1>
+            <div className="create-review-form">
             <form onSubmit={onSubmit}>
-                <div>
+                <div className="create-review-item">
                     <label>Comment :</label>
                     <textarea></textarea>
                 </div>
-                <div>
+                <div className="create-review-item">
                     <label>
                         Rating :
                     </label>
@@ -48,15 +53,15 @@ function NewReviewForm(){
                     ></input>
                     </div>
 
-                <div className="">
+                <div className="create-review-item">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             // onChange={}
                         ></input>
                     </div>
-                    <div>
-                        <button type="submit">Submit</button>
+                    <div >
+                        <button className="create-review-button" type="submit">Submit</button>
                     </div>
             </form>
             </div>
