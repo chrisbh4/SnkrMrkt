@@ -56,9 +56,7 @@ function EditReviewForm(){
 
     const handleDelete = async (e) => {
         e.preventDefault();
-
         await dispatch(fetchDeleteReview(reviewId))
-
         alert("Review has been deleted.");
         history.push(`/shoes/${review?.shoeId}`)
     }
