@@ -22,7 +22,7 @@ function EditReviewForm(){
     const review = useSelector((state)=> state.reviews)
     const shoeId = review.shoeId
 
-    console.log("review", review)
+    console.log("review", review.shoeId)
 
     const [comment, setComment] = useState(review?.comment)
     const [rating, setRating] = useState(review?.rating)
@@ -44,7 +44,7 @@ function EditReviewForm(){
 
         if (!data.errors) {
 
-            history.push(`/`)
+            history.push(`/shoes/${review?.shoeId}`)
             throw alert("Your Review has been changed")
         }else{
             setErrors(data)
@@ -60,7 +60,7 @@ function EditReviewForm(){
         await dispatch(fetchDeleteReview(reviewId))
 
         alert("Review has been deleted.");
-        history.push('/')
+        history.push(`/shoes/${review?.shoeId}`)
     }
 
     return(
