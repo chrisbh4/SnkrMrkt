@@ -17,7 +17,7 @@ function ShoeReviews({shoe}){
     let createReviewButton;
     if(userId > 0.9){
         createReviewButton = (
-            <button><a href="/reviews/new">Leave a Review</a></button>
+            <button><a href={`/shoes/${shoe?.id}/reviews/new`}>Leave a Review</a></button>
         )
     }
 
