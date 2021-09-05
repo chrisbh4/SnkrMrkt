@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { fetchEditReview , fetchOneReview , fetchAllReviews } from "../../../store/reviews"
+import { fetchEditReview , fetchOneReview , fetchDeleteReview} from "../../../store/reviews"
 import "./EditReviewForm.css"
 
 
@@ -39,11 +39,11 @@ function EditReviewForm(){
     const onSubmit = async (e) => {
         e.preventDefault();
         // const data = await dispatch(fetchEditReview(shoeId, userId, comment, rating, image))
-        debugger
+
         const data = await dispatch(fetchEditReview(shoeId,userId, comment, rating, image , reviewId))
 
         if (!data.errors) {
-            debugger
+
             history.push(`/`)
             throw alert("Your Review has been changed")
         }else{
@@ -52,6 +52,15 @@ function EditReviewForm(){
 
         }
         // return data
+    }
+
+    const handleDelete = async (e) => {
+        e.preventDefault();
+
+        await dispatch(fetchDeleteReview(reviewId))
+
+        alert("Review has been deleted.");
+        history.push('/')
     }
 
     return(
@@ -89,6 +98,9 @@ function EditReviewForm(){
                     </div>
                     <div className="edit-review-button">
                         <button type="submit">Submit</button>
+                    </div>
+                    <div className="delete-review-button">
+                        <button type="button" onClick={handleDelete}>Delete</button>
                     </div>
             </form>
             </div>

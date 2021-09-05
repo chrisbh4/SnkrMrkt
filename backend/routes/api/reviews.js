@@ -34,7 +34,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
 router.put('/:id', asyncHandler (async (req ,res)=>{
    const review = await Reviews.findByPk(req.params.id)
-   debugger
+   
    review.comment = req.body.comment;
    review.rating = req.body.rating;
    review.image = req.body.image;

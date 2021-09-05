@@ -71,16 +71,15 @@ export const fetchCreateReview= (shoeId, userId, comment, rating, image ) => asy
 }
 //fix csrfFetch to grab the correct route
 export const fetchEditReview= (shoeId, userId, comment, rating, image, reviewId) => async (dispatch)=>{
-  debugger
     const res = await csrfFetch(`/api/reviews/${reviewId}`,{
         method:"PUT",
         header:{"Content-Type": "application/json"},
         body:JSON.stringify({shoeId, userId, comment, rating, image })
     })
-    debugger
+
     const data = await res.json()
     if(res.ok){
-        debugger
+
         dispatch(editReview(data))
         return data
     }else{
@@ -90,14 +89,16 @@ export const fetchEditReview= (shoeId, userId, comment, rating, image, reviewId)
 
 
 export const fetchDeleteReview= (reviewId)=> async(dispatch)=>{
-    const res = await csrfFetch(`/api/review/${reviewId}`,{
+
+    const res = await csrfFetch(`/api/reviews/${reviewId}`,{
         method:"DELETE"
     })
 
     if(res.ok){
+
         const data = res.json()
         dispatch(deleteReview(data))
-        return data
+        return  data
     }
     return
 }
@@ -105,15 +106,17 @@ export const fetchDeleteReview= (reviewId)=> async(dispatch)=>{
 const initialState = {};
 
 function reducer ( state = initialState, action){
-    let newState = {...state}
+
     switch(action.type){
         case LOAD_REVIEWS:
             return {...state, ...action.reviews}
         case LOAD_ONE_REVIEW:
             return {...state,...action.review}
         case EDIT_REVIEW:
-            debugger
             state[action.id] = action.review
+            return state
+        case DELETE_REVIEW:
+            delete state[action.id]
             return state
         default:
             return state
