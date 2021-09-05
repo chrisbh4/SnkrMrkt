@@ -70,16 +70,19 @@ export const fetchCreateReview= (shoeId, userId, comment, rating, image ) => asy
     }
 }
 //fix csrfFetch to grab the correct route
-export const fetchEditReview= (shoeId, userId, comment, rating, image ) => async (dispatch)=>{
-    const res = await csrfFetch(`/api/reviews/new`,{
+export const fetchEditReview= (shoeId, userId, comment, rating, image, reviewId) => async (dispatch)=>{
+  debugger
+    const res = await csrfFetch(`/api/reviews/${reviewId}`,{
         method:"PUT",
         header:{"Content-Type": "application/json"},
         body:JSON.stringify({shoeId, userId, comment, rating, image })
     })
-
+    debugger
+    const data = await res.json()
     if(res.ok){
-        const data = await res.json()
         dispatch(editReview(data))
+        return data
+    }else{
         return data
     }
 }

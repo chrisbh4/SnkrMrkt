@@ -22,11 +22,11 @@ function EditReviewForm(){
     const review = useSelector((state)=> state.reviews)
     const shoeId = review.shoeId
 
-    console.log("review", review.comment)
+    console.log("review", review)
 
-    const [comment, setComment] = useState(review.comment)
-    const [rating, setRating] = useState(review.rating)
-    const [image , setImage ] = useState("")
+    const [comment, setComment] = useState(review?.comment)
+    const [rating, setRating] = useState(review?.rating)
+    const [image , setImage ] = useState(review?.image)
     const [errors , setErrors] = useState([])
 
     const updateComment = (e) => setComment(e.target.value)
@@ -39,15 +39,16 @@ function EditReviewForm(){
     const onSubmit = async (e) => {
         e.preventDefault();
         // const data = await dispatch(fetchEditReview(shoeId, userId, comment, rating, image))
-        const data = await dispatch(fetchEditReview( shoeId,userId, comment, rating, image))
+        debugger
+        const data = await dispatch(fetchEditReview(shoeId,userId, comment, rating, image , reviewId))
 
         if (!data.errors) {
-
+            debugger
             history.push(`/`)
             throw alert("Your Review has been changed")
-        }
-        else {
+        }else{
             setErrors(data)
+
         }
         return data
     }
