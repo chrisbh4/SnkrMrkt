@@ -47,7 +47,7 @@ function EditShoesForm() {
             history.push(`/`)
         }
         else {
-            // setErros(data)
+            setErrors(data)
         }
         return data
     }
@@ -67,7 +67,7 @@ function EditShoesForm() {
     return (
 
         <div className="form-placement">
-
+                    {/* <li>errors </li> */}
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                     <div className="form-item" >
