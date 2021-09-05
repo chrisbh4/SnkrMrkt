@@ -8,110 +8,112 @@ const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 
 
-const loadReviews = (reviews)=>({
-    type:LOAD_REVIEWS,
+const loadReviews = (reviews) => ({
+    type: LOAD_REVIEWS,
     reviews
 });
 
 
-const loadOneReview = (review)=>({
-    type:LOAD_ONE_REVIEW,
+const loadOneReview = (review) => ({
+    type: LOAD_ONE_REVIEW,
     review
 });
 
-const createReview = (review)=>({
-    type:CREATE_REVIEW,
+const createReview = (review) => ({
+    type: CREATE_REVIEW,
     review
 });
 
-const editReview = (reviewId)=>({
-    type:EDIT_REVIEW,
+const editReview = (reviewId) => ({
+    type: EDIT_REVIEW,
     reviewId
 });
 
-const deleteReview = (reviewId)=>({
-    type:DELETE_REVIEW,
+const deleteReview = (reviewId) => ({
+    type: DELETE_REVIEW,
     reviewId
 });
 
 
 
-export const fetchAllReviews = () => async (dispatch)=>{
+export const fetchAllReviews = () => async (dispatch) => {
     const res = await csrfFetch('/api/reviews')
 
-    if(res.ok){
+    if (res.ok) {
         const data = await res.json()
         dispatch(loadReviews(data))
         return data
     }
 }
 
-export const fetchOneReview = (reviewId) => async (dispatch)=>{
+export const fetchOneReview = (reviewId) => async (dispatch) => {
     const res = await csrfFetch(`/api/reviews/${reviewId}`)
 
-    if(res.ok){
+    if (res.ok) {
         const data = await res.json()
         dispatch(loadOneReview(data))
         return data
     }
 }
 
-export const fetchCreateReview= (shoeId, userId, comment, rating, image ) => async (dispatch)=>{
-    const res = await csrfFetch(`/api/reviews/new`,{
-        method:"POST",
-        header:{"Content-Type": "application/json"},
-        body:JSON.stringify({shoeId, userId, comment, rating, image })
-    })
-
-    if(res.ok){
-        const data = await res.json()
-        dispatch(createReview(data))
-        return data
-    }
-}
-//fix csrfFetch to grab the correct route
-export const fetchEditReview= (shoeId, userId, comment, rating, image, reviewId) => async (dispatch)=>{
-    const res = await csrfFetch(`/api/reviews/${reviewId}`,{
-        method:"PUT",
-        header:{"Content-Type": "application/json"},
-        body:JSON.stringify({shoeId, userId, comment, rating, image })
+export const fetchCreateReview = (shoeId, userId, comment, rating, image) => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews/new`, {
+        method: "POST",
+        header: { "Content-Type": "application/json" },
+        body: JSON.stringify({ shoeId, userId, comment, rating, image })
     })
 
     const data = await res.json()
-    if(res.ok){
+    if (res.ok) {
+        dispatch(createReview(data))
+        return data
+    } else {
+        return data
+    }
+}
+
+export const fetchEditReview = (shoeId, userId, comment, rating, image, reviewId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: "PUT",
+        header: { "Content-Type": "application/json" },
+        body: JSON.stringify({ shoeId, userId, comment, rating, image })
+    })
+
+    const data = await res.json()
+    if (res.ok) {
 
         dispatch(editReview(data))
         return data
-    }else{
+    } else {
         return data
     }
 }
 
 
-export const fetchDeleteReview= (reviewId)=> async(dispatch)=>{
+export const fetchDeleteReview = (reviewId) => async (dispatch) => {
 
-    const res = await csrfFetch(`/api/reviews/${reviewId}`,{
-        method:"DELETE"
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: "DELETE"
     })
 
-    if(res.ok){
+    if (res.ok) {
 
         const data = res.json()
         dispatch(deleteReview(data))
-        return  data
+        return data
     }
     return
 }
 
 const initialState = {};
 
-function reducer ( state = initialState, action){
+function reducer(state = initialState, action) {
 
-    switch(action.type){
+    switch (action.type) {
         case LOAD_REVIEWS:
-            return {...state, ...action.reviews}
+            return { ...state, ...action.reviews }
         case LOAD_ONE_REVIEW:
-            return {...state,...action.review}
+            return { ...state, ...action.review }
         case EDIT_REVIEW:
             state[action.id] = action.review
             return state
