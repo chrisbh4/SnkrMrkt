@@ -80,6 +80,7 @@ export const fetchEditReview= (shoeId, userId, comment, rating, image, reviewId)
     debugger
     const data = await res.json()
     if(res.ok){
+        debugger
         dispatch(editReview(data))
         return data
     }else{
@@ -111,7 +112,8 @@ function reducer ( state = initialState, action){
         case LOAD_ONE_REVIEW:
             return {...state,...action.review}
         case EDIT_REVIEW:
-            state[action.review.id] = action.review
+            debugger
+            state[action.id] = action.review
             return state
         default:
             return state

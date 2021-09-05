@@ -48,9 +48,10 @@ function EditReviewForm(){
             throw alert("Your Review has been changed")
         }else{
             setErrors(data)
+            return data
 
         }
-        return data
+        // return data
     }
 
     return(
