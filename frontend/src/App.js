@@ -10,8 +10,9 @@ import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
 import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
 import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage';
-import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
+import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
+import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 
 
 function App() {
@@ -59,13 +60,13 @@ function App() {
             <EditShoesForm />
           </Route>
 
-          <Route path = "/reviews/new">
+          <Route exact path= "/shoes/:id/reviews/new">
               <NewReviewForm />
             </Route>
 
-          {/* <Route path = "/reviews/:id/edit">
+           <Route path = "/reviews/:id/edit">
               <EditReviewForm />
-            </Route> */}
+            </Route>
 
 
 

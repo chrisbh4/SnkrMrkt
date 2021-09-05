@@ -1,65 +1,104 @@
 import React , {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { fetchEditReview } from "../../../store/reviews"
+import { fetchEditReview , fetchOneReview , fetchDeleteReview} from "../../../store/reviews"
 import "./EditReviewForm.css"
 
 
 
 function EditReviewForm(){
-    const history = useHistory()
     const dispatch = useDispatch()
     const params = useParams()
-    // const [comment, setComment] = useState("")
-    // const [rating, setRating] = useState(0)
-    // const [image , setImage ] = useState("")
+    const history = useHistory()
 
     const reviewId = params.id
+    // console.log('review id ',reviewId)
+    useEffect(() => {
+        // dispatch(fetchAllReviews())
+        dispatch(fetchOneReview(reviewId))
+    }, [dispatch , reviewId]);
 
     const userId = useSelector((state)=> state.session.user.id)
+    const review = useSelector((state)=> state.reviews)
+    const shoeId = review.shoeId
+
+    console.log("review", review.shoeId)
+
+    const [comment, setComment] = useState(review?.comment)
+    const [rating, setRating] = useState(review?.rating)
+    const [image , setImage ] = useState(review?.image)
+    const [errors , setErrors] = useState([])
+
+    const updateComment = (e) => setComment(e.target.value)
+    const updateRating = (e) => setRating(e.target.value)
+    const updateImage = (e) => setImage(e.target.value)
+
+
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(fetchEditReview(userId, comment, rating, image))
+        // const data = await dispatch(fetchEditReview(shoeId, userId, comment, rating, image))
 
+        const data = await dispatch(fetchEditReview(shoeId,userId, comment, rating, image , reviewId))
 
         if (!data.errors) {
 
-            history.push(`/`)
+            history.push(`/shoes/${review?.shoeId}`)
             throw alert("Your Review has been changed")
+        }else{
+            setErrors(data)
+            return data
+
         }
-        else {
-            // setErros(data)
-        }
-        return data
+        // return data
+    }
+
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        await dispatch(fetchDeleteReview(reviewId))
+        alert("Review has been deleted.");
+        history.push(`/shoes/${review?.shoeId}`)
     }
 
     return(
-        <div className="">
-            <div className="">
+        <div className="edit-review-placement">
+               <h1 className="edit-page-title">
+                <a href="/">Edit Review</a>
+
+            </h1>
+            <div className="edit-review-form">
             <form onSubmit={onSubmit}>
-                <div>
+                <div className="edit-review-item">
                     <label>Comment :</label>
-                    <textarea></textarea>
+                    <textarea
+                        placeholder={comment}
+                        onChange={updateComment}
+                    ></textarea>
                 </div>
-                <div>
+                <div className="edit-review-item">
                     <label>
                         Rating :
                     </label>
                     <input
                         type="number"
+                        placeholder={rating}
+                        onChange={updateRating}
                     ></input>
                     </div>
 
-                <div className="">
+                <div className="edit-review-item">
                         <label>Image Url: </label>
                         <input
                             type="text"
-                            // onChange={}
+                            onChange={updateImage}
                         ></input>
                     </div>
-                    <div>
+                    <div className="edit-review-button">
                         <button type="submit">Submit</button>
+                    </div>
+                    <div className="delete-review-button">
+                        <button type="button" onClick={handleDelete}>Delete</button>
                     </div>
             </form>
             </div>
