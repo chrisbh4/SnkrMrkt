@@ -15,7 +15,7 @@ function NewShoesForm() {
     // console.log('User Id: ',user)
 
     const [title, setTitle] = useState("")
-    const [shoeSize, setShoeSize] = useState(6)
+    const [shoeSize, setShoeSize] = useState(0)
     const [image, setImage] = useState("")
     const [brand, setBrand] = useState("")
     const [price, setPrice] = useState(0.00)
@@ -28,36 +28,18 @@ function NewShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
 
 
-    // const onSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
-    //     // brand,
-
-    //     if (!data.errors) {
-    //         // TODO: Create User Profile and redirect user to show new shoe being listed under them
-    //         history.push(`/`)
-    //         throw alert("Your Shoe has now been listed for sale.")
-    //     }
-    //     else {
-    //         setErrors(data?.errors)
-    //     }
-    //     return data
-    // }
-
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price))
+        const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price, brand))
         // brand,
         console.log("NewshoeForm :", data)
         if (!data?.errors) {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
             history.push(`/`)
-            throw alert("Your Shoe has now been listed for sale.")
+             alert("Your Shoe has now been listed for sale.")
         }
         else {
-            console.log("error gets hit")
-            console.log('Errors :',data?.errors)
             setErrors(data?.errors)
         }
         return data
@@ -68,11 +50,6 @@ function NewShoesForm() {
 
             <div className="form-container">
                 <form onSubmit={onSubmit}>
-
-                    {/* {errors.map((error)=>{
-                      return  <li>{error}</li>
-                    })} */}
-
                     {errors.map((error) => {
                         if (error) {
                             return (
@@ -80,11 +57,11 @@ function NewShoesForm() {
                             )
                         }
                     })}
-
                     <div className="form-item">
                         <label>Shoe Title: </label>
                         <input
                             type="text"
+
                             onChange={updateTitle}
                             name="title"
                             required
@@ -94,6 +71,7 @@ function NewShoesForm() {
                         <label>Shoe Size:  </label>
                         <input
                             type="number"
+                            placeholder="Size # in Mens"
                             onChange={updateShoeSize}
                         ></input>
                     </div>

@@ -49,11 +49,11 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     return data
 };
 
-export const getCreatedShoe = (sellerId, title, shoeSize, image, price) => async (dispatch) => {
+export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand) => async (dispatch) => {
     const res = await csrfFetch("/api/shoes/new", {
         method: "POST",
         header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sellerId, title, shoeSize, image, price })
+        body: JSON.stringify({ sellerId, title, shoeSize, image, price, brand })
     })
 
     const data = await res.json()

@@ -89,9 +89,9 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 
 router.post('/new', validateShoe, asyncHandler(async (req, res) => {
-    const { sellerId, title, shoeSize, image, price } = req.body
+    const { sellerId, title, shoeSize, image, price, brand } = req.body
     const newShoe = await Shoes.create({
-        sellerId, title, shoeSize, image, price
+        sellerId, title, shoeSize, image, price, brand
     })
 
     return res.json({ newShoe })
