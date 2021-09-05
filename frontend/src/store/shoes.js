@@ -58,7 +58,9 @@ export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand) =
 
     const data = await res.json()
     if (data.ok) {
-        console.log(data)
+
+        // console.log(data)
+
         dispatch(createShoe(data))
     } else {
 

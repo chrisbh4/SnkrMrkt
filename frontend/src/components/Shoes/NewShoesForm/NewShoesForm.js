@@ -30,6 +30,7 @@ function NewShoesForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price, brand))
         // brand,
         console.log("NewshoeForm :", data)
@@ -53,7 +54,7 @@ function NewShoesForm() {
                     {errors.map((error) => {
                         if (error) {
                             return (
-                                <p>{error}</p>
+                                <p key={error.id}>{error}</p>
                             )
                         }
                     })}
@@ -61,10 +62,8 @@ function NewShoesForm() {
                         <label>Shoe Title: </label>
                         <input
                             type="text"
-
                             onChange={updateTitle}
                             name="title"
-                            required
                         ></input>
                     </div>
                     <div className="form-item-new">
@@ -102,9 +101,10 @@ function NewShoesForm() {
                         <label>Yeezy-Adidas</label>
                         <input
                             type="radio"
-                            value="Adidas"
+                            value="Adidas-Orignal"
                             onChange={updateBrand}
                             name="brand"
+
                         ></input>
                         <label>Adidas-Original</label>
                     </div>
