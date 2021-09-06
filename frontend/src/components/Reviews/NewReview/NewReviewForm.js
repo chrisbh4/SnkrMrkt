@@ -84,7 +84,7 @@ function NewReviewForm(){
                         ></input>
                     </div>
                     <div >
-                        <button className="create-review-button" type="submit">Submit</button>
+                        <button className="submit-review-button" type="submit">Submit</button>
                     </div>
             </form>
             </div>

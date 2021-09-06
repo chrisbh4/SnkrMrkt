@@ -57,6 +57,8 @@ function NewShoesForm() {
                                 <p key={error.id}>{error}</p>
                             )
                         }
+                        // might cause error || new add
+                        return null;
                     })}
                     <div className="form-item">
                         <label>Shoe Title: </label>
