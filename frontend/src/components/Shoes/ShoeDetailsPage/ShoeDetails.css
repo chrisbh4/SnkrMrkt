@@ -24,7 +24,22 @@
     padding-top: 25px;
 }
 
-
+.reviews-title{
+    margin-top: 30px;
+    /* margin-bottom: 5px; */
+    text-align: center;
+}
 .reviews-container{
-    margin-left: 15px;
+    text-align: center;
+    height: 450px;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+}
+
+
+.reviews{
+    border: 1px solid black;
+    width: 400px;
+    overflow: scroll;
 }

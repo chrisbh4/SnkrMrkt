@@ -49,42 +49,49 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     return data
 };
 
-export const getCreatedShoe = ( sellerId,title,shoeSize,image,price ) => async (dispatch) => {
+export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand) => async (dispatch) => {
     const res = await csrfFetch("/api/shoes/new", {
         method: "POST",
         header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sellerId,title,shoeSize,image,price })
+        body: JSON.stringify({ sellerId, title, shoeSize, image, price, brand })
     })
-    // console.log('it hits')
+
     const data = await res.json()
     if (data.ok) {
-        console.log(data)
+
+        // console.log(data)
+
         dispatch(createShoe(data))
-    }else{
+    } else {
 
         return data
     }
 };
 
-export const getEditShoe = (title,shoeSize,image,price,brand, shoeId) => async (dispatch)=>{
-    const res = await csrfFetch(`/api/shoes/${shoeId}`,{
-        method:"PUT",
-        header:{"Content-Type": "application/json"},
-        body:JSON.stringify({title,shoeSize,image,price,brand})
+export const getEditShoe = (title, shoeSize, image, price, brand, shoeId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/shoes/${shoeId}`, {
+        method: "PUT",
+        header: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, shoeSize, image, price, brand })
     })
 
     const data = await res.json()
 
-    if ( data.ok ) dispatch(editShoe(data))
-    return data
+    if (data.ok) {
+        dispatch(editShoe(data))
+        // return data
+    }
+    else {
+        return data
+    }
 };
 
-export const getDeletedShoe = (shoeId) => async (dispatch)=>{
+export const getDeletedShoe = (shoeId) => async (dispatch) => {
 
-    const res = await csrfFetch(`/api/shoes/${shoeId}`,{
-        method:'DELETE'
+    const res = await csrfFetch(`/api/shoes/${shoeId}`, {
+        method: 'DELETE'
     })
-    if(res.ok){
+    if (res.ok) {
         const data = await res.json()
         dispatch(deleteShoe(data))
         return data
@@ -95,12 +102,12 @@ export const getDeletedShoe = (shoeId) => async (dispatch)=>{
 const initialState = {};
 
 
-function reducer( state=initialState, action){
-    let newState={...state}
-    switch(action.type){
+function reducer(state = initialState, action) {
+    let newState = { ...state }
+    switch (action.type) {
         case LOAD_SHOES:
-        // console.log(action.shoes)
-            return {...state,...action.shoes}
+            // console.log(action.shoes)
+            return { ...state, ...action.shoes }
         case CREATE_SHOE:
             // state[action.shoe.id] = action.shoe
             // return state
