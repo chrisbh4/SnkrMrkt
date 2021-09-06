@@ -31,6 +31,22 @@ const validateShoe = [
     .withMessage("Please enter image url"),
     handleValidationErrors
 ]
+const validateEditShoe = [
+    check('title')
+    .isLength({min:5 })
+    .withMessage("Shoe title must be greater than 5 characters"),
+    check('shoeSize')
+    .isFloat({min:4 , max:18})
+    .withMessage("Please provide a shoe size in mens between 4 and 18"),
+    check('price')
+    .isFloat({min:1})
+    .withMessage("Please provide a price value for this shoe greater than $0.99"),
+    check('brand')
+    .exists({checkFalsy:true})
+    .withMessage("Please select a shoe brand"),
+
+    handleValidationErrors
+]
 
 
 router.get('/', asyncHandler(async (req, res) => {
@@ -61,7 +77,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.send(shoe)
 }))
 
-router.put('/:id', asyncHandler(async (req, res) => {
+router.put('/:id',validateEditShoe, asyncHandler(async (req, res) => {
     const shoe = await Shoe.findByPk(req.params.id)
 
     shoe.title = req.body.title

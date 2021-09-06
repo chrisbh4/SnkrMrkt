@@ -20,7 +20,6 @@ function EditShoesForm() {
     // const user = useSelector((state) => state.session.user.id)
 
     const shoe = useSelector((state) => state.shoes[shoeId])
-    console.log('EDit Shoe ', shoe)
 
 
     //! Doesn't make sense to have these but will check will Project Advisor for CRUD
@@ -53,6 +52,15 @@ function EditShoesForm() {
     }
 
     // console.log('delete id:',shoe.id)
+    //! Need to be able to grab the errors when they are loaded or use a ternary condition
+    console.log("errors :", errors?.errors)
+//    const errorHandler = errors?.errors.map((error)=>{
+//         // console.log(error)
+//         return (
+//                  <p key={error.id}>{error}</p>
+//              )
+//     })
+
 
     //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
@@ -67,9 +75,17 @@ function EditShoesForm() {
     return (
 
         <div className="form-placement">
-                    {/* <li>errors </li> */}
             <div className="form-container">
                 <form onSubmit={onSubmit}>
+                    {/* {errorHandler} */}
+                    {/* its the way I'm grabbing the shoes maybe try the getOneshoe thunk??? */}
+                {/* {errors?.map((error) => {
+                        if (error) {
+                            return (
+                                <p key={error.id}>{error}</p>
+                            )
+                        }
+                    })} */}
                     <div className="form-item" >
                         <label>Shoe Title: </label>
                         <input
