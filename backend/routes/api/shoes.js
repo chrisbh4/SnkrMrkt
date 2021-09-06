@@ -10,7 +10,7 @@ const Reviews = Review
 
 const router = express.Router()
 
-const validateShoe = [
+const validateNewShoe = [
     check('title')
     .isLength({min:5 })
     .withMessage("Shoe title must be greater than 5 characters"),
@@ -31,6 +31,7 @@ const validateShoe = [
     .withMessage("Please enter image url"),
     handleValidationErrors
 ]
+
 const validateEditShoe = [
     check('title')
     .isLength({min:5 })
@@ -110,7 +111,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 }))
 
 
-router.post('/new', validateShoe, asyncHandler(async (req, res) => {
+router.post('/new', validateNewShoe, asyncHandler(async (req, res) => {
     const { sellerId, title, shoeSize, image, price, brand } = req.body
 
     const newShoe = await Shoes.create({

@@ -28,6 +28,8 @@ function EditShoesForm() {
     const [brand] = useState(shoe?.brand)
     const [errors, setErrors] = useState([])
 
+    console.log("title:", title)
+
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
 
@@ -51,9 +53,6 @@ function EditShoesForm() {
         return data
     }
 
-    // console.log('delete id:',shoe.id)
-    //! Need to be able to grab the errors when they are loaded or use a ternary condition
-    console.log("errors :", errors.errors)
    let errorHandler;
    if(errors.errors){
       errorHandler = errors.errors.map((error)=>{

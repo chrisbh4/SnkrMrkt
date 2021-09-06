@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { fetchEditReview , fetchOneReview , fetchDeleteReview} from "../../../store/reviews"
+import { fetchEditReview , fetchOneReview , fetchDeleteReview, fetchAllReviews} from "../../../store/reviews"
 import "./EditReviewForm.css"
 
 
@@ -12,46 +12,57 @@ function EditReviewForm(){
     const history = useHistory()
 
     const reviewId = params.id
-    // console.log('review id ',reviewId)
     useEffect(() => {
-        // dispatch(fetchAllReviews())
+
         dispatch(fetchOneReview(reviewId))
-    }, [dispatch , reviewId]);
+    }, [dispatch, reviewId]);
+
+
 
     const userId = useSelector((state)=> state.session.user.id)
     const review = useSelector((state)=> state.reviews)
-    const shoeId = review.shoeId
+    const shoeId = review?.shoeId
 
-    console.log("review", review.shoeId)
+
 
     const [comment, setComment] = useState(review?.comment)
     const [rating, setRating] = useState(review?.rating)
     const [image , setImage ] = useState(review?.image)
     const [errors , setErrors] = useState([])
 
+    console.log("comment", review?.comment)
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
     const updateImage = (e) => setImage(e.target.value)
 
-
+    let errorHandler;
+    if(errors.errors){
+       errorHandler = errors.errors.map((error)=>{
+                console.log(error)
+                return (
+                         <p key={error.id}>{error}</p>
+                     )
+            })
+    }
+    else{
+         errorHandler=null;
+    }
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        // const data = await dispatch(fetchEditReview(shoeId, userId, comment, rating, image))
 
         const data = await dispatch(fetchEditReview(shoeId,userId, comment, rating, image , reviewId))
 
         if (!data.errors) {
 
             history.push(`/shoes/${review?.shoeId}`)
-            throw alert("Your Review has been changed")
+            alert("Your Review has been changed")
         }else{
             setErrors(data)
             return data
 
         }
-        // return data
     }
 
     const handleDelete = async (e) => {
@@ -64,15 +75,16 @@ function EditReviewForm(){
     return(
         <div className="edit-review-placement">
                <h1 className="edit-page-title">
-                <a href="/">Edit Review</a>
+                <a href={`/shoes/${review?.shoeId}`}>Edit Review</a>
 
             </h1>
             <div className="edit-review-form">
             <form onSubmit={onSubmit}>
+                {errorHandler}
                 <div className="edit-review-item">
                     <label>Comment :</label>
                     <textarea
-                        placeholder={comment}
+                        placeholder={review?.comment}
                         onChange={updateComment}
                     ></textarea>
                 </div>
@@ -82,7 +94,7 @@ function EditReviewForm(){
                     </label>
                     <input
                         type="number"
-                        placeholder={rating}
+                        placeholder={review?.rating}
                         onChange={updateRating}
                     ></input>
                     </div>
