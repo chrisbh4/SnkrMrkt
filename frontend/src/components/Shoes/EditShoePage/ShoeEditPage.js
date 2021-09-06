@@ -53,13 +53,21 @@ function EditShoesForm() {
 
     // console.log('delete id:',shoe.id)
     //! Need to be able to grab the errors when they are loaded or use a ternary condition
-    console.log("errors :", errors?.errors)
-//    const errorHandler = errors?.errors.map((error)=>{
-//         // console.log(error)
-//         return (
-//                  <p key={error.id}>{error}</p>
-//              )
-//     })
+    console.log("errors :", errors.errors)
+   let errorHandler;
+   if(errors.errors){
+      errorHandler = errors.errors.map((error)=>{
+               console.log(error)
+               return (
+                        <p key={error.id}>{error}</p>
+                    )
+           })
+   }
+   else{
+        errorHandler=null;
+   }
+
+
 
 
     //! Alert and the history.push does't get touched but
@@ -67,7 +75,6 @@ function EditShoesForm() {
         e.preventDefault();
 
         await dispatch(getDeletedShoe(shoe.id))
-
         alert("Shoe has been deleted.");
         history.push('/')
     }
@@ -77,15 +84,7 @@ function EditShoesForm() {
         <div className="form-placement">
             <div className="form-container">
                 <form onSubmit={onSubmit}>
-                    {/* {errorHandler} */}
-                    {/* its the way I'm grabbing the shoes maybe try the getOneshoe thunk??? */}
-                {/* {errors?.map((error) => {
-                        if (error) {
-                            return (
-                                <p key={error.id}>{error}</p>
-                            )
-                        }
-                    })} */}
+                   {errorHandler}
                     <div className="form-item" >
                         <label>Shoe Title: </label>
                         <input
@@ -93,7 +92,6 @@ function EditShoesForm() {
                             onChange={updateTitle}
                             placeholder={title}
                             name="title"
-
                         ></input>
                     </div>
                     <div className="form-item">
@@ -104,7 +102,38 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    {/* <div>
+
+                    <div className="form-item">
+                        <label>Price: $</label>
+                        <input
+                            type="number"
+                            placeholder={price}
+                            onChange={updatePrice}
+                        ></input>
+                    </div>
+
+
+
+
+
+                    <div className="button-containers">
+                            <button type='submit' className="edit-button">Edit Current Listing</button>
+                            <button type='button' className="delete-button" onClick={handleDelete}>Delete Listing</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
+
+
+
+export default EditShoesForm
+
+
+
+
+  {/* <div>
 
                     <div>
                         <label>Brand Name: </label>
@@ -134,33 +163,3 @@ function EditShoesForm() {
                     ></input>
                     <label>Adidas-Original</label>
                 </div> */}
-                    <div className="form-item">
-                        <label>Price: $</label>
-                        <input
-                            type="number"
-                            placeholder={price}
-                            onChange={updatePrice}
-                        ></input>
-                    </div>
-
-
-
-
-
-                    <div className="button-containers">
-                        {/* <div className="edit-button-div"> */}
-                            <button type='submit' className="edit-button">Edit Current Listing</button>
-                        {/* </div> */}
-                        {/* <div className="delete-button-div"> */}
-                            <button type='button' className="delete-button" onClick={handleDelete}>Delete Listing</button>
-                        {/* </div> */}
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
-}
-
-
-
-export default EditShoesForm

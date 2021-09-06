@@ -56,6 +56,7 @@ function App() {
           <Route exact path='/shoes/:id'>
             <ShoesDetailsPage />
           </Route>
+          
           <Route exact path ='/shoes/:id/edit'>
             <EditShoesForm />
           </Route>
