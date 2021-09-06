@@ -53,8 +53,7 @@ function NewReviewForm(){
     return(
         <div className="create-review-placement">
              <h1 className="page-title">
-                <a href="/">New Review</a>
-
+                <a href={`/shoes/${shoeId}`}>New Review</a>
             </h1>
             <div className="create-review-form">
             <form onSubmit={onSubmit}>

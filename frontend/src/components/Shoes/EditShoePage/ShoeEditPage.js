@@ -80,6 +80,9 @@ function EditShoesForm() {
     return (
 
         <div className="form-placement">
+            <h1 className="page-title">
+                <a href={`/shoes/${shoeId}`}>Edit Shoe</a>
+            </h1>
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                    {errorHandler}
@@ -127,37 +130,3 @@ function EditShoesForm() {
 
 
 export default EditShoesForm
-
-
-
-
-  {/* <div>
-
-                    <div>
-                        <label>Brand Name: </label>
-                    </div>
-                    <input
-                        type="radio"
-                        value="Air-Jordan"
-                        name="brand"
-                    ></input>
-                    <label for="">Air Jordan</label>
-                    <input
-                        type="radio"
-                        value="Nike"
-                        name="brand"
-                    ></input>
-                    <label>Nike</label>
-                    <input
-                        type="radio"
-                        value="Yeezy-Adidas"
-                        name="brand"
-                    ></input>
-                    <label>Yeezy-Adidas</label>
-                    <input
-                        type="radio"
-                        value="Adidas"
-                        name="brand"
-                    ></input>
-                    <label>Adidas-Original</label>
-                </div> */}
