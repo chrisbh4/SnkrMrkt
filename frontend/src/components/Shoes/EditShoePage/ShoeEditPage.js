@@ -37,7 +37,6 @@ function EditShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
 
-    // console.log("Price state", price)
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -45,7 +44,7 @@ function EditShoesForm() {
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show Edited shoe being listed under them
             alert("Your shoe has now been succesfully edited for sale.")
-            history.push(`/`)
+            history.push(`/shoes/${shoeId}`)
         }
         else {
             setErrors(data)
