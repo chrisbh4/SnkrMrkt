@@ -16,14 +16,15 @@ function NewShoesForm() {
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(0)
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
+    const [image] = useState("")
     const [brand, setBrand] = useState("")
     const [price, setPrice] = useState(0.00)
     const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    // const updateImage = (e) => setImage(e.target.value)
     const updateBrand = (e) => setBrand(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
 

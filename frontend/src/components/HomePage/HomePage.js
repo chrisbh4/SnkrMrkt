@@ -1,8 +1,6 @@
 import React  ,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllShoes, getDeletedShoe } from "../../store/shoes";
-
-import ShoeList from "./ShoeList";
+import { getAllShoes} from "../../store/shoes";
 import './ShoeList.css'
 function HomePage(){
 
