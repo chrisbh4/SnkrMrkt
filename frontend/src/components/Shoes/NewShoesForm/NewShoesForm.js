@@ -117,13 +117,13 @@ function NewShoesForm() {
                             onChange={updatePrice}
                         ></input>
                     </div>
-                    <div className="form-item-new">
+                    {/* <div className="form-item-new">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             onChange={updateImage}
                         ></input>
-                    </div>
+                    </div> */}
 
                     <div className="new-shoe-button">
                         <button>Submit New Listing</button>
