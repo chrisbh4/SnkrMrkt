@@ -25,10 +25,9 @@ const validateNewShoe = [
     check('brand')
     .exists({checkFalsy:true})
     .withMessage("Please select a shoe brand"),
+    // check('image')
     // .exists({checkFalsy:true})
-    check('image')
-    .exists({checkFalsy:true})
-    .withMessage("Please enter image url"),
+    // .withMessage("Please enter image url"),
     handleValidationErrors
 ]
 

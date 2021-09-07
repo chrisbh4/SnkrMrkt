@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import SignupFormPage from './components/SignupFormPage';
+// import SignupFormPage from './components/SignupFormPage';
 // import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-import { Modal } from './context/Modal';
+// import { Modal } from './context/Modal';
 import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
 import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
@@ -13,12 +13,13 @@ import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage'
 import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
 import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
+import AboutPage from './components/AboutPage/AboutPage';
 
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
@@ -56,7 +57,7 @@ function App() {
           <Route exact path='/shoes/:id'>
             <ShoesDetailsPage />
           </Route>
-          
+
           <Route exact path ='/shoes/:id/edit'>
             <EditShoesForm />
           </Route>
@@ -67,6 +68,12 @@ function App() {
 
            <Route path = "/reviews/:id/edit">
               <EditReviewForm />
+            </Route>
+
+
+            <Route path="/about">
+            <AboutPage />
+
             </Route>
 
 

@@ -5,7 +5,6 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpModal from '../SignupFormPage';
 import { login } from '../../store/session';
-import * as sessionActions from "../../store/session";
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -27,6 +26,10 @@ function Navigation({ isLoaded }) {
           <ProfileButton user={sessionUser} />
         </div>
 
+        <button className="nav-button" >
+          <NavLink to="/about">About Page</NavLink>
+          </button>
+
         <button className="nav-button">
           <NavLink to="/shoes/new">New Shoe</NavLink>
         </button>
@@ -42,9 +45,6 @@ function Navigation({ isLoaded }) {
       <div className="nav-logged-in">
 
         <button className="nav-button" onClick={demoLogin} >Demo</button>
-        {/* <button className="nav-button" type="button"onClick={()=> dispatch(sessionActions.login('demo@user.io', "password" ))}>Demo</button> */}
-        {/* <button className='modal-login-btn' type='button' onClick={() => dispatch(login('demo@aa.io', 'password'))}>Demo</button> */}
-
 
         <button className="nav-button">
           <LoginFormModal />
@@ -55,9 +55,12 @@ function Navigation({ isLoaded }) {
         </button>
 
         <button className="nav-button">
+          <NavLink to="/about">About Page</NavLink>
+          </button>
+
+        <button className="nav-button">
           <NavLink exact to="/">Home</NavLink>
         </button>
-
 
       </div>
     );
