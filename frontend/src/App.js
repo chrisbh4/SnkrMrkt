@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import SignupFormPage from './components/SignupFormPage';
+// import SignupFormPage from './components/SignupFormPage';
 // import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-import { Modal } from './context/Modal';
+// import { Modal } from './context/Modal';
 import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
 import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
@@ -73,7 +73,7 @@ function App() {
 
             <Route path="/about">
             <AboutPage />
-            
+
             </Route>
 
 
