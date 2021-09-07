@@ -42,9 +42,6 @@ function Navigation({ isLoaded }) {
       <div className="nav-logged-in">
 
         <button className="nav-button" onClick={demoLogin} >Demo</button>
-        {/* <button className="nav-button" type="button"onClick={()=> dispatch(sessionActions.login('demo@user.io', "password" ))}>Demo</button> */}
-        {/* <button className='modal-login-btn' type='button' onClick={() => dispatch(login('demo@aa.io', 'password'))}>Demo</button> */}
-
 
         <button className="nav-button">
           <LoginFormModal />
@@ -54,10 +51,13 @@ function Navigation({ isLoaded }) {
           <SignUpModal />
         </button>
 
+        <button>
+          <NavLink to="/about">About Page</NavLink>
+          </button>
+
         <button className="nav-button">
           <NavLink exact to="/">Home</NavLink>
         </button>
-
 
       </div>
     );

@@ -13,6 +13,7 @@ import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage'
 import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
 import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
+import AboutPage from './components/AboutPage/AboutPage';
 
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
           <Route exact path='/shoes/:id'>
             <ShoesDetailsPage />
           </Route>
-          
+
           <Route exact path ='/shoes/:id/edit'>
             <EditShoesForm />
           </Route>
@@ -67,6 +68,12 @@ function App() {
 
            <Route path = "/reviews/:id/edit">
               <EditReviewForm />
+            </Route>
+
+
+            <Route path="/about">
+            <AboutPage />
+            
             </Route>
 
 
