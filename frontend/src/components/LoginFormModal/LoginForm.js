@@ -13,7 +13,7 @@ function LoginForm() {
     e.preventDefault();
 
     setErrors([]);
-
+    debugger
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
 
@@ -55,6 +55,7 @@ function LoginForm() {
           />
           </div>
         </label>
+        
         <button className="login-submit" type="submit">Log In</button>
       </form>
     </div>

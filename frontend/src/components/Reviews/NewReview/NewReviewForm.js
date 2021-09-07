@@ -23,6 +23,19 @@ function NewReviewForm(){
     const updateImage = (e) => setImage(e.target.value)
 
 
+    let errorHandler;
+   if(errors.errors){
+      errorHandler = errors.errors.map((error)=>{
+               console.log(error)
+               return (
+                        <p key={error.id}>{error}</p>
+                    )
+           })
+   }
+   else{
+        errorHandler=null;
+   }
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(fetchCreateReview(shoeId, userId, comment, rating, image))
@@ -40,11 +53,11 @@ function NewReviewForm(){
     return(
         <div className="create-review-placement">
              <h1 className="page-title">
-                <a href="/">New Review</a>
-
+                <a href={`/shoes/${shoeId}`}>New Review</a>
             </h1>
             <div className="create-review-form">
             <form onSubmit={onSubmit}>
+                {errorHandler}
                 <div className="create-review-item">
                     <label>Comment :</label>
                     <textarea
@@ -70,7 +83,7 @@ function NewReviewForm(){
                         ></input>
                     </div>
                     <div >
-                        <button className="create-review-button" type="submit">Submit</button>
+                        <button className="submit-review-button" type="submit">Submit</button>
                     </div>
             </form>
             </div>

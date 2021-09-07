@@ -20,7 +20,6 @@ function EditShoesForm() {
     // const user = useSelector((state) => state.session.user.id)
 
     const shoe = useSelector((state) => state.shoes[shoeId])
-    console.log('EDit Shoe ', shoe)
 
 
     //! Doesn't make sense to have these but will check will Project Advisor for CRUD
@@ -29,6 +28,8 @@ function EditShoesForm() {
     const [brand] = useState(shoe?.brand)
     const [errors, setErrors] = useState([])
 
+    console.log("title:", title)
+
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
 
@@ -36,7 +37,6 @@ function EditShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
 
-    // console.log("Price state", price)
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -44,22 +44,35 @@ function EditShoesForm() {
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show Edited shoe being listed under them
             alert("Your shoe has now been succesfully edited for sale.")
-            history.push(`/`)
+            history.push(`/shoes/${shoeId}`)
         }
         else {
-            // setErros(data)
+            setErrors(data)
         }
         return data
     }
 
-    // console.log('delete id:',shoe.id)
+   let errorHandler;
+   if(errors.errors){
+      errorHandler = errors.errors.map((error)=>{
+               console.log(error)
+               return (
+                        <p key={error.id}>{error}</p>
+                    )
+           })
+   }
+   else{
+        errorHandler=null;
+   }
+
+
+
 
     //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
         e.preventDefault();
 
         await dispatch(getDeletedShoe(shoe.id))
-
         alert("Shoe has been deleted.");
         history.push('/')
     }
@@ -67,9 +80,12 @@ function EditShoesForm() {
     return (
 
         <div className="form-placement">
-
+            <h1 className="page-title">
+                <a href={`/shoes/${shoeId}`}>Edit Shoe</a>
+            </h1>
             <div className="form-container">
                 <form onSubmit={onSubmit}>
+                   {errorHandler}
                     <div className="form-item" >
                         <label>Shoe Title: </label>
                         <input
@@ -77,7 +93,6 @@ function EditShoesForm() {
                             onChange={updateTitle}
                             placeholder={title}
                             name="title"
-
                         ></input>
                     </div>
                     <div className="form-item">
@@ -88,36 +103,7 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    {/* <div>
 
-                    <div>
-                        <label>Brand Name: </label>
-                    </div>
-                    <input
-                        type="radio"
-                        value="Air-Jordan"
-                        name="brand"
-                    ></input>
-                    <label for="">Air Jordan</label>
-                    <input
-                        type="radio"
-                        value="Nike"
-                        name="brand"
-                    ></input>
-                    <label>Nike</label>
-                    <input
-                        type="radio"
-                        value="Yeezy-Adidas"
-                        name="brand"
-                    ></input>
-                    <label>Yeezy-Adidas</label>
-                    <input
-                        type="radio"
-                        value="Adidas"
-                        name="brand"
-                    ></input>
-                    <label>Adidas-Original</label>
-                </div> */}
                     <div className="form-item">
                         <label>Price: $</label>
                         <input
@@ -132,12 +118,8 @@ function EditShoesForm() {
 
 
                     <div className="button-containers">
-                        {/* <div className="edit-button-div"> */}
                             <button type='submit' className="edit-button">Edit Current Listing</button>
-                        {/* </div> */}
-                        {/* <div className="delete-button-div"> */}
                             <button type='button' className="delete-button" onClick={handleDelete}>Delete Listing</button>
-                        {/* </div> */}
                     </div>
                 </form>
             </div>

@@ -1,13 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpModal from '../SignupFormPage';
+import { login } from '../../store/session';
+import * as sessionActions from "../../store/session";
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
-  const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user)
+
+  const demoLogin = ()=>{
+    let credential = 'demo@user.io'
+    let password = 'password'
+    return dispatch(login({credential, password}))
+  }
 
   let sessionLinks;
   if (sessionUser) {
@@ -32,6 +41,11 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className="nav-logged-in">
 
+        <button className="nav-button" onClick={demoLogin} >Demo</button>
+        {/* <button className="nav-button" type="button"onClick={()=> dispatch(sessionActions.login('demo@user.io', "password" ))}>Demo</button> */}
+        {/* <button className='modal-login-btn' type='button' onClick={() => dispatch(login('demo@aa.io', 'password'))}>Demo</button> */}
+
+
         <button className="nav-button">
           <LoginFormModal />
         </button>
@@ -40,11 +54,10 @@ function Navigation({ isLoaded }) {
           <SignUpModal />
         </button>
 
-
-
         <button className="nav-button">
           <NavLink exact to="/">Home</NavLink>
         </button>
+
 
       </div>
     );
