@@ -74,15 +74,15 @@ function NewReviewForm(){
                     ></input>
                     </div>
 
-                <div className="create-review-item">
+                {/* <div className="create-review-item">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             onChange={updateImage}
                             // onChange={}
                         ></input>
-                    </div>
-                    <div >
+                    </div> */}
+                    <div>
                         <button className="submit-review-button" type="submit">Submit</button>
                     </div>
             </form>
