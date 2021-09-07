@@ -4,3 +4,11 @@
     margin-top:20px;
 
 }
+
+
+a:visited{
+    color: black;
+}
+a{
+    color: black;
+}

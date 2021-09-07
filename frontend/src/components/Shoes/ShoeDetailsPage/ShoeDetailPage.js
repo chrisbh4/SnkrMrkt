@@ -92,10 +92,10 @@ function ShoesDetailsPage() {
             </h1>
             <div className="details-container">
                 <div className="shoe-details-container">
-                    <div className="shoe-image">
+                    {/* <div className="shoe-image">
                         <img src={shoe?.image} alt={shoe?.title}></img>
                         <p>Image Here</p>
-                    </div>
+                    </div> */}
                     <div className="shoe-title">
                         <h2>{shoe?.title}</h2>
                     </div>

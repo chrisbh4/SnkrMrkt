@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { fetchEditReview , fetchOneReview , fetchDeleteReview, fetchAllReviews} from "../../../store/reviews"
+import { fetchEditReview , fetchOneReview , fetchDeleteReview} from "../../../store/reviews"
 import "./EditReviewForm.css"
 
 
@@ -27,13 +27,14 @@ function EditReviewForm(){
 
     const [comment, setComment] = useState(review?.comment)
     const [rating, setRating] = useState(review?.rating)
-    const [image , setImage ] = useState(review?.image)
+    // const [image , setImage ] = useState(review?.image)
+    const [image] = useState(review?.image)
     const [errors , setErrors] = useState([])
 
     console.log("comment", review?.comment)
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    // const updateImage = (e) => setImage(e.target.value)
 
     let errorHandler;
     if(errors.errors){
@@ -99,13 +100,13 @@ function EditReviewForm(){
                     ></input>
                     </div>
 
-                <div className="edit-review-item">
+                {/* <div className="edit-review-item">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             onChange={updateImage}
                         ></input>
-                    </div>
+                    </div> */}
                     <div className="edit-review-button">
                         <button type="submit">Submit</button>
                     </div>
