@@ -20,24 +20,26 @@ function HomePage(){
 
     return(
         <>
-        
+
         <h1 className="homepage-title">ThePlug</h1>
         <div className="all-shoes-container">
             {shoesArray.map((shoe)=>{
                 return(
                     <div className="shoe-container" key={shoe.id}>
                     <div>
-                        <h2>{shoe.id}</h2>
-                        <div className="shoes-image">
+                        {/* <h2>{shoe.id}</h2> */}
+                        {/* <div className="shoes-image">
                             <a href={`/shoes/${shoe.id}`} >
                                 <img src={shoe.image} alt={shoe.title}></img>
                             </a>
-                        </div>
+                        </div> */}
                         <div className="shoes-title">
+                            <a href={`/shoes/${shoe.id}`}>
                             <h2>{shoe.title}</h2>
+                            </a>
                         </div>
                         <div className="shoes-shoeSize">
-                            <h4>Shoe Size {shoe.shoeSize}</h4>
+                            <h4>Shoe Size: {shoe.shoeSize}</h4>
                         </div>
                         <div className="shoes-price">
                             <h3>${shoe.price}</h3>
