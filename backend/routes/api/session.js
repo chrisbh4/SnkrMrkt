@@ -25,24 +25,29 @@ router.post(
   validateLogin,
   asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
-    debugger
     const user = await User.login({ credential, password });
-    debugger
     //! Need to figure out how to display the loginError handler instead of that if statment
     // will most likely just need to create own if condition and check to see if the user has errors
     if (!user) {
       const err = new Error('Login failed');
       err.status = 401;
       err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
+      err.errors = ['The provided credentials were invalid'];
       return next(err);
     }
+    // else if (user.errors) {
+    //   return res.json({ user })
 
-    await setTokenCookie(res, user);
+    // }
+    else {
 
-    return res.json({
-      user,
-    });
+      await setTokenCookie(res, user);
+
+      return res.json({
+        user,
+      });
+    }
+
   }),
 );
 

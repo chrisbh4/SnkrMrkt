@@ -9,30 +9,45 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setErrors([]);
-    debugger
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
+    const data = await dispatch(sessionActions.login({ credential, password }))
 
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+    if(data?.errors){
+        setErrors(data.errors)
+        return
+    }
+    return data
   };
+
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setErrors([]);
+  //   return dispatch(sessionActions.login({ credential, password })).catch(
+  //     async (res) => {
+
+  //       const data = await res.json();
+  //       if (data && data.errors) setErrors(data.errors);
+  //     }
+  //   );
+  // };
 
   return (
     <div>
       <h1 id="login-header">Log In</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         <ul>
-          //! Cant console.log for some reason it unHighlights idx
-          // might need to make my own errors.map
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
+          {/* //! Cant console.log for some reason it unHighlights idx
+           might need to make my own errors.map */}
+          {errors.map((error) => {
+           return <li>{error}</li>
+          }
+
+          )}
         </ul>
         <label>
          Email :
