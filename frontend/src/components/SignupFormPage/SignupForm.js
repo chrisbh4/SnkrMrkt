@@ -21,7 +21,7 @@ function SignupFormPage() {
 
     if(data?.errors){
       if( password !== confirmPassword){
-        const err = [...data?.errors, "Password and Password confirm must match"]
+        const err = [...data?.errors, "Password and Confirm Password must match"]
         setErrors(err)
       }else{
         setErrors(data?.errors)
