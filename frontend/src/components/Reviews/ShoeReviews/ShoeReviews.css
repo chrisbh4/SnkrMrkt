@@ -12,3 +12,32 @@ a:visited{
 a{
     color: black;
 }
+
+.review-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row-reverse;
+    align-content: center;
+}
+
+.review-image{
+    max-width: 190px;
+    max-width: auto;
+}
+
+
+.review-labels{
+    display: flex;
+    text-decoration: underline;
+    justify-content: space-evenly;
+}
+
+
+/*
+- [ ] fix review labels so that the username is displayed last
+- [ ] set edit button to be at the bottom in the middle of the single review
+- [ ] Need to make reviews container a grid so all columns are in the middle
+       so images can be in-line with one another
+- [ ] Need to start on Edit Reviews Feature
+*/
