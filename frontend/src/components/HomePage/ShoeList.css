@@ -25,16 +25,12 @@
     margin-bottom: 10px;
 }
 
-
-.shoes-image{
-    /* max-width: 200px; */
+.shoe-image-container{
     padding: 10px;
 }
 
-img{
+.shoe-image{
     max-width: 300px;
     max-height: 200px;
-
-    /* min-height: 199px; */
     min-width: auto;
 }
