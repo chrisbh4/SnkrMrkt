@@ -33,8 +33,7 @@ function NewShoesForm() {
         e.preventDefault();
 
         const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price, brand))
-        // brand,
-        console.log("NewshoeForm :", data)
+
         if (!data?.errors) {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them

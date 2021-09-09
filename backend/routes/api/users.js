@@ -14,17 +14,15 @@ const validateSignup = [
     .isEmail()
     .withMessage('Please provide a valid email.'),
   check('username')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
-  check('username')
     .not()
     .isEmail()
-    .withMessage('Username cannot be an email.'),
+    .withMessage('Username cannot be an email.')
+    .isLength({min: 5 , max:20})
+    .withMessage("Username must be 5 to 20 characters "),
   check('password')
     .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
+    .isLength({ min: 5 , max: 10 })
+    .withMessage('Password must be 5 to 10 characters'),
   handleValidationErrors,
 ];
 
