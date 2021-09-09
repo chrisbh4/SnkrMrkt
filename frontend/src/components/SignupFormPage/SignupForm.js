@@ -15,17 +15,19 @@ function SignupFormPage() {
 
   if (sessionUser) return <Redirect to="/" />;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
+    const data = await dispatch(sessionActions.signup({email,username,password}))
+
+    if(data?.errors){
+      if( password !== confirmPassword){
+        const err = [...data?.errors, "Password and Password confirm must match"]
+        setErrors(err)
+      }else{
+        setErrors(data?.errors)
+      }
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return data
   };
 
   return (
@@ -34,6 +36,7 @@ function SignupFormPage() {
       <form className="signup-form" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+
         </ul>
         <label>
           Email
