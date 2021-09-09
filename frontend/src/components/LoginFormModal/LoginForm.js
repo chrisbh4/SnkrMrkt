@@ -40,15 +40,15 @@ function LoginForm() {
     <div>
       <h1 id="login-header">Log In</h1>
       <form className="login-form" onSubmit={handleSubmit}>
-        <ul>
+        {/* <ul> */}
           {/* //! Cant console.log for some reason it unHighlights idx
            might need to make my own errors.map */}
-          {errors.map((error) => {
-           return <li>{error}</li>
+          {errors.map((error, idx) => {
+           return <p key={idx}>{error}</p>
           }
 
           )}
-        </ul>
+        {/* </ul> */}
         <label>
          Email :
           <input
