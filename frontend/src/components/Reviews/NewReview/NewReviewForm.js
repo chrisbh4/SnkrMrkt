@@ -15,13 +15,12 @@ function NewReviewForm(){
 
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(0)
-    // const [image , setImage ] = useState("")
-    const [image] = useState("")
+    const [image , setImage ] = useState("")
     const [errors , setErrors] = useState([])
 
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
-    // const updateImage = (e) => setImage(e.target.value)
+    const updateImage = (e) => setImage(e.target.value)
 
 
     let errorHandler;
@@ -75,14 +74,13 @@ function NewReviewForm(){
                     ></input>
                     </div>
 
-                {/* <div className="create-review-item">
+                <div className="create-review-item">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             onChange={updateImage}
-                            // onChange={}
                         ></input>
-                    </div> */}
+                    </div>
                     <div>
                         <button className="submit-review-button" type="submit">Submit</button>
                     </div>

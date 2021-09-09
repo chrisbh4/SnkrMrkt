@@ -25,12 +25,12 @@ function HomePage(){
                 return(
                     <div className="shoe-container" key={shoe.id}>
                     <div>
-                        {/* <h2>{shoe.id}</h2> */}
-                        {/* <div className="shoes-image">
+                        <h2>{shoe.id}</h2>
+                        <div className="shoes-image">
                             <a href={`/shoes/${shoe.id}`} >
                                 <img src={shoe.image} alt={shoe.title}></img>
                             </a>
-                        </div> */}
+                        </div>
                         <div className="shoes-title">
                             <a href={`/shoes/${shoe.id}`}>
                             <h2>{shoe.title}</h2>

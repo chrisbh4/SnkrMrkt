@@ -22,10 +22,10 @@ function EditShoesForm() {
     const shoe = useSelector((state) => state.shoes[shoeId])
 
 
-    //! Doesn't make sense to have these but will check will Project Advisor for CRUD
     const [title, setTitle] = useState(shoe?.title)
     const [image] = useState(shoe?.image)
     const [brand] = useState(shoe?.brand)
+    
     const [errors, setErrors] = useState([])
 
     console.log("title:", title)
@@ -66,9 +66,6 @@ function EditShoesForm() {
    }
 
 
-
-
-    //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
         e.preventDefault();
 
