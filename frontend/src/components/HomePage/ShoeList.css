@@ -13,11 +13,28 @@
     flex-wrap: wrap;
 }
 
-
-
 .shoe-container{
     text-align: center;
     border: 2px solid black;
-    width:350px;
+    min-width:350px;
+    max-width:351px;
+    height: 375px;
+    /* might look better with images */
+    /* height: auto; */
+
     margin-bottom: 10px;
+}
+
+
+.shoes-image{
+    /* max-width: 200px; */
+    padding: 10px;
+}
+
+img{
+    max-width: 300px;
+    max-height: 200px;
+
+    /* min-height: 199px; */
+    min-width: auto;
 }
