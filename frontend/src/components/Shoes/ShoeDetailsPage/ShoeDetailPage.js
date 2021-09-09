@@ -52,37 +52,6 @@ function ShoesDetailsPage() {
     }
 
 
-//     const reviewsAndEditButton = shoe?.Reviews.map((review) => {
-//         // console.log("single review:", review.id)
-//         if ( userId === review.userId){
-//             return(
-//                 <div>
-//             <p>{review.comment}</p>
-//            <button> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
-//             </div>
-//             )
-//         }else{
-//             return <div>
-//                 <p>
-//                 {review.comment}
-//                 </p>
-//                 <p>{review.userId}</p>
-//                 </div>
-//         }
-//    })
-
-
-
-
-
-
-
-
-// create a checker that checks the reviews.userId and the userId if true
-//    then have a button dispalyed next to the review and the button will redirect them to a edit review form page
-
-
-
 
     return (
         <>
@@ -92,9 +61,8 @@ function ShoesDetailsPage() {
             </h1>
             <div className="details-container">
                 <div className="shoe-details-container">
-                    <div className="shoe-image">
+                    <div className="shoe-details-image">
                         <img src={shoe?.image} alt={shoe?.title}></img>
-                        <p>Image Here</p>
                     </div>
                     <div className="shoe-title">
                         <h2>{shoe?.title}</h2>
