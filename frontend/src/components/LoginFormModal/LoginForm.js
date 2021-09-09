@@ -28,6 +28,8 @@ function LoginForm() {
       <h1 id="login-header">Log In</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         <ul>
+          //! Cant console.log for some reason it unHighlights idx
+          // might need to make my own errors.map
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
@@ -55,7 +57,7 @@ function LoginForm() {
           />
           </div>
         </label>
-        
+
         <button className="login-submit" type="submit">Log In</button>
       </form>
     </div>

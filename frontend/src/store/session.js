@@ -21,7 +21,8 @@ export const login = ({ credential, password }) => async dispatch => {
   const data = await response.json();
   debugger
   dispatch(setUser(data.user));
-  return response;
+  debugger
+  return data;
 };
 
 export const restoreUser = () => async dispatch => {
