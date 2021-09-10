@@ -33,7 +33,7 @@ function ShoeReviews({shoe}){
                 <div className="review-container">
             <p>{review.comment} </p>
             <p>Reviewd by: 'UserName'</p>
-            <img className="review-image" src={review.image} />
+            <img className="review-image" src={review.image} alt={"shoe"} />
            <button > <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
             </div>
             )
@@ -43,7 +43,7 @@ function ShoeReviews({shoe}){
                 {review.comment}
                 </p>
                 <p>{review.userId}</p>
-                <img src={review.image} alt="Review Image"></img>
+                <img src={review.image} alt="user review"></img>
                 </div>
 
         }
