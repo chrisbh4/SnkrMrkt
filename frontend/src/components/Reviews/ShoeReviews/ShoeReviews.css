@@ -14,12 +14,39 @@ a{
 }
 
 .review-container{
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    justify-items: start;
+     justify-content: space-around;
     align-items: center;
-    flex-direction: row-reverse;
+    text-align: center;
+    /* flex-direction: row-reverse; */
     align-content: center;
+    grid-template-areas: "img comment user edit";
 }
+
+
+.review-comment{
+    grid-area: comment;
+    width: 50px;
+    text-align: center;
+}
+
+.review-image{
+    grid-area: img;
+}
+
+.review-username{
+    grid-area: user;
+    width: 50px;
+}
+
+.review-edit-button{
+    grid-area: edit;
+    height: 30px;
+    width: 50px;
+
+}
+
 
 .review-image{
     max-width: 190px;
@@ -27,12 +54,25 @@ a{
 }
 
 
+
 .review-labels{
     display: flex;
     text-decoration: underline;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    /* margin-left: 55px; */
+
 }
 
+.label-review-image{
+    margin-left: 50px;
+}
+
+.label-review-comment{
+    margin-left:30px;
+}
+.label-review-username{
+    margin-right: 100px;
+}
 
 /*
 - [ ] fix review labels so that the username is displayed last
