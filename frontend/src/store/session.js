@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf.js";
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const ALL_USERS = 'session/all_users';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -11,6 +12,12 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 });
+const allUsers = (users) => ({
+  type: ALL_USERS,
+  payload: users,
+});
+
+
 
 export const login = ({ credential, password }) => async dispatch => {
 
@@ -61,11 +68,26 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
+
+export const fetchAllUsers = () => async (dispatch)=>{
+  const res = await csrfFetch("/api/session/all-users")
+
+  if(res.ok){
+    const data = await res.json()
+    dispatch(allUsers(data))
+  }else{
+    return res
+  }
+}
+
+
 const initialState = { user: null };
 
 function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
+    case ALL_USERS:
+      return {...state, ...action.users}
     case SET_USER:
       newState = Object.assign({}, state, { user: action.payload });
       return newState;

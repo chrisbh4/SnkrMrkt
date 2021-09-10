@@ -1,9 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React , { useEffect} from "react";
+import { useSelector , useDispatch } from "react-redux";
+import { fetchAllUsers } from "../../../store/session";
 import "./ShoeReviews.css"
 
 
 function ShoeReviews({ shoe }) {
+
+const dispatch = useDispatch()
+
+useEffect(()=>{
+    dispatch(fetchAllUsers())
+}, [dispatch])
 
     const userId = useSelector((state) => {
         if (state.session.user) {
@@ -12,8 +19,8 @@ function ShoeReviews({ shoe }) {
         return 0.5;
     })
 
-    const user = useSelector((state)=> state.session.user)
-    let reviewUserName;
+    // const user = useSelector((state)=> state.session.user)
+    // let reviewUserName;
 
     // console.log("user : ", user.username)
 
