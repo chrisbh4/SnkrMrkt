@@ -12,6 +12,11 @@ function ShoeReviews({ shoe }) {
         return 0.5;
     })
 
+    const user = useSelector((state)=> state.session.user)
+    let reviewUserName;
+
+    // console.log("user : ", user.username)
+
     let createReviewButton;
     if (userId > 0.9) {
         createReviewButton = (
@@ -48,7 +53,6 @@ function ShoeReviews({ shoe }) {
                     {review.comment}
                 </p>
                 <p className="review-username">
-                    {review.userId}
                 </p>
                 <img src={review.image} alt="user review" className="review-image"></img>
             </div>

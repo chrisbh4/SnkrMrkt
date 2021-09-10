@@ -19,6 +19,7 @@ a{
      justify-content: space-around;
     align-items: center;
     text-align: center;
+    border-bottom: 1px solid black;
     /* flex-direction: row-reverse; */
     align-content: center;
     grid-template-areas: "img comment user edit";
@@ -59,19 +60,20 @@ a{
     display: flex;
     text-decoration: underline;
     justify-content: space-around;
-    /* margin-left: 55px; */
+    margin-left: 30px;
+
 
 }
 
 .label-review-image{
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .label-review-comment{
-    margin-left:30px;
+    margin-left:65px;
 }
 .label-review-username{
-    margin-right: 100px;
+    margin-right: 120px;
 }
 
 /*
