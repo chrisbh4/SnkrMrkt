@@ -19,10 +19,26 @@ useEffect(()=>{
         return 0.5;
     })
 
-    // const user = useSelector((state)=> state.session.user)
+    const users = useSelector((state)=> state.session?.users)
     // let reviewUserName;
+    /*
+        - inside the .map place another .map inside of the P tag
+        - map through the users array and grab each user and match user.id with
+          review.id and if true retrun a p tag with the user.username
+    */
 
-    // console.log("user : ", user.username)
+    console.log("users : ", users)
+
+
+//    const username = ()=>{
+//        if( review.userId === user[review.userId]){
+//            return <p>{user.username}</p>
+//        }else{
+//            return null
+//        }
+//    }
+
+
 
     let createReviewButton;
     if (userId > 0.9) {
@@ -48,7 +64,8 @@ useEffect(()=>{
                         {review.comment}
                     </p>
                     <p className="review-usernane">
-                        {review.userId}
+                        {/* {review.userId} */}
+                        {/* {username} */}
                     </p>
                     <img src={review.image} alt="user review" className="review-image"></img>
 

@@ -14,7 +14,7 @@ const removeUser = () => ({
 });
 const allUsers = (users) => ({
   type: ALL_USERS,
-  payload: users,
+   users,
 });
 
 
@@ -75,6 +75,7 @@ export const fetchAllUsers = () => async (dispatch)=>{
   if(res.ok){
     const data = await res.json()
     dispatch(allUsers(data))
+    return data
   }else{
     return res
   }
