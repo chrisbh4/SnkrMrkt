@@ -93,6 +93,10 @@ function ShoesDetailsPage() {
                 </div>
             </div>
 
+            <div className="reviews-spacer">
+                {/* <p>duh</p> */}
+            </div>
+
 
         </>
     )

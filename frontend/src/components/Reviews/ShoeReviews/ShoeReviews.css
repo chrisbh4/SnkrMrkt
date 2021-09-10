@@ -23,6 +23,7 @@ a{
     /* flex-direction: row-reverse; */
     align-content: center;
     grid-template-areas: "img comment user edit";
+    
 
 }
 
@@ -37,7 +38,7 @@ a{
     grid-area: img;
     max-width: 190px;
     max-width: auto;
-    /* margin-left: -; */
+
 }
 
 .review-username{
@@ -95,7 +96,7 @@ a{
 }
 
 /*
-- [ ] fix review labels so that the username is displayed last
+
 - [ ] set edit button to be at the bottom in the middle of the single review
 - [ ] Need to make reviews container a grid so all columns are in the middle
        so images can be in-line with one another
