@@ -23,17 +23,21 @@ a{
     /* flex-direction: row-reverse; */
     align-content: center;
     grid-template-areas: "img comment user edit";
+
 }
 
 
 .review-comment{
     grid-area: comment;
-    width: 50px;
+    width: 150px;
     text-align: center;
 }
 
 .review-image{
     grid-area: img;
+    max-width: 190px;
+    max-width: auto;
+    /* margin-left: -; */
 }
 
 .review-username{
@@ -49,20 +53,34 @@ a{
 }
 
 
-.review-image{
+.review-image-noEdit{
+    grid-area: img;
     max-width: 190px;
     max-width: auto;
+    margin-left:-25px;
 }
 
 
+.review-comment-noEdit{
+    grid-area: comment;
+    width: 150px;
+    text-align: center;
+
+    margin-left:-50px;
+}
+
+.review-username-noEdit{
+    grid-area: user;
+    width: 100px;
+    margin-left:-40px;
+    text-align: center;
+}
 
 .review-labels{
     display: flex;
     text-decoration: underline;
     justify-content: space-around;
     margin-left: 30px;
-
-
 }
 
 .label-review-image{

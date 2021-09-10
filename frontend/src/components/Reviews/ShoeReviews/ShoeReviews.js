@@ -25,19 +25,12 @@ function ShoeReviews({ shoe }) {
     // let reviewUserName;
     /*
        - clean up all the commented out code
-       - need to fix align ment when edit button renders and doesn't render
+       - need to fix alignment when edit button renders and doesn't render
     */
 
     console.log("users : ", users)
 
 
-    //    const username = ()=>{
-    //        if( review.userId === user[review.userId]){
-    //            return <p>{user.username}</p>
-    //        }else{
-    //            return null
-    //        }
-    //    }
 
 
 
@@ -61,27 +54,20 @@ function ShoeReviews({ shoe }) {
                         {review.comment}
                     </p>
 
-                    <div className="review-usernane">
+                    <p className="review-usernane">
                         {users?.map((oneUser) => {
                             // Each User gets hit inside the .map
-                            //    console.log("single user", oneUser)
                             if (oneUser.id === review.userId) {
-                                //if condition is working
-                                console.log("map is working:", oneUser)
                                 return oneUser.username;
                             }
-                            // console.log("else :", oneUser.username)
-                            // return
-                             else {
-                                //   console.log("else gets hit",oneUser.username)
-                                //   return oneUser.username;
+                            else {
                                 return null;
                             }
                         })
 
                         }
 
-                    </div>
+                    </p>
                     <img src={review.image} alt="user review" className="review-image"></img>
 
                 </div>
@@ -89,34 +75,25 @@ function ShoeReviews({ shoe }) {
             // If the logged in user is not the owner of the reviews then a edit button doesn't show
         } else {
             return <div className="review-container">
-
-                <p className="review-comment">
+                <p className="review-comment-noEdit">
                     {review.comment}
                 </p>
-                {/* <p className="review-username"></p> */}
 
-                <div className="review-usernane">
-                        {users?.map((oneUser) => {
-                            // Each User gets hit inside the .map
-                            //    console.log("single user", oneUser)
-                            if (oneUser.id === review.userId) {
-                                //if condition is working
-                                console.log("map is working:", oneUser)
-                                return oneUser.username;
-                            }
-                            // console.log("else :", oneUser.username)
-                            // return
-                             else {
-                                //   console.log("else gets hit",oneUser.username)
-                                //   return oneUser.username;
-                                return null;
-                            }
-                        })
-
+                <p className="review-username-noEdit">
+                    {users?.map((oneUser) => {
+                        if (oneUser.id === review.userId) {
+                            return oneUser.username;
                         }
+                        else {
+                            return null;
+                        }
+                    })
+                    }
+                </p>
 
-                    </div>
-                <img src={review.image} alt="user review" className="review-image"></img>
+                <img src={review.image} alt="user review" className="review-image-noEdit"></img>
+
+
             </div>
 
         }
@@ -127,7 +104,7 @@ function ShoeReviews({ shoe }) {
             {/* <h3>Reviews</h3> */}
             {createReviewButton}
             <div>
-            <div className="review-labels">
+                <div className="review-labels">
                     <p className='label-review-image'> Review Image</p>
                     <p className="label-review-comment">Review</p>
                     <p className="label-review-username"> Username</p>
