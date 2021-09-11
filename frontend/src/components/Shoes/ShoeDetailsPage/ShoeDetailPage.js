@@ -68,17 +68,17 @@ function ShoesDetailsPage() {
                         <h2>{shoe?.title}</h2>
                     </div>
                     <div className="shoe-size">
-                        <h4>Shoe Size {shoe?.shoeSize}</h4>
+                        <h4>Size: {shoe?.shoeSize}</h4>
                     </div>
                     <div className="shoe-price">
-                        <h3>${shoe?.price}</h3>
+                        <h3>Price: ${shoe?.price}</h3>
                     </div>
                     <div className="shoe-brand">
                         <h3>{shoe?.brand}</h3>
                     </div>
                     <div className="shoe-description">
                         {/* <h3>{shoe?.description}</h3> */}
-                        <h4>Description</h4>
+                        <h4>Description </h4>
                         <p>This application is a clone based off the E-Commerce designer clothing/shoes store 'GOAT'. This site allows logged in users to buy or sell high-end designer shoes and also high end athletic shoes. All shoes sizes are dispalyed in mens until future features are added to where kids,woman, and men shoe sizes are available. Future features that plan to be added are Images for shoes and comments , personal user profile, shopping cart , user purchases, search bar , category filters</p>
                     </div>
                 </div>

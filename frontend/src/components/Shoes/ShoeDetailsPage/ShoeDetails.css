@@ -5,78 +5,87 @@
 .details-container{
     width: 100%;
     display: flex;
-    /* text-align: center; */
+
     justify-content: center;
-    /* align-items: center; */
+
 }
 
 /*! controls the grid */
 .shoe-details-container{
-    width: 100%;
+    /* width: 100%; */
     display: grid;
     grid-template-areas:"img img  "
                         "title desc"
                         "brand desc"
                         "size price";
-    border: 1px solid red;
-    justify-content: center;
-    width: 880px;
+
+    width: 860px;
     height: 750px;
     padding: 10px;
 }
 
-/* .shoe-details-container{
-    text-align: center;
-    border: 1px solid black;
-    width: 350px;
-    height: auto;
-
-} */
 
 .shoe-details-image{
-    width: 159.3%;
+    /* width: 90%;
+    height: auto; */
+    width: 869px;
+    /* height:600px; */
     height: auto;
-    border: 1px solid black;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid black; */
 }
 
 .shoe-details-image > img{
     grid-area: img;
-    align-items: center;
     padding: 10px;
-    min-width:500px;
-    height:500px;
-    /* max-height: 201; */
-
-    /* min-width: 300px;
-    min-height: 200px;
-    max-width: 325px; */
-    /* width: 100%; */
+    overflow-x: hidden;
+    max-width: 860px;
+    max-height:500px;
+    height: 475px;
+    /* min-width: 800px; */
+    /* height:00px; */
+    /* object-fit:contain; */
+    /* max-width: auto;
+    height: auto; */
 }
 
 
 .shoe-title{
     grid-area: title;
-    width: 400px;
-    /* width: 50%; */
+    width: 50%;
     height: 80px;
     text-align: center;
     border: 1px solid black;
+    position: relative;
+    left: 3px;
 }
 
 .shoe-description{
     grid-area: desc;
-    width: 250px;
-    height: 55%;
+    position: relative;
+    font-size: larger;
+    right: 430px;
+    width: 370px;
+    height: 47%;
+    min-width: 370px;
+    min-height: 47%;
     border: 1px solid black;
     padding: 30px;
     overflow: scroll;
+
 }
 .shoe-description > h4{
     text-align: center;
+    margin-bottom: -10px;
 }
 
 .shoe-brand{
     grid-area:brand;
+    position: relative;
+    top: -15px;
+    left: 3px;
     width: 50%;
     height: 60px;
     text-align: center;
@@ -89,13 +98,23 @@
     width: 50%;
     text-align: center;
     border: 1px solid black;
+    position: relative;
+    bottom: 30px;
+    left: 3px;
 }
+
 
 
 
 .shoe-price{
     grid-area: price;
     border: 1px solid black;
+    text-align: center;
+    min-width: 99.5%;
+    width: 99.5%;
+    position: relative;
+    right: 430px;
+    bottom: 30px;
 }
 
 
