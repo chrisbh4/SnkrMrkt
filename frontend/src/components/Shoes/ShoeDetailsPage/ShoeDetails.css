@@ -10,11 +10,92 @@
     /* align-items: center; */
 }
 
+/*! controls the grid */
 .shoe-details-container{
+    width: 100%;
+    display: grid;
+    grid-template-areas:"img img  "
+                        "title desc"
+                        "brand desc"
+                        "size price";
+    border: 1px solid red;
+    justify-content: center;
+    width: 880px;
+    height: 750px;
+    padding: 10px;
+}
+
+/* .shoe-details-container{
     text-align: center;
     border: 1px solid black;
     width: 350px;
     height: auto;
+
+} */
+
+.shoe-details-image{
+    width: 159.3%;
+    height: auto;
+    border: 1px solid black;
+}
+
+.shoe-details-image > img{
+    grid-area: img;
+    align-items: center;
+    padding: 10px;
+    min-width:500px;
+    height:500px;
+    /* max-height: 201; */
+
+    /* min-width: 300px;
+    min-height: 200px;
+    max-width: 325px; */
+    /* width: 100%; */
+}
+
+
+.shoe-title{
+    grid-area: title;
+    width: 400px;
+    /* width: 50%; */
+    height: 80px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.shoe-description{
+    grid-area: desc;
+    width: 250px;
+    height: 55%;
+    border: 1px solid black;
+    padding: 30px;
+    overflow: scroll;
+}
+.shoe-description > h4{
+    text-align: center;
+}
+
+.shoe-brand{
+    grid-area:brand;
+    width: 50%;
+    height: 60px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.shoe-size{
+    grid-area: size;
+    height: 60px;
+    width: 50%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+
+
+.shoe-price{
+    grid-area: price;
+    border: 1px solid black;
 }
 
 
@@ -25,13 +106,7 @@
 }
 
 
-.shoe-details-image > img{
-    padding: 10px;
-    min-width: 300px;
-    min-height: 200px;
-    max-width: 325px;
-    max-height: 201;
-}
+
 
 
 
@@ -40,6 +115,7 @@
     margin-top: 30px;
     /* margin-bottom: 5px; */
     text-align: center;
+    grid-area:title;
 }
 .reviews-container{
     text-align: center;
