@@ -27,7 +27,7 @@ function Navigation({ isLoaded }) {
         </div>
 
         <button className="nav-button" >
-          <NavLink to="/about">About Page</NavLink>
+          <NavLink to="/about">About</NavLink>
           </button>
 
         <button className="nav-button">
