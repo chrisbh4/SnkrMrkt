@@ -13,22 +13,22 @@ live link: [thePlug](https://theplugg.herokuapp.com)
 
 
 ## HomePage
-![HomePage](/Users/cbreezy/app-academy/aprilCohort/solo-proj/thePlug/ReadMePics/Screen Shot 2021-09-07 at 6.58.56 AM.png)
+
 
 ## Shoe Details Page
-![Shoe Details Page](/Users/cbreezy/app-academy/aprilCohort/solo-proj/thePlug/ReadMePics/Screen Shot 2021-09-07 at 7.14.28 AM.png)
+
 
 ## Create Shoe listing
-![New Shoe](/Users/cbreezy/app-academy/aprilCohort/solo-proj/thePlug/ReadMePics/Screen Shot 2021-09-07 at 7.14.18 AM.png)
+
 
 ## Edit Shoe listing
-![Edit Shoe](/Users/cbreezy/app-academy/aprilCohort/solo-proj/thePlug/ReadMePics/Screen Shot 2021-09-07 at 7.14.32 AM.png)
+
 
 ## Create Review
-![Create Review](/Users/cbreezy/app-academy/aprilCohort/solo-proj/thePlug/ReadMePics/Screen Shot 2021-09-07 at 7.14.41 AM.png)
+
 
 ## Edit Review
-![Edit Reveiw](/Users/cbreezy/app-academy/aprilCohort/solo-proj/thePlug/ReadMePics/Screen Shot 2021-09-07 at 7.25.52 AM.png)
+
 
 
 ### Technologies:
