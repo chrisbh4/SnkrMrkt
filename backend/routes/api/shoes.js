@@ -84,6 +84,7 @@ router.put('/:id',validateEditShoe, asyncHandler(async (req, res) => {
     shoe.shoeSize = req.body.shoeSize
     shoe.price = req.body.price
     shoe.image = req.body.image
+    shoe.description = req.body.description
 
     await shoe.save()
     return res.json({ shoe })
@@ -114,7 +115,7 @@ router.post('/new', validateNewShoe, asyncHandler(async (req, res) => {
     const { sellerId, title, shoeSize, image, price, brand } = req.body
 
     const newShoe = await Shoes.create({
-        sellerId, title, shoeSize, image, price, brand
+        sellerId, title, shoeSize, image, price, brand, description
     })
     return res.json({ newShoe })
 }))
