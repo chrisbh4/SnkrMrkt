@@ -18,6 +18,7 @@ function NewShoesForm() {
     const [shoeSize, setShoeSize] = useState(0)
     const [image, setImage] = useState("")
     const [brand, setBrand] = useState("")
+    const [description , setDescription] = useState("")
     const [price, setPrice] = useState(0.00)
     const [errors, setErrors] = useState([]);
 
@@ -26,12 +27,13 @@ function NewShoesForm() {
     const updateImage = (e) => setImage(e.target.value)
     const updateBrand = (e) => setBrand(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
+    const updateDescription= (e) => setDescription(e.target.value)
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price, brand))
+        const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price, brand, description))
 
         if (!data?.errors) {
 
@@ -115,6 +117,13 @@ function NewShoesForm() {
                             type="number"
                             onChange={updatePrice}
                         ></input>
+                    </div>
+                    <div className="form-item-new">
+                        <label>Description: </label>
+                       <textarea
+                        onChange={updateDescription}
+                       >
+                       </textarea>
                     </div>
                     <div className="form-item-new">
                         <label>Image Url: </label>

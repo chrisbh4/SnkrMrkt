@@ -25,6 +25,9 @@ const validateNewShoe = [
     check('brand')
     .exists({checkFalsy:true})
     .withMessage("Please select a shoe brand"),
+    check('description')
+    .isLength({min:10})
+    .withMessage("Description must be at least 10 characters long."),
     check('image')
     .exists({checkFalsy:true})
     .withMessage("Please enter image url"),
@@ -34,17 +37,19 @@ const validateNewShoe = [
 const validateEditShoe = [
     check('title')
     .isLength({min:5 })
-    .withMessage("Shoe title must be greater than 5 characters"),
+    .withMessage("Shoe title must be greater than 5 characters."),
     check('shoeSize')
     .isFloat({min:4 , max:18})
-    .withMessage("Please provide a shoe size in mens between 4 and 18"),
+    .withMessage("Please provide a shoe size in mens between 4 and 18."),
     check('price')
     .isFloat({min:1})
-    .withMessage("Please provide a price value for this shoe greater than $0.99"),
+    .withMessage("Please provide a price value for this shoe greater than $0.99 ."),
     check('brand')
     .exists({checkFalsy:true})
-    .withMessage("Please select a shoe brand"),
-
+    .withMessage("Please select a shoe brand."),
+    check('description')
+    .isLength({min:10})
+    .withMessage("Description must be at least 10 characters long."),
     handleValidationErrors
 ]
 
@@ -112,7 +117,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 
 router.post('/new', validateNewShoe, asyncHandler(async (req, res) => {
-    const { sellerId, title, shoeSize, image, price, brand } = req.body
+    const { sellerId, title, shoeSize, image, price, brand , description} = req.body
 
     const newShoe = await Shoes.create({
         sellerId, title, shoeSize, image, price, brand, description
