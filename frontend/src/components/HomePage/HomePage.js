@@ -26,11 +26,11 @@ function HomePage(){
                     <div className="shoe-container" key={shoe.id}>
                     <div>
                         {/* <h2>{shoe.id}</h2> */}
-                        {/* <div className="shoes-image">
+                        <div className="shoe-image-container">
                             <a href={`/shoes/${shoe.id}`} >
-                                <img src={shoe.image} alt={shoe.title}></img>
+                                <img className="shoe-image" src={shoe.image} alt={shoe.title}></img>
                             </a>
-                        </div> */}
+                        </div>
                         <div className="shoes-title">
                             <a href={`/shoes/${shoe.id}`}>
                             <h2>{shoe.title}</h2>

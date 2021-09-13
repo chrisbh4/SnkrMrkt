@@ -5,16 +5,119 @@
 .details-container{
     width: 100%;
     display: flex;
-    /* text-align: center; */
+
     justify-content: center;
-    /* align-items: center; */
+
 }
 
+/*! controls the grid */
 .shoe-details-container{
+    /* width: 100%; */
+    display: grid;
+    grid-template-areas:"img img  "
+                        "title desc"
+                        "brand desc"
+                        "size price";
+
+    width: 860px;
+    height: 750px;
+    padding: 10px;
+}
+
+
+.shoe-details-image{
+    /* width: 90%;
+    height: auto; */
+    width: 869px;
+    /* height:600px; */
+    height: auto;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid black; */
+}
+
+.shoe-details-image > img{
+    grid-area: img;
+    padding: 10px;
+    overflow-x: hidden;
+    max-width: 860px;
+    max-height:500px;
+    height: 475px;
+    /* min-width: 800px; */
+    /* height:00px; */
+    /* object-fit:contain; */
+    /* max-width: auto;
+    height: auto; */
+}
+
+
+.shoe-title{
+    grid-area: title;
+    width: 50%;
+    height: 80px;
     text-align: center;
     border: 1px solid black;
-    width: 250px;
-    height: auto;
+    position: relative;
+    left: 3px;
+
+}
+
+.shoe-description{
+    grid-area: desc;
+    position: relative;
+    font-size: larger;
+    right: 430px;
+    width: 370px;
+    height: 47%;
+    min-width: 370px;
+    min-height: 47%;
+    border: 1px solid black;
+    padding: 30px;
+    overflow: scroll;
+
+}
+.shoe-description > h4{
+    text-align: center;
+    margin-bottom: -10px;
+}
+
+.shoe-brand{
+    grid-area:brand;
+    position: relative;
+    top: -14px;
+    left: 3px;
+    width: 50%;
+    height: 59px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.shoe-size{
+    grid-area: size;
+    height: 66px;
+    width: 50%;
+    margin-top: 3px;
+    text-align: center;
+    border: 1px solid black;
+    position: relative;
+    bottom: 30px;
+    left: 3px;
+}
+
+
+
+
+.shoe-price{
+    grid-area: price;
+    border: 1px solid black;
+    text-align: center;
+    min-width: 99.5%;
+    width: 99.5%;
+    position: relative;
+    margin-top: 1px;
+    right: 430px;
+    bottom: 30px;
 }
 
 
@@ -24,10 +127,17 @@
     padding-top: 25px;
 }
 
+
+
+
+
+
+/* Reviews CSS */
 .reviews-title{
     margin-top: 30px;
     /* margin-bottom: 5px; */
     text-align: center;
+    grid-area:title;
 }
 .reviews-container{
     text-align: center;
@@ -40,6 +150,10 @@
 
 .reviews{
     border: 1px solid black;
-    width: 400px;
+    width: 650px;
     overflow: scroll;
+}
+
+.reviews-spacer{
+    height: 40px;
 }

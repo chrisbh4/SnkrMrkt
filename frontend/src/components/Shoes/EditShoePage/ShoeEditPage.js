@@ -22,10 +22,11 @@ function EditShoesForm() {
     const shoe = useSelector((state) => state.shoes[shoeId])
 
 
-    //! Doesn't make sense to have these but will check will Project Advisor for CRUD
     const [title, setTitle] = useState(shoe?.title)
+    const [description, setDescription] = useState(shoe?.description)
     const [image] = useState(shoe?.image)
     const [brand] = useState(shoe?.brand)
+
     const [errors, setErrors] = useState([])
 
     console.log("title:", title)
@@ -36,11 +37,12 @@ function EditShoesForm() {
     const updateTitle = (e) => setTitle(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
+    const updateDescription = (e) => setDescription(e.target.value)
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(getEditShoe(title, shoeSize, image, price, brand, shoeId))
+        const data = await dispatch(getEditShoe(title, shoeSize, image, price, brand,description, shoeId))
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show Edited shoe being listed under them
             alert("Your shoe has now been succesfully edited for sale.")
@@ -66,9 +68,6 @@ function EditShoesForm() {
    }
 
 
-
-
-    //! Alert and the history.push does't get touched but
     const handleDelete = async (e) => {
         e.preventDefault();
 
@@ -103,7 +102,14 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-
+                    <div className="form-item">
+                        <label>Description: </label>
+                       <textarea
+                        onChange={updateDescription}
+                        placeholder={description}
+                       >
+                       </textarea>
+                    </div>
                     <div className="form-item">
                         <label>Price: $</label>
                         <input

@@ -49,11 +49,11 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     return data
 };
 
-export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand) => async (dispatch) => {
+export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand, description) => async (dispatch) => {
     const res = await csrfFetch("/api/shoes/new", {
         method: "POST",
         header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sellerId, title, shoeSize, image, price, brand })
+        body: JSON.stringify({ sellerId, title, shoeSize, image, price, brand, description })
     })
 
     const data = await res.json()
@@ -68,11 +68,11 @@ export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand) =
     }
 };
 
-export const getEditShoe = (title, shoeSize, image, price, brand, shoeId) => async (dispatch) => {
+export const getEditShoe = (title, shoeSize, image, price, brand, description, shoeId) => async (dispatch) => {
     const res = await csrfFetch(`/api/shoes/${shoeId}`, {
         method: "PUT",
         header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, shoeSize, image, price, brand })
+        body: JSON.stringify({ title, shoeSize, image, price, brand, description })
     })
 
     const data = await res.json()

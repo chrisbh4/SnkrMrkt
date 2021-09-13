@@ -12,3 +12,93 @@ a:visited{
 a{
     color: black;
 }
+
+.review-container{
+    display: grid;
+    justify-items: start;
+     justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid black;
+    /* flex-direction: row-reverse; */
+    align-content: center;
+    grid-template-areas: "img comment user edit";
+    
+
+}
+
+
+.review-comment{
+    grid-area: comment;
+    width: 150px;
+    text-align: center;
+}
+
+.review-image{
+    grid-area: img;
+    max-width: 190px;
+    max-width: auto;
+
+}
+
+.review-username{
+    grid-area: user;
+    width: 50px;
+}
+
+.review-edit-button{
+    grid-area: edit;
+    height: 30px;
+    width: 50px;
+
+}
+
+
+.review-image-noEdit{
+    grid-area: img;
+    max-width: 190px;
+    max-width: auto;
+    margin-left:-25px;
+}
+
+
+.review-comment-noEdit{
+    grid-area: comment;
+    width: 150px;
+    text-align: center;
+
+    margin-left:-50px;
+}
+
+.review-username-noEdit{
+    grid-area: user;
+    width: 100px;
+    margin-left:-40px;
+    text-align: center;
+}
+
+.review-labels{
+    display: flex;
+    text-decoration: underline;
+    justify-content: space-around;
+    margin-left: 30px;
+}
+
+.label-review-image{
+    margin-left: 40px;
+}
+
+.label-review-comment{
+    margin-left:65px;
+}
+.label-review-username{
+    margin-right: 120px;
+}
+
+/*
+
+- [ ] set edit button to be at the bottom in the middle of the single review
+- [ ] Need to make reviews container a grid so all columns are in the middle
+       so images can be in-line with one another
+- [ ] Need to start on Edit Reviews Feature
+*/

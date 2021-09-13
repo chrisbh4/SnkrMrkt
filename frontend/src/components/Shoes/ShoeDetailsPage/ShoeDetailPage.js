@@ -52,37 +52,6 @@ function ShoesDetailsPage() {
     }
 
 
-//     const reviewsAndEditButton = shoe?.Reviews.map((review) => {
-//         // console.log("single review:", review.id)
-//         if ( userId === review.userId){
-//             return(
-//                 <div>
-//             <p>{review.comment}</p>
-//            <button> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
-//             </div>
-//             )
-//         }else{
-//             return <div>
-//                 <p>
-//                 {review.comment}
-//                 </p>
-//                 <p>{review.userId}</p>
-//                 </div>
-//         }
-//    })
-
-
-
-
-
-
-
-
-// create a checker that checks the reviews.userId and the userId if true
-//    then have a button dispalyed next to the review and the button will redirect them to a edit review form page
-
-
-
 
     return (
         <>
@@ -92,18 +61,26 @@ function ShoesDetailsPage() {
             </h1>
             <div className="details-container">
                 <div className="shoe-details-container">
-                    {/* <div className="shoe-image">
+                    <div className="shoe-details-image">
                         <img src={shoe?.image} alt={shoe?.title}></img>
-                        <p>Image Here</p>
-                    </div> */}
+                    </div>
                     <div className="shoe-title">
                         <h2>{shoe?.title}</h2>
                     </div>
-                    <div className="shoe-shoeSize">
-                        <h4>Shoe Size {shoe?.shoeSize}</h4>
+                    <div className="shoe-size">
+                        <h4>Size: {shoe?.shoeSize}</h4>
                     </div>
                     <div className="shoe-price">
-                        <h3>${shoe?.price}</h3>
+                        <h3>Price: ${shoe?.price}</h3>
+                    </div>
+                    <div className="shoe-brand">
+                        <h3>{shoe?.brand}</h3>
+                    </div>
+                    <div className="shoe-description">
+                        {/* <h3>{shoe?.description}</h3> */}
+                        <h4>Description </h4>
+                        <p>{shoe?.description}</p>
+                        {/* <p>This application is a clone based off the E-Commerce designer clothing/shoes store 'GOAT'. This site allows logged in users to buy or sell high-end designer shoes and also high end athletic shoes. All shoes sizes are dispalyed in mens until future features are added to where kids,woman, and men shoe sizes are available. Future features that plan to be added are Images for shoes and comments , personal user profile, shopping cart , user purchases, search bar , category filters</p> */}
                     </div>
                 </div>
             </div>
@@ -123,6 +100,10 @@ function ShoesDetailsPage() {
                 <div className="reviews">
                <ShoeReviews shoe={shoe} key={shoe?.id}/>
                 </div>
+            </div>
+
+            <div className="reviews-spacer">
+                {/* <p>duh</p> */}
             </div>
 
 

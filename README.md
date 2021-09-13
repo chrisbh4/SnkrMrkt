@@ -1,6 +1,5 @@
 # ThePlug
 
- Need a place to buy designer shoes or high-end atheltic shoes for a great price? The Plug is a web app where users can buy or sell their own shoes at a price they set with no hefty commision charges.
 
 live link: [thePlug](https://theplugg.herokuapp.com)
 
