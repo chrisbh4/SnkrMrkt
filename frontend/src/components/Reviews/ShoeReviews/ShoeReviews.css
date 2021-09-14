@@ -23,7 +23,7 @@ a{
     /* flex-direction: row-reverse; */
     align-content: center;
     grid-template-areas: "img comment user edit";
-    
+
 
 }
 
@@ -32,6 +32,8 @@ a{
     grid-area: comment;
     width: 150px;
     text-align: center;
+    overflow-x: scroll;
+    height: 70px;
 }
 
 .review-image{
