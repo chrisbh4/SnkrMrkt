@@ -119,10 +119,11 @@
     text-align: center;
     min-width: 99.5%;
     width: 99.8%;
+    height: 66px;
     position: relative;
     margin-top: 1px;
     right: 430px;
-    bottom: 32px;
+    bottom: 28px;
 }
 
 
