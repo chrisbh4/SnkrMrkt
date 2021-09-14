@@ -22,13 +22,6 @@ function ShoeReviews({ shoe }) {
     const users = useSelector((state) => state.session?.users)
 
 
-    // let reviewUserName;
-    /*
-       - clean up all the commented out code
-       - need to fix alignment when edit button renders and doesn't render
-    */
-
-    console.log("users : ", users)
 
 
 
@@ -76,7 +69,7 @@ function ShoeReviews({ shoe }) {
                     <img src={review.image} alt="user review" className="review-image"></img>
 
                 </div>
-                <button className="review-edit-button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+                <button className="review-edit-button" type="button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
                 </div>
             )
             // If the logged in user is not the owner of the reviews then a edit button doesn't show
@@ -102,7 +95,7 @@ function ShoeReviews({ shoe }) {
 
                 <img src={review.image} alt="user review" className="review-image-noEdit"></img>
                 <div className="reviews-noEdit-button-placement">
-                    {/* <p>hi</p> */}
+
                 </div>
 
             </div>
@@ -112,7 +105,7 @@ function ShoeReviews({ shoe }) {
 
     return (
         <>
-            {/* <h3>Reviews</h3> */}
+
             {createReviewButton}
             <div>
                 <div className="review-labels">

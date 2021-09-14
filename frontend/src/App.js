@@ -23,9 +23,10 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
-    //! Does not auto update the state for create or edit???
-    //!!! Need this to be able to load details page data
-    dispatch(getAllShoes())
+
+    //! Need this to be able to load details page data
+    // If site continutes to work i can delete this
+    // dispatch(getAllShoes())
   }, [dispatch]);
 
   return (

@@ -6,6 +6,7 @@ import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes } from "../../../store/shoes"
 
 
+
 function ShoesDetailsPage() {
     const dispatch = useDispatch()
     const params = useParams()
@@ -13,6 +14,7 @@ function ShoesDetailsPage() {
 
     useEffect(() => {
         dispatch(getAllShoes())
+
     }, [dispatch]);
 
     const shoeId = params.id
@@ -77,10 +79,8 @@ function ShoesDetailsPage() {
                         <h3>{shoe?.brand}</h3>
                     </div>
                     <div className="shoe-description">
-                        {/* <h3>{shoe?.description}</h3> */}
                         <h4>Description </h4>
                         <p>{shoe?.description}</p>
-                        {/* <p>This application is a clone based off the E-Commerce designer clothing/shoes store 'GOAT'. This site allows logged in users to buy or sell high-end designer shoes and also high end athletic shoes. All shoes sizes are dispalyed in mens until future features are added to where kids,woman, and men shoe sizes are available. Future features that plan to be added are Images for shoes and comments , personal user profile, shopping cart , user purchases, search bar , category filters</p> */}
                     </div>
                 </div>
             </div>

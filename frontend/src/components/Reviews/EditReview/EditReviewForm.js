@@ -22,13 +22,14 @@ function EditReviewForm(){
     const userId = useSelector((state)=> state.session.user.id)
     const review = useSelector((state)=> state.reviews)
     const shoeId = review?.shoeId
-
-
+    console.log("review:", review)
 
     const [comment, setComment] = useState(review?.comment)
     const [rating, setRating] = useState(review?.rating)
     const [image , setImage ] = useState(review?.image)
     const [errors , setErrors] = useState([])
+    console.log("comment:", review?.comment)
+    console.log("rating:", review?.rating)
 
     // console.log("comment", review?.rating)
     const updateComment = (e) => setComment(e.target.value)
