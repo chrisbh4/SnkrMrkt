@@ -72,7 +72,9 @@
     height: 47%;
     min-width: 370px;
     min-height: 47%;
-    border: 1px solid black;
+    /* border: 1px solid red; */
+    border-top: 1px solid black;
+    border-right:1px solid black;
     padding: 30px;
     overflow: scroll;
 
@@ -90,12 +92,13 @@
     width: 50%;
     height: 59px;
     text-align: center;
-    border: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .shoe-size{
     grid-area: size;
-    height: 66px;
+    height: 67px;
     width: 50%;
     margin-top: 3px;
     text-align: center;
@@ -110,14 +113,16 @@
 
 .shoe-price{
     grid-area: price;
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
     text-align: center;
     min-width: 99.5%;
-    width: 99.5%;
+    width: 99.8%;
     position: relative;
     margin-top: 1px;
     right: 430px;
-    bottom: 30px;
+    bottom: 32px;
 }
 
 
@@ -150,7 +155,8 @@
 
 .reviews{
     border: 1px solid black;
-    width: 650px;
+    width: 675px;
+    padding: 25px;
     overflow: scroll;
 }
 

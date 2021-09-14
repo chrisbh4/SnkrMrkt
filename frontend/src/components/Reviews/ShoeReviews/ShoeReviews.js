@@ -49,12 +49,16 @@ function ShoeReviews({ shoe }) {
             //if logged in user is the owner of the review then an edit button will appear
             return (
                 <div className="review-container">
+
                     <button className="review-edit-button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+
                     <p className="review-comment">
                         {review.comment}
                     </p>
 
-                    <p className="review-usernane">
+                    <p className="review-rating"> {review.rating}</p>
+
+                    <p className="review-username">
                         {users?.map((oneUser) => {
                             // Each User gets hit inside the .map
                             if (oneUser.id === review.userId) {
@@ -74,10 +78,12 @@ function ShoeReviews({ shoe }) {
             )
             // If the logged in user is not the owner of the reviews then a edit button doesn't show
         } else {
-            return <div className="review-container">
+            return <div className="review-container-noEdit">
                 <p className="review-comment-noEdit">
                     {review.comment}
                 </p>
+                <p className="review-rating-noEdit"> {review.rating}</p>
+
 
                 <p className="review-username-noEdit">
                     {users?.map((oneUser) => {
@@ -92,7 +98,9 @@ function ShoeReviews({ shoe }) {
                 </p>
 
                 <img src={review.image} alt="user review" className="review-image-noEdit"></img>
-
+                <div className="reviews-noEdit-button-placement">
+                    {/* <p>hi</p> */}
+                </div>
 
             </div>
 
