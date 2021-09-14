@@ -48,9 +48,10 @@ function ShoeReviews({ shoe }) {
         if (userId === review.userId) {
             //if logged in user is the owner of the review then an edit button will appear
             return (
+                <div className="review-container-border">
                 <div className="review-container">
 
-                    <button className="review-edit-button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+                    {/* <button className="review-edit-button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button> */}
 
                     <p className="review-comment">
                         {review.comment}
@@ -75,6 +76,8 @@ function ShoeReviews({ shoe }) {
                     <img src={review.image} alt="user review" className="review-image"></img>
 
                 </div>
+                <button className="review-edit-button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+                </div>
             )
             // If the logged in user is not the owner of the reviews then a edit button doesn't show
         } else {
@@ -82,8 +85,8 @@ function ShoeReviews({ shoe }) {
                 <p className="review-comment-noEdit">
                     {review.comment}
                 </p>
-                <p className="review-rating-noEdit"> {review.rating}</p>
 
+                <p className="review-rating-noEdit"> {review.rating}</p>
 
                 <p className="review-username-noEdit">
                     {users?.map((oneUser) => {
@@ -113,9 +116,12 @@ function ShoeReviews({ shoe }) {
             {createReviewButton}
             <div>
                 <div className="review-labels">
-                    <p className='label-review-image'> Review Image</p>
-                    <p className="label-review-comment">Review</p>
-                    <p className="label-review-username"> Username</p>
+
+                    <div className='label-review-image'>
+                    <p>Review Images </p></div>
+                    <div className="label-review-comment"><p>Reviews </p></div>
+                    <div className="label-review-rating"><p>Ratings </p></div>
+                    <div className="label-review-username"> <p>Posted By </p></div>
                 </div>
                 {reviewsAndEditButton}
             </div>

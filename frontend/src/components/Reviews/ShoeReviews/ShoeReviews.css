@@ -13,13 +13,17 @@ a{
     color: black;
 }
 
+.review-container-border{
+    border-bottom: 1px solid black;
+}
+
 .review-container{
     display: grid;
     justify-items: start;
      justify-content: space-around;
     align-items: center;
     text-align: center;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     /* flex-direction: row-reverse; */
     align-content: center;
     grid-template-areas: "img comment rating user edit";
@@ -34,7 +38,7 @@ a{
     grid-area: comment;
     width: 150px;
     text-align: center;
-    overflow-x: scroll;
+    overflow-y: scroll;
     max-height: 70px;
 }
 
@@ -64,6 +68,10 @@ a{
     grid-area: edit;
     height: 30px;
     width: 50px;
+    margin-bottom: 10px;
+    /* margin-bottom: 5px; */
+    /* position: relative; */
+    /* top: -1px; */
 
 }
 
@@ -97,6 +105,7 @@ a{
     justify-content: center;
     grid-area: comment;
     width: 150px;
+    overflow-y: scroll;
     /* text-align: center; */
 
     margin-left:-50px;
@@ -117,23 +126,34 @@ a{
 }
 
 
-/* review labels */
+
 .review-labels{
-    display: flex;
+    display: grid;
+    grid-template-areas: "image review rating username";
     text-decoration: underline;
-    justify-content: space-around;
-    margin-left: 30px;
+    width: 100%;
+    /* justify-content: space-evenly; */
+    /* margin-left: 30px; */
 }
+
 
 .label-review-image{
-    margin-left: 40px;
+    /* margin-left: 40px; */
+    grid-area: image;
 }
 
+.label-review-rating{
+    grid-area: rating;
+}
 .label-review-comment{
-    margin-left:65px;
+    /* margin-left:65px; */
+    grid-area: review;
 }
 .label-review-username{
-    margin-right: 120px;
+    /* margin-right: 120px; */
+    position: relative;
+    right: 45px;
+    grid-area: username;
 }
 
 /*
