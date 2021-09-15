@@ -27,6 +27,9 @@ a{
     /* flex-direction: row-reverse; */
     align-content: center;
     grid-template-areas: "img comment rating user edit";
+    /* position: relative;
+    left: ; */
+
 
 
 }
@@ -40,6 +43,8 @@ a{
     text-align: center;
     overflow-y: scroll;
     max-height: 70px;
+    position: relative;
+    left: -35px;
 }
 
 .review-rating{
@@ -54,6 +59,8 @@ a{
     grid-area: img;
     max-width: 190px;
     max-width: auto;
+    position: relative;
+    left: -27px;
 
 }
 
@@ -97,6 +104,8 @@ a{
     max-width: 190px;
     /* width: 150px; */
     margin-left:-55px;
+    position: relative;
+    left: -15px;
 }
 
 
@@ -109,6 +118,8 @@ a{
     /* text-align: center; */
 
     margin-left:-50px;
+    position: relative;
+    left: -5px;
 }
 
 .review-rating-noEdit{
