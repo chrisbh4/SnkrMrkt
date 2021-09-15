@@ -22,15 +22,16 @@ function EditReviewForm(){
     const userId = useSelector((state)=> state.session.user.id)
     const review = useSelector((state)=> state.reviews)
     const shoeId = review?.shoeId
-
-
+    console.log("review:", review)
 
     const [comment, setComment] = useState(review?.comment)
     const [rating, setRating] = useState(review?.rating)
     const [image , setImage ] = useState(review?.image)
     const [errors , setErrors] = useState([])
+    console.log("comment:", review?.comment)
+    console.log("rating:", review?.rating)
 
-    console.log("comment", review?.comment)
+    // console.log("comment", review?.rating)
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
     const updateImage = (e) => setImage(e.target.value)
@@ -90,13 +91,56 @@ function EditReviewForm(){
                 </div>
                 <div className="edit-review-item">
                     <label>
-                        Rating :
-                    </label>
+                       Rating :
+                   </label>
+                    {/*
                     <input
                         type="number"
-                        placeholder={review?.rating}
                         onChange={updateRating}
-                    ></input>
+                    ></input> */}
+
+                    <input
+                        name="rating"
+                        onChange={updateRating}
+                        type="radio"
+                        value="1"
+                        >
+
+                        </input>
+                            <label>1</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="2"
+                        >
+
+                        </input>
+                            <label>2</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="3"
+                        >
+
+                        </input>
+                            <label>3</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="4"
+                        >
+
+                        </input>
+                            <label>4</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="5"
+                        >
+
+                        </input>
+                            <label>5</label>
+
                     </div>
 
                 <div className="edit-review-item">

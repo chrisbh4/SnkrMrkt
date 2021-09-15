@@ -13,86 +13,158 @@ a{
     color: black;
 }
 
+.review-container-border{
+    border-bottom: 1px solid black;
+}
+
 .review-container{
     display: grid;
     justify-items: start;
      justify-content: space-around;
     align-items: center;
     text-align: center;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     /* flex-direction: row-reverse; */
     align-content: center;
-    grid-template-areas: "img comment user edit";
-    
+    grid-template-areas: "img comment rating user edit";
+    /* position: relative;
+    left: ; */
+
+
 
 }
 
 
 .review-comment{
+    display: flex;
+    justify-content: center;
     grid-area: comment;
     width: 150px;
     text-align: center;
+    overflow-y: scroll;
+    max-height: 70px;
+    position: relative;
+    left: -35px;
+}
+
+.review-rating{
+    display: flex;
+    justify-content: center;
+    grid-area: rating;
 }
 
 .review-image{
+    display: flex;
+    justify-content: center;
     grid-area: img;
     max-width: 190px;
     max-width: auto;
+    position: relative;
+    left: -25px;
 
 }
 
 .review-username{
+    display: flex;
+    justify-content: center;
     grid-area: user;
-    width: 50px;
+    width: 150px;
 }
 
 .review-edit-button{
     grid-area: edit;
     height: 30px;
     width: 50px;
+    margin-bottom: 10px;
+    /* margin-bottom: 5px; */
+    /* position: relative; */
+    /* top: -1px; */
 
 }
 
+/* Reviews with no Edit button */
+
+.review-container-noEdit{
+    display: grid;
+    justify-items: start;
+     /* justify-content: space-around; */
+     justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid black;
+    /* flex-direction: row-reverse; */
+    align-content: center;
+    grid-template-areas: "img comment rating user  ";
+}
 
 .review-image-noEdit{
+    display: flex;
+    justify-content: center;
     grid-area: img;
     max-width: 190px;
-    max-width: auto;
-    margin-left:-25px;
+    /* width: 150px; */
+    margin-left:-55px;
+    position: relative;
+    left: -15px;
 }
 
 
 .review-comment-noEdit{
+    display: flex;
+    justify-content: center;
     grid-area: comment;
     width: 150px;
-    text-align: center;
+    overflow-y: scroll;
+    /* text-align: center; */
 
     margin-left:-50px;
+    position: relative;
+    left: -5px;
 }
 
+.review-rating-noEdit{
+    display: flex;
+    justify-content: center;
+    grid-area: rating;
+}
 .review-username-noEdit{
+    display: flex;
+    justify-content: center;
     grid-area: user;
-    width: 100px;
+    width: 150px;
     margin-left:-40px;
     text-align: center;
 }
 
+
+
 .review-labels{
-    display: flex;
+    display: grid;
+    grid-template-areas: "image review rating username";
     text-decoration: underline;
-    justify-content: space-around;
-    margin-left: 30px;
+    width: 100%;
+    /* justify-content: space-evenly; */
+    /* margin-left: 30px; */
 }
+
 
 .label-review-image{
-    margin-left: 40px;
+    /* margin-left: 40px; */
+    grid-area: image;
 }
 
+.label-review-rating{
+    grid-area: rating;
+}
 .label-review-comment{
-    margin-left:65px;
+    /* margin-left:65px; */
+    grid-area: review;
 }
 .label-review-username{
-    margin-right: 120px;
+    /* margin-right: 120px; */
+    position: relative;
+    right: 45px;
+    grid-area: username;
 }
 
 /*

@@ -66,12 +66,56 @@ function NewReviewForm(){
                 </div>
                 <div className="create-review-item">
                     <label>
-                        Rating :
-                    </label>
+                       Rating :
+                   </label>
+                    {/*
                     <input
                         type="number"
                         onChange={updateRating}
-                    ></input>
+                    ></input> */}
+
+                    <input
+                        name="rating"
+                        onChange={updateRating}
+                        type="radio"
+                        value="1"
+                        >
+
+                        </input>
+                            <label>1</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="2"
+                        >
+
+                        </input>
+                            <label>2</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="3"
+                        >
+
+                        </input>
+                            <label>3</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="4"
+                        >
+
+                        </input>
+                            <label>4</label>
+                    <input  name="rating"
+                    onChange={updateRating}
+                        type="radio"
+                        value="5"
+                        >
+
+                        </input>
+                            <label>5</label>
+
                     </div>
 
                 <div className="create-review-item">
