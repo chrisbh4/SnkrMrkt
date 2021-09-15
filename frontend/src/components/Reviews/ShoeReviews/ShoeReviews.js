@@ -22,7 +22,12 @@ function ShoeReviews({ shoe }) {
     const users = useSelector((state) => state.session?.users)
 
 
-
+    let userImage;
+    // if(review.image){
+    //     <img src={review.image} alt="user review" className="review-image"></img>
+    // }else{
+    //     <img src={shoe.image} alt="user review" className="review-image"></img>
+    // }
 
 
 
@@ -66,7 +71,8 @@ function ShoeReviews({ shoe }) {
                         }
 
                     </p>
-                    <img src={shoe.image} alt="user review" className="review-image"></img>
+                    <img src={review.image} alt="user review" className="review-image"></img>
+
 
                 </div>
                 <button className="review-edit-button" type="button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
@@ -93,7 +99,7 @@ function ShoeReviews({ shoe }) {
                     }
                 </p>
 
-                <img src={shoe.image} alt="user review" className="review-image-noEdit"></img>
+                <img src={review.image} alt="user review" className="review-image-noEdit"></img>
                 <div className="reviews-noEdit-button-placement">
 
                 </div>
