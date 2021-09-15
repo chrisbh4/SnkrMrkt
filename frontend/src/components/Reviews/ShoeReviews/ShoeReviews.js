@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllUsers } from "../../../store/session";
+import EditReviewModal from "../EditReview/EditReviewModal"
+
 import "./ShoeReviews.css"
 
 
@@ -22,7 +24,7 @@ function ShoeReviews({ shoe }) {
     const users = useSelector((state) => state.session?.users)
 
 
-    let userImage;
+    // let userImage;
     // if(review.image){
     //     <img src={review.image} alt="user review" className="review-image"></img>
     // }else{
@@ -75,7 +77,10 @@ function ShoeReviews({ shoe }) {
 
 
                 </div>
-                <button className="review-edit-button" type="button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+                <button className="review-edit-button" type="button">
+                        {/* Modal goes here  */}
+                        <EditReviewModal review={review} key={review.id} />
+                </button>
                 </div>
             )
             // If the logged in user is not the owner of the reviews then a edit button doesn't show

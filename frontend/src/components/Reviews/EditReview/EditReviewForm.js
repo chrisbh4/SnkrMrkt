@@ -1,33 +1,36 @@
-import React , {useEffect, useState} from "react"
+import React , { useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useHistory, useParams } from "react-router-dom"
-import { fetchEditReview , fetchOneReview , fetchDeleteReview} from "../../../store/reviews"
+import { useHistory,  } from "react-router-dom"
+import { fetchEditReview , fetchDeleteReview} from "../../../store/reviews"
 import "./EditReviewForm.css"
 
 
 
-function EditReviewForm(){
+function EditReviewForm({review}){
     const dispatch = useDispatch()
-    const params = useParams()
+    // const params = useParams()
     const history = useHistory()
 
-    const reviewId = params.id
-    useEffect(() => {
+    const reviewId = review.id
+    // useEffect(() => {
 
-        dispatch(fetchOneReview(reviewId))
-    }, [dispatch, reviewId]);
+    //     dispatch(fetchOneReview(reviewId))
+    // }, [dispatch, reviewId]);
 
 
 
     const userId = useSelector((state)=> state.session.user.id)
-    const review = useSelector((state)=> state.reviews)
+    
+    // const review = useSelector((state)=> state.reviews)
     const shoeId = review?.shoeId
-    console.log("review:", review)
 
-    const [comment, setComment] = useState(review?.comment)
-    const [rating, setRating] = useState(review?.rating)
-    const [image , setImage ] = useState(review?.image)
+    const [comment, setComment] = useState(review.comment)
+    const [rating, setRating] = useState(review.rating)
+    const [image , setImage ] = useState(review.image)
     const [errors , setErrors] = useState([])
+
+
+    console.log("review:", review)
     console.log("comment:", review?.comment)
     console.log("rating:", review?.rating)
 
@@ -56,7 +59,8 @@ function EditReviewForm(){
         const data = await dispatch(fetchEditReview(shoeId,userId, comment, rating, image , reviewId))
 
         if (!data.errors) {
-
+            //Without Modal doesn't cause redirect to be in the middle of the homepage
+            //Goes to the top of the page like normal
             history.push(`/shoes/${review?.shoeId}`)
             alert("Your Review has been changed")
         }else{

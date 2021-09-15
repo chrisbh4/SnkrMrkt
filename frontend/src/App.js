@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 // import { Modal } from './context/Modal';
-import { getAllShoes } from './store/shoes';
+// import { getAllShoes } from './store/shoes';
 import HomePage from './components/HomePage/HomePage';
 import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
 import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage';
