@@ -1,4 +1,6 @@
-
+body{
+    background-color:wheat
+}
 
 .homepage-title{
     text-align: center;
@@ -16,13 +18,25 @@
 .shoe-container{
     text-align: center;
     border: 2px solid black;
-    min-width:350px;
-    max-width:351px;
-    height: 375px;
+    width:350px;
+    /* max-width:351px; */
+    height: 400px;
+    padding-bottom: 10px;
     /* might look better with images */
     /* height: auto; */
 
     margin-bottom: 10px;
+}
+
+.shoe-container:hover{
+    background-color:rgba(58, 57, 57, 0.685);
+    padding: 20px;
+    /* text-color: white; */
+
+    /* width:360px;
+    height: 410px; */
+    width:355px;
+    height: 405px;
 }
 
 .shoe-image-container{

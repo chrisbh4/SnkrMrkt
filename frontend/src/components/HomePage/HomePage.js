@@ -17,7 +17,7 @@ function HomePage(){
     },[dispatch])
 
     return(
-        <>
+        <div className="page">
 
         <h1 className="homepage-title">ThePlug</h1>
         <div className="all-shoes-container">
@@ -37,7 +37,10 @@ function HomePage(){
                             </a>
                         </div>
                         <div className="shoes-shoeSize">
-                            <h4>Shoe Size: {shoe.shoeSize}</h4>
+                            <h4>{shoe.brand.toUpperCase()}</h4>
+                        </div>
+                        <div className="shoes-shoeSize">
+                            <h4> Size: {shoe.shoeSize}</h4>
                         </div>
                         <div className="shoes-price">
                             <h3>${shoe.price}</h3>
@@ -48,7 +51,7 @@ function HomePage(){
                 // <ShoeList key={shoe.id} shoe={shoe} />
     })}
         </div>
-        </>
+        </div>
 
     )
 

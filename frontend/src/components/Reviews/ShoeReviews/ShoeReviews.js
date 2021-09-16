@@ -22,7 +22,7 @@ function ShoeReviews({ shoe }) {
     const users = useSelector((state) => state.session?.users)
 
 
-    let userImage;
+    // let userImage;
     // if(review.image){
     //     <img src={review.image} alt="user review" className="review-image"></img>
     // }else{

@@ -5,6 +5,11 @@
     /* align-items: flex-end; */
     /* height: 100px; */
 }
+.new-shoe-header{
+    text-align: center;
+    position: relative;
+    top: 100px;
+}
 
 .form-container {
     margin-top: 175px;
