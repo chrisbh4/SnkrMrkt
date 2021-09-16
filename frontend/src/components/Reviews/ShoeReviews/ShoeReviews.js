@@ -49,7 +49,6 @@ function ShoeReviews({ shoe }) {
                 <div className="review-container-border">
                 <div className="review-container">
 
-                    {/* <button className="review-edit-button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button> */}
 
                     <p className="review-comment">
                         {review.comment}
@@ -75,7 +74,10 @@ function ShoeReviews({ shoe }) {
 
 
                 </div>
+
+                {/* //* Edit Button  */}
                 <button className="review-edit-button" type="button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
+
                 </div>
             )
             // If the logged in user is not the owner of the reviews then a edit button doesn't show

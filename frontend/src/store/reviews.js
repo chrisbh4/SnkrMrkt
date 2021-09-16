@@ -113,7 +113,7 @@ function reducer(state = initialState, action) {
         case LOAD_REVIEWS:
             return { ...state, ...action.reviews }
         case LOAD_ONE_REVIEW:
-            return { ...state, ...action.review }
+            return { ...action.review }
         case EDIT_REVIEW:
             state[action.id] = action.review
             return state

@@ -12,15 +12,19 @@ function EditReviewForm(){
     const history = useHistory()
 
     const reviewId = params.id
+
+
     useEffect(() => {
 
         dispatch(fetchOneReview(reviewId))
-    }, [dispatch, reviewId]);
+    }, [dispatch, reviewId, ]);
+
+
+    const review = useSelector((state)=> state.reviews)
 
 
 
     const userId = useSelector((state)=> state.session.user.id)
-    const review = useSelector((state)=> state.reviews)
     const shoeId = review?.shoeId
     console.log("review:", review)
 
@@ -28,6 +32,14 @@ function EditReviewForm(){
     const [rating, setRating] = useState(review?.rating)
     const [image , setImage ] = useState(review?.image)
     const [errors , setErrors] = useState([])
+
+
+    useEffect(()=>{
+        setComment(review?.comment)
+        setRating(review.rating)
+        setImage(review.image)
+    },[review.rating, review.comment, review.image])
+
     console.log("comment:", review?.comment)
     console.log("rating:", review?.rating)
 
