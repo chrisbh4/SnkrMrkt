@@ -12,6 +12,9 @@ function NewShoesForm() {
     const history = useHistory()
 
     const sellerId = useSelector((state) => state.session.user.id)
+    const allShoes = useSelector((state)=> state?.shoes)
+    let newShoeId = Object.keys(allShoes).length +1
+    console.log(newShoeId)
     // console.log('User Id: ',user)
 
     const [title, setTitle] = useState("")
@@ -38,7 +41,8 @@ function NewShoesForm() {
         if (!data?.errors) {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
-            history.push(`/`)
+
+            history.push(`/shoes/${newShoeId}`)
              alert("Your Shoe has now been listed for sale.")
         }
         else {
@@ -49,7 +53,9 @@ function NewShoesForm() {
 
     return (
         <div className="form-placement">
-
+             <h1 className="new-shoe-header">
+                <a href={`/`}>New Shoe</a>
+            </h1>
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                     {errors.map((error) => {
@@ -97,14 +103,14 @@ function NewShoesForm() {
                         <label>Nike</label>
                         <input
                             type="radio"
-                            value="Yeezy-Adidas"
+                            value="Yeezy"
                             onChange={updateBrand}
                             name="brand"
                         ></input>
                         <label>Yeezy-Adidas</label>
                         <input
                             type="radio"
-                            value="Adidas-Orignal"
+                            value="Adidas"
                             onChange={updateBrand}
                             name="brand"
 
@@ -116,6 +122,7 @@ function NewShoesForm() {
                         <input
                             type="number"
                             onChange={updatePrice}
+                            placeholder="1.00"
                         ></input>
                     </div>
                     <div className="form-item-new">

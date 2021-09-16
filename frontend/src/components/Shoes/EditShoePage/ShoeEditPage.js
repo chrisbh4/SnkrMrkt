@@ -95,7 +95,7 @@ function EditShoesForm() {
                         ></input>
                     </div>
                     <div className="form-item">
-                        <label>ShoeSize</label>
+                        <label>Shoe Size:</label>
                         <input
                             type="number"
                             placeholder={shoeSize}
