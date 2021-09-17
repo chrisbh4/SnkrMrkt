@@ -34,8 +34,7 @@ function HomePage(){
                         </div>
                         <div id="homepage-shoe-title"className="shoes-title">
                             <p className="homepage-shoe-title">
-                            <Link to={`/shoes/${shoe.id}`}>{shoe.title}</Link>
-
+                                {shoe.title}
                             </p>
 
                         </div>
