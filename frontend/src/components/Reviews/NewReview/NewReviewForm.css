@@ -1,11 +1,41 @@
 
 
 
-.page-title{
+.page-title > a{
+    display: flex;
+    justify-content: center;
+    color: white;
     top: 40px;
     text-align: center;
     position: relative;
+    font-size: 40px;
+    top: 135px;
 }
+
+.page-title:hover{
+    text-align: center;
+    font-size: 65px;
+    text-shadow: 5px 3px 0px #df0202;
+}
+
+
+.page-title-review > a{
+    display: flex;
+    justify-content: center;
+    color: white;
+    top: 40px;
+    text-align: center;
+    position: relative;
+    font-size: 40px;
+}
+
+.page-title-review:hover > a{
+    text-align: center;
+    font-size: 55px;
+    text-shadow: 5px 3px 0px #df0202;
+}
+
+
 
 .create-review-placement{
     display: flex;
