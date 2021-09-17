@@ -58,8 +58,7 @@ function ShoesDetailsPage() {
     return (
         <>
             <h1 className="details-page-title">
-                <a href="/">Shoes Details Page</a>
-
+                <a id="details-page-redirect" href="/">Shoes Details Page</a>
             </h1>
             <div className="details-container">
                 <div className="shoe-details-container">
