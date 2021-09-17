@@ -52,7 +52,7 @@ function NewReviewForm(){
 
     return(
         <div className="create-review-placement">
-             <h1 className="page-title">
+             <h1 className="page-title-review">
                 <a href={`/shoes/${shoeId}`}>New Review</a>
             </h1>
             <div className="create-review-form">
