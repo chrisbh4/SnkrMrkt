@@ -1,4 +1,5 @@
 import React  ,{useEffect} from "react";
+import {Link} from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes} from "../../store/shoes";
 import './ShoeList.css'
@@ -31,10 +32,12 @@ function HomePage(){
                                 <img className="shoe-image" src={shoe.image} alt={shoe.title}></img>
                             </a>
                         </div>
-                        <div className="shoes-title">
-                            <a href={`/shoes/${shoe.id}`}>
-                            <h2>{shoe.title}</h2>
-                            </a>
+                        <div id="homepage-shoe-title"className="shoes-title">
+                            <p className="homepage-shoe-title">
+                            <Link to={`/shoes/${shoe.id}`}>{shoe.title}</Link>
+
+                            </p>
+
                         </div>
                         <div className="shoes-shoeSize">
                             <h4>{shoe.brand.toUpperCase()}</h4>
