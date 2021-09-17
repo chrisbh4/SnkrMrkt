@@ -5,10 +5,23 @@
     /* align-items: flex-end; */
     /* height: 100px; */
 }
-.new-shoe-header{
-    text-align: center;
+#new-shoe-header > a {
+    color: white;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
     position: relative;
-    top: 100px;
+    /* text-shadow: 5px 3px 0px #df0202; */
+    top: 120px;
+}
+#new-shoe-header:hover > a {
+    color: white;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    text-shadow: 5px 3px 0px #df0202;
+    top: 135px;
 }
 
 .form-container {

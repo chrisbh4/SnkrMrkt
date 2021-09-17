@@ -53,7 +53,7 @@ function NewShoesForm() {
 
     return (
         <div className="form-placement">
-             <h1 className="new-shoe-header">
+             <h1 id="new-shoe-header">
                 <a href={`/`}>New Shoe</a>
             </h1>
             <div className="form-container">
