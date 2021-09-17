@@ -92,7 +92,9 @@ function ShoesDetailsPage() {
             {/* Reviews is outside of the ' detials-container ' */}
             {/* Take all of this and place inside a componenet and pass in the shoe as a prop */}
             {/* <div className="reviews-title"> */}
-            <h2 className="reviews-title">Reviews</h2>
+            <h2 id="reviews-title">
+                <a href="/">Reviews</a>
+            </h2>
             {/* </div> */}
 
             <div className="reviews-container">

@@ -166,14 +166,25 @@
 
 
 /* Reviews CSS */
-.reviews-title{
+#reviews-title > a{
     color: white;
+    display: flex;
+    justify-content: center;
     font-size: 35px;
     margin-top: 30px;
-    /* margin-bottom: 5px; */
-    text-align: center;
-    grid-area:title;
+    /* grid-area:title; */
 }
+#reviews-title:hover > a{
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-size: 45px;
+    margin-top: 30px;
+    text-shadow: 5px 3px 0px #df0202;
+    /* grid-area:title; */
+}
+
+
 .reviews-container{
     text-align: center;
     height: 450px;
