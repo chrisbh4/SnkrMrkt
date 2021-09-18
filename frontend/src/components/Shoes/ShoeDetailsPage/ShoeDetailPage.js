@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes } from "../../../store/shoes"
-// import 
 
 
 
