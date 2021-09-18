@@ -1,10 +1,11 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
+// import { useDispatch } from "react-redux";
 
 const LOAD_CART = 'shoppingCart/LOAD_CART';
 const ADD_TO_CART = 'shoppingCart/ADD_TO_CART';
 const REMOVE_FROM_CART = 'shoppingCart/REMOVE_FROM_CART';
 
-const loadCart = (cart) =>({
+export const loadCart = (cart) =>({
     type:LOAD_CART,
     cart
 })
@@ -24,14 +25,34 @@ type:REMOVE_FROM_CART,
 
 
 export const addShoeToCart = (shoe , cart) => async(dispatch)=>{
-    if( shoe.id in cart === false){
-        return
+    if(shoe){
+
+        if( shoe.id === cart[shoe.id]){
+            return
+        }else{
+            cart[shoe.id] = {shoeId: shoe.id, title:shoe.title , price:shoe.price}
+        }
+         dispatch(loadCart(cart))
+        //  loadCart(cart)
+         return
     }else{
-        cart[shoe.id] = {shoeId: shoe.id, title:shoe.title , price:shoe.price, image: shoe.image}
+        return "cannot find shoe for cart"
     }
-    await dispatch(loadCart(cart))
-    return
 }
+
+// export const addShoeToCart = (shoe, cart) => {
+//     const dispatch = useDispatch()
+//     return async function() {
+//         if (shoe.id in cart) {
+//             return
+//         } else {
+//             cart[shoe.id] = { shoeId: shoe.id, title:shoe.title, price: shoe.price }
+//         }
+//         await dispatch(loadCart(cart));
+//         // saveCart(cart)
+//         return
+//     }
+// }
 
 
 export const removeShoeFromCart = (shoeId, cart ) => async (dispatch)=>{
@@ -45,6 +66,7 @@ export const removeShoeFromCart = (shoeId, cart ) => async (dispatch)=>{
 }
 
 const initlaState = {};
+
 function reducer ( state=initlaState , action){
     switch(action.type){
         case LOAD_CART:
