@@ -5,7 +5,6 @@ import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes } from "../../../store/shoes"
 import { addShoeToCart} from "../../../store/shoppingCart"
-import { loadCart} from "../../../store/shoppingCart"
 
 
 function ShoesDetailsPage() {
@@ -29,18 +28,10 @@ function ShoesDetailsPage() {
     const shoe = useSelector((state) => state.shoes[shoeId])
     const cart = useSelector((state)=> state.shoppingCart)
 
-    // useEffect(()=>{
-    //     dispatch(loadCart(cart))
-    // },[dispatch])
 
-    console.log("cart:", cart)
-    console.log("cart:", cart)
-    // console.log("cart:", cart)
-
-    // const addShoe = addShoeToCart(shoe,cart);
     const addShoe = async () =>{
         await dispatch(addShoeToCart(shoe,cart))
-        return 
+        return
     }
 
     const shoeSellerId = shoe?.sellerId
