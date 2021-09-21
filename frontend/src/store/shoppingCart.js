@@ -84,8 +84,8 @@ function reducer ( state=initlaState , action){
             delete state[action.shoeId]
             return {...state}
         case PURCHASE_CART:
-            return state = {}
-            // return {}
+            state = {}
+            return state
         default:
             return state;
     }
