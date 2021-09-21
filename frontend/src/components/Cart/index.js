@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeShoeFromCart } from "../../store/shoppingCart";
+// import { removeShoeFromCart } from "../../store/shoppingCart";
 import CartItem from "./CartItem";
 import "./Cart.css"
 
@@ -26,10 +26,10 @@ function ShoppingCart(){
     console.log("total", totalPrice)
 
 
-    const removeFromCart =  async(item)=>{
-        await dispatch(removeShoeFromCart(item.id, cart))
-        return
-    }
+    // const removeFromCart =  async(item)=>{
+    //     await dispatch(removeShoeFromCart(item.id, cart))
+    //     return
+    // }
 
 
     return(

@@ -64,7 +64,9 @@ export const removeShoeFromCart = (shoeId, cart ) => async (dispatch)=>{
     if( cart[shoeId]){
         await dispatch(removeFromCart(shoeId))
         delete cart[shoeId]
-        return
+    }
+    else{
+        return "wrong shoe"
     }
     await dispatch(loadCart(cart))
     saveCart(cart)
