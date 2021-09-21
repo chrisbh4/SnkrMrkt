@@ -23,6 +23,16 @@ type:REMOVE_FROM_CART,
 })
 
 
+const saveCart = (cart) => {
+    try{
+        const jsonCart = JSON.stringify(cart)
+        localStorage.setItem('cart',jsonCart)
+    }catch(err){
+
+    }
+}
+
+
 
 export const addShoeToCart = (shoe , cart) => async(dispatch)=>{
     if(shoe){
@@ -34,6 +44,7 @@ export const addShoeToCart = (shoe , cart) => async(dispatch)=>{
         }
          dispatch(loadCart(cart))
         //  loadCart(cart)
+        saveCart(cart)
          return
     }else{
         return "cannot find shoe for cart"
@@ -62,6 +73,7 @@ export const removeShoeFromCart = (shoeId, cart ) => async (dispatch)=>{
         return
     }
     await dispatch(loadCart(cart))
+    saveCart(cart)
     return
 }
 

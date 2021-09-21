@@ -12,7 +12,23 @@ import configureStore from './store';
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from './store/session';
 
-const store = configureStore();
+//grabs the locally-stored cart and loads all of its items inside the cart
+const loadSavedCart = () =>{
+  try {
+    const cart = localStorage.getItem('cart')
+    if(!cart){
+      return undefined
+    }
+    return JSON.parse(cart)
+  }catch(err){
+    return undefined
+  }
+};
+
+//sets the state to have a key: of shoppingCart and values of the loaded shoes inside the cart
+const savedCart = { shoppingCart: loadSavedCart()}
+
+const store = configureStore(savedCart);
 
 // Testing purposes only
 if (process.env.NODE_ENV !== "production") {
@@ -48,7 +64,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-
-
- 

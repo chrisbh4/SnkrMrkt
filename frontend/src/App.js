@@ -23,10 +23,6 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
-
-    //! Need this to be able to load details page data
-    // If site continutes to work i can delete this
-    // dispatch(getAllShoes())
   }, [dispatch]);
 
   return (

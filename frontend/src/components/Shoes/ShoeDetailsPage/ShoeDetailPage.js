@@ -29,7 +29,7 @@ function ShoesDetailsPage() {
     const cart = useSelector((state)=> state.shoppingCart)
 
 
-    const addShoe = async () =>{
+    const addToCart = async () =>{
         await dispatch(addShoeToCart(shoe,cart))
         return
     }
@@ -55,7 +55,7 @@ function ShoesDetailsPage() {
         purchaseChecker = (
             <div>
                 {/* <Link to={`/`}> */}
-                    <button onClick={addShoe}> Add to Cart </button>
+                    <button onClick={addToCart}> Add to Cart </button>
                 {/* </Link> */}
             </div>
         )
