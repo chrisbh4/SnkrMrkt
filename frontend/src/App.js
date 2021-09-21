@@ -14,6 +14,7 @@ import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
 import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
+import ShoppingCart from './components/Cart';
 
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
            <Route path = "/reviews/:id/edit">
               <EditReviewForm />
             </Route>
+            <Route path="/cart">
+              <ShoppingCart />
+              </Route>
 
 
             <Route path="/about">

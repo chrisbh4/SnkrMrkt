@@ -23,7 +23,9 @@ function Navigation({ isLoaded }) {
       <div className="nav-logged-in">
         {/* need to change classname */}
          <button className="nav-profile-button">
-        <i class="fas fa-shopping-cart"></i>
+              <NavLink to="/cart">
+              <i className="fas fa-shopping-cart"></i>
+              </NavLink>
         </button>
 
         <div className="nav-profile-button">
