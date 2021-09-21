@@ -1,19 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { removeShoeFromCart } from "../../store/shoppingCart";
+import CartItem from "./CartItem";
 import "./Cart.css"
 
 
 
 
 function ShoppingCart(){
-
+    const dispatch = useDispatch();
     const shoppingCart = useSelector((state)=> state.shoppingCart)
-    console.log("cart", Object.values(shoppingCart))
+    // console.log("cart", Object.values(shoppingCart))
     const cart = Object.values(shoppingCart)
 
-    console.log("cart", cart)
+    // console.log("cart", cart)
 
+    // Sets the Total Amount
     let total =0.00;
     cart.forEach((item)=>{
         console.log("price",item.price)
@@ -24,24 +26,24 @@ function ShoppingCart(){
     console.log("total", totalPrice)
 
 
+    const removeFromCart =  async(item)=>{
+        await dispatch(removeShoeFromCart(item.id, cart))
+        return
+    }
+
+
     return(
         <div className="cart-placement">
             <div className="cart-container">
                 <h1>Plugged Cart</h1>
-                {cart.map((item)=>{
-                    return(
-                        <div className="cart-item-container" key={item.id}>
-                            <div className="cart-item">
-                                    {/* Need to add image to shopping cart state */}
-                                    {/* <img src={item.img} /> */}
-                                    <p>{item.title}</p>
-                                    <p>{item.price}</p>
-                             </div>
-                        </div>
-                    )
-                })}
+                {cart.map((item)=>(
+                    <CartItem item={item} key={item.id} />
+                ))}
+
+
+
                     {/* Might need to place outside of mapping div */}
-                <h2>{ totalPrice >0 ? `Total Price: $${totalPrice}`:null }</h2>
+                <h2>{ totalPrice >0 ? `Total Amount: $${totalPrice}`:null }</h2>
             </div>
         </div>
     )

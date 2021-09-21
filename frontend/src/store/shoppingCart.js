@@ -11,12 +11,6 @@ export const loadCart = (cart) =>({
 })
 
 
-// const addToCart = (shoe) =>({
-//     type: ADD_TO_CART,
-//     shoe
-// })
-
-
 const removeFromCart = (shoeId) => ({
 type:REMOVE_FROM_CART,
     shoeId
@@ -40,7 +34,7 @@ export const addShoeToCart = (shoe , cart) => async(dispatch)=>{
         if( shoe.id === cart[shoe.id]){
             return
         }else{
-            cart[shoe.id] = {shoeId: shoe.id, title:shoe.title , price:shoe.price}
+            cart[shoe.id] = {shoeId: shoe.id, title:shoe.title , price:shoe.price, size:shoe.shoeSize , img:shoe.image}
         }
          dispatch(loadCart(cart))
         //  loadCart(cart)
