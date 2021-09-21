@@ -4,6 +4,7 @@
 const LOAD_CART = 'shoppingCart/LOAD_CART';
 const ADD_TO_CART = 'shoppingCart/ADD_TO_CART';
 const REMOVE_FROM_CART = 'shoppingCart/REMOVE_FROM_CART';
+const PURCHASE_CART ='shoppingCart/PURCHASE';
 
 export const loadCart = (cart) =>({
     type:LOAD_CART,
@@ -14,6 +15,10 @@ export const loadCart = (cart) =>({
 const removeFromCart = (shoeId) => ({
 type:REMOVE_FROM_CART,
     shoeId
+})
+
+const purchaseCart = () =>({
+    type:PURCHASE_CART,
 })
 
 
@@ -45,21 +50,6 @@ export const addShoeToCart = (shoe , cart) => async(dispatch)=>{
     }
 }
 
-// export const addShoeToCart = (shoe, cart) => {
-//     const dispatch = useDispatch()
-//     return async function() {
-//         if (shoe.id in cart) {
-//             return
-//         } else {
-//             cart[shoe.id] = { shoeId: shoe.id, title:shoe.title, price: shoe.price }
-//         }
-//         await dispatch(loadCart(cart));
-//         // saveCart(cart)
-//         return
-//     }
-// }
-
-
 export const removeShoeFromCart = (shoeId, cart ) => async (dispatch)=>{
     if( cart[shoeId]){
         await dispatch(removeFromCart(shoeId))
@@ -68,10 +58,18 @@ export const removeShoeFromCart = (shoeId, cart ) => async (dispatch)=>{
     else{
         return "wrong shoe"
     }
-    await dispatch(loadCart(cart))
     saveCart(cart)
     return
 }
+
+
+export const purchaseFromCart = ()=> async (dispatch) =>{
+    await dispatch(purchaseCart())
+    localStorage.removeItem('cart')
+    return
+}
+
+
 
 const initlaState = {};
 
@@ -85,6 +83,9 @@ function reducer ( state=initlaState , action){
         case REMOVE_FROM_CART:
             delete state[action.shoeId]
             return {...state}
+        case PURCHASE_CART:
+            return state = {}
+            // return {}
         default:
             return state;
     }

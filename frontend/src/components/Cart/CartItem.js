@@ -15,7 +15,7 @@ function CartItem({item}){
 
 //Needs to be in a function to be able to useDispatch inside the store
     const removeShoe = async()=>{
-        await dispatch(removeShoeFromCart(item.id,cart))
+        await dispatch(removeShoeFromCart(item.shoeId,cart))
         return
     }
 
