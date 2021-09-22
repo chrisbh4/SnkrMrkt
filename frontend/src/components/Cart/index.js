@@ -44,8 +44,10 @@ function ShoppingCart(){
                     <CartItem item={item} key={item.id} />
                 ))}
             </div>
+            <div className="cart-info">
                 <h2>{ totalPrice >0 ? `Total Amount: $${totalPrice}`: 'Total Amount: $0.00' }</h2>
                 {totalPrice> 0 ? <button className="cart-purchase-button" onClick={purchaseTheCart} >Purchase</button> : null }
+            </div>
         </div>
     )
 

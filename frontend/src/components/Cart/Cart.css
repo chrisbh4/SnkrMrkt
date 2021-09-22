@@ -2,6 +2,12 @@
 .cart-item-placement{
     padding: 40px;
 }
+
+.cart-info{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
 .cart-item-grid{
     display: grid;
     grid-template-areas: "img title size price btn";
@@ -46,6 +52,8 @@
  align-self: center;
 }
 
-/* .cart-purchase-button{
+.cart-purchase-button{
 
-} */
+    /* text-align: center; */
+    /* align-self: center; */
+}
