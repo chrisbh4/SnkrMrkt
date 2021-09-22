@@ -13,8 +13,14 @@ function NewShoesForm() {
 
     const sellerId = useSelector((state) => state.session.user.id)
     const allShoes = useSelector((state)=> state?.shoes)
-    let newShoeId = Object.keys(allShoes).length +1
-    console.log(newShoeId)
+    let arrayOfShoes = Object.keys(allShoes)
+
+//Need to index into the array and grab the last value then +1 since the id will only increment from their
+    let test = arrayOfShoes[arrayOfShoes.length -1]
+    // console.log("allShoes", allShoes)
+    // console.log("shoes", newShoeId)
+    console.log("test", test)
+    // console.log(newShoeId)
     // console.log('User Id: ',user)
 
     const [title, setTitle] = useState("")
@@ -42,7 +48,7 @@ function NewShoesForm() {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
 
-            history.push(`/shoes/${newShoeId}`)
+            // history.push(`/shoes/${newShoeId}`)
              alert("Your Shoe has now been listed for sale.")
         }
         else {
