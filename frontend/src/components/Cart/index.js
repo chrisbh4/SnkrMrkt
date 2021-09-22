@@ -12,6 +12,7 @@ function ShoppingCart(){
     const history = useHistory();
     const dispatch = useDispatch();
     const shoppingCart = useSelector((state)=> state.shoppingCart);
+    const userTitle = useSelector((state)=> state.session.user.username)
     // console.log("cart", Object.values(shoppingCart))
     const cart = Object.values(shoppingCart);
 
@@ -38,17 +39,13 @@ function ShoppingCart(){
     return(
         <div className="cart-placement">
             <div className="cart-container">
-                <h1>Plugged Cart</h1>
+                <h1>{userTitle}'s Cart</h1>
                 {cart.map((item)=>(
                     <CartItem item={item} key={item.id} />
                 ))}
             </div>
                 <h2>{ totalPrice >0 ? `Total Amount: $${totalPrice}`: 'Total Amount: $0.00' }</h2>
-                <button
-                    onClick={purchaseTheCart}
-                    >
-                        Purchase
-                    </button>
+                {totalPrice> 0 ? <button className="cart-purchase-button" onClick={purchaseTheCart} >Purchase</button> : null }
         </div>
     )
 
