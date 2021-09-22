@@ -23,10 +23,12 @@ function CartItem({item}){
     return(
         <div className="cart-item-placement">
         <div className="cart-item-grid">
-                <img className="cart-item-image" src={item.img} alt="shoe image" />
+        <a href={`/shoes/${item.shoeId}`} >
+                <img className="cart-item-image" src={item.img} alt="shoe" />
+                </a>
                 <h3 className="cart-item-title">{item.title}</h3>
-                <p className="cart-item-shoeSize">Size: {item.size} (Mens)</p>
-                <p className="cart-item-price">Price: ${item.price}</p>
+                <h3 className="cart-item-shoeSize">Size: {item.size} (Mens)</h3>
+                <h3 className="cart-item-price">Price: ${item.price}</h3>
                 <button
                     className="cart-remove-button"
                     onClick={removeShoe} >

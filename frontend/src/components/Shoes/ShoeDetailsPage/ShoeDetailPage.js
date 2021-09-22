@@ -31,6 +31,7 @@ function ShoesDetailsPage() {
 
     const addToCart = async () =>{
         await dispatch(addShoeToCart(shoe,cart))
+        alert("Shoe has been added to your cart!")
         return
     }
 
@@ -50,9 +51,9 @@ function ShoesDetailsPage() {
     } else {
         return sellerChecker;
     }
-    let purchaseChecker;
+    let addToCartVerfication;
     if (userId !== shoeSellerId && userId > 0.99) {
-        purchaseChecker = (
+        addToCartVerfication = (
             <div>
                 {/* <Link to={`/`}> */}
                     <button onClick={addToCart}> Add to Cart </button>
@@ -93,7 +94,7 @@ function ShoesDetailsPage() {
             </div>
             <div className="shoe-details-checker">
                 {sellerChecker}
-                {purchaseChecker}
+                {addToCartVerfication}
 
 
             </div>
