@@ -1,0 +1,96 @@
+
+button:active{
+    /* background-color: red; */
+    background-color:#df0202;
+}
+
+.cart-title{
+    text-align: center;
+
+}
+#user-title{
+    color: white;
+}
+#user-title:hover{
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 5px 3px 0px #df0202;
+    /* text-align: center; */
+    /* color: red */
+}
+
+/* Cart Item CSS */
+
+.cart-item-placement{
+    padding: 40px;
+}
+
+/* .cart-info{
+
+} */
+
+
+.cart-item-grid{
+    display: grid;
+    grid-template-areas: "img title size price btn";
+    border-bottom: 1px solid black;
+    justify-content: space-around;
+    align-content: center;
+
+}
+
+
+.cart-item-image{
+    grid-area: img;
+    width:200px;
+    height: 150px;
+    padding-top: 6px;
+    padding-bottom: 10px;
+}
+
+.cart-item-title{
+    grid-area: title;
+    display: flex;
+    align-items: center;
+}
+
+.cart-item-shoeSize{
+    grid-area: size;
+    display: flex;
+    align-items: center;
+}
+
+.cart-item-price{
+    grid-area: price;
+    display: flex;
+    align-items: center;
+}
+
+
+.cart-remove-button{
+ grid-area: btn;
+ height: 35px;
+ width: 120px;
+ align-self: center;
+}
+.cart-remove-button:active{
+ grid-area: btn;
+ background-color: red;
+ height: 35px;
+ width: 120px;
+ align-self: center;
+}
+
+
+.total-price{
+    text-align: center;
+}
+.cart-purchase-button{
+    position: relative;
+    left: 800px;
+}
+
+
+.empty-cart{
+    text-align: center;
+}

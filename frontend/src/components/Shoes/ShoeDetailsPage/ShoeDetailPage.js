@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes } from "../../../store/shoes"
-
+import { addShoeToCart} from "../../../store/shoppingCart"
 
 
 function ShoesDetailsPage() {
@@ -18,6 +18,7 @@ function ShoesDetailsPage() {
     }, [dispatch]);
 
     const shoeId = params.id
+
     const userId = useSelector((state) => {
         if (state.session.user) {
             return state.session.user.id
@@ -25,6 +26,14 @@ function ShoesDetailsPage() {
         return 0.5;
     })
     const shoe = useSelector((state) => state.shoes[shoeId])
+    const cart = useSelector((state)=> state.shoppingCart)
+
+
+    const addToCart = async () =>{
+        await dispatch(addShoeToCart(shoe,cart))
+        alert("Shoe has been added to your cart!")
+        return
+    }
 
     const shoeSellerId = shoe?.sellerId
 
@@ -42,13 +51,13 @@ function ShoesDetailsPage() {
     } else {
         return sellerChecker;
     }
-    let purchaseChecker;
+    let addToCartVerfication;
     if (userId !== shoeSellerId && userId > 0.99) {
-        purchaseChecker = (
+        addToCartVerfication = (
             <div>
-                <Link to={`/`}>
-                    <button> Purchase </button>
-                </Link>
+                {/* <Link to={`/`}> */}
+                    <button onClick={addToCart}> Add to Cart </button>
+                {/* </Link> */}
             </div>
         )
     }
@@ -85,7 +94,7 @@ function ShoesDetailsPage() {
             </div>
             <div className="shoe-details-checker">
                 {sellerChecker}
-                {purchaseChecker}
+                {addToCartVerfication}
 
 
             </div>

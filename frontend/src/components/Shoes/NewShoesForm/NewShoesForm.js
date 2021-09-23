@@ -13,9 +13,12 @@ function NewShoesForm() {
 
     const sellerId = useSelector((state) => state.session.user.id)
     const allShoes = useSelector((state)=> state?.shoes)
-    let newShoeId = Object.keys(allShoes).length +1
-    console.log(newShoeId)
-    // console.log('User Id: ',user)
+
+    
+    let arrayOfShoes = Object.keys(allShoes)
+    let lastShoeId = arrayOfShoes[arrayOfShoes.length -1];
+    let newShoeId = Number(lastShoeId) + 1
+
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(0)

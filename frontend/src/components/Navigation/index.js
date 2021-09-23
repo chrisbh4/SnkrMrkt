@@ -21,6 +21,12 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <div className="nav-logged-in">
+        {/* need to change classname */}
+         <button className="nav-profile-button">
+              <NavLink to="/cart">
+              <i className="fas fa-shopping-cart"></i>
+              </NavLink>
+        </button>
 
         <div className="nav-profile-button">
           <ProfileButton user={sessionUser} />
@@ -37,6 +43,8 @@ function Navigation({ isLoaded }) {
         <button className="nav-button">
           <NavLink exact to="/">Home</NavLink>
         </button>
+
+
       </div>
 
     );
