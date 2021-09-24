@@ -35,7 +35,9 @@ function ShoesDetailsPage() {
         return
     }
 
-    const shoeSellerId = shoe?.sellerId
+
+    const shoeSellerId = shoe?.sellerId 
+
 
     let sellerChecker;
     if (userId) {

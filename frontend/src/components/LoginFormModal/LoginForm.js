@@ -75,6 +75,31 @@ function LoginForm() {
 
         <button className="login-submit" type="submit">Log In</button>
       </form>
+      <div>
+      <footer>
+
+<p>Christian Brown</p>
+
+<div class="networking">
+  <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
+  <i class="fab fa-linkedin"></i>
+</a>
+<a href="mailto:Chrismbh4@gmail.com">
+  <i class="fas fa-envelope-square"></i>
+</a>
+
+<a href="https://github.com/chrisbh4">
+  <i class="fab fa-github"></i>
+</a>
+</div>
+
+
+
+
+
+
+</footer>
+      </div>
     </div>
   );
 }
