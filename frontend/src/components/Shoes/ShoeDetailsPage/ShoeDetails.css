@@ -24,6 +24,10 @@
 
 }
 
+.bad-image{
+    content: url("../../../../src/background-images/No-Image-Available.png");
+}
+
 /*! controls the grid */
 .shoe-details-container{
     /* width: 100%; */
