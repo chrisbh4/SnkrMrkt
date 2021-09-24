@@ -10,6 +10,16 @@ function HomePage(){
     // turns the obejct into an array but still don't understand how the keys are iterable now??
     const shoesArray = Object.values(shoes)
 
+
+    // Start of Image checker but might just need to implement an Regex expression on the backend validator for the new shoe form
+    // let shoeImage ;
+    // if(shoe.image){
+    //     shoeImage = shoe.image
+    // }else{
+    //     shoeImage = "default"
+    // }
+
+
     // Loads new State for the HomePage everytime.
     //! Need for Create & Edit feature to be able to auto update the state
     useEffect(()=>{
@@ -51,6 +61,31 @@ function HomePage(){
                 )
                 // <ShoeList key={shoe.id} shoe={shoe} />
     })}
+        </div>
+        <div>
+        <footer>
+
+<p>Christian Brown</p>
+
+<div class="networking">
+  <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
+  <i class="fab fa-linkedin"></i>
+</a>
+<a href="mailto:Chrismbh4@gmail.com">
+  <i class="fas fa-envelope-square"></i>
+</a>
+
+<a href="https://github.com/chrisbh4">
+  <i class="fab fa-github"></i>
+</a>
+</div>
+
+
+
+
+
+
+</footer>
         </div>
         </div>
 
