@@ -4,18 +4,39 @@ import "./AboutPage.css"
 
 
 
-function AboutPage(){
+function AboutPage() {
 
-    return(
-        <div className="about-formatter">
-            <h2 className="about-title">About The Plug</h2>
-            <div className="about-info-placement">
-            <p className="about-info">
+    return (
+        <div className="splash-page-img">
+            <div className="about-formatter">
+                <div className="about-info-placement">
+                    <h1 className="about-title">The Plug</h1>
+                    {/* <p className="about-info">
                 This application is a clone based off the E-Commerce designer clothing/shoes store 'GOAT'.
                 This site allows logged in users to buy or sell high-end designer shoes and also high end
                 athletic shoes. All shoes sizes are dispalyed in mens until future features are added to where kids,woman, and men shoe sizes are available.
                 Future features that plan to be added are Images for shoes and comments , personal user profile, shopping cart , user purchases, search bar , category filters
-                </p>
+            </p> */}
+                    <p className="pitch">
+                        Find the best deals for new luxury sneakers and sell your own with <br />
+                        ZERO commison fees!!!
+                    </p>
+
+
+                    <div class="networking">
+                    <p>Christian Brown</p>
+                        <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
+                            <i  class="splash-icon fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:Chrismbh4@gmail.com">
+                            <i  class="splash-icon fas fa-envelope-square"></i>
+                        </a>
+
+                        <a href="https://github.com/chrisbh4">
+                            <i  class="splash-icon fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
 
             </div>
         </div>

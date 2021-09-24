@@ -1,4 +1,13 @@
 
+.splash-page-img{
+    position: inherit;
+    padding: 0px;
+    margin: auto;
+   height: 1000px;
+   width: 100%;
+   /* height: auto; */
+    background-image: url("../../background-images/spalsh-page-background-img-2.png");
+}
 .about-formatter{
     /* text-align: center; */
     margin-top: 40px;
@@ -7,19 +16,43 @@
     flex-direction: column;
     align-items: center;
     align-content: center;
+
+
 }
+
+.about-formatter > .networking{
+    background-color: #626364;
+    color: white;
+    text-align: center;
+}
+
+.splash-icon{
+    color: white;
+    width: 25px;
+    font-size:20px;
+}
+
+
 
 .about-title{
     text-align: center;
+    font-size: 65px;
 }
 
 .about-info-placement{
-    /* border: 1px solid black; */
-    width: 500px;
+    /* border: 1px solid #dbe4eb; */
+    /* width: 500px; */
     text-align: center;
     padding: 20px;
+    background-color: #626364;
+    color: white;
 }
 .about-info{
     font-size: larger;
+    text-align: center;
+}
+.pitch{
+    width: 100%;
+    font-size: 25px;
     text-align: center;
 }
