@@ -1,6 +1,7 @@
 import React  ,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes} from "../../store/shoes";
+import ShoeList from "./ShoeList";
 import './ShoeList.css'
 function HomePage(){
 
@@ -26,6 +27,8 @@ function HomePage(){
         dispatch(getAllShoes())
     },[dispatch])
 
+
+
     return(
         <div className="page">
 
@@ -34,9 +37,11 @@ function HomePage(){
             {shoesArray.map((shoe)=>{
                 return(
                     <div className="shoe-container" key={shoe.id}>
-                    <div>
-                        {/* <h2>{shoe.id}</h2> */}
+                        <ShoeList shoe={shoe} key={shoe.id} />
+                    {/* <div>
+
                         <div className="shoe-image-container">
+
                             <a href={`/shoes/${shoe.id}`} >
                                 <img className="shoe-image" src={shoe.image} alt={shoe.title}></img>
                             </a>
@@ -56,7 +61,7 @@ function HomePage(){
                         <div className="shoes-price">
                             <h3>${shoe.price}</h3>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 )
                 // <ShoeList key={shoe.id} shoe={shoe} />

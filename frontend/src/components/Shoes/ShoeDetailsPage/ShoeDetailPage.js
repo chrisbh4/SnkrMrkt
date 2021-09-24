@@ -40,7 +40,7 @@ function ShoesDetailsPage() {
 
     }
 
-    // const badImage = <img src="src/background-images/No-Image-Available.png" alt="bad text" ></img>;
+
 
 
     console.log("check image :", imageCheck)
