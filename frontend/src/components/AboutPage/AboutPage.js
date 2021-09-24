@@ -19,12 +19,12 @@ function AboutPage() {
             </p> */}
                     <p className="pitch">
                         Find the best deals for new luxury sneakers and sell your own with <br />
-                        ZERO commison fees!!!
+                        zero commison fees!!!
                     </p>
 
 
                     <div class="networking">
-                    <p>Christian Brown</p>
+                    <p className="splash-name">Christian Brown</p>
                         <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
                             <i  class="splash-icon fab fa-linkedin"></i>
                         </a>

@@ -73,6 +73,7 @@ function App() {
 
 
             <Route path="/about">
+              {/* Rename to Splash Page */}
             <AboutPage />
 
             </Route>
