@@ -38,6 +38,7 @@ function HomePage(){
                 return(
                     <div className="shoe-container" key={shoe.id}>
                         <ShoeList shoe={shoe} key={shoe.id} />
+                        
                     {/* <div>
 
                         <div className="shoe-image-container">
