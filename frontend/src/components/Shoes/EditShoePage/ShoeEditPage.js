@@ -119,6 +119,16 @@ function EditShoesForm() {
                         ></input>
                     </div>
 
+                    {/* Add Image to edit form and add it to the editShoe Store */}
+                    <div className="form-item">
+                        <label>Image Url:</label>
+                        <input
+                            type="text"
+                            placeholder={price}
+                            onChange={updatePrice}
+                        ></input>
+                    </div>
+
 
 
 
