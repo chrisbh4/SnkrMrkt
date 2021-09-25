@@ -15,6 +15,20 @@ img {
     opacity:0.88;
   }
 
+  .page{
+      background-image: url("../../background-images/home-page-background-img.jpg");
+      /* background-size: 100% 99.999%; */
+      background-size: 100% 80%;
+      min-height: 100%;
+      min-width: 1024px;
+      /* width: 100%; */
+      height: auto;
+      position: absolute;
+      top: 30px;
+      left: 0px;
+      z-index: -1;
+  }
+
 .networking{
     padding-top:6px;
     padding-bottom: 15px;
