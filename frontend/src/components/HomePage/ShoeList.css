@@ -2,6 +2,9 @@
 body{
     /* chrome */
     background-color:#a7b9c7;
+    /* background-image: url("../../background-images/spalsh-page-background-img-2.png"); */
+
+    /* background-image: url("../../background-images/spalsh-page-background-img-2.png"); */
 }
 
 footer{
@@ -15,6 +18,7 @@ img {
 .networking{
     padding-top:6px;
     padding-bottom: 15px;
+
 }
 .homepage-title{
     text-align: center;

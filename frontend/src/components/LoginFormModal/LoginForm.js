@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import {useHistory} from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css";
 
 function LoginForm() {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +21,7 @@ function LoginForm() {
         setErrors(data.errors)
         return
     }
+    history.push('/')
     return data
   };
 

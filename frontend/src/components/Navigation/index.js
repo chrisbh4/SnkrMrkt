@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink , useHistory} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -8,12 +8,14 @@ import { login } from '../../store/session';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
 
   const demoLogin = ()=>{
     let credential = 'demo@user.io'
     let password = 'password'
+    history.push('/')
     return dispatch(login({credential, password}))
   }
 
@@ -41,7 +43,7 @@ function Navigation({ isLoaded }) {
         </button>
 
         <button className="nav-button">
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink exact to="/home">Home</NavLink>
         </button>
 
 
@@ -63,11 +65,11 @@ function Navigation({ isLoaded }) {
         </button>
 
         <button className="nav-button">
-          <NavLink to="/about">About Page</NavLink>
+          <NavLink to="/">About</NavLink>
           </button>
 
         <button className="nav-button">
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink exact to="/home">Home</NavLink>
         </button>
 
       </div>

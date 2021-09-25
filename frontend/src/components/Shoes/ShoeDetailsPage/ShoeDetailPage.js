@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes } from "../../../store/shoes"
-import { addShoeToCart} from "../../../store/shoppingCart"
+import { addShoeToCart } from "../../../store/shoppingCart"
 
 
 function ShoesDetailsPage() {
@@ -25,18 +25,33 @@ function ShoesDetailsPage() {
         }
         return 0.5;
     })
+
     const shoe = useSelector((state) => state.shoes[shoeId])
-    const cart = useSelector((state)=> state.shoppingCart)
+    const cart = useSelector((state) => state.shoppingCart)
 
 
-    const addToCart = async () =>{
-        await dispatch(addShoeToCart(shoe,cart))
+
+    //* Checks if Image string contains either jpeg, png, or image inside it's string
+    let imageCheck;
+    if( shoe?.image.includes("jpeg") || shoe?.image.includes("png") || shoe?.image.includes("image")){
+        imageCheck = <img src={shoe?.image} alt={shoe?.title}></img>
+    }else{
+        imageCheck = <img className="bad-image" alt={shoe?.title}></img>
+
+    }
+
+
+
+
+    console.log("check image :", imageCheck)
+    const addToCart = async () => {
+        await dispatch(addShoeToCart(shoe, cart))
         alert("Shoe has been added to your cart!")
         return
     }
 
 
-    const shoeSellerId = shoe?.sellerId 
+    const shoeSellerId = shoe?.sellerId
 
 
     let sellerChecker;
@@ -58,7 +73,7 @@ function ShoesDetailsPage() {
         addToCartVerfication = (
             <div>
                 {/* <Link to={`/`}> */}
-                    <button onClick={addToCart}> Add to Cart </button>
+                <button onClick={addToCart}> Add to Cart </button>
                 {/* </Link> */}
             </div>
         )
@@ -69,12 +84,14 @@ function ShoesDetailsPage() {
     return (
         <>
             <h1 className="details-page-title">
-                <a id="details-page-redirect" href="/">Shoes Details Page</a>
+                <a id="details-page-redirect" href="/home">Shoes Details Page</a>
             </h1>
             <div className="details-container">
                 <div className="shoe-details-container">
                     <div className="shoe-details-image">
-                        <img src={shoe?.image} alt={shoe?.title}></img>
+                        {/* <img src={imageCheck} alt={shoe?.title}></img>z */}
+                        {/* <img src="../../../../src/background-images/No-Image-Available.png" alt={shoe?.title}></img> */}
+                        {imageCheck}
                     </div>
                     <div className="shoe-title">
                         <h2>{shoe?.title}</h2>
@@ -104,13 +121,13 @@ function ShoesDetailsPage() {
             {/* Take all of this and place inside a componenet and pass in the shoe as a prop */}
             {/* <div className="reviews-title"> */}
             <h2 id="reviews-title">
-                <a href="/">Reviews</a>
+                <a href="/home">Reviews</a>
             </h2>
             {/* </div> */}
 
             <div className="reviews-container">
                 <div className="reviews">
-               <ShoeReviews shoe={shoe} key={shoe?.id}/>
+                    <ShoeReviews shoe={shoe} key={shoe?.id} />
                 </div>
             </div>
 
