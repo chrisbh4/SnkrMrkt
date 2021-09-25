@@ -30,7 +30,7 @@ function ShoppingCart(){
     const purchaseTheCart = async()=>{
          await dispatch(purchaseFromCart())
          alert("Order has been Placed")
-         history.push('/')
+         history.push('/home')
          return
     }
 
@@ -38,14 +38,14 @@ function ShoppingCart(){
     return(
         <div className="cart-placement">
             <div className="cart-container">
-                <h1 className="cart-title" ><a id="user-title" href="/">{userTitle}'s Cart</a></h1>
+                <h1 className="cart-title" ><a id="user-title" href="/home">{userTitle}'s Cart</a></h1>
                 {cart.map((item)=>(
                     <CartItem item={item} key={item.id} />
                 ))}
             </div>
             <div className="cart-info">
                 <h2 className="total-price">{ totalPrice >0 ? `Total Amount: $${totalPrice}`: emptyCart }</h2>
-                
+
                 {totalPrice> 0 ? <button className="cart-purchase-button" onClick={purchaseTheCart} >Purchase</button> : null }
             </div>
         </div>

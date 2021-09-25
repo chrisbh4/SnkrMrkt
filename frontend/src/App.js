@@ -44,7 +44,7 @@ function App() {
           {/* <Route path='/signup'>
             <SignupFormPage />
           </Route> */}
-          <Route exact path='/'>
+          <Route exact path='/home'>
             <HomePage />
           </Route>
 
@@ -72,7 +72,7 @@ function App() {
               </Route>
 
 
-            <Route path="/about">
+            <Route path="/">
               {/* Rename to Splash Page */}
             <AboutPage />
 

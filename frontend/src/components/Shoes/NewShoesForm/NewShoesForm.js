@@ -14,7 +14,7 @@ function NewShoesForm() {
     const sellerId = useSelector((state) => state.session.user.id)
     const allShoes = useSelector((state)=> state?.shoes)
 
-    
+
     let arrayOfShoes = Object.keys(allShoes)
     let lastShoeId = arrayOfShoes[arrayOfShoes.length -1];
     let newShoeId = Number(lastShoeId) + 1
@@ -57,7 +57,7 @@ function NewShoesForm() {
     return (
         <div className="form-placement">
              <h1 id="new-shoe-header">
-                <a href={`/`}>New Shoe</a>
+                <a href={`/home`}>New Shoe</a>
             </h1>
             <div className="form-container">
                 <form onSubmit={onSubmit}>

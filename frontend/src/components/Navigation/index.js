@@ -43,7 +43,7 @@ function Navigation({ isLoaded }) {
         </button>
 
         <button className="nav-button">
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink exact to="/home">Home</NavLink>
         </button>
 
 
@@ -65,11 +65,11 @@ function Navigation({ isLoaded }) {
         </button>
 
         <button className="nav-button">
-          <NavLink to="/about">About Page</NavLink>
+          <NavLink to="/">About</NavLink>
           </button>
 
         <button className="nav-button">
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink exact to="/home">Home</NavLink>
         </button>
 
       </div>

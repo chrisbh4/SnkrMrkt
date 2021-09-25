@@ -84,7 +84,7 @@ function ShoesDetailsPage() {
     return (
         <>
             <h1 className="details-page-title">
-                <a id="details-page-redirect" href="/">Shoes Details Page</a>
+                <a id="details-page-redirect" href="/home">Shoes Details Page</a>
             </h1>
             <div className="details-container">
                 <div className="shoe-details-container">
@@ -121,7 +121,7 @@ function ShoesDetailsPage() {
             {/* Take all of this and place inside a componenet and pass in the shoe as a prop */}
             {/* <div className="reviews-title"> */}
             <h2 id="reviews-title">
-                <a href="/">Reviews</a>
+                <a href="/home">Reviews</a>
             </h2>
             {/* </div> */}
 
