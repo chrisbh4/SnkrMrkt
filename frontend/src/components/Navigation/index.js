@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
   const demoLogin = ()=>{
     let credential = 'demo@user.io'
     let password = 'password'
-    history.push('/')
+    history.push('/home')
     return dispatch(login({credential, password}))
   }
 

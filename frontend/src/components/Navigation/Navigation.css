@@ -1,7 +1,21 @@
 .profile-dropdown {
+  background-color: white;
   position: absolute;
+  text-align: center;
+  width: 150px;
+  /* height: auto; */
+  padding: 10px;
+  border: 1.5px solid black;
 }
 
+.profile-dropdown > p{
+  font-size: 15px;
+}
+
+#user-info{
+  font-size: 17px;
+  font-weight: bold;
+}
 
 .nav-logged-in{
   background-color:#cc0000;

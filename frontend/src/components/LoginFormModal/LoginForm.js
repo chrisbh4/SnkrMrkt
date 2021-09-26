@@ -21,7 +21,7 @@ function LoginForm() {
         setErrors(data.errors)
         return
     }
-    history.push('/')
+    history.push('/home')
     return data
   };
 
