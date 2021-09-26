@@ -6,7 +6,10 @@
     /* height: 100px; */
 }
 #new-shoe-header > a {
-    color: white;
+    background-color: white;
+    width: 200px;
+    /* border: 1px solid white; */
+    color: black;
     font-size: 40px;
     display: flex;
     justify-content: center;
@@ -14,13 +17,20 @@
     /* text-shadow: 5px 3px 0px #df0202; */
     top: 120px;
 }
+
+#new-shoe-header{
+    /* background-color: black; */
+    display: flex;
+    justify-content: center;
+}
 #new-shoe-header:hover > a {
-    color: white;
+    width: 250px;
+    color: black;
     font-size: 50px;
     display: flex;
     justify-content: center;
     position: relative;
-    text-shadow: 5px 3px 0px #df0202;
+    /* text-shadow: 5px 3px 0px #df0202; */
     top: 135px;
 }
 
