@@ -23,11 +23,29 @@ button:active{
 
 .cart-item-placement{
     padding: 40px;
+    background-color: white;
+    opacity: 0.93;
+
 }
 
-/* .cart-info{
+.cart-background{
+/* background-image: url("../../background-images/cart-background-img.jpg"); */
+/* background-size: 100% 100%; */
+background-size: cover;
 
-} */
+height: 1000px;
+/* min-height: 100%; */
+min-width: 1024px;
+/* width: 100%; */
+/* height: auto; */
+/* position: relative; */
+margin: -8px;
+/* padding: 0px; */
+/* top: 30px; */
+left: 0px;
+z-index: -1;
+
+}
 
 
 .cart-item-grid{

@@ -36,6 +36,9 @@ function ShoppingCart(){
 
 
     return(
+        <div className="cart-background">
+
+
         <div className="cart-placement">
             <div className="cart-container">
                 <h1 className="cart-title" ><a id="user-title" href="/home">{userTitle}'s Cart</a></h1>
@@ -48,6 +51,7 @@ function ShoppingCart(){
 
                 {totalPrice> 0 ? <button className="cart-purchase-button" onClick={purchaseTheCart} >Purchase</button> : null }
             </div>
+        </div>
         </div>
     )
 

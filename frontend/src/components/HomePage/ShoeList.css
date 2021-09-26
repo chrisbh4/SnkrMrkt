@@ -1,7 +1,7 @@
 /* Need to move into it's own file */
 body{
     /* chrome */
-    background-color:#a7b9c7;
+    /* background-color:#a7b9c7; */
     /* background-image: url("../../background-images/spalsh-page-background-img-2.png"); */
 
     /* background-image: url("../../background-images/spalsh-page-background-img-2.png"); */
@@ -13,6 +13,13 @@ footer{
 
 img {
     opacity:0.88;
+  }
+
+  /* Sets whole background to one page */
+  html{
+    background-size: cover;
+    background-image: url("../../background-images/cart-background-img.jpg");
+    /* width: 100%; */
   }
 
   .page{
