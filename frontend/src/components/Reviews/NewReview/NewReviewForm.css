@@ -27,12 +27,17 @@
     /* text-shadow: 5px 3px 0px #df0202; */
 }
 
-
-
-.page-title-review > a{
+.page-title-review{
     display: flex;
     justify-content: center;
-    color: white;
+}
+
+.page-title-review > a{
+    /* width: 250px; */
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    /* color: white; */
     top: 40px;
     text-align: center;
     position: relative;
@@ -41,7 +46,9 @@
 
 .page-title-review:hover > a{
     text-align: center;
-    font-size: 55px;
+    background-color: #a7b9c7;
+    padding: 14px;
+    /* font-size: 55px; */
     /* text-shadow: 5px 3px 0px #df0202; */
 }
 
@@ -50,6 +57,19 @@
 .create-review-placement{
     display: flex;
     flex-direction: column;
+    background-size: 100%;
+    background-image: url("../../../background-images/reviews-background-img.jpeg");
+    height: 890px;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: -1;
+
+
 }
 
 .create-review-form {

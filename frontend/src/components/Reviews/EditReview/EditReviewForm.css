@@ -2,7 +2,7 @@
 
 
 .edit-page-title > a{
-    color: white;
+    /* color: white; */
     display: flex;
     justify-content: center;
     position: relative;
@@ -10,12 +10,13 @@
 }
 
 .edit-page-title:hover {
-    color: white;
+    /* color: white; */
+    /* background-color: #a7b9c7; */
     font-size: 40px;
     display: flex;
     justify-content: center;
     position: relative;
-    text-shadow: 5px 3px 0px #df0202;
+    /* text-shadow: 5px 3px 0px #df0202; */
     /* top: 40px; */
 }
 
