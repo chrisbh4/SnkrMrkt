@@ -1,22 +1,32 @@
 
-
+.page-title{
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+}
 
 .page-title > a{
     display: flex;
     justify-content: center;
-    color: white;
-    top: 40px;
+    background-color: white;
+    /* color: white; */
+    width: 210px;
+    /* top: 40px; */
     text-align: center;
     position: relative;
     font-size: 40px;
-    top: 135px;
+    /* top: 135px; */
 }
 
-.page-title:hover{
+.page-title >a:hover{
     text-align: center;
-    font-size: 65px;
-    text-shadow: 5px 3px 0px #df0202;
+    /* text-decoration: underline; */
+    font-size: 45px;
+    /* text-shadow: 5px 3px 0px #df0202; */
 }
+
 
 
 .page-title-review > a{

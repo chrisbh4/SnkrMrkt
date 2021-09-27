@@ -76,17 +76,17 @@ img {
 
 .shoe-container:hover {
     background-color:#a7b9c7;
+    color: white;
     /* Decide on what border color to give or give none at all */
     /* border: 4px solid rgb(184, 3, 3); */
     /* border: 4px solid #4B9CD3; */
     /* border: 4px solid #4c6274; */
-    padding: 20px;
-    color: white;
-    font-size: 20px;
+    /* padding: 20px; */
+    /* font-size: 20px; */
     /* text-shadow: 3px 3px 0px #df0202; */
     /* text-shadow: 3px 3px 0px black; */
-    width:355px;
-    height: 405px;
+    /* width:355px;
+    height: 405px; */
 
 }
 
