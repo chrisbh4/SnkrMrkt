@@ -1,20 +1,28 @@
 
+.edit-page-title{
+    display: flex;
+    justify-content: center;
 
+}
 
 .edit-page-title > a{
     /* color: white; */
+    width: 200px;
+    font-size: 35px;
+    background-color: white;
     display: flex;
     justify-content: center;
     position: relative;
     top: 40px;
 }
 
-.edit-page-title:hover {
+.edit-page-title > a:hover {
     /* color: white; */
-    /* background-color: #a7b9c7; */
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
+    background-color: #a7b9c7;
+    font-size: 45px;
+    width: 275px;
+    /* display: flex; */
+    /* justify-content: center; */
     position: relative;
     /* text-shadow: 5px 3px 0px #df0202; */
     /* top: 40px; */
@@ -23,6 +31,17 @@
 .edit-review-placement{
     display: flex;
     flex-direction: column;
+    background-image: url("../../../background-images/reviews-background-img.jpeg");
+    background-size: 100% 90%;
+    height: 890px;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: -1;
 }
 
 .edit-review-form {
