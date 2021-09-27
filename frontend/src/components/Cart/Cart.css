@@ -6,15 +6,18 @@ button:active{
 
 .cart-title{
     text-align: center;
+    height: 60px;
 
 }
 #user-title{
-    color: white;
+    color: black;
+    position: relative;
+    top: 10px;
 }
 #user-title:hover{
     text-align: center;
     font-size: 40px;
-    text-shadow: 5px 3px 0px #df0202;
+    /* text-shadow: 5px 3px 0px #df0202; */
     /* text-align: center; */
     /* color: red */
 }
@@ -34,6 +37,10 @@ button:active{
     left: 0px;
     z-index: -1;
 
+}
+
+.cart-container{
+    background-color: white;
 }
 
 .cart-item-placement{
