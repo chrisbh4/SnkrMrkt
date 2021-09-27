@@ -31,12 +31,12 @@ function ShoppingCart(){
          await dispatch(purchaseFromCart())
          alert("Order has been Placed")
          history.push('/home')
-         return
+         return 
     }
 
 
     return(
-        <div className="cart-background">
+        // <div className="cart-background">
 
 
         <div className="cart-placement">
@@ -52,7 +52,7 @@ function ShoppingCart(){
                 {totalPrice> 0 ? <button className="cart-purchase-button" onClick={purchaseTheCart} >Purchase</button> : null }
             </div>
         </div>
-        </div>
+        // </div>
     )
 
 

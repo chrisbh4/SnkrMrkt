@@ -17,9 +17,9 @@ img {
 
   /* Sets whole background to one page */
   html{
-    background-size: cover;
+    /* background-size: cover;
     image-resolution: from-image 1000dpi;
-    background-image: url("../../background-images/cart-background-img.jpg");
+    background-image: url("../../background-images/cart-background-img.jpg"); */
     /* width: 100%; */
   }
 

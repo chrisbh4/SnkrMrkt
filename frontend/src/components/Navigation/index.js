@@ -34,9 +34,9 @@ function Navigation({ isLoaded }) {
           <ProfileButton user={sessionUser} />
         </div>
 
-        <button className="nav-button" >
+        {/* <button className="nav-button" >
           <NavLink to="/about">About</NavLink>
-          </button>
+          </button> */}
 
         <button className="nav-button">
           <NavLink to="/shoes/new">New Shoe</NavLink>
@@ -64,9 +64,9 @@ function Navigation({ isLoaded }) {
           <SignUpModal />
         </button>
 
-        <button className="nav-button">
+        {/* <button className="nav-button">
           <NavLink to="/">About</NavLink>
-          </button>
+          </button> */}
 
         <button className="nav-button">
           <NavLink exact to="/home">Home</NavLink>
