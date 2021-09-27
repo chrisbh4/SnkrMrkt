@@ -1,16 +1,19 @@
 .form-placement{
     display: flex;
     flex-direction: column;
+    background-image: url("../../../background-images/New-Shoe-background-img.jpeg");
+    background-size: 900px 950px;
+    height: 950px;
     /* align-content: center; */
     /* align-items: flex-end; */
     /* height: 100px; */
 }
 #new-shoe-header > a {
     background-color: white;
-    width: 200px;
+    width: 250px;
     /* border: 1px solid white; */
     color: black;
-    font-size: 40px;
+    font-size: 50px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -23,15 +26,18 @@
     display: flex;
     justify-content: center;
 }
+
 #new-shoe-header:hover > a {
-    width: 250px;
+    /* background: radial-gradient(circle, rgba(5,4,22,1) 0%, rgba(244,25,69,1) 100%); */
+    /* text-decoration: ; */
+    width: 270px;
     color: black;
-    font-size: 50px;
+    font-size: 58px;
     display: flex;
     justify-content: center;
     position: relative;
     /* text-shadow: 5px 3px 0px #df0202; */
-    top: 135px;
+    /* top: 135px; */
 }
 
 .form-container {

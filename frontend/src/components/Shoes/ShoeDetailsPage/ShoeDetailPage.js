@@ -82,7 +82,7 @@ function ShoesDetailsPage() {
 
 
     return (
-        <>
+        <div className="details-background" style={{backgroundImage: `url(${shoe?.image})`}}>
             <h1 className="details-page-title">
                 <a id="details-page-redirect" href="/home">Shoes Details Page</a>
             </h1>
@@ -136,7 +136,7 @@ function ShoesDetailsPage() {
             </div>
 
 
-        </>
+        </div>
     )
 }
 
