@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./AboutPage.css"
+import {getLoadCart} from "../../store/shoppingCart"
+import { useDispatch } from "react-redux";
 
 
 
 
 function AboutPage() {
+    const dispatch = useDispatch();
+
+    useEffect(async()=>{
+        dispatch(getLoadCart())
+    }, [dispatch]);
+
 
     return (
         <div className="splash-page-img">

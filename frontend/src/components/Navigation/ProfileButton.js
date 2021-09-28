@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import {useHistory} from "react-router-dom"
 import * as sessionActions from '../../store/session';
+import {purchaseFromCart} from "../../store/shoppingCart";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,9 +31,8 @@ function ProfileButton({ user }) {
 
   const logout = async(e) => {
     e.preventDefault();
-    //* Cart clears localStorage but state never updates
-    //need to remove storage
-    localStorage.clear()
+   //Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
+    dispatch(purchaseFromCart());
     dispatch(sessionActions.logout());
     history.push('/')
   };
