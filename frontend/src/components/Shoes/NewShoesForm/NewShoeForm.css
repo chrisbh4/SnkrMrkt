@@ -35,7 +35,7 @@
 #new-shoe-header:hover > a {
     /* background: radial-gradient(circle, rgba(5,4,22,1) 0%, rgba(244,25,69,1) 100%); */
     /* text-decoration: ; */
-    width: 270px;
+    width: 300px;
     color: black;
     font-size: 58px;
     display: flex;
