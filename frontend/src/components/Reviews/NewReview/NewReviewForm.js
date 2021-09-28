@@ -15,12 +15,13 @@ function NewReviewForm(){
 
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(0)
-    const [image , setImage ] = useState("")
+    // const [image , setImage ] = useState("")
+    const [image  ] = useState("")
     const [errors , setErrors] = useState([])
 
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    // const updateImage = (e) => setImage(e.target.value)
 
 
     let errorHandler;

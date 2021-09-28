@@ -46,7 +46,7 @@ function EditReviewForm(){
     // console.log("comment", review?.rating)
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    // const updateImage = (e) => setImage(e.target.value)
 
     let errorHandler;
     if(errors.errors){

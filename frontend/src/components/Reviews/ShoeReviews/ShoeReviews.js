@@ -29,8 +29,8 @@ function ShoeReviews({ shoe }) {
     //     <img src={shoe.image} alt="user review" className="review-image"></img>
     // }
 
-    const defaultImage = <img src={shoe?.image} className="review-image"></img>
-    const defaultImageNoEdit = <img src={shoe?.image} className="review-image-noEdit"></img>
+    const defaultImage = <img src={shoe?.image} className="review-image" alt="default shoe"></img>
+    const defaultImageNoEdit = <img src={shoe?.image} className="review-image-noEdit" alt="default shoe"></img>
 
 
 
