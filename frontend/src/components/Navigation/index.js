@@ -22,13 +22,14 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+      // Logged in Nav-Bar
       <div className="nav-logged-in">
         {/* need to change classname */}
-         <button className="nav-profile-button">
               <NavLink to="/cart">
+         <button className="nav-profile-button">
               <i className="fas fa-shopping-cart"></i>
-              </NavLink>
         </button>
+              </NavLink>
 
         <div className="nav-profile-button">
           <ProfileButton user={sessionUser} />
@@ -38,19 +39,30 @@ function Navigation({ isLoaded }) {
           <NavLink to="/about">About</NavLink>
           </button> */}
 
+          <NavLink to="/shoes/new">
         <button className="nav-button">
-          <NavLink to="/shoes/new">New Shoe</NavLink>
+        New Shoe
         </button>
+          </NavLink>
 
+          <NavLink exact to="/home">
         <button className="nav-button">
-          <NavLink exact to="/home">Home</NavLink>
+            All Shoes
         </button>
+          </NavLink>
+
+          <NavLink exact to="/">
+        <button className="nav-button">
+            Home
+        </button>
+          </NavLink>
 
 
       </div>
 
     );
   } else {
+    // Logged out Nav-Bar
     sessionLinks = (
       <div className="nav-logged-in">
 
@@ -68,9 +80,20 @@ function Navigation({ isLoaded }) {
           <NavLink to="/">About</NavLink>
           </button> */}
 
-        <button className="nav-button">
+        {/* <button className="nav-button">
           <NavLink exact to="/home">Home</NavLink>
+        </button> */}
+             <NavLink exact to="/home">
+        <button className="nav-button">
+            All Shoes
         </button>
+          </NavLink>
+
+          <NavLink exact to="/">
+        <button className="nav-button">
+            Home
+        </button>
+          </NavLink>
 
       </div>
     );

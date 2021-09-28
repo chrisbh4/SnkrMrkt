@@ -18,7 +18,7 @@ function AboutPage() {
                 Future features that plan to be added are Images for shoes and comments , personal user profile, shopping cart , user purchases, search bar , category filters
             </p> */}
                     <p className="pitch">
-                        Find the best deals for new luxury sneakers and sell your own with <br />
+                        Find the best deals for high value sneakers and sell your own with <br />
                         zero commison fees!!!
                     </p>
 
