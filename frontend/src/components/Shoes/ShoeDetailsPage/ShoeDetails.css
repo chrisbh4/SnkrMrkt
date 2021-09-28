@@ -1,6 +1,11 @@
 
 .details-background{
     background-size: 25%;
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: -1;
 }
 
 

@@ -44,10 +44,11 @@ img {
 }
 .homepage-title{
     text-align: center;
-    font-size: 50px;
+    font-size: 80px;
     color: white;
     /* text-shadow: #df0202 4px 0 20px; */
-    text-shadow: 5px 3px 0px #df0202;
+    /* text-shadow: 5px 3px 0px #df0202; */
+    text-shadow: 5px 3px 0px #55adf0;
     /* outline: solid red; */
 }
 

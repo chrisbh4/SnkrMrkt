@@ -4,9 +4,12 @@
     background-image: url("../../../background-images/New-Shoe-background-img.jpeg");
     background-size: 900px 950px;
     height: 950px;
-    /* align-content: center; */
-    /* align-items: flex-end; */
-    /* height: 100px; */
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: -1;
+
 }
 #new-shoe-header > a {
     background-color: white;
