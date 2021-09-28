@@ -23,10 +23,16 @@ function ProfileButton({ user }) {
     document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
+
+
+
   }, [showMenu]);
 
-  const logout = (e) => {
+  const logout = async(e) => {
     e.preventDefault();
+    //* Cart clears localStorage but state never updates
+    //need to remove storage
+    localStorage.clear()
     dispatch(sessionActions.logout());
     history.push('/')
   };
