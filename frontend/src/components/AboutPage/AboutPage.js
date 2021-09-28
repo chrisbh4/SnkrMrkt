@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 function AboutPage() {
     const dispatch = useDispatch();
 
-    useEffect(async()=>{
+    useEffect(()=>{
         dispatch(getLoadCart())
     }, [dispatch]);
 

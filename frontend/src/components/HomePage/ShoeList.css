@@ -82,7 +82,7 @@ img {
     border: 2px solid white;
     width:350px;
     /* max-width:351px; */
-    height: 400px;
+    max-height: 430px;
     padding-bottom: 10px;
     /* might look better with images */
     /* height: auto; */
