@@ -1,27 +1,48 @@
+
 .form-placement{
     display: flex;
     flex-direction: column;
-    /* align-content: center; */
-    /* align-items: flex-end; */
-    /* height: 100px; */
+    background-image: url("../../../background-images/New-Shoe-background-img.jpeg");
+    background-size: 900px 950px;
+    height: 950px;
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: -1;
+
 }
+
 #new-shoe-header > a {
-    color: white;
-    font-size: 40px;
+    background-color: white;
+    width: 250px;
+    /* border: 1px solid white; */
+    color: black;
+    font-size: 50px;
     display: flex;
     justify-content: center;
     position: relative;
     /* text-shadow: 5px 3px 0px #df0202; */
     top: 120px;
 }
+
+#new-shoe-header{
+    /* background-color: black; */
+    display: flex;
+    justify-content: center;
+}
+
 #new-shoe-header:hover > a {
-    color: white;
-    font-size: 50px;
+    /* background: radial-gradient(circle, rgba(5,4,22,1) 0%, rgba(244,25,69,1) 100%); */
+    /* text-decoration: ; */
+    width: 300px;
+    color: black;
+    font-size: 58px;
     display: flex;
     justify-content: center;
     position: relative;
-    text-shadow: 5px 3px 0px #df0202;
-    top: 135px;
+    /* text-shadow: 5px 3px 0px #df0202; */
+    /* top: 135px; */
 }
 
 .form-container {

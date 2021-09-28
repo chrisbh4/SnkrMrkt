@@ -1,7 +1,8 @@
 /* Need to move into it's own file */
 body{
+    font-family:-apple-system,  Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* chrome */
-    background-color:#a7b9c7;
+    /* background-color:#a7b9c7; */
     /* background-image: url("../../background-images/spalsh-page-background-img-2.png"); */
 
     /* background-image: url("../../background-images/spalsh-page-background-img-2.png"); */
@@ -13,6 +14,17 @@ footer{
 
 img {
     opacity:0.88;
+  }
+
+
+  html{
+    width: 100%;
+  }
+
+  button:hover{
+    border-bottom: 3.5px solid #55adf0;
+    /* border-left: 2.5px solid #55adf0;
+    border-right: 2.5px solid #55adf0; */
   }
 
   .page{
@@ -34,12 +46,24 @@ img {
     padding-bottom: 15px;
 
 }
-.homepage-title{
+
+.homepage-title-container{
+    display: flex;
+    justify-content: center;
+    height: auto;
+    padding-bottom: 25px;
+}
+
+#homepage-title{
     text-align: center;
-    font-size: 50px;
+    font-size: 100px;
+    font-weight: 650;
     color: white;
+    margin-top: 25px;
+    margin-bottom: 15px;
     /* text-shadow: #df0202 4px 0 20px; */
-    text-shadow: 5px 3px 0px #df0202;
+    /* text-shadow: 5px 3px 0px #df0202; */
+    text-shadow: 5px 3px 0px #55adf0;
     /* outline: solid red; */
 }
 
@@ -58,7 +82,7 @@ img {
     border: 2px solid white;
     width:350px;
     /* max-width:351px; */
-    height: 400px;
+    max-height: 430px;
     padding-bottom: 10px;
     /* might look better with images */
     /* height: auto; */
@@ -68,17 +92,17 @@ img {
 
 .shoe-container:hover {
     background-color:#a7b9c7;
+    color: white;
     /* Decide on what border color to give or give none at all */
     /* border: 4px solid rgb(184, 3, 3); */
     /* border: 4px solid #4B9CD3; */
     /* border: 4px solid #4c6274; */
-    padding: 20px;
-    color: white;
-    font-size: 20px;
+    /* padding: 20px; */
+    /* font-size: 20px; */
     /* text-shadow: 3px 3px 0px #df0202; */
     /* text-shadow: 3px 3px 0px black; */
-    width:355px;
-    height: 405px;
+    /* width:355px;
+    height: 405px; */
 
 }
 

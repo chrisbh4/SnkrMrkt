@@ -6,13 +6,13 @@
 }
 
 
-a:visited{
+/* a:visited{
     color: black;
 }
 
 a{
     color: black;
-}
+} */
 
 .review-container-border{
     border-bottom: 1px solid black;

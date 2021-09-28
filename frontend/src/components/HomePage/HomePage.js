@@ -1,4 +1,5 @@
 import React  ,{useEffect} from "react";
+import {Link} from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes} from "../../store/shoes";
 import ShoeList from "./ShoeList";
@@ -31,14 +32,18 @@ function HomePage(){
 
     return(
         <div className="page">
+            <div className="homepage-title-container">
+            <Link to="/" id="homepage-title" >ThePlug
+        {/* <h1 className="homepage-title">ThePlug</h1> */}
+            </Link>
+            </div>
 
-        <h1 className="homepage-title">ThePlug</h1>
         <div className="all-shoes-container">
             {shoesArray.map((shoe)=>{
                 return(
                     <div className="shoe-container" key={shoe.id}>
                         <ShoeList shoe={shoe} key={shoe.id} />
-                        
+
                     {/* <div>
 
                         <div className="shoe-image-container">
@@ -69,7 +74,7 @@ function HomePage(){
     })}
         </div>
         <div>
-        <footer>
+        {/* <footer>
 
 <p>Christian Brown</p>
 
@@ -91,7 +96,7 @@ function HomePage(){
 
 
 
-</footer>
+</footer> */}
         </div>
         </div>
 

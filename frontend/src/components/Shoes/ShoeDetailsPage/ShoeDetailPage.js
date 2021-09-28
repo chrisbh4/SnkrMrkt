@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams , useHistory} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
@@ -8,8 +8,9 @@ import { addShoeToCart } from "../../../store/shoppingCart"
 
 
 function ShoesDetailsPage() {
-    const dispatch = useDispatch()
-    const params = useParams()
+    const dispatch = useDispatch();
+    const params = useParams();
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -47,6 +48,7 @@ function ShoesDetailsPage() {
     const addToCart = async () => {
         await dispatch(addShoeToCart(shoe, cart))
         alert("Shoe has been added to your cart!")
+        history.push("/home")
         return
     }
 
@@ -82,7 +84,7 @@ function ShoesDetailsPage() {
 
 
     return (
-        <>
+        <div className="details-background" style={{backgroundImage: `url(${shoe?.image})`}}>
             <h1 className="details-page-title">
                 <a id="details-page-redirect" href="/home">Shoes Details Page</a>
             </h1>
@@ -136,7 +138,7 @@ function ShoesDetailsPage() {
             </div>
 
 
-        </>
+        </div>
     )
 }
 

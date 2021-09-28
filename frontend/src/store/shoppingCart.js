@@ -31,6 +31,11 @@ const saveCart = (cart) => {
     }
 }
 
+//Needs to load the cart on every change
+export const getLoadCart = () => async(dispatch)=>{
+    dispatch(loadCart())
+    return
+}
 
 
 export const addShoeToCart = (shoe , cart) => async(dispatch)=>{

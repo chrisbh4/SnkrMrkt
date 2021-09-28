@@ -20,7 +20,7 @@ function ShoeReviews({ shoe }) {
     })
 
     const users = useSelector((state) => state.session?.users)
-
+    // console.log(shoe.image)
 
     // let userImage;
     // if(review.image){
@@ -29,6 +29,8 @@ function ShoeReviews({ shoe }) {
     //     <img src={shoe.image} alt="user review" className="review-image"></img>
     // }
 
+    const defaultImage = <img src={shoe?.image} className="review-image" alt="default shoe"></img>
+    const defaultImageNoEdit = <img src={shoe?.image} className="review-image-noEdit" alt="default shoe"></img>
 
 
 
@@ -70,7 +72,10 @@ function ShoeReviews({ shoe }) {
                         }
 
                     </p>
-                    <img src={review.image} alt="user review" className="review-image"></img>
+                    {defaultImage}
+                    {/* Need to build a image checker to check if user input image is verified before rending if not a default image is set */}
+                    {/* <img src={review.image} alt="user review" className="review-image"></img> */}
+
 
 
                 </div>
@@ -101,7 +106,8 @@ function ShoeReviews({ shoe }) {
                     }
                 </p>
 
-                <img src={review.image} alt="user review" className="review-image-noEdit"></img>
+                {/* <img src={review.image} alt="user review" className="review-image-noEdit"></img> */}
+                {defaultImageNoEdit}
                 <div className="reviews-noEdit-button-placement">
 
                 </div>

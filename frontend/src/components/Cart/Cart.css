@@ -1,33 +1,83 @@
 
 button:active{
     /* background-color: red; */
-    background-color:#df0202;
+    background-color:#55adf0;
 }
 
 .cart-title{
     text-align: center;
+    height: 60px;
 
 }
 #user-title{
-    color: white;
+    color: black;
+    position: relative;
+    top: 10px;
 }
 #user-title:hover{
     text-align: center;
     font-size: 40px;
-    text-shadow: 5px 3px 0px #df0202;
+    /* text-shadow: 5px 3px 0px #df0202; */
     /* text-align: center; */
     /* color: red */
 }
 
 /* Cart Item CSS */
 
-.cart-item-placement{
-    padding: 40px;
+.cart-placement{
+    background-image: url("../../background-images/cart-background-img.jpg");
+    background-size: cover;
+    height: 900px;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: -1;
+
 }
 
-/* .cart-info{
+.cart-container{
+    background-color: white;
+}
 
-} */
+.cart-item-placement{
+    padding: 40px;
+    background-color: white;
+    opacity: 0.93;
+
+}
+
+.cart-info{
+    padding: 40px;
+    background-color: white;
+    opacity: 0.93;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.cart-background{
+/* background-image: url("../../background-images/cart-background-img.jpg"); */
+/* background-size: 100% 100%; */
+background-size: cover;
+
+height: 950px;
+/* min-height: 100%; */
+min-width: 1024px;
+width: 100%;
+/* height: auto; */
+position: relative;
+/* margin: -8px; */
+/* padding: 0px; */
+/* top: 30px; */
+left: 0px;
+z-index: -1;
+
+}
 
 
 .cart-item-grid{
@@ -69,8 +119,8 @@ button:active{
 
 .cart-remove-button{
  grid-area: btn;
- height: 35px;
- width: 120px;
+ height: 25px;
+ width: 110px;
  align-self: center;
 }
 .cart-remove-button:active{
@@ -85,12 +135,33 @@ button:active{
 .total-price{
     text-align: center;
 }
+
+
 .cart-purchase-button{
-    position: relative;
-    left: 800px;
+    width: 100px;
+
+    align-self: center;
 }
 
 
 .empty-cart{
     text-align: center;
+}
+.cart-footer-placement{
+    margin-top: 75px;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+}
+
+.cart-footer{
+    width: 75%;
+    border-top: 1px solid black;
+}
+.cart-footer-creator{
+    font-size: 20px;
+}
+.cart-icon{
+    width: 25px;
+    font-size: 20px;
 }
