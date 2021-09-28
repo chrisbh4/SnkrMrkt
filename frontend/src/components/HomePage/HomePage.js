@@ -32,9 +32,11 @@ function HomePage(){
 
     return(
         <div className="page">
-            <Link to="/" >
-        <h1 className="homepage-title">ThePlug</h1>
+            <div className="homepage-title-container">
+            <Link to="/" id="homepage-title" >ThePlug
+        {/* <h1 className="homepage-title">ThePlug</h1> */}
             </Link>
+            </div>
 
         <div className="all-shoes-container">
             {shoesArray.map((shoe)=>{
