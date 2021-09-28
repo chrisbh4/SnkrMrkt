@@ -155,13 +155,13 @@ function EditReviewForm(){
 
                     </div>
 
-                <div className="edit-review-item">
+                {/* <div className="edit-review-item">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             onChange={updateImage}
                         ></input>
-                    </div>
+                    </div> */}
                     <div className="edit-review-button">
                         <button type="submit">Submit</button>
                     </div>
