@@ -38,7 +38,7 @@ function HomePage(){
                 return(
                     <div className="shoe-container" key={shoe.id}>
                         <ShoeList shoe={shoe} key={shoe.id} />
-                        
+
                     {/* <div>
 
                         <div className="shoe-image-container">
@@ -69,7 +69,7 @@ function HomePage(){
     })}
         </div>
         <div>
-        <footer>
+        {/* <footer>
 
 <p>Christian Brown</p>
 
@@ -91,7 +91,7 @@ function HomePage(){
 
 
 
-</footer>
+</footer> */}
         </div>
         </div>
 

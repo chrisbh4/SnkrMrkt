@@ -147,3 +147,21 @@ z-index: -1;
 .empty-cart{
     text-align: center;
 }
+.cart-footer-placement{
+    margin-top: 75px;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+}
+
+.cart-footer{
+    width: 75%;
+    border-top: 1px solid black;
+}
+.cart-footer-creator{
+    font-size: 20px;
+}
+.cart-icon{
+    width: 25px;
+    font-size: 20px;
+}
