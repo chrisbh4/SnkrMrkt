@@ -7,27 +7,28 @@ live link: [thePlug](https://theplugg.herokuapp.com)
 ## Features
 - User Sign Up/Login with email and password ( Demo account provided )
 - Non-Users and Users can view all listed shoes and reviews
-- Users can create, edit,and delete shoe listings
-- Users can create, edit, and delete shoe reviews
+- Users can create, edit,and delete a shoe listings
+- Users can create, edit, and delete a shoe reviews
+- Users can create, edit, and delete a shopping cart
 
 
 ## HomePage
+<img src="https://imgur.com/EgDM7r3.png" alt="home" />
+
+## All Shoes Page
+<img src="https://imgur.com/9dfmjOr.png" />
+
+## Shoe Details
+<img src="https://imgur.com/d2Xitah.png" />
+
+## Shoe Reviews 
+<img src="https://imgur.com/0VetiqM.png" />
+
+## Shopping Cart
+<img src="https://imgur.com/2ivWokR.png" />
 
 
-<img src='https://i.imgur.com/xNs1fA9.png' />
-## Shoe Details Page
 
-
-## Create Shoe listing
-
-
-## Edit Shoe listing
-
-
-## Create Review
-
-
-## Edit Review
 
 
 
@@ -67,4 +68,11 @@ live link: [thePlug](https://theplugg.herokuapp.com)
 
 
 #### Contact
-- Email: chrismbh4@gmail.com
+<a href='chrismbh4@gmail.com'>
+<img src="https://i.imgur.com/jLLwTjh.png" width="25" height="25">
+</a>
+<a href='https://www.linkedin.com/in/christian-brown-8770311ba/'>
+<img src="https://logodix.com/logo/91031.png" width="25" height="25">
+</a>
+<a href='https://github.com/chrisbh4'>
+<img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" width="25" height="25">
