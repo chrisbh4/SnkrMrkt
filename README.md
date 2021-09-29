@@ -12,7 +12,7 @@ live link: [thePlug](https://theplugg.herokuapp.com)
 
 
 ## HomePage
-
+<img src="https://imgur.com/a/39PNN8E" />
 
 ## Shoe Details Page
 
