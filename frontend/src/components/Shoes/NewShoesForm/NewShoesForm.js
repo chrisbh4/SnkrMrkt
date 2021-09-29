@@ -19,12 +19,12 @@ function NewShoesForm() {
     //     dispatch(getAllShoes())
     // },[dispatch])
 
-    let arrayOfShoes = Object.keys(allShoes)
-    let lastShoeId = arrayOfShoes[arrayOfShoes.length -1];
-    let newShoeId = Number(lastShoeId) + 1
-    console.log("here:", arrayOfShoes)
-    console.log("next:", lastShoeId)
-    console.log("last:", newShoeId)
+    // let arrayOfShoes = Object.keys(allShoes)
+    // let lastShoeId = arrayOfShoes[arrayOfShoes.length -1];
+    // let newShoeId = Number(lastShoeId) + 1
+    // console.log("here:", arrayOfShoes)
+    // console.log("next:", lastShoeId)
+    // console.log("last:", newShoeId)
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(0)
@@ -50,8 +50,7 @@ function NewShoesForm() {
         if (!data?.errors) {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
-
-            history.push(`/shoes/${newShoeId}`)
+            history.push(`/home`)
              alert("Your Shoe has now been listed for sale.")
         }
         else {
