@@ -13,7 +13,7 @@ function NewShoesForm() {
     const history = useHistory()
 
     const sellerId = useSelector((state) => state.session.user.id)
-    const allShoes = useSelector((state)=> state?.shoes)
+    // const allShoes = useSelector((state)=> state?.shoes)
 
     // useEffect(()=>{
     //     dispatch(getAllShoes())
