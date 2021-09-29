@@ -23,6 +23,7 @@ img {
 
   button{
     border-radius: 10% / 50%;;
+    background-color: white;
   }
 
   button:hover{
