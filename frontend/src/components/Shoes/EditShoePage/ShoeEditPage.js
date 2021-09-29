@@ -24,7 +24,7 @@ function EditShoesForm() {
 
     const [title, setTitle] = useState(shoe?.title)
     const [description, setDescription] = useState(shoe?.description)
-    const [image] = useState(shoe?.image)
+    const [image , setImage] = useState(shoe?.image)
     const [brand] = useState(shoe?.brand)
 
     const [errors, setErrors] = useState([])
@@ -34,10 +34,12 @@ function EditShoesForm() {
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
 
+
     const updateTitle = (e) => setTitle(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
     const updateDescription = (e) => setDescription(e.target.value)
+    const updateImage = (e) => setImage(e.target.value)
 
 
     const onSubmit = async (e) => {
@@ -124,8 +126,8 @@ function EditShoesForm() {
                         <label>Image Url:</label>
                         <input
                             type="text"
-                            placeholder={price}
-                            onChange={updatePrice}
+                            placeholder={image}
+                            onChange={updateImage}
                         ></input>
                     </div>
 
