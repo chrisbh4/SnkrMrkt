@@ -6,35 +6,64 @@ import "./SearchBar.css"
 
 
 //Pass in shoes to be able to grab it easier??
-function SearchBar({shoes, query , setQuery}){
-    // const dispatch = useDispatch
+function SearchBar({shoes}){
+    // const dispatch = useDispatch();
 
-    // const [query, setQuery] = useState("");
+    const [query, setQuery] = useState("");
+    const [searchQuery , setSearchQuery] = useState([]);
 
-    let searchBarRegex = new RegExp(query , "i")
+    const searchBarRegex = new RegExp(query , "i")
 
     const allShoesIds = Object.keys(shoes)
-    // console.log("shoes array", Object(shoes)[2])
+    // const test = allShoesIds[0]
+    // console.log("allShoes", shoes[test].title)
+    // console.log("shoes array",allShoesIds)
+    // console.log("shoes array 2:", Object.entries(shoes))
+    // console.log("shoes array 3:", Object.values(shoes))
 
     const shoeFilter = ()=>{
         if(query.length > 0){
-            let filteredShoes = allShoesIds.map((id)=>{
-                console.log("it hits", id)
-                console.log("it hits", shoes[id])
-                // searchBarRegex.test(shoes[id].title)
+            let filteredShoes = allShoesIds.filter((id)=>{
+                // console.log("it hits", id)
+                // console.log("shoes: ", shoes[id].title)
+                if(searchBarRegex.test(shoes[id].title)){
+                    if( !searchQuery.includes(id)){
+                        return shoes[id].title
+                    }else{
+                        return null
+                    }
+                    // return shoes[id].title
+                }
+
             })
-            setQuery([filteredShoes])
+            console.log("filteredShoes:",filteredShoes)
+            setSearchQuery([...searchQuery, ...filteredShoes])
+            // setQuery([filteredShoes])
             return
         }else{
-            setQuery("No results")
+            // setQuery("")
             return
         }
     }
 
-    // useEffect(async()=>{
+
+    // useEffect(()=>{
     //     let test = () => shoeFilter();
     //     await test()
     // },[shoeFilter])
+    useEffect(()=>{
+         shoeFilter();
+        // test()
+    },[query])
+
+    // console.log()
+    console.log("search query:",searchQuery)
+    console.log(shoes[searchQuery[0]]?.title)
+
+    // const resultsDropList = query.map((shoe)=>{
+
+    // })
+
 
     const updateQuery = (e) => setQuery(e.target.value);
 

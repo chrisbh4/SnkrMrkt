@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user)
   const grabAllShoes = useSelector(state => state.shoes)
 
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
 
   const demoLogin = ()=>{
     let credential = 'demo@user.io'
@@ -32,7 +32,10 @@ function Navigation({ isLoaded }) {
       <div className="nav-logged-in">
         {/* need to change classname */}
         <div>
-          <SearchBar  shoes={grabAllShoes} query={query} setQuery={setQuery}/>
+          {/* <SearchBar  shoes={grabAllShoes} query={query} setQuery={setQuery}/> */}
+          <SearchBar  shoes={grabAllShoes} />
+
+
         </div>
               <NavLink to="/cart">
          <button className="nav-profile-button">
