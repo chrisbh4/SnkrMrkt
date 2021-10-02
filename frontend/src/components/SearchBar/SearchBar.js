@@ -24,10 +24,13 @@ function SearchBar({shoes}){
     const shoeFilter = ()=>{
         if(query.length > 0){
             let filteredShoes = allShoesIds.filter((id)=>{
+            // let filteredShoes = allShoesIds.map((id)=>{
+                //* .map allows me to get the titles but filter does not , does filter only return the orgianl list ???
                 // console.log("it hits", id)
                 // console.log("shoes: ", shoes[id].title)
                 if(searchBarRegex.test(shoes[id].title)){
                     if( !searchQuery.includes(id)){
+                        // console.log("here:",shoes[id].title)
                         return shoes[id].title
                     }else{
                         return null
