@@ -60,9 +60,15 @@ function SearchBar({shoes}){
     console.log("search query:",searchQuery)
     console.log(shoes[searchQuery[0]]?.title)
 
-    // const resultsDropList = query.map((shoe)=>{
+    /* TODO
+    [] map through the array of titles
+    [] check to see if id or title exists already in the array if not add it else return
+    [] display list of titles with image
 
-    // })
+    */
+    const resultsDropList = searchQuery.forEach((shoe)=>{
+
+    })
 
 
     const updateQuery = (e) => setQuery(e.target.value);
