@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react"
-import { useDispatch } from "react-redux";
 import SearchList from "./SearchList";
 import "./SearchBar.css"
 
@@ -37,8 +36,10 @@ function SearchBar({shoes}){
                         return null
                     }
                     // return shoes[id].title
-                }
 
+                }
+                // check if this causes error later
+                return null
             })
             console.log("filteredShoes:",filteredShoes)
             setSearchQuery([...searchQuery, ...filteredShoes])
