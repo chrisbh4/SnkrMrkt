@@ -7,7 +7,7 @@ import "./SearchBar.css"
         [] render images and title
         [] container only appears when searchedShoes has data
         [] container hides when it has no data searched
-        
+
 
 */
 
@@ -15,20 +15,20 @@ import "./SearchBar.css"
  function SearchList({searchId, searchedShoes}){
 
 
-     console.log("shoesss: " ,searchedShoes)
+     console.log("shoesss: " ,searchedShoes.title)
     //  console.log("search id " ,searchId)
     return(
         <div
         // style={{color:"white", position:"realtive", top:"150px"}}
         >
         <div className="search-grid">
-            <div className="search-col-two">
-                <img src={`${searchedShoes[searchId]?.image}`} alt={searchedShoes[searchId]} />
+            <div className="search-col-one">
+                <img src={`${searchedShoes.image}`} alt={searchedShoes[searchId]} />
             </div>
 
-            <div className="search-col-one">
+            <div className="search-col-two">
                 <p>
-                    {searchedShoes[searchId]?.title}
+                    {searchedShoes.title}
                 </p>
                 {/* <a href={`/shoes/${searchId}`}>
                     {searchedShoes[searchId]?.title}
