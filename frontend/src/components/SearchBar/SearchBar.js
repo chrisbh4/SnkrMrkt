@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from "react"
 import { useDispatch } from "react-redux";
-
+import SearchList from "./SearchList";
 import "./SearchBar.css"
+import { restoreUser } from "../../store/session";
 
 
 
 //Pass in shoes to be able to grab it easier??
 function SearchBar({shoes}){
     // const dispatch = useDispatch();
-
+    const shoeListShoes = shoes
     const [query, setQuery] = useState("");
     const [searchQuery , setSearchQuery] = useState([]);
 
@@ -45,6 +46,7 @@ function SearchBar({shoes}){
             return
         }else{
             // setQuery("")
+            setSearchQuery([]);
             return
         }
     }
@@ -61,18 +63,26 @@ function SearchBar({shoes}){
 
     // console.log()
     console.log("search query:",searchQuery)
-    console.log(shoes[searchQuery[0]]?.title)
+    // console.log(shoes[searchQuery[3]]?.title)
 
     /* TODO
-    [] map through the array of titles
-    [] check to see if id or title exists already in the array if not add it else return
+    [x] map through the array of titles
+    [x] check to see if id or title exists already in the array if not add it else return
     [] display list of titles with image
 
     */
-    const resultsDropList = searchQuery.forEach((shoe)=>{
+
+    const resultsDropList =searchQuery.map((id)=>{
+        // return shoes[id].title
+        return (
+            <>
+            <SearchList searchId={id} shoes={shoeListShoes} />
+            </>
+        )
 
     })
 
+    // console.log(resultsDropList)
 
     const updateQuery = (e) => setQuery(e.target.value);
 
@@ -90,6 +100,9 @@ function SearchBar({shoes}){
 
             </input>
 
+            <div>
+               {resultsDropList}
+            </div>
         </div>
     )
 }
