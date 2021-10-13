@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import { useDispatch } from "react-redux";
 import SearchList from "./SearchList";
 import "./SearchBar.css"
-import { restoreUser } from "../../store/session";
+
 
 
 
@@ -76,7 +76,7 @@ function SearchBar({shoes}){
         // return shoes[id].title
         return (
             <>
-            <SearchList searchId={id} shoes={shoeListShoes} />
+            <SearchList searchId={id} searchedShoes={shoeListShoes[id]} />
             </>
         )
 

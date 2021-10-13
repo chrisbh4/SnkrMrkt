@@ -2,27 +2,37 @@ import React from "react";
 import "./SearchBar.css"
 
 
+/*
+    TODO: Images and title aren't showing but alt for image is rendering
+        [] render images and title
+        [] container only appears when searchedShoes has data
+        [] container hides when it has no data searched
+        
+
+*/
 
 
+ function SearchList({searchId, searchedShoes}){
 
- function SearchList({searchId, shoes}){
 
-
-     console.log("shoesss: " ,shoes)
-     console.log("search id " ,searchId)
+     console.log("shoesss: " ,searchedShoes)
+    //  console.log("search id " ,searchId)
     return(
         <div
         // style={{color:"white", position:"realtive", top:"150px"}}
         >
         <div className="search-grid">
             <div className="search-col-two">
-                <img src={`${shoes[searchId]?.image}`} alt="shoes title" />
+                <img src={`${searchedShoes[searchId]?.image}`} alt={searchedShoes[searchId]} />
             </div>
 
             <div className="search-col-one">
-                <a href={`/shoes/${searchId}`}>
-                    {shoes[searchId]?.title}
-                </a>
+                <p>
+                    {searchedShoes[searchId]?.title}
+                </p>
+                {/* <a href={`/shoes/${searchId}`}>
+                    {searchedShoes[searchId]?.title}
+                </a> */}
             </div>
 
         </div>
