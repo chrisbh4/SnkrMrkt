@@ -15,7 +15,7 @@ import "./SearchBar.css"
  function SearchList({searchId, searchedShoes}){
 
 
-     console.log("shoesss: " ,searchedShoes.title)
+    //  console.log("shoesss: " ,searchedShoes.title)
     //  console.log("search id " ,searchId)
     return(
         <div

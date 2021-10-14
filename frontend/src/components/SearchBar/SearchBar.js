@@ -12,42 +12,129 @@ function SearchBar({ shoes }) {
     const [query, setQuery] = useState("");
     const [searchQuery, setSearchQuery] = useState([]);
     //* need to figure out a regex formula to search and not anaylaze the spaces or mispelling try to get the closest match
-    const searchBarRegex = new RegExp(query,"i")
+    // const regex = /[^\w\s]/i;
+    const regex = "i";
+    const searchBarRegex = new RegExp(query,regex)
 
     const allShoesIds = Object.keys(shoes)
 
-    const shoeFilter = () => {
-        if (query.length > 0) {
-            let filteredShoes = allShoesIds.filter((id) => {
-                // let filteredShoes = allShoesIds.map((id)=>{
-                //* .map allows me to get the titles but filter does not , does filter only return the orgianl list ???
-                // console.log("it hits", id)
-                // console.log("shoes: ", shoes[id].title)
-                if (searchBarRegex.test(shoes[id].title)) {
-                    if (!searchQuery.includes(id)) {
-                        // console.log("here:",shoes[id].title)
-                        return shoes[id].title
-                    } else {
-                        return null
-                    }
-                    // return shoes[id].title
-                    return `${shoes[id].title} `
+    // Orignal Shoe Filter
+    // const shoeFilter = () => {
+    //     if (query.length > 0) {
+    //         let filteredShoes = allShoesIds.filter((id) => {
+    //             // let filteredShoes = allShoesIds.map((id)=>{
+    //             //* .map allows me to get the titles but filter does not , does filter only return the orgianl list ???
+    //             // console.log("it hits", id)
+    //             // console.log("shoes: ", shoes[id].title)
+    //             if (searchBarRegex.exec(shoes[id].title)) {
+    //                 if (!searchQuery.includes(id)) {
+    //                     // console.log("here:",shoes[id].title)
+    //                     return shoes[id].title
+    //                 } else {
+    //                     return null
+    //                 }
+    //                 // return shoes[id].title
+    //                 return `${shoes[id].title} `
 
-                }
-                // check if this causes error later
-                return null
-            })
-            console.log("filteredShoes:", filteredShoes)
-            // setSearchQuery([...searchQuery, ...filteredShoes])
-            setSearchQuery([...filteredShoes])
-            // setQuery([filteredShoes])
-            return
-        } else {
-            // setQuery("")
-            setSearchQuery([]);
-            return
+    //             }
+    //             // check if this causes error later
+    //             return null
+    //         })
+    //         console.log("filteredShoes:", filteredShoes)
+    //         setSearchQuery([...searchQuery, ...filteredShoes])
+    //         // setSearchQuery([...filteredShoes])
+    //         // setQuery([filteredShoes])
+    //         return
+    //     } else {
+    //         // setQuery("")
+    //         setSearchQuery([]);
+    //         return
+    //     }
+    // }
+
+
+// new shoe filter
+
+/*
+
+    - check to see if each id is being hit id doubleFilter
+    - see what is being pushed and what is being returned
+    - has to be coming from the helper function since the searchQuery only registers when it uses filter and not betterQuery
+*/
+
+// Helper Function
+let doubleFilter =  (results) =>{
+    let finalFilter = [];
+    for(let i = 0; i < results.length; i++){
+        let firstId = results[i];
+        console.log("first loop :",firstId)
+        // console.log("shoe loop :",shoes[firstId].title)
+        // might need to be one to start one ahead of the begining loop
+        for( let x = 0; x < results.length[i+1]; x++){
+            let secondId = results[x];
+            console.log("second loop :",secondId)
+            if ( firstId === secondId){
+                console.log(firstId)
+                finalFilter.push(firstId)
+                return
+            }
         }
     }
+
+    console.log("final filter :" , finalFilter)
+    return finalFilter
+
+}
+
+const shoeFilter = () => {
+    if (query.length > 0) {
+        let filteredShoes = allShoesIds.filter((id) => {
+            // let filteredShoes = allShoesIds.map((id)=>{
+            //* .map allows me to get the titles but filter does not , does filter only return the orgianl list ???
+            // console.log("it hits", id)
+            // console.log("shoes: ", shoes[id].title)
+            if (searchBarRegex.exec(shoes[id].title)) {
+                if (!searchQuery.includes(id)) {
+                    // console.log("here:",shoes[id].title)
+                    return shoes[id].title
+                } else {
+                    return null
+                }
+
+            }
+            // check if this causes error later
+            return null
+        })
+
+        let betterQuery = doubleFilter(filteredShoes);
+
+        console.log("better query :",betterQuery);
+
+        // console.log("query", betterQuery)
+        // console.log("filteredShoes:", filteredShoes)
+
+
+        // setSearchQuery([...searchQuery, ...filteredShoes])
+        setSearchQuery([...searchQuery, ...betterQuery])
+        // setSearchQuery([...betterQuery])
+
+
+        // setSearchQuery([...filteredShoes])
+        // console.log("filter :", filteredShoes)
+
+        // setSearchQuery([...filteredShoes])
+        // setQuery([filteredShoes])
+
+        return
+    } else {
+        // setQuery("")
+        setSearchQuery([]);
+        return
+    }
+}
+
+
+
 
 
     // useEffect(()=>{
@@ -60,6 +147,7 @@ function SearchBar({ shoes }) {
     }, [query])
 
     // console.log()
+
     console.log("search query:", searchQuery)
 
 
