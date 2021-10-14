@@ -84,6 +84,21 @@ function SearchBar({ shoes }) {
 
     const updateQuery = (e) => setQuery(e.target.value);
 
+
+    /*
+-create a if statment that checks if query has a length
+if true
+    - then set the style of "search-bar-input-container" to have :
+        -a postion of relative
+        - top of 150px to display in the nav when the user types in somethng
+else
+    - have no style for the search-bar-input-container
+
+
+*/
+
+
+
     return (
         // <>
         // <div className="searchBar-placement">
@@ -109,13 +124,27 @@ function SearchBar({ shoes }) {
 
         // </>
 
+
+
+        /*
+-create a if statment that checks if query has a length
+if true
+    - then set the style of "search-bar-input-container" to have :
+        -a postion of relative
+        - top of 150px to display in the nav when the user types in somethng
+else
+    - have no style for the search-bar-input-container
+
+    make it check if it does have length then set the css properties
+*/
+
         <div className="searchBar-placement">
 {/* grid area: "search-bar
                 results"
 
 
                 */}
-            <div className="search-bar-input-container">
+            <div className="search-bar-input-container" style={query.length ? {top:"150px", position:"relative"}: {}}>
                 <input
                     className="searchBar-input"
                     style={{ width: "500px" }}
@@ -128,7 +157,8 @@ function SearchBar({ shoes }) {
             </div>
 
 
-         <div className="results-list-container" hidden={!query.length}>
+
+         <div className="results-list-container"  hidden={!query.length}>
             {resultsDropList}
         </div>
 
