@@ -12,7 +12,7 @@ function SearchBar({ shoes }) {
     const [query, setQuery] = useState("");
     const [searchQuery, setSearchQuery] = useState([]);
     //* need to figure out a regex formula to search and not anaylaze the spaces or mispelling try to get the closest match
-    const searchBarRegex = new RegExp(query,"i","\w")
+    const searchBarRegex = new RegExp(query,"i")
 
     const allShoesIds = Object.keys(shoes)
 
@@ -31,6 +31,7 @@ function SearchBar({ shoes }) {
                         return null
                     }
                     // return shoes[id].title
+                    return `${shoes[id].title} `
 
                 }
                 // check if this causes error later
