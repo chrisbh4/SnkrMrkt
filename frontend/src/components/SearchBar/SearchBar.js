@@ -15,12 +15,7 @@ function SearchBar({ shoes }) {
     const searchBarRegex = new RegExp(query, "i")
 
     const allShoesIds = Object.keys(shoes)
-    // const test = allShoesIds[0]
-    // console.log("allShoes", shoes[test].title)
-    // console.log("shoes array",allShoesIds)
-    // console.log("shoes array 2:", Object.entries(shoes))
-    // console.log("shoes array 3:", Object.values(shoes))
-
+    
     const shoeFilter = () => {
         if (query.length > 0) {
             let filteredShoes = allShoesIds.filter((id) => {
@@ -64,14 +59,8 @@ function SearchBar({ shoes }) {
 
     // console.log()
     console.log("search query:", searchQuery)
-    // console.log(shoes[searchQuery[3]]?.title)
 
-    /* TODO
-    [x] map through the array of titles
-    [x] check to see if id or title exists already in the array if not add it else return
-    [] display list of titles with image
 
-    */
 
     const resultsDropList = searchQuery.map((id) => {
         // return shoes[id].title
@@ -96,54 +85,20 @@ else
 
 
 */
-
-
-
-    return (
-        // <>
-        // <div className="searchBar-placement">
-
-        //     <div className="search-bar-input-container">
-        //         <input
-        //             className="searchBar-input"
-        //             style={{ width: "500px" }}
-        //             placeholder="Search Shoe Name"
-        //             type="text"
-        //             value={query}
-        //             onChange={updateQuery}
-        //         >
-        //         </input>
-        //     </div>
-
-
-        // </div>
-
-        //  {/* <div className="results-list-container">
-        //     {query.length ? resultsDropList : null}
-        // </div> */}
-
-        // </>
-
-
-
-        /*
+/*
 -create a if statment that checks if query has a length
 if true
-    - then set the style of "search-bar-input-container" to have :
-        -a postion of relative
-        - top of 150px to display in the nav when the user types in somethng
+- then set the style of "search-bar-input-container" to have :
+-a postion of relative
+- top of 150px to display in the nav when the user types in somethng
 else
-    - have no style for the search-bar-input-container
+- have no style for the search-bar-input-container
 
-    make it check if it does have length then set the css properties
+make it check if it does have length then set the css properties
 */
+    return (
 
         <div className="searchBar-placement">
-{/* grid area: "search-bar
-                results"
-
-
-                */}
             <div className="search-bar-input-container" style={query.length ? {top:"150px", position:"relative"}: {}}>
                 <input
                     className="searchBar-input"
@@ -155,9 +110,7 @@ else
                 >
                 </input>
             </div>
-
-
-
+            {/* Results List is hidden if query is empty */}
          <div className="results-list-container"  hidden={!query.length}>
             {resultsDropList}
         </div>
