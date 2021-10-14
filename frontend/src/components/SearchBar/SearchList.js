@@ -23,11 +23,13 @@ import "./SearchBar.css"
         >
         <div className="search-grid">
             <div className="search-col-one">
+            <a href={`/shoes/${searchId}`}>
                 <img src={`${searchedShoes.image}`} alt={searchedShoes[searchId]} />
+                </a>
             </div>
 
             <div className="search-col-two">
-                <a href={`/shoes/${searchId} id="search-shoe`}>
+                <a id="search-shoe" href={`/shoes/${searchId}`}>
                     {searchedShoes.title}
                 </a>
                 {/* <a href={`/shoes/${searchId}`}>

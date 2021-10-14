@@ -3,7 +3,7 @@ import SearchList from "./SearchList";
 import "./SearchBar.css"
 
 
-
+// I can split each title be each letter and then join it with a Regex string and add it to every letter and space
 
 //Pass in shoes to be able to grab it easier??
 function SearchBar({ shoes }) {
@@ -11,8 +11,8 @@ function SearchBar({ shoes }) {
     const shoeListShoes = shoes
     const [query, setQuery] = useState("");
     const [searchQuery, setSearchQuery] = useState([]);
-
-    const searchBarRegex = new RegExp(query, "i")
+    //* need to figure out a regex formula to search and not anaylaze the spaces or mispelling try to get the closest match
+    const searchBarRegex = new RegExp(query,"i","\w")
 
     const allShoesIds = Object.keys(shoes)
 
