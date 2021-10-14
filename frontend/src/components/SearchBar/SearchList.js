@@ -27,9 +27,9 @@ import "./SearchBar.css"
             </div>
 
             <div className="search-col-two">
-                <p>
+                <a href={`/shoes/${searchId}`}>
                     {searchedShoes.title}
-                </p>
+                </a>
                 {/* <a href={`/shoes/${searchId}`}>
                     {searchedShoes[searchId]?.title}
                 </a> */}
