@@ -60,6 +60,10 @@ function SearchBar({ shoes }) {
     - check to see if each id is being hit id doubleFilter
     - see what is being pushed and what is being returned
     - has to be coming from the helper function since the searchQuery only registers when it uses filter and not betterQuery
+
+
+
+    * filter through the results route and place a if condition and check before rendign the html its inside
 */
 
 // Helper Function
@@ -67,17 +71,18 @@ let doubleFilter =  (results) =>{
     let finalFilter = [];
     for(let i = 0; i < results.length; i++){
         let firstId = results[i];
-        console.log("first loop :",firstId)
+        // console.log("first loop :",firstId)
         // console.log("shoe loop :",shoes[firstId].title)
         // might need to be one to start one ahead of the begining loop
-        for( let x = 0; x < results.length[i+1]; x++){
+        for( let x = 0; x < results.length; x++){
             let secondId = results[x];
-            console.log("second loop :",secondId)
+            // console.log("second loop :",secondId)
             if ( firstId === secondId){
-                console.log(firstId)
+                // console.log(firstId)
                 finalFilter.push(firstId)
-                return
+                // return "a match"
             }
+
         }
     }
 
@@ -107,27 +112,15 @@ const shoeFilter = () => {
         })
 
         let betterQuery = doubleFilter(filteredShoes);
-
         console.log("better query :",betterQuery);
 
         // console.log("query", betterQuery)
         // console.log("filteredShoes:", filteredShoes)
+        setSearchQuery([ ...betterQuery])
 
-
-        // setSearchQuery([...searchQuery, ...filteredShoes])
-        setSearchQuery([...searchQuery, ...betterQuery])
-        // setSearchQuery([...betterQuery])
-
-
-        // setSearchQuery([...filteredShoes])
-        // console.log("filter :", filteredShoes)
-
-        // setSearchQuery([...filteredShoes])
-        // setQuery([filteredShoes])
 
         return
     } else {
-        // setQuery("")
         setSearchQuery([]);
         return
     }
@@ -148,11 +141,13 @@ const shoeFilter = () => {
 
     // console.log()
 
+
     console.log("search query:", searchQuery)
+    console.log("query", query)
 
 
 
-    const resultsDropList = searchQuery.map((id) => {
+    const resultsDropList = searchQuery?.map((id) => {
         // return shoes[id].title
         return (
                 <SearchList searchId={id} searchedShoes={shoeListShoes[id]} key={id} />
