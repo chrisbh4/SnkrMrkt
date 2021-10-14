@@ -15,7 +15,7 @@ function SearchBar({ shoes }) {
     const searchBarRegex = new RegExp(query, "i")
 
     const allShoesIds = Object.keys(shoes)
-    
+
     const shoeFilter = () => {
         if (query.length > 0) {
             let filteredShoes = allShoesIds.filter((id) => {
@@ -37,7 +37,8 @@ function SearchBar({ shoes }) {
                 return null
             })
             console.log("filteredShoes:", filteredShoes)
-            setSearchQuery([...searchQuery, ...filteredShoes])
+            // setSearchQuery([...searchQuery, ...filteredShoes])
+            setSearchQuery([...filteredShoes])
             // setQuery([filteredShoes])
             return
         } else {
