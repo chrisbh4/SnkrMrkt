@@ -47,15 +47,15 @@ function Navigation({ isLoaded }) {
 
           <NavLink exact to="/home">
         <button className="nav-button">
-            All Shoes
+           Home
         </button>
           </NavLink>
 
-          <NavLink exact to="/">
+          {/* <NavLink exact to="/">
         <button className="nav-button">
             Home
         </button>
-          </NavLink>
+          </NavLink> */}
 
 
       </div>
