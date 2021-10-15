@@ -86,18 +86,15 @@ let doubleFilter =  (results) =>{
         }
     }
 
-    console.log("final filter :" , finalFilter)
-    return finalFilter
+    // console.log("final filter :" , finalFilter)
+    return [...finalFilter]
 
 }
 
 const shoeFilter = () => {
     if (query.length > 0) {
         let filteredShoes = allShoesIds.filter((id) => {
-            // let filteredShoes = allShoesIds.map((id)=>{
-            //* .map allows me to get the titles but filter does not , does filter only return the orgianl list ???
-            // console.log("it hits", id)
-            // console.log("shoes: ", shoes[id].title)
+
             if (searchBarRegex.exec(shoes[id].title)) {
                 if (!searchQuery.includes(id)) {
                     // console.log("here:",shoes[id].title)
@@ -106,17 +103,20 @@ const shoeFilter = () => {
                     return null
                 }
 
+            }else{
+                setSearchQuery([...allShoesIds])
+                return
             }
-            // check if this causes error later
-            return null
+
+
         })
 
         let betterQuery = doubleFilter(filteredShoes);
         console.log("better query :",betterQuery);
 
-        // console.log("query", betterQuery)
-        // console.log("filteredShoes:", filteredShoes)
-        setSearchQuery([ ...betterQuery])
+
+        setSearchQuery([...betterQuery])
+
 
 
         return
@@ -126,28 +126,35 @@ const shoeFilter = () => {
     }
 }
 
+/*
+- workaroung : check if query has length but empty array say keep typing else if the query has no length return input serch
+ TODO: Two options
+    -1. Need to be able to enter a second char without having the query array go empty
+    -2. hide the container when the query has a length and searchQuery is an empty array
+
+
+*/
 
 
 
 
-    // useEffect(()=>{
-    //     let test = () => shoeFilter();
-    //     await test()
-    // },[shoeFilter])
     useEffect(() => {
         shoeFilter();
-        // test()
     }, [query])
 
-    // console.log()
+
 
 
     console.log("search query:", searchQuery)
-    console.log("query", query)
+    console.log("query :", query)
 
+
+    // let searchQueryResults = [...doubleFilter(searchQuery)]
+    // console.log("test :", searchQueryResults)
 
 
     const resultsDropList = searchQuery?.map((id) => {
+
         // return shoes[id].title
         return (
                 <SearchList searchId={id} searchedShoes={shoeListShoes[id]} key={id} />
@@ -159,32 +166,20 @@ const shoeFilter = () => {
     const updateQuery = (e) => setQuery(e.target.value);
 
 
-    /*
--create a if statment that checks if query has a length
-if true
-    - then set the style of "search-bar-input-container" to have :
-        -a postion of relative
-        - top of 150px to display in the nav when the user types in somethng
-else
-    - have no style for the search-bar-input-container
 
 
-*/
-/*
--create a if statment that checks if query has a length
-if true
-- then set the style of "search-bar-input-container" to have :
--a postion of relative
-- top of 150px to display in the nav when the user types in somethng
-else
-- have no style for the search-bar-input-container
 
-make it check if it does have length then set the css properties
-*/
+
+
     return (
 
         <div className="searchBar-placement">
-            <div className="search-bar-input-container" style={query.length ? {top:"150px", position:"relative"}: {}}>
+            {/* when query has length but searchQuery is empty searchBar goes down */}
+            <div className="search-bar-input-container" style={query.length ? {top:"150px", position:"relative" , left:"70px"}: {}}   >
+            {/* style={!query.length ? { position:"relative", right:"60px"}: {}} */}
+
+                {/* when auery has length and searchBar is emtpy input hides behind container */}
+            {/* <div className="search-bar-input-container" style={query.length && !searchQuery.length ? {top:"150px", position:"relative"}: {}}> */}
                 <input
                     className="searchBar-input"
                     style={{ width: "500px" }}
@@ -196,7 +191,7 @@ make it check if it does have length then set the css properties
                 </input>
             </div>
             {/* Results List is hidden if query is empty */}
-         <div className="results-list-container"  hidden={!query.length}>
+         <div className="results-list-container"  hidden={!query.length }  >
             {resultsDropList}
         </div>
 
