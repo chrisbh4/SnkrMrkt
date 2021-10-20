@@ -1,5 +1,10 @@
 /* Search Bar */
 
+#search-bar-container{
+    position: relative;
+    right: 180px;
+}
+
 .search-list-container{
     height: 350px;
     overflow:scroll;
@@ -20,6 +25,12 @@
 
     background-color: white;
     /* overflow: scroll; */
+
+}
+
+.searchBar-input{
+    position: relative;
+    right: 40px;
 
 }
 

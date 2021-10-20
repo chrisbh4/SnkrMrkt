@@ -31,12 +31,11 @@ function Navigation({ isLoaded }) {
       // Logged in Nav-Bar
       <div className="nav-logged-in">
         {/* need to change classname */}
-        <div>
-          {/* <SearchBar  shoes={grabAllShoes} query={query} setQuery={setQuery}/> */}
+
+        <div id="search-bar-container">
           <SearchBar  shoes={grabAllShoes} />
-
-
         </div>
+
               <NavLink to="/cart">
          <button className="nav-profile-button">
               <i className="fas fa-shopping-cart"></i>
