@@ -4,6 +4,8 @@ const { Shoe, Review } = require('../../db/models')
 const {check} = require("express-validator")
 const { handleValidationErrors } = require("../../utils/validation")
 
+const { uploadFile } = require("../../aws-S3")
+
 // Saved in pluarl form due to Model naming error
 const Shoes = Shoe
 const Reviews = Review
