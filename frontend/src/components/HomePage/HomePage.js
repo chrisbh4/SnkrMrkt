@@ -33,9 +33,7 @@ function HomePage(){
     return(
         <div className="page">
             <div className="homepage-title-container">
-            <Link to="/" id="homepage-title" >ThePlug
-        {/* <h1 className="homepage-title">ThePlug</h1> */}
-            </Link>
+            <Link to="/" id="homepage-title" >ThePlug </Link>
             </div>
 
         <div className="all-shoes-container">

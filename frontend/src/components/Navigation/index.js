@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpModal from '../SignupFormPage';
+import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
 import './Navigation.css';
 
@@ -11,6 +12,9 @@ function Navigation({ isLoaded }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
+  const grabAllShoes = useSelector(state => state.shoes)
+
+  // const [query, setQuery] = useState("");
 
   const demoLogin = ()=>{
     let credential = 'demo@user.io'
@@ -19,12 +23,19 @@ function Navigation({ isLoaded }) {
     return dispatch(login({credential, password}))
   }
 
+
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       // Logged in Nav-Bar
       <div className="nav-logged-in">
         {/* need to change classname */}
+
+        <div id="search-bar-container">
+          <SearchBar  shoes={grabAllShoes} />
+        </div>
+
               <NavLink to="/cart">
          <button className="nav-profile-button">
               <i className="fas fa-shopping-cart"></i>
