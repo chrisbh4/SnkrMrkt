@@ -60,6 +60,11 @@
 }
 
 
+.search-image{
+    padding-left: 16px;
+    max-width: 240px;
+    max-height: 270px;
+}
 
 
 /* position: relative;

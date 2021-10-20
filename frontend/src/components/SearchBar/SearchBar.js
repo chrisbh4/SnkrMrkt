@@ -21,7 +21,7 @@ let searchResult = allShoesIds.map((id)=>{
             <div className="search-grid">
                 <div className="search-col-one">
                 <a href={`/shoes/${id}`}>
-                    <img src={`${shoes[id].image}`} alt={shoes[id]} />
+                    <img  className="search-image" src={`${shoes[id].image}`} alt={shoes[id]} />
                     </a>
                 </div>
 
