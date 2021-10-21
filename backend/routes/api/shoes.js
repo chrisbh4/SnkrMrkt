@@ -134,6 +134,8 @@ router.post('/new', asyncHandler(async (req, res) => {
 
     */
     // console.log(req.body)
+   // ! the obj that is being set inside the uploadFile is not an object but a image need to send a obj instead that has the path and image inside it
+   // * watch video and see where he talks about the "file.path" and also the "file.filename" inside "uploadFile()"
     let awsImageId = await uploadFile(awsImageUrl);
     console.log(awsImageId)
     // const imageKey = awsImage.Key
