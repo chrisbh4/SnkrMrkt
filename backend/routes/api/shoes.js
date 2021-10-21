@@ -118,8 +118,27 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 }))
 
 
-router.post('/new', validateNewShoe, asyncHandler(async (req, res) => {
+router.post('/new', asyncHandler(async (req, res) => {
     const { sellerId, title, shoeSize, image, price, brand , description} = req.body
+    const awsImageUrl = req.body.image
+    /*
+    - Error msg: "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined",
+    * Trying to send the image url from the user input
+        - asw-S3.js : I believe its the Key:file.filename that is causing the problem since the object key should be images
+    * new shoe post api works when aws code is commented out
+
+        - refer to the video when he starts to create the API Route
+        - line 20 in aws.js could be the issue just a hunch
+        - check documentationn on how to upload images properly
+        - use the 'Key' t to be able to key-into the aws-image later on for image rendering on the frontend
+
+    */
+    // console.log(req.body)
+    let awsImageId = await uploadFile(awsImageUrl);
+    console.log(awsImageId)
+    // const imageKey = awsImage.Key
+    // console.log("AWS image-key :", image)
+
 
     const newShoe = await Shoes.create({
         sellerId, title, shoeSize, image, price, brand, description
