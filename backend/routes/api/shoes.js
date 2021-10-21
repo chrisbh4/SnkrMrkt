@@ -120,7 +120,10 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 router.post('/new', asyncHandler(async (req, res) => {
     const { sellerId, title, shoeSize, image, price, brand , description} = req.body
-    const awsImageUrl = req.body.image
+    const awsImageUrl = req.route;
+    console.log("-----------------------------")
+    console.log(awsImageUrl)
+    console.log(req.path)
     /*
     - Error msg: "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined",
     * Trying to send the image url from the user input
@@ -136,10 +139,10 @@ router.post('/new', asyncHandler(async (req, res) => {
     // console.log(req.body)
    // ! the obj that is being set inside the uploadFile is not an object but a image need to send a obj instead that has the path and image inside it
    // * watch video and see where he talks about the "file.path" and also the "file.filename" inside "uploadFile()"
-    let awsImageId = await uploadFile(awsImageUrl);
-    console.log(awsImageId)
+   // ! try finding the correct path and also might neeed to contact someon
+
+    // await uploadFile(awsImageUrl);
     // const imageKey = awsImage.Key
-    // console.log("AWS image-key :", image)
 
 
     const newShoe = await Shoes.create({
