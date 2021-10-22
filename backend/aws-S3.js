@@ -16,15 +16,17 @@ const s3 = new S3({
 })
 // uploads a file to s3
 
-function uploadFile(file){
+const uploadFile = async(file)=>{
     const fileStream = fs.createReadStream(file.path);
 
     const uploadParams = {
         Bucket: bucketName,
         Body: fileStream,
-        Key: file.filename
+        Key: file.image
     }
-    return s3.upload(uploadParams).promise()
+    const result = await s3.upload(uploadParams).promise();
+
+    return result
 }
 
 // module.export = uploadFile;

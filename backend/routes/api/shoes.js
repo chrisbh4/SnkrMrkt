@@ -10,6 +10,9 @@ const { uploadFile } = require("../../aws-S3")
 const Shoes = Shoe
 const Reviews = Review
 
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 const router = express.Router()
 
 const validateNewShoe = [
@@ -118,12 +121,35 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 }))
 
 
-router.post('/new', asyncHandler(async (req, res) => {
-    const { sellerId, title, shoeSize, image, price, brand , description} = req.body
-    const awsImageUrl = req.route;
-    console.log("-----------------------------")
-    console.log(awsImageUrl)
-    console.log(req.path)
+router.post('/new', upload.single('image'), asyncHandler(async (req, res) => {
+    const { sellerId, title, shoeSize, image, price, brand , description} = req.body;
+    const awsImageObj = req.body;
+    const file = {
+        path: 'uploads',
+        image: req.body.image
+    }
+    console.log(file)
+    // console.log("-----------------------------")
+    // console.log(awsImageUrl)
+/*
+    req.body = {
+  sellerId: 1,
+  title: 'AWS TEST day 2 #10',
+  shoeSize: 6,
+  image: 'https://image.goat.com/240/attachments/product_template_pictures/images/008/655/040/original/94407_00.png.png',
+  price: '750.00',
+  brand: 'Yeezy',
+  description: "The Air Jordan 1 Retro High OG 'Chicago' 2015 colorway was designed to avoid Jordan's $5,000-per game fines from the NBA after the original black "
+}
+
+
+req.path = /new
+
+*/
+// console.log("-------------------")
+//     console.log(req.body)
+//     console.log("------------------- path")
+//     console.log(req.path)
     /*
     - Error msg: "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined",
     * Trying to send the image url from the user input
@@ -141,8 +167,8 @@ router.post('/new', asyncHandler(async (req, res) => {
    // * watch video and see where he talks about the "file.path" and also the "file.filename" inside "uploadFile()"
    // ! try finding the correct path and also might neeed to contact someon
 
-    // await uploadFile(awsImageUrl);
-    // const imageKey = awsImage.Key
+    const imageKey = await uploadFile(file);
+    console.log(imageKey)
 
 
     const newShoe = await Shoes.create({
@@ -152,6 +178,16 @@ router.post('/new', asyncHandler(async (req, res) => {
 }))
 
 
+//* Thursdays progress
+/* - need to get multer to give me a upload file
+   - need to get access to a path and send the image url
+
+Postman Error : {
+    "title": "Server Error",
+    "message": "EISDIR: illegal operation on a directory, read",
+    "stack": "Error: EISDIR: illegal operation on a directory, read"
+}
+*/
 
 // router.get('/:id/reviews', asyncHandler(async (req, res )=>{
 //     const shoe = await Shoe.findByPk(req.params.id);
