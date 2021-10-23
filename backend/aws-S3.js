@@ -24,10 +24,10 @@ const secretAccessKey = process.env.AWS_SECRET_KEY
 //  and aws will automatically use those environment variables
 
 const s3 = new AWS.S3({ apiVersion: "2006-03-01",
-accessKeyId,
-secretAccessKey,
-region
-                         });
+                        accessKeyId,
+                        secretAccessKey,
+                        region
+});
 
 
 AWS.config.update({accessKeyId, secretAccessKey, region})
@@ -64,6 +64,7 @@ const storage = multer.memoryStorage({
 const singleMulterUpload = (nameOfKey) =>
   multer({ storage: storage }).single(nameOfKey);
 
+  
 
 module.exports = {
     s3,
