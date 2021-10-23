@@ -1,20 +1,21 @@
-const express = require("express")
-const asyncHandler = require("express-async-handler")
-const { Shoe, Review } = require('../../db/models')
-const {check} = require("express-validator")
-const { handleValidationErrors } = require("../../utils/validation")
-
-const { uploadFile } = require("../../aws-S3")
+const express = require("express");
+const asyncHandler = require("express-async-handler");
+const { Shoe, Review } = require('../../db/models');
+const {check} = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+const {  singleMulterUpload  , singlePublicFileUpload} = require('../../aws-S3')
+const { uploadFile } = require("../../aws-S3");
 
 // Saved in pluarl form due to Model naming error
-const Shoes = Shoe
-const Reviews = Review
+const Shoes = Shoe;
+const Reviews = Review;
 
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
 
-const router = express.Router()
+// const multer  = require('multer')
 
+// const multer = require('multer');
+// const upload = multer({ dest: './uploads'});
+const router = express.Router();
 const validateNewShoe = [
     check('title')
     .isLength({min:5 })
@@ -38,7 +39,6 @@ const validateNewShoe = [
     .withMessage("Please enter image url"),
     handleValidationErrors
 ]
-
 const validateEditShoe = [
     check('title')
     .isLength({min:5 })
@@ -58,7 +58,6 @@ const validateEditShoe = [
     handleValidationErrors
 ]
 
-
 router.get('/', asyncHandler(async (req, res) => {
     const shoes = await Shoes.findAll({
         include: [Reviews]
@@ -77,16 +76,12 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(allShoes)
 
 }));
-
-
-
 router.get('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
         include: [Reviews]
     })
     return res.send(shoe)
 }))
-
 router.put('/:id',validateEditShoe, asyncHandler(async (req, res) => {
     const shoe = await Shoe.findByPk(req.params.id)
 
@@ -100,7 +95,6 @@ router.put('/:id',validateEditShoe, asyncHandler(async (req, res) => {
     return res.json({ shoe })
 
 }))
-
 router.delete('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
         include: [Reviews]
@@ -120,17 +114,31 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     return res.json(shoe.id)
 }))
 
+router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) => {
 
-router.post('/new', upload.single('image'), asyncHandler(async (req, res) => {
+    // const awsImageObj = req.file;
     const { sellerId, title, shoeSize, image, price, brand , description} = req.body;
-    const awsImageObj = req.body;
+    // console.log(awsImageObj)
+
     const file = {
-        path: 'uploads',
+        originalname: req.body.sellerId.toString(),
         image: req.body.image
     }
-    console.log(file)
-    // console.log("-----------------------------")
-    // console.log(awsImageUrl)
+    const result = await singlePublicFileUpload(file)
+
+
+        console.log("-----------------------------")
+        console.log(result)
+        console.log("-----------------------------")
+        // console.log(awsImageUrl)
+
+    // console.log(awsImageObj)
+
+    // const imageKey = await uploadFile(file);
+    // console.log(imageKey)
+
+
+
 /*
     req.body = {
   sellerId: 1,
@@ -151,24 +159,12 @@ req.path = /new
 //     console.log("------------------- path")
 //     console.log(req.path)
     /*
-    - Error msg: "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined",
-    * Trying to send the image url from the user input
-        - asw-S3.js : I believe its the Key:file.filename that is causing the problem since the object key should be images
-    * new shoe post api works when aws code is commented out
-
-        - refer to the video when he starts to create the API Route
-        - line 20 in aws.js could be the issue just a hunch
-        - check documentationn on how to upload images properly
         - use the 'Key' t to be able to key-into the aws-image later on for image rendering on the frontend
 
     */
-    // console.log(req.body)
-   // ! the obj that is being set inside the uploadFile is not an object but a image need to send a obj instead that has the path and image inside it
    // * watch video and see where he talks about the "file.path" and also the "file.filename" inside "uploadFile()"
-   // ! try finding the correct path and also might neeed to contact someon
+   // * try finding the correct path
 
-    const imageKey = await uploadFile(file);
-    console.log(imageKey)
 
 
     const newShoe = await Shoes.create({
