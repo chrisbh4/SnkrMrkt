@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { Shoe, Review } = require('../../db/models');
 const {check} = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const {  singleMulterUpload  , singlePublicFileUpload, getFileStream} = require('../../aws-S3')
+const {  singleMulterUpload  , awsImageUpload, getFileStream} = require('../../aws-S3')
 
 
 // Saved in pluarl form due to Model naming error
@@ -11,10 +11,7 @@ const Shoes = Shoe;
 const Reviews = Review;
 
 
-// const multer  = require('multer')
 
-// const multer = require('multer');
-// const upload = multer({ dest: './uploads'});
 const router = express.Router();
 const validateNewShoe = [
     check('title')
@@ -124,7 +121,7 @@ router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) 
         originalname: req.body.sellerId.toString(),
         image: req.body.image
     }
-    const result = await singlePublicFileUpload(file)
+    const result = await awsImageUpload(file)
 
     //changed image url to become amazon key id
     const image  = result.Key;
@@ -151,10 +148,20 @@ router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) 
     -[] check if shoe.image includes jpeg or png else send the shoe.image to the fetchAwsImage from the store which connects to the api route
     -[] backend api route takes in shoes, places shoe.image inside the aws download image function to then return the image back to the store fetch call
 
+
+    - Need to figure out how to render the image from aws
+        * it seems like when the image is sent to aws that its being saved as a url and not a file
+            - look into to see if i need to send it as a file since when i click on it from aws-s3 console it makes  me downlaod the image link
 */
 
-router.get('/aws-shoes/:id', (req,res)=>{
-    
+router.get('/aws-shoes/:key', (req,res)=>{
+    const key = req.params.key
+    console.log(key)
+    const awsImage = getFileStream(key)
+    console.log(awsImage)
+
+    res.send(awsImage)
+
 })
 
 module.exports = router

@@ -32,7 +32,7 @@ const s3 = new AWS.S3({ apiVersion: "2006-03-01",
 
 AWS.config.update({accessKeyId, secretAccessKey, region})
 
-const singlePublicFileUpload = async (file) => {
+const awsImageUpload = async (file) => {
   const { originalname, mimetype, image } = await file;
 
   const path = require("path");
@@ -78,7 +78,7 @@ const singleMulterUpload = (nameOfKey) =>
 module.exports = {
     s3,
     singleMulterUpload,
-    singlePublicFileUpload,
+    awsImageUpload,
     getFileStream
 };
 

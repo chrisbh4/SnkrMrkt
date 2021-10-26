@@ -16,7 +16,7 @@ function ShoeList({ shoe }) {
         imageCheck = <img className="shoe-image" src={shoe.image} alt={shoe.title}></img>
     }else{
         // imageCheck = <img className="bad-image shoe-image" alt={shoe.title}></img>
-        imageCheck = <img className="shoe-image" src={shoe.image} alt={shoe.title}></img>
+        imageCheck = <img className="shoe-image" src={`/aws-shoes/${shoe.image}`} alt={shoe.title}></img>
 
     }
 
