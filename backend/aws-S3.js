@@ -52,6 +52,15 @@ const singlePublicFileUpload = async (file) => {
   return result
 };
 
+const getFileStream =(imageKey) =>{
+  const downloadParams = {
+    Key: imageKey,
+    Bucket:bucketName
+  }
+
+  return s3.getObject(downloadParams).createReadStream()
+}
+
 
 
 
@@ -64,12 +73,13 @@ const storage = multer.memoryStorage({
 const singleMulterUpload = (nameOfKey) =>
   multer({ storage: storage }).single(nameOfKey);
 
-  
+
 
 module.exports = {
     s3,
     singleMulterUpload,
-    singlePublicFileUpload
+    singlePublicFileUpload,
+    getFileStream
 };
 
 // // creates new connection to S3

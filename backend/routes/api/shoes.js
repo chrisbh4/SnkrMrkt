@@ -3,8 +3,8 @@ const asyncHandler = require("express-async-handler");
 const { Shoe, Review } = require('../../db/models');
 const {check} = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const {  singleMulterUpload  , singlePublicFileUpload} = require('../../aws-S3')
-const { uploadFile } = require("../../aws-S3");
+const {  singleMulterUpload  , singlePublicFileUpload, getFileStream} = require('../../aws-S3')
+
 
 // Saved in pluarl form due to Model naming error
 const Shoes = Shoe;
@@ -117,7 +117,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) => {
 
     // const awsImageObj = req.file;
-    const { sellerId, title, shoeSize, image, price, brand , description} = req.body;
+    const { sellerId, title, shoeSize, price, brand , description} = req.body;
     // console.log(awsImageObj)
 
     const file = {
@@ -126,44 +126,13 @@ router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) 
     }
     const result = await singlePublicFileUpload(file)
 
+    //changed image url to become amazon key id
+    const image  = result.Key;
+
 
         console.log("-----------------------------")
         console.log(result)
         console.log("-----------------------------")
-        // console.log(awsImageUrl)
-
-    // console.log(awsImageObj)
-
-    // const imageKey = await uploadFile(file);
-    // console.log(imageKey)
-
-
-
-/*
-    req.body = {
-  sellerId: 1,
-  title: 'AWS TEST day 2 #10',
-  shoeSize: 6,
-  image: 'https://image.goat.com/240/attachments/product_template_pictures/images/008/655/040/original/94407_00.png.png',
-  price: '750.00',
-  brand: 'Yeezy',
-  description: "The Air Jordan 1 Retro High OG 'Chicago' 2015 colorway was designed to avoid Jordan's $5,000-per game fines from the NBA after the original black "
-}
-
-
-req.path = /new
-
-*/
-// console.log("-------------------")
-//     console.log(req.body)
-//     console.log("------------------- path")
-//     console.log(req.path)
-    /*
-        - use the 'Key' t to be able to key-into the aws-image later on for image rendering on the frontend
-
-    */
-   // * watch video and see where he talks about the "file.path" and also the "file.filename" inside "uploadFile()"
-   // * try finding the correct path
 
 
 
@@ -174,28 +143,18 @@ req.path = /new
 }))
 
 
-//* Thursdays progress
-/* - need to get multer to give me a upload file
-   - need to get access to a path and send the image url
 
-Postman Error : {
-    "title": "Server Error",
-    "message": "EISDIR: illegal operation on a directory, read",
-    "stack": "Error: EISDIR: illegal operation on a directory, read"
-}
+//need a route to grab the s3 image for each shoe
+/*
+
+-[] Frontend
+    -[] check if shoe.image includes jpeg or png else send the shoe.image to the fetchAwsImage from the store which connects to the api route
+    -[] backend api route takes in shoes, places shoe.image inside the aws download image function to then return the image back to the store fetch call
+
 */
 
-// router.get('/:id/reviews', asyncHandler(async (req, res )=>{
-//     const shoe = await Shoe.findByPk(req.params.id);
-
-//     let {id} = shoe
-//     // console.log(shoeId)
-//     // const allShoeReviews = await Reviews.findByPk({shoeId})
-
-//     // return ({allShoeReviews})
-//     return res.send(shoe)
-//  }))
-
-
+router.get('/aws-shoes/:id', (req,res)=>{
+    
+})
 
 module.exports = router
