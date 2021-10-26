@@ -52,6 +52,9 @@ const awsImageUpload = async (file) => {
   return result
 };
 
+
+
+
 const getFileStream =(imageKey) =>{
   const downloadParams = {
     Key: imageKey,

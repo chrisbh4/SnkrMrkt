@@ -111,6 +111,10 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     return res.json(shoe.id)
 }))
 
+
+
+
+
 router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) => {
 
     // const awsImageObj = req.file;
