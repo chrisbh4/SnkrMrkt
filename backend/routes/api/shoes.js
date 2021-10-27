@@ -8,6 +8,7 @@ const {  singleMulterUpload  , awsImageUpload, getFileStream} = require('../../a
 
 // Saved in pluarl form due to Model naming error
 const Shoes = Shoe;
+
 const Reviews = Review;
 
 
@@ -49,9 +50,9 @@ const validateEditShoe = [
     check('brand')
     .exists({checkFalsy:true})
     .withMessage("Please select a shoe brand."),
-    check('description')
-    .isLength({min:10})
-    .withMessage("Description must be at least 10 characters long."),
+    // check('description')
+    // .isLength({min:10})
+    // .withMessage("Description must be at least 10 characters long."),
     handleValidationErrors
 ]
 
@@ -79,6 +80,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
     })
     return res.send(shoe)
 }))
+
+
 router.put('/:id',validateEditShoe, asyncHandler(async (req, res) => {
     const shoe = await Shoe.findByPk(req.params.id)
 
@@ -92,6 +95,8 @@ router.put('/:id',validateEditShoe, asyncHandler(async (req, res) => {
     return res.json({ shoe })
 
 }))
+
+
 router.delete('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
         include: [Reviews]
@@ -113,8 +118,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 
 
-
-router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) => {
+router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(async (req, res) => {
 
     const awsImageObj = req.file;
     const { sellerId, title, shoeSize, price, brand , description} = req.body;
