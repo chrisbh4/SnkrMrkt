@@ -11,8 +11,7 @@ function EditShoesForm() {
     const history = useHistory()
     const shoeId = params.id
 
-    //! Does not load anything in or does anything (delete any time)
-    //Dispatch gets single shoe
+
     useEffect(() => {
         dispatch(getAllShoes())
     }, [dispatch]);
