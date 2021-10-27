@@ -31,9 +31,9 @@ const validateNewShoe = [
     check('description')
     .isLength({min:10})
     .withMessage("Description must be at least 10 characters long."),
-    check('image')
-    .exists({checkFalsy:true})
-    .withMessage("Please enter image url"),
+    // check('image')
+    // .exists({checkFalsy:true})
+    // .withMessage("Please enter image url"),
     handleValidationErrors
 ]
 const validateEditShoe = [
@@ -114,27 +114,31 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 
 
-
 router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) => {
 
-    // const awsImageObj = req.file;
+    const awsImageObj = req.file;
     const { sellerId, title, shoeSize, price, brand , description} = req.body;
-    // console.log(awsImageObj)
 
-    const file = {
-        originalname: req.body.sellerId.toString(),
-        image: req.body.image
-    }
-    const result = await awsImageUpload(file)
+
+    // console.log('----------------------')
+    // console.log(req.body)
+    // console.log('----------------------')
+    console.log(awsImageObj)
+
+    // const file = {
+    //     originalname: req.body.sellerId.toString(),
+    //     image: req.body.image
+    // }
+    const image = await awsImageUpload(awsImageObj)
+    console.log('----------------------')
+
+    console.log(image)
+    console.log('----------------------')
+
+    // const image = result.Location
 
     //changed image url to become amazon key id
-    const image  = result.Key;
-
-
-        console.log("-----------------------------")
-        console.log(result)
-        console.log("-----------------------------")
-
+    // const image  = result.Location;
 
 
     const newShoe = await Shoes.create({
@@ -158,14 +162,14 @@ router.post('/new',  singleMulterUpload('image'), asyncHandler(async (req, res) 
             - look into to see if i need to send it as a file since when i click on it from aws-s3 console it makes  me downlaod the image link
 */
 
-router.get('/aws-shoes/:key', (req,res)=>{
-    const key = req.params.key
-    console.log(key)
-    const awsImage = getFileStream(key)
-    console.log(awsImage)
+// router.get('/aws-shoes/:key', (req,res)=>{
+//     const key = req.params.key
+//     console.log(key)
+//     const awsImage = getFileStream(key)
+//     console.log(awsImage)
 
-    res.send(awsImage)
+//     res.send(awsImage)
 
-})
+// })
 
 module.exports = router

@@ -28,15 +28,18 @@ function NewShoesForm() {
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(0)
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
+    const [imageFile, setImageFile] = useState("")
     const [brand, setBrand] = useState("")
     const [description , setDescription] = useState("")
+
     const [price, setPrice] = useState(0.00)
     const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    // const updateImage = (e) => setImage(e.target.value)
+    const updateImageFile = (e) => setImageFile(e.target.files[0])
     const updateBrand = (e) => setBrand(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
     const updateDescription= (e) => setDescription(e.target.value)
@@ -44,8 +47,9 @@ function NewShoesForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
-        const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price, brand, description))
+        let payload = {sellerId, title, shoeSize, imageFile, price, brand, description}
+        const data = await dispatch(getCreatedShoe(payload))
+        // const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, imageFile, price, brand, description))
 
         if (!data?.errors) {
 
@@ -143,10 +147,18 @@ function NewShoesForm() {
                     <div className="form-item-new">
                         <label>Image Url: </label>
                         <input
+                            type="file"
+                            onChange={updateImageFile}
+                            accept="image/*"
+                        ></input>
+                    </div>
+                    {/* <div className="form-item-new">
+                        <label>Image Url: </label>
+                        <input
                             type="text"
                             onChange={updateImage}
                         ></input>
-                    </div>
+                    </div> */}
                     <div className="new-shoe-button">
                         <button>Submit New Listing</button>
                     </div>

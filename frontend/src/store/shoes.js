@@ -49,12 +49,33 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     return data
 };
 
-export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand, description) => async (dispatch) => {
-    const res = await csrfFetch("/api/shoes/new", {
-        method: "POST",
-        header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sellerId, title, shoeSize, image, price, brand, description })
-    })
+export const getCreatedShoe = (payload) => async (dispatch) => {
+    const {sellerId, title, shoeSize, imageFile, price, brand, description} = payload;
+    const formData = new FormData()
+    // const res = await csrfFetch("/api/shoes/new", {
+    //     method: "POST",
+    //     header: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({payload})
+    // })
+    formData.append("sellerId", sellerId);
+    formData.append("title", title);
+    formData.append("shoeSize", shoeSize);
+    formData.append("price", price);
+    formData.append("brand", brand);
+    formData.append("description", description);
+
+      // for single file
+  if (imageFile) formData.append("image", imageFile);
+
+  const res = await csrfFetch(`/api/shoes/new`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+
+
 
     const data = await res.json()
     if (data.ok) {

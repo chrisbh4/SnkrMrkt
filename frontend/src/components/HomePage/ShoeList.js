@@ -34,7 +34,6 @@ function ShoeList({ shoe }) {
                             <p className="homepage-shoe-title">
                                 {shoe.title}
                             </p>
-
                         </div>
                         <div className="shoes-shoeSize">
                             <h4>{shoe.brand.toUpperCase()}</h4>

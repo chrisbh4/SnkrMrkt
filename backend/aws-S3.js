@@ -33,7 +33,7 @@ const s3 = new AWS.S3({ apiVersion: "2006-03-01",
 AWS.config.update({accessKeyId, secretAccessKey, region})
 
 const awsImageUpload = async (file) => {
-  const { originalname, mimetype, image } = await file;
+  const { originalname, mimetype, buffer } = await file;
 
   const path = require("path");
   // name of the file in your S3 bucket will be the date in ms plus the extension name
@@ -41,15 +41,15 @@ const awsImageUpload = async (file) => {
   const uploadParams = {
     Bucket: bucketName,
     Key,
-    Body: image,
+    Body: buffer,
     ACL: "public-read",
   };
 //   debugger
   const result = await s3.upload(uploadParams).promise();
 
   // save the name of the file in your bucket as the key in your database to retrieve for later
-//   return result.Location;
-  return result
+  return result.Location;
+  // return result
 };
 
 
