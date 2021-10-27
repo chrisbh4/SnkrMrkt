@@ -17,7 +17,6 @@ function EditShoesForm() {
         dispatch(getAllShoes())
     }, [dispatch]);
 
-    // const user = useSelector((state) => state.session.user.id)
 
     const shoe = useSelector((state) => state.shoes[shoeId])
 
@@ -29,7 +28,6 @@ function EditShoesForm() {
 
     const [errors, setErrors] = useState([])
 
-    console.log("title:", title)
 
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
@@ -39,7 +37,7 @@ function EditShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
     const updateDescription = (e) => setDescription(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    const updateImage = (e) => setImage(e.target.files[0])
 
 
     const onSubmit = async (e) => {
@@ -122,14 +120,23 @@ function EditShoesForm() {
                     </div>
 
                     {/* Add Image to edit form and add it to the editShoe Store */}
-                    <div className="form-item">
+                    <div className="form-item-new">
+                        <label>Image Url: </label>
+                        <input
+                            type="file"
+                            onChange={updateImage}
+                            accept="image/*"
+                        ></input>
+                    </div>
+
+                    {/* <div className="form-item">
                         <label>Image Url:</label>
                         <input
                             type="text"
                             placeholder={image}
                             onChange={updateImage}
                         ></input>
-                    </div>
+                    </div> */}
 
 
 

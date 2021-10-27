@@ -64,7 +64,6 @@ function NewShoesForm() {
                                 <p key={error.id}>{error}</p>
                             )
                         }
-                        // might cause error || new add
                         return null;
                     })}
                     <div className="form-item">
@@ -140,13 +139,18 @@ function NewShoesForm() {
                             accept="image/*"
                         ></input>
                     </div>
-                    {/* <div className="form-item-new">
+                    {/*
+                    - TODO: add a or selection for either inputing string or files for images
+                    
+                    <div className="form-item-new">
                         <label>Image Url: </label>
                         <input
                             type="text"
                             onChange={updateImage}
                         ></input>
-                    </div> */}
+                    </div>
+
+                    */}
                     <div className="new-shoe-button">
                         <button>Submit New Listing</button>
                     </div>
