@@ -55,14 +55,7 @@ const awsImageUpload = async (file) => {
 
 
 
-const getFileStream =(imageKey) =>{
-  const downloadParams = {
-    Key: imageKey,
-    Bucket:bucketName
-  }
 
-  return s3.getObject(downloadParams).createReadStream()
-}
 
 
 
@@ -81,8 +74,7 @@ const singleMulterUpload = (nameOfKey) =>
 module.exports = {
     s3,
     singleMulterUpload,
-    awsImageUpload,
-    getFileStream
+    awsImageUpload
 };
 
 // // creates new connection to S3

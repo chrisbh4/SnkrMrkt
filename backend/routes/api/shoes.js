@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { Shoe, Review } = require('../../db/models');
 const {check} = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const {  singleMulterUpload  , awsImageUpload, getFileStream} = require('../../aws-S3')
+const {  singleMulterUpload  , awsImageUpload} = require('../../aws-S3')
 
 
 // Saved in pluarl form due to Model naming error
@@ -19,11 +19,9 @@ const validateNewShoe = [
     .isLength({min:5 })
     .withMessage("Shoe title must be greater than 5 characters"),
     check('shoeSize')
-    // .exists({checkFalsy:true})
     .isFloat({min:4 , max:18})
     .withMessage("Please provide a shoe size in mens between 4 and 18"),
     check('price')
-    // .exists({checkFalsy:true})
     .isFloat({min:1})
     .withMessage("Please provide a price value for this shoe greater than $0.99"),
     check('brand')
@@ -127,57 +125,15 @@ router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(a
     const awsImageObj = req.file;
     const { sellerId, title, shoeSize, price, brand , description} = req.body;
 
-
-    // console.log('----------------------')
-    // console.log(req.body)
-    // console.log('----------------------')
-    console.log(awsImageObj)
-
-    // const file = {
-    //     originalname: req.body.sellerId.toString(),
-    //     image: req.body.image
-    // }
+    // console.log(awsImageObj)
     const image = await awsImageUpload(awsImageObj)
-    console.log('----------------------')
-
-    console.log(image)
-    console.log('----------------------')
-
-    // const image = result.Location
-
-    //changed image url to become amazon key id
-    // const image  = result.Location;
-
 
     const newShoe = await Shoes.create({
         sellerId, title, shoeSize, image, price, brand, description
     })
+
     return res.json({ newShoe })
 }))
 
-
-
-//need a route to grab the s3 image for each shoe
-/*
-
--[] Frontend
-    -[] check if shoe.image includes jpeg or png else send the shoe.image to the fetchAwsImage from the store which connects to the api route
-    -[] backend api route takes in shoes, places shoe.image inside the aws download image function to then return the image back to the store fetch call
-
-
-    - Need to figure out how to render the image from aws
-        * it seems like when the image is sent to aws that its being saved as a url and not a file
-            - look into to see if i need to send it as a file since when i click on it from aws-s3 console it makes  me downlaod the image link
-*/
-
-// router.get('/aws-shoes/:key', (req,res)=>{
-//     const key = req.params.key
-//     console.log(key)
-//     const awsImage = getFileStream(key)
-//     console.log(awsImage)
-
-//     res.send(awsImage)
-
-// })
 
 module.exports = router
