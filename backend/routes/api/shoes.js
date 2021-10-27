@@ -83,14 +83,17 @@ router.get('/:id', asyncHandler(async (req, res) => {
 router.put('/:id', singleMulterUpload('image'),validateEditShoe, asyncHandler(async (req, res) => {
     const shoe = await Shoe.findByPk(req.params.id) ;
     const imageFile = req.file ;
-    console.log('----------------')
-    console.log(imageFile)
-    console.log('----------------')
+    if(req.file){
+        shoe.image = await awsImageUpload(imageFile) ;
+    }
+    else{
+        shoe.image = req.body.image
+    }
+    
 
     shoe.title = req.body.title ;
     shoe.shoeSize = req.body.shoeSize ;
     shoe.price = req.body.price ;
-    shoe.image = await awsImageUpload(imageFile) ;
     shoe.description = req.body.description ;
 
     await shoe.save();
