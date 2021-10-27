@@ -52,7 +52,7 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
 export const getCreatedShoe = (payload) => async (dispatch) => {
     const {sellerId, title, shoeSize, imageFile, price, brand, description} = payload;
     const formData = new FormData()
-
+    //* used when application wasn't using AWS or having files uploaded
     // const res = await csrfFetch("/api/shoes/new", {
     //     method: "POST",
     //     header: { "Content-Type": "application/json" },
@@ -92,7 +92,7 @@ export const getCreatedShoe = (payload) => async (dispatch) => {
 };
 
 export const getEditShoe = (title, shoeSize, image, price, brand, description, shoeId) => async (dispatch) => {
-    //* used without aws
+    //* used when application wasn't using AWS or having files uploaded
     // const res = await csrfFetch(`/api/shoes/${shoeId}`, {
     //     method: "PUT",
     //     header: { "Content-Type": "application/json" },
