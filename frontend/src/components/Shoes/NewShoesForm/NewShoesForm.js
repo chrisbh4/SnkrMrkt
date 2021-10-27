@@ -13,18 +13,6 @@ function NewShoesForm() {
     const history = useHistory()
 
     const sellerId = useSelector((state) => state.session.user.id)
-    // const allShoes = useSelector((state)=> state?.shoes)
-
-    // useEffect(()=>{
-    //     dispatch(getAllShoes())
-    // },[dispatch])
-
-    // let arrayOfShoes = Object.keys(allShoes)
-    // let lastShoeId = arrayOfShoes[arrayOfShoes.length -1];
-    // let newShoeId = Number(lastShoeId) + 1
-    // console.log("here:", arrayOfShoes)
-    // console.log("next:", lastShoeId)
-    // console.log("last:", newShoeId)
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(0)

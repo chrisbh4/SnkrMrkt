@@ -3,6 +3,10 @@ import React from "react";
 // import { getAllShoes } from "../../store/shoes";
 import '../HomePage/ShoeList.css'
 
+/*
+    TODO:
+        -[] fix imageChecker that will check for a bad image,
+*/
 
 function ShoeList({ shoe }) {
     // Does not make a difference
