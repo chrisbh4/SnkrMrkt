@@ -13,30 +13,21 @@ function NewShoesForm() {
     const history = useHistory()
 
     const sellerId = useSelector((state) => state.session.user.id)
-    // const allShoes = useSelector((state)=> state?.shoes)
-
-    // useEffect(()=>{
-    //     dispatch(getAllShoes())
-    // },[dispatch])
-
-    // let arrayOfShoes = Object.keys(allShoes)
-    // let lastShoeId = arrayOfShoes[arrayOfShoes.length -1];
-    // let newShoeId = Number(lastShoeId) + 1
-    // console.log("here:", arrayOfShoes)
-    // console.log("next:", lastShoeId)
-    // console.log("last:", newShoeId)
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(0)
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
+    const [imageFile, setImageFile] = useState("")
     const [brand, setBrand] = useState("")
     const [description , setDescription] = useState("")
+
     const [price, setPrice] = useState(0.00)
     const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    // const updateImage = (e) => setImage(e.target.value)
+    const updateImageFile = (e) => setImageFile(e.target.files[0])
     const updateBrand = (e) => setBrand(e.target.value)
     const updatePrice = (e) => setPrice(e.target.value)
     const updateDescription= (e) => setDescription(e.target.value)
@@ -44,8 +35,9 @@ function NewShoesForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
-        const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, image, price, brand, description))
+        let payload = {sellerId, title, shoeSize, imageFile, price, brand, description}
+        const data = await dispatch(getCreatedShoe(payload))
+        // const data = await dispatch(getCreatedShoe(sellerId, title, shoeSize, imageFile, price, brand, description))
 
         if (!data?.errors) {
 
@@ -72,7 +64,6 @@ function NewShoesForm() {
                                 <p key={error.id}>{error}</p>
                             )
                         }
-                        // might cause error || new add
                         return null;
                     })}
                     <div className="form-item">
@@ -143,10 +134,23 @@ function NewShoesForm() {
                     <div className="form-item-new">
                         <label>Image Url: </label>
                         <input
+                            type="file"
+                            onChange={updateImageFile}
+                            accept="image/*"
+                        ></input>
+                    </div>
+                    {/*
+                    - TODO: add a or selection for either inputing string or files for images
+                    
+                    <div className="form-item-new">
+                        <label>Image Url: </label>
+                        <input
                             type="text"
                             onChange={updateImage}
                         ></input>
                     </div>
+
+                    */}
                     <div className="new-shoe-button">
                         <button>Submit New Listing</button>
                     </div>

@@ -25,7 +25,7 @@ function ShoppingCart() {
     const totalPrice = total.toFixed(2)
 
     // console.log("total", totalPrice);
-    const emptyCart = <h2 className="empty-cart">Cart is empty :(</h2>
+    const emptyCart = <h2 className="empty-cart">Cart is empty 😢 </h2>
 
     const purchaseTheCart = async () => {
         await dispatch(purchaseFromCart())

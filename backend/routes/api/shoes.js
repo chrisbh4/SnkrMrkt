@@ -1,25 +1,27 @@
-const express = require("express")
-const asyncHandler = require("express-async-handler")
-const { Shoe, Review } = require('../../db/models')
-const {check} = require("express-validator")
-const { handleValidationErrors } = require("../../utils/validation")
+const express = require("express");
+const asyncHandler = require("express-async-handler");
+const { Shoe, Review } = require('../../db/models');
+const {check} = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+const {  singleMulterUpload  , awsImageUpload} = require('../../aws-S3')
+
 
 // Saved in pluarl form due to Model naming error
-const Shoes = Shoe
-const Reviews = Review
+const Shoes = Shoe;
 
-const router = express.Router()
+const Reviews = Review;
 
+
+
+const router = express.Router();
 const validateNewShoe = [
     check('title')
     .isLength({min:5 })
     .withMessage("Shoe title must be greater than 5 characters"),
     check('shoeSize')
-    // .exists({checkFalsy:true})
     .isFloat({min:4 , max:18})
     .withMessage("Please provide a shoe size in mens between 4 and 18"),
     check('price')
-    // .exists({checkFalsy:true})
     .isFloat({min:1})
     .withMessage("Please provide a price value for this shoe greater than $0.99"),
     check('brand')
@@ -28,12 +30,11 @@ const validateNewShoe = [
     check('description')
     .isLength({min:10})
     .withMessage("Description must be at least 10 characters long."),
-    check('image')
-    .exists({checkFalsy:true})
-    .withMessage("Please enter image url"),
+    // check('image')
+    // .exists({checkFalsy:true})
+    // .withMessage("Please enter image url"),
     handleValidationErrors
 ]
-
 const validateEditShoe = [
     check('title')
     .isLength({min:5 })
@@ -47,12 +48,11 @@ const validateEditShoe = [
     check('brand')
     .exists({checkFalsy:true})
     .withMessage("Please select a shoe brand."),
-    check('description')
-    .isLength({min:10})
-    .withMessage("Description must be at least 10 characters long."),
+    // check('description')
+    // .isLength({min:10})
+    // .withMessage("Description must be at least 10 characters long."),
     handleValidationErrors
 ]
-
 
 router.get('/', asyncHandler(async (req, res) => {
     const shoes = await Shoes.findAll({
@@ -72,9 +72,6 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(allShoes)
 
 }));
-
-
-
 router.get('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
         include: [Reviews]
@@ -82,19 +79,28 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.send(shoe)
 }))
 
-router.put('/:id',validateEditShoe, asyncHandler(async (req, res) => {
-    const shoe = await Shoe.findByPk(req.params.id)
 
-    shoe.title = req.body.title
-    shoe.shoeSize = req.body.shoeSize
-    shoe.price = req.body.price
-    shoe.image = req.body.image
-    shoe.description = req.body.description
+router.put('/:id', singleMulterUpload('image'),validateEditShoe, asyncHandler(async (req, res) => {
+    const shoe = await Shoe.findByPk(req.params.id) ;
+    const imageFile = req.file ;
+    if(req.file){
+        shoe.image = await awsImageUpload(imageFile) ;
+    }
+    else{
+        shoe.image = req.body.image
+    }
+    
 
-    await shoe.save()
-    return res.json({ shoe })
+    shoe.title = req.body.title ;
+    shoe.shoeSize = req.body.shoeSize ;
+    shoe.price = req.body.price ;
+    shoe.description = req.body.description ;
+
+    await shoe.save();
+    return res.json({ shoe });
 
 }))
+
 
 router.delete('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
@@ -116,28 +122,21 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 }))
 
 
-router.post('/new', validateNewShoe, asyncHandler(async (req, res) => {
-    const { sellerId, title, shoeSize, image, price, brand , description} = req.body
+
+router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(async (req, res) => {
+
+    const awsImageObj = req.file;
+    const { sellerId, title, shoeSize, price, brand , description} = req.body;
+
+    // console.log(awsImageObj)
+    const image = await awsImageUpload(awsImageObj)
 
     const newShoe = await Shoes.create({
         sellerId, title, shoeSize, image, price, brand, description
     })
+
     return res.json({ newShoe })
 }))
-
-
-
-// router.get('/:id/reviews', asyncHandler(async (req, res )=>{
-//     const shoe = await Shoe.findByPk(req.params.id);
-
-//     let {id} = shoe
-//     // console.log(shoeId)
-//     // const allShoeReviews = await Reviews.findByPk({shoeId})
-
-//     // return ({allShoeReviews})
-//     return res.send(shoe)
-//  }))
-
 
 
 module.exports = router

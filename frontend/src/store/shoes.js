@@ -49,17 +49,40 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     return data
 };
 
-export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand, description) => async (dispatch) => {
-    const res = await csrfFetch("/api/shoes/new", {
-        method: "POST",
-        header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sellerId, title, shoeSize, image, price, brand, description })
-    })
+export const getCreatedShoe = (payload) => async (dispatch) => {
+    const {sellerId, title, shoeSize, imageFile, price, brand, description} = payload;
+    const formData = new FormData()
+    //* used when application wasn't using AWS or having files uploaded
+    // const res = await csrfFetch("/api/shoes/new", {
+    //     method: "POST",
+    //     header: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({payload})
+    // })
+
+    // used for aws
+    formData.append("sellerId", sellerId);
+    formData.append("title", title);
+    formData.append("shoeSize", shoeSize);
+    formData.append("price", price);
+    formData.append("brand", brand);
+    formData.append("description", description);
+
+      // for single file
+  if (imageFile) formData.append("image", imageFile);
+
+  const res = await csrfFetch(`/api/shoes/new`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+
+
 
     const data = await res.json()
     if (data.ok) {
 
-        // console.log(data)
 
         dispatch(createShoe(data))
     } else {
@@ -69,17 +92,35 @@ export const getCreatedShoe = (sellerId, title, shoeSize, image, price, brand, d
 };
 
 export const getEditShoe = (title, shoeSize, image, price, brand, description, shoeId) => async (dispatch) => {
+    //* used when application wasn't using AWS or having files uploaded
+    // const res = await csrfFetch(`/api/shoes/${shoeId}`, {
+    //     method: "PUT",
+    //     header: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ title, shoeSize, image, price, brand, description })
+    // })
+
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("shoeSize", shoeSize);
+    formData.append("price", price);
+    formData.append("brand", brand);
+    formData.append("description", description);
+    formData.append("shoeId", shoeId);
+    if(image) formData.append("image", image);
+
     const res = await csrfFetch(`/api/shoes/${shoeId}`, {
         method: "PUT",
-        header: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, shoeSize, image, price, brand, description })
-    })
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: formData,
+      });
 
     const data = await res.json()
 
     if (data.ok) {
         dispatch(editShoe(data))
-        // return data
     }
     else {
         return data
@@ -106,20 +147,14 @@ function reducer(state = initialState, action) {
     let newState = { ...state }
     switch (action.type) {
         case LOAD_SHOES:
-            // console.log(action.shoes)
             return { ...state, ...action.shoes }
         case CREATE_SHOE:
-            // state[action.shoe.id] = action.shoe
-            // return state
             newState[action.shoe.id] = action.shoe
             return newState
         case EDIT_SHOE:
             state[action.shoe.id] = action.shoe
             return state
         case DELETE_SHOE:
-            // delete state[action.shoe.id]
-            // return state
-
             delete newState[action.shoeId]
             return newState
         default:
