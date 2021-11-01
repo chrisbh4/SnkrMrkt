@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink , useHistory} from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -16,11 +16,11 @@ function Navigation({ isLoaded }) {
 
   // const [query, setQuery] = useState("");
 
-  const demoLogin = ()=>{
+  const demoLogin = () => {
     let credential = 'demo@user.io'
     let password = 'password'
     history.push('/home')
-    return dispatch(login({credential, password}))
+    return dispatch(login({ credential, password }))
   }
 
 
@@ -32,17 +32,29 @@ function Navigation({ isLoaded }) {
       <div className="nav-logged-in">
         {/* need to change classname */}
 
+
+        <h1 color="white">
+          The Plug
+          </h1>
+
         <div id="search-bar-container">
           <SearchBar  shoes={grabAllShoes} />
         </div>
 
-              <NavLink to="/cart">
-         <button className="nav-profile-button">
-              <i className="fas fa-shopping-cart"></i>
-        </button>
-              </NavLink>
+        <NavLink exact to="/home">
+          <button className="nav-button">
+            Home
+          </button>
+        </NavLink>
 
-        <div className="nav-profile-button">
+
+        <NavLink to="/cart">
+          <button className="nav-profile-button">
+            <i className="fas fa-shopping-cart"></i>
+          </button>
+        </NavLink>
+
+        <div >
           <ProfileButton user={sessionUser} />
         </div>
 
@@ -50,23 +62,12 @@ function Navigation({ isLoaded }) {
           <NavLink to="/about">About</NavLink>
           </button> */}
 
-          <NavLink to="/shoes/new">
-        <button className="nav-button">
-        New Shoe
-        </button>
-          </NavLink>
+        <NavLink to="/shoes/new">
+          <button className="nav-button">
+            New Shoe
+          </button>
+        </NavLink>
 
-          <NavLink exact to="/home">
-        <button className="nav-button">
-           Home
-        </button>
-          </NavLink>
-
-          {/* <NavLink exact to="/">
-        <button className="nav-button">
-            Home
-        </button>
-          </NavLink> */}
 
 
       </div>
@@ -94,17 +95,17 @@ function Navigation({ isLoaded }) {
         {/* <button className="nav-button">
           <NavLink exact to="/home">Home</NavLink>
         </button> */}
-             <NavLink exact to="/home">
-        <button className="nav-button">
+        <NavLink exact to="/home">
+          <button className="nav-button">
             All Shoes
-        </button>
-          </NavLink>
+          </button>
+        </NavLink>
 
-          <NavLink exact to="/">
-        <button className="nav-button">
+        <NavLink exact to="/">
+          <button className="nav-button">
             Home
-        </button>
-          </NavLink>
+          </button>
+        </NavLink>
 
       </div>
     );
@@ -118,9 +119,9 @@ function Navigation({ isLoaded }) {
     //     {isLoaded && sessionLinks}
     //   </li>
     // </ul>
-      <nav >
-        {isLoaded && sessionLinks}
-      </nav>
+    <nav >
+      {isLoaded && sessionLinks}
+    </nav>
     //   {/* <button className="nav-button">
     //   <NavLink to="/shoes/new">New Shoe</NavLink>
     // </button>
