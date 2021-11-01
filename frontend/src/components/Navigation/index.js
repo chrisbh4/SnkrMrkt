@@ -75,9 +75,9 @@ function Navigation({ isLoaded }) {
         {/* need to change classname */}
 
         <div className="web-title">
-            <a href="/home" id="web-title-redirect">
+          <a href="/home" id="web-title-redirect">
             The Plug
-              </a>
+          </a>
 
         </div>
 
@@ -124,9 +124,16 @@ function Navigation({ isLoaded }) {
   } else {
     // Logged out Nav-Bar
     sessionLinks = (
-      <div className="nav-logged-in">
+      <div className="nav-logged-out">
 
-        <button className="nav-button" onClick={demoLogin} >Demo</button>
+
+        <div className="web-title-logged-out">
+          <a href="/" id="web-title-redirect">
+            The Plug
+          </a>
+        </div>
+
+
 
         <button className="nav-button">
           <LoginFormModal />
@@ -136,13 +143,9 @@ function Navigation({ isLoaded }) {
           <SignUpModal />
         </button>
 
-        {/* <button className="nav-button">
-          <NavLink to="/">About</NavLink>
-          </button> */}
+        <button className="nav-button" onClick={demoLogin} >Demo</button>
 
-        {/* <button className="nav-button">
-          <NavLink exact to="/home">Home</NavLink>
-        </button> */}
+
         <NavLink exact to="/home">
           <button className="nav-button">
             All Shoes

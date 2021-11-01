@@ -18,6 +18,17 @@
   font-weight: bold;
 }
 
+.nav-logged-out{
+  background-color:#24292e;
+    position: fixed;
+    width: 100%;
+    margin: -8px;
+    height:60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 .nav-logged-in{
 background-color:#24292e;
   position: fixed;
@@ -28,6 +39,8 @@ background-color:#24292e;
   justify-content: space-between;
   align-items: center;
 }
+
+
 
 
 /** make this a universal transition:
@@ -79,8 +92,14 @@ transition: background-color 0.3s, box-shadow 0.3s, color 0.3s; */
 
 #web-title-redirect{
   padding: 10px;
-  font-size: 35px;
+  font-size: 40px;
   color: white;
+
+}
+
+.web-title-logged-out{
+  position: relative;
+  right: 250px;
 }
 
 button > *{
