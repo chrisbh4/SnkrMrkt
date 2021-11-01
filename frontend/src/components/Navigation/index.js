@@ -29,44 +29,92 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       // Logged in Nav-Bar
+      // <div className="nav-logged-in">
+      //   {/* need to change classname */}
+
+
+      //   <h1 color="white">
+      //     The Plug
+      //     </h1>
+
+      //   <div id="search-bar-container">
+      //     <SearchBar  shoes={grabAllShoes} />
+      //   </div>
+
+      //   <NavLink exact to="/home">
+      //     <button className="nav-button">
+      //       Home
+      //     </button>
+      //   </NavLink>
+
+
+      //   <NavLink to="/cart">
+      //     <button className="nav-profile-button">
+      //       <i className="fas fa-shopping-cart"></i>
+      //     </button>
+      //   </NavLink>
+
+      //   <div >
+      //     <ProfileButton user={sessionUser} />
+      //   </div>
+
+      //   {/* <button className="nav-button" >
+      //     <NavLink to="/about">About</NavLink>
+      //     </button> */}
+
+      //   <NavLink to="/shoes/new">
+      //     <button className="nav-button">
+      //       New Shoe
+      //     </button>
+      //   </NavLink>
+
+
+
+      // </div>
       <div className="nav-logged-in">
         {/* need to change classname */}
 
+        <div className="web-title">
+            <a href="/home" id="web-title-redirect">
+            The Plug
+              </a>
 
-        <h1 color="white">
-          The Plug
-          </h1>
+        </div>
+
 
         <div id="search-bar-container">
-          <SearchBar  shoes={grabAllShoes} />
+          <SearchBar shoes={grabAllShoes} />
         </div>
 
-        <NavLink exact to="/home">
-          <button className="nav-button">
-            Home
-          </button>
-        </NavLink>
+        <div className="test-1">
+          <NavLink exact to="/home">
+            <button className="nav-button">
+              Home
+            </button>
+          </NavLink>
+
+          <NavLink to="/shoes/new">
+            <button className="nav-button">
+              New Shoe
+            </button>
+          </NavLink>
+
+          <div >
+            <ProfileButton user={sessionUser} />
+          </div>
 
 
-        <NavLink to="/cart">
-          <button className="nav-profile-button">
-            <i className="fas fa-shopping-cart"></i>
-          </button>
-        </NavLink>
+          <NavLink to="/cart">
+            <button className="nav-profile-button">
+              <i className="fas fa-shopping-cart"></i>
+            </button>
+          </NavLink>
 
-        <div >
-          <ProfileButton user={sessionUser} />
+
+
+
+
         </div>
-
-        {/* <button className="nav-button" >
-          <NavLink to="/about">About</NavLink>
-          </button> */}
-
-        <NavLink to="/shoes/new">
-          <button className="nav-button">
-            New Shoe
-          </button>
-        </NavLink>
 
 
 
