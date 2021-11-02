@@ -81,7 +81,7 @@ function EditShoesForm() {
             <h1 className="page-title">
                 <a href={`/shoes/${shoeId}`}>Edit Shoe</a>
             </h1>
-            <div className="form-container">
+            <div className="edit-shoe-form-container">
                 <form onSubmit={onSubmit}>
                    {errorHandler}
                     <div className="form-item-edit" >
@@ -101,9 +101,10 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    <div className="form-item-edit">
+                    <div className="form-item-edit" id="shoes-edit-description" >
                         <label>Description: </label>
                        <textarea
+                       id="shoe-textarea"
                         onChange={updateDescription}
                         placeholder={description}
                        >
@@ -119,7 +120,7 @@ function EditShoesForm() {
                     </div>
 
                     {/* Add Image to edit form and add it to the editShoe Store */}
-                    <div className="form-item-edit-new">
+                    <div className="form-item-edit">
                         <label>Image Url: </label>
                         <input
                             type="file"
