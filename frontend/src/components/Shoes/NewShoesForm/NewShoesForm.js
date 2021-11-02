@@ -32,7 +32,6 @@ function NewShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
     const updateDescription= (e) => setDescription(e.target.value)
 
-    const errorChecker = () =>  errors.length
 
     const onSubmit = async (e) => {
         e.preventDefault();
