@@ -46,7 +46,8 @@ let searchResult = allShoesIds.map((id)=>{
     return (
 
         <div className="searchBar-placement">
-            <div className="search-bar-input-container" style={query.length ? {top:"150px", position:"relative" , left:"129px"}: {}}   >
+            {/* <div className="search-bar-input-container" style={query.length ? {top:"150px", position:"relative" , left:"129px"}: {}}   > */}
+            <div className="search-bar-input-container" style={query.length ? {top:"150px", position:"relative" , left:"65px"}: {}}   >
             {/* <div className="search-bar-input-container"   > */}
                 <input
                     className="searchBar-input"

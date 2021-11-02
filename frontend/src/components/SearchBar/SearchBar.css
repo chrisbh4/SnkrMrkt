@@ -2,7 +2,8 @@
 
 #search-bar-container{
     position: relative;
-    right: 180px;
+    left: 100px;
+    /* right: 180px; */
 }
 
 .search-list-container{
@@ -42,6 +43,7 @@
     position: relative;
     top: 165px;
     height: 300px;
+    right:55px;
     width: 650px;
     /* padding:40px; */
 
