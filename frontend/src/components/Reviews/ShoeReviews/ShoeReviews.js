@@ -38,7 +38,9 @@ function ShoeReviews({ shoe }) {
     if (userId > 0.9) {
         createReviewButton = (
             <>
-                <button className="leave-review-button"><a href={`/shoes/${shoe?.id}/reviews/new`}>Leave a Review</a></button>
+                <a href={`/shoes/${shoe?.id}/reviews/new`}>
+                    <button className="leave-review-button">Leave a Review</button>
+                    </a>
             </>
         )
     }
