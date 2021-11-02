@@ -56,7 +56,7 @@ function NewShoesForm() {
              <h1 id="new-shoe-header">
                 <a href={`/home`}>New Shoe</a>
             </h1>
-            <div className="new-form-container">
+            <div className="new-shoe-form-container">
                 <form onSubmit={onSubmit}>
                     <div className="new-errors" hidden={!errors.length} >
                     {
@@ -128,9 +128,10 @@ function NewShoesForm() {
                             placeholder="1.00"
                         ></input>
                     </div>
-                    <div className="form-item-new">
+                    <div className="form-item-new" id="shoes-new-description">
                         <label>Description: </label>
                        <textarea
+                       id="shoe-textarea"
                         onChange={updateDescription}
                        >
                        </textarea>
