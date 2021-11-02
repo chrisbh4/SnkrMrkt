@@ -84,7 +84,7 @@ function EditShoesForm() {
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                    {errorHandler}
-                    <div className="form-item" >
+                    <div className="form-item-new" >
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -93,7 +93,7 @@ function EditShoesForm() {
                             name="title"
                         ></input>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-new">
                         <label>Shoe Size:</label>
                         <input
                             type="number"
@@ -101,7 +101,7 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-new">
                         <label>Description: </label>
                        <textarea
                         onChange={updateDescription}
@@ -109,7 +109,7 @@ function EditShoesForm() {
                        >
                        </textarea>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-new">
                         <label>Price: $</label>
                         <input
                             type="number"
