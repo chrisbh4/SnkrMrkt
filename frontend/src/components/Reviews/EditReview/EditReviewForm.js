@@ -162,11 +162,11 @@ function EditReviewForm(){
                             onChange={updateImage}
                         ></input>
                     </div> */}
-                    <div className="edit-review-button">
-                        <button type="submit">Submit</button>
+                    <div className="edit-review-button-div">
+                        <button className="edit-review-buttons" type="submit">Submit</button>
                     </div>
-                    <div className="delete-review-button">
-                        <button type="button" onClick={handleDelete}>Delete</button>
+                    <div className="delete-review-button-div">
+                        <button className="edit-review-buttons" type="button" onClick={handleDelete}>Delete</button>
                     </div>
             </form>
             </div>

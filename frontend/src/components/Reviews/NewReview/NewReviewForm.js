@@ -126,8 +126,8 @@ function NewReviewForm(){
                             onChange={updateImage}
                         ></input>
                     </div> */}
-                    <div>
-                        <button className="submit-review-button" type="submit">Submit</button>
+                    <div className="submit-review-button-div">
+                        <button className="new-review-button" type="submit">Submit</button>
                     </div>
             </form>
             </div>
