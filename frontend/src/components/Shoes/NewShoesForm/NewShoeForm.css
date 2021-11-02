@@ -32,18 +32,7 @@
     justify-content: center;
 }
 
-#new-shoe-header:hover > a {
-    /* background: radial-gradient(circle, rgba(5,4,22,1) 0%, rgba(244,25,69,1) 100%); */
-    /* text-decoration: ; */
-    width: 300px;
-    color: black;
-    font-size: 58px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    /* text-shadow: 5px 3px 0px #df0202; */
-    /* top: 135px; */
-}
+
 
 .form-container {
     margin-top: 175px;
