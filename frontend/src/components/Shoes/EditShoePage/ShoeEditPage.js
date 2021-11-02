@@ -72,7 +72,7 @@ function EditShoesForm() {
 
         await dispatch(getDeletedShoe(shoe.id))
         alert("Shoe has been deleted.");
-        history.push('/')
+        history.push('/home')
     }
 
     return (
