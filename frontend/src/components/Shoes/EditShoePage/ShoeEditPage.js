@@ -84,7 +84,7 @@ function EditShoesForm() {
             <div className="form-container">
                 <form onSubmit={onSubmit}>
                    {errorHandler}
-                    <div className="form-item-new" >
+                    <div className="form-item-edit" >
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -93,7 +93,7 @@ function EditShoesForm() {
                             name="title"
                         ></input>
                     </div>
-                    <div className="form-item-new">
+                    <div className="form-item-edit">
                         <label>Shoe Size:</label>
                         <input
                             type="number"
@@ -101,7 +101,7 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    <div className="form-item-new">
+                    <div className="form-item-edit">
                         <label>Description: </label>
                        <textarea
                         onChange={updateDescription}
@@ -109,7 +109,7 @@ function EditShoesForm() {
                        >
                        </textarea>
                     </div>
-                    <div className="form-item-new">
+                    <div className="form-item-edit">
                         <label>Price: $</label>
                         <input
                             type="number"
@@ -119,7 +119,7 @@ function EditShoesForm() {
                     </div>
 
                     {/* Add Image to edit form and add it to the editShoe Store */}
-                    <div className="form-item-new">
+                    <div className="form-item-edit-new">
                         <label>Image Url: </label>
                         <input
                             type="file"
