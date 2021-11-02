@@ -97,7 +97,7 @@ function EditReviewForm(){
                 <div className="edit-review-item">
                     <label>Comment :</label>
                     <textarea
-                        id="edit-review-textarea"
+                        id="review-textarea"
                         placeholder={review?.comment}
                         onChange={updateComment}
                     ></textarea>

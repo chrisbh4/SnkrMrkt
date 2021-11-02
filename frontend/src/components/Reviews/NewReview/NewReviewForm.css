@@ -38,7 +38,7 @@
     display: flex;
     justify-content: center;
     /* color: white; */
-    top: 40px;
+    top: 50px;
     text-align: center;
     position: relative;
     font-size: 40px;
@@ -83,11 +83,11 @@
     align-content: space-around;
     border: 2px solid black;
     background-color: white;
-    width: 50%;
+    width: 30.8%;
 }
 
 .create-review-item{
-    margin-bottom: 10px;
+    margin-bottom: 18px;
 }
 
 

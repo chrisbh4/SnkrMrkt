@@ -62,6 +62,7 @@ function NewReviewForm(){
                 <div className="create-review-item">
                     <label>Comment :</label>
                     <textarea
+                        id="review-textarea"
                         onChange={updateComment}
                     ></textarea>
                 </div>
