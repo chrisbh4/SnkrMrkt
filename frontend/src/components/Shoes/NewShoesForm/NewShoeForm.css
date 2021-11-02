@@ -44,24 +44,160 @@
     align-content: space-around;
     border: 2px solid black;
     background-color: white;
+    /* background-color: #24292e; */
     width: 50%;
 }
 
-.new-shoe-button{
-    margin-left: 110px;
+.edit-shoe-form-container {
+    margin-top: 135px;
+    padding:40px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    /* align-items: center; */
+    align-content: space-around;
+    border: 2px solid black;
+    background-color: white;
+    /* background-color: #24292e; */
+    width:30%;
 }
 
-.form-item{
-    margin-bottom: 10px;
+.new-shoe-form-container {
+    margin-top: 175px;
+    padding:40px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-content: space-around;
+    border: 2px solid black;
+    /* background-color: white; */
+    background-color: white;
+    /* color:white; */
+    width: 30%;
 }
+
+
+.new-errors-new-shoe{
+    overflow: scroll;
+    height: 100px;
+    margin-bottom: 35px;
+    color:red;
+}
+
+.new-errors-edit-shoe{
+    position: relative;
+    left: 20px;
+    overflow: scroll;
+    height: 50px;
+    margin-bottom: 35px;
+    color:red;
+}
+
+.new-errors-review{
+    text-align: center;
+    position: relative;
+    left: 20px;
+    overflow: scroll;
+    height: 80px;
+    margin-bottom: 35px;
+    color:red;
+}
+.new-errors-review-edit{
+    text-align: center;
+    position: relative;
+    left: 20px;
+    overflow: scroll;
+    height: 50px;
+    margin-bottom: 35px;
+    color:red;
+}
+
+.new-shoe-button{
+    margin-left: 60px;
+    background: none;
+	border-radius: 0;
+	padding: 0.45em 2.5em;
+	letter-spacing: 0.3em;
+	font-size: 0.7em;
+	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+
+
+
+}
+
+.new-shoe-button:hover{
+    color: rgba(255,255,255,1);
+    background-color: #454c53;
+    box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
+ }
+
+ /* delete later */
+/* .form-item{
+    margin-bottom: 10px;
+} */
+
+#shoe-textarea{
+    position: relative;
+    top: 10px;
+}
+
+#shoes-edit-description{
+    position: relative;
+    bottom: 10px;
+}
+#shoes-new-description{
+    position: relative;
+    bottom: 10px;
+}
+
+.form-item-edit{
+    margin-bottom: 20px;
+    position: relative;
+    left: 60px;
+}
+
+
 .form-item-new{
     margin-bottom: 15px;
+    position: relative;
+    left:40px;
+}
+
+.button-containers{
+    position: relative;
+    /* right: 90px; */
 }
 
 .edit-button{
     margin-right: 4px;
+    /* margin-left: 30px; */
+    background: none;
+	border-radius: 0;
+	padding: 0.45em 2.5em;
+	letter-spacing: 0.3em;
+	font-size: 0.7em;
+	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
-.delete-button{
+.edit-button:hover{
+    color: rgba(255,255,255,1);
+    background-color: #454c53;
+    box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
+ }
+
+ .delete-button{
     margin-left: 4px;
+    /* margin-left: 30px; */
+    background: none;
+	border-radius: 0;
+	padding: 0.45em 2.5em;
+	letter-spacing: 0.3em;
+	font-size: 0.7em;
+	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
+
+.delete-button:hover{
+    color: rgba(255,255,255,1);
+    background-color: #454c53;
+    box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
+ }

@@ -56,17 +56,21 @@ function NewShoesForm() {
              <h1 id="new-shoe-header">
                 <a href={`/home`}>New Shoe</a>
             </h1>
-            <div className="form-container">
+            <div className="new-shoe-form-container">
                 <form onSubmit={onSubmit}>
-                    {errors.map((error) => {
+                    <div className="new-errors-new-shoe" hidden={!errors.length} >
+                    {
+                    errors.map((error) => {
                         if (error) {
                             return (
                                 <p key={error.id}>{error}</p>
                             )
                         }
                         return null;
-                    })}
-                    <div className="form-item">
+                    })
+                }
+                </div>
+                    <div className="form-item-new">
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -124,9 +128,10 @@ function NewShoesForm() {
                             placeholder="1.00"
                         ></input>
                     </div>
-                    <div className="form-item-new">
+                    <div className="form-item-new" id="shoes-new-description">
                         <label>Description: </label>
                        <textarea
+                       id="shoe-textarea"
                         onChange={updateDescription}
                        >
                        </textarea>
@@ -141,7 +146,7 @@ function NewShoesForm() {
                     </div>
                     {/*
                     - TODO: add a or selection for either inputing string or files for images
-                    
+
                     <div className="form-item-new">
                         <label>Image Url: </label>
                         <input
@@ -151,8 +156,8 @@ function NewShoesForm() {
                     </div>
 
                     */}
-                    <div className="new-shoe-button">
-                        <button>Submit New Listing</button>
+                    <div >
+                        <button className="new-shoe-button">Submit New Listing</button>
                     </div>
                 </form>
             </div>

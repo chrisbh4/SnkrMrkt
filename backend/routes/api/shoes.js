@@ -48,9 +48,9 @@ const validateEditShoe = [
     check('brand')
     .exists({checkFalsy:true})
     .withMessage("Please select a shoe brand."),
-    // check('description')
-    // .isLength({min:10})
-    // .withMessage("Description must be at least 10 characters long."),
+    check('description')
+    .isLength({min:10})
+    .withMessage("Description must be at least 10 characters long."),
     handleValidationErrors
 ]
 
@@ -89,7 +89,7 @@ router.put('/:id', singleMulterUpload('image'),validateEditShoe, asyncHandler(as
     else{
         shoe.image = req.body.image
     }
-    
+
 
     shoe.title = req.body.title ;
     shoe.shoeSize = req.body.shoeSize ;

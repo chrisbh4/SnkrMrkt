@@ -75,7 +75,7 @@ function ShoesDetailsPage() {
         addToCartVerfication = (
             <div>
                 {/* <Link to={`/`}> */}
-                <button onClick={addToCart}> Add to Cart </button>
+                <button className="addToCart-button" onClick={addToCart}> Add to Cart </button>
                 {/* </Link> */}
             </div>
         )

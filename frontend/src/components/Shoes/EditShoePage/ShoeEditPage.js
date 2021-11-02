@@ -74,6 +74,7 @@ function EditShoesForm() {
         alert("Shoe has been deleted.");
         history.push('/home')
     }
+    console.log(!errors.length)
 
     return (
 
@@ -81,10 +82,14 @@ function EditShoesForm() {
             <h1 className="page-title">
                 <a href={`/shoes/${shoeId}`}>Edit Shoe</a>
             </h1>
-            <div className="form-container">
+            <div className="edit-shoe-form-container">
                 <form onSubmit={onSubmit}>
+                    <div className="new-errors-edit-shoe" hidden={!errors.errors?.length} >
                    {errorHandler}
-                    <div className="form-item" >
+                   </div>
+
+
+                    <div className="form-item-edit" >
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -93,7 +98,7 @@ function EditShoesForm() {
                             name="title"
                         ></input>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-edit">
                         <label>Shoe Size:</label>
                         <input
                             type="number"
@@ -101,15 +106,16 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-edit" id="shoes-edit-description" >
                         <label>Description: </label>
                        <textarea
+                       id="shoe-textarea"
                         onChange={updateDescription}
                         placeholder={description}
                        >
                        </textarea>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-edit">
                         <label>Price: $</label>
                         <input
                             type="number"
@@ -119,7 +125,7 @@ function EditShoesForm() {
                     </div>
 
                     {/* Add Image to edit form and add it to the editShoe Store */}
-                    <div className="form-item-new">
+                    <div className="form-item-edit">
                         <label>Image Url: </label>
                         <input
                             type="file"
