@@ -58,7 +58,7 @@ function NewShoesForm() {
             </h1>
             <div className="new-shoe-form-container">
                 <form onSubmit={onSubmit}>
-                    <div className="new-errors" hidden={!errors.length} >
+                    <div className="new-errors-new-shoe" hidden={!errors.length} >
                     {
                     errors.map((error) => {
                         if (error) {

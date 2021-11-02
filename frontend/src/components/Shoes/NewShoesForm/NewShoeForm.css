@@ -77,11 +77,10 @@
 }
 
 
-.new-errors{
+.new-errors-new-shoe{
     overflow: scroll;
     height: 100px;
     margin-bottom: 35px;
-    /* border: 1px solid black; */
     color:red;
 }
 
@@ -89,7 +88,7 @@
     position: relative;
     left: 20px;
     overflow: scroll;
-    height: 80px;
+    height: 50px;
     margin-bottom: 35px;
     color:red;
 }
@@ -100,6 +99,15 @@
     left: 20px;
     overflow: scroll;
     height: 80px;
+    margin-bottom: 35px;
+    color:red;
+}
+.new-errors-review-edit{
+    text-align: center;
+    position: relative;
+    left: 20px;
+    overflow: scroll;
+    height: 50px;
     margin-bottom: 35px;
     color:red;
 }

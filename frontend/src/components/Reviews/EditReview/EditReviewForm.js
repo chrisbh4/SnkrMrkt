@@ -92,8 +92,14 @@ function EditReviewForm(){
 
             </h1>
             <div className="edit-review-form">
-            <form onSubmit={onSubmit}>
-                {errorHandler}
+            <form onSubmit={onSubmit} id="review-edit-form">
+
+
+            <div className="new-errors-review-edit" hidden={!errors.errors?.length} >
+                   {errorHandler}
+                   </div>
+
+
                 <div className="edit-review-item">
                     <label>Comment :</label>
                     <textarea
