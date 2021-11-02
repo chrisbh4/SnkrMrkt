@@ -62,7 +62,7 @@ function ShoesDetailsPage() {
             sellerChecker = (
                 <div>
                     <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
-                        <button> Edit </button>
+                        <button className="shoe-details-edit-button">Edit</button>
                     </Link>
                 </div>
             )
