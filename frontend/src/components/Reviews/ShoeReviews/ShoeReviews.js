@@ -83,8 +83,9 @@ function ShoeReviews({ shoe }) {
                 </div>
 
                 {/* //* Edit Button  */}
-                <button className="review-edit-button" type="button"> <a href={`/reviews/${review.id}/edit`}>Edit</a></button>
-
+                <a href={`/reviews/${review.id}/edit`} >
+                <button className="review-edit-button" type="button"> Edit </button>
+                </a>
                 </div>
             )
             // If the logged in user is not the owner of the reviews then a edit button doesn't show
