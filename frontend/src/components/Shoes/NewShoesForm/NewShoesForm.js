@@ -32,6 +32,7 @@ function NewShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
     const updateDescription= (e) => setDescription(e.target.value)
 
+    const errorChecker = () =>  errors.length
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -56,17 +57,21 @@ function NewShoesForm() {
              <h1 id="new-shoe-header">
                 <a href={`/home`}>New Shoe</a>
             </h1>
-            <div className="form-container">
+            <div className="new-form-container">
                 <form onSubmit={onSubmit}>
-                    {errors.map((error) => {
+                    <div className="new-errors" hidden={!errors.length} >
+                    {
+                    errors.map((error) => {
                         if (error) {
                             return (
                                 <p key={error.id}>{error}</p>
                             )
                         }
                         return null;
-                    })}
-                    <div className="form-item">
+                    })
+                }
+                </div>
+                    <div className="form-item-new">
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -141,7 +146,7 @@ function NewShoesForm() {
                     </div>
                     {/*
                     - TODO: add a or selection for either inputing string or files for images
-                    
+
                     <div className="form-item-new">
                         <label>Image Url: </label>
                         <input
@@ -151,8 +156,8 @@ function NewShoesForm() {
                     </div>
 
                     */}
-                    <div className="new-shoe-button">
-                        <button>Submit New Listing</button>
+                    <div >
+                        <button className="new-shoe-button">Submit New Listing</button>
                     </div>
                 </form>
             </div>
