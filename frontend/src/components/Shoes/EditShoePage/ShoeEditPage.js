@@ -74,6 +74,7 @@ function EditShoesForm() {
         alert("Shoe has been deleted.");
         history.push('/home')
     }
+    console.log(!errors.length)
 
     return (
 
@@ -83,7 +84,11 @@ function EditShoesForm() {
             </h1>
             <div className="edit-shoe-form-container">
                 <form onSubmit={onSubmit}>
+                    <div className="new-errors-edit-shoe" hidden={!errors.errors?.length} >
                    {errorHandler}
+                   </div>
+
+
                     <div className="form-item-edit" >
                         <label>Shoe Title: </label>
                         <input

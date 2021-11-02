@@ -81,6 +81,15 @@
     overflow: scroll;
     height: 100px;
     margin-bottom: 35px;
+    /* border: 1px solid black; */
+    color:red;
+}
+.new-errors-edit-shoe{
+    position: relative;
+    left: 20px;
+    overflow: scroll;
+    height: 80px;
+    margin-bottom: 35px;
     color:red;
 }
 
