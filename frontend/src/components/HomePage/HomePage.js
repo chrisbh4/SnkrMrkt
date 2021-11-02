@@ -1,5 +1,4 @@
 import React  ,{useEffect} from "react";
-import {Link} from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes} from "../../store/shoes";
 import ShoeList from "./ShoeList";
@@ -32,9 +31,9 @@ function HomePage(){
 
     return(
         <div className="page">
-            <div className="homepage-title-container">
+            {/* <div className="homepage-title-container">
             <Link to="/" id="homepage-title" >ThePlug </Link>
-            </div>
+            </div> */}
 
         <div className="all-shoes-container">
             {shoesArray.map((shoe)=>{
