@@ -58,7 +58,9 @@ function NewReviewForm(){
             </h1>
             <div className="create-review-form">
             <form onSubmit={onSubmit}>
-                {errorHandler}
+            <div className="new-errors-review" hidden={!errors.errors?.length} >
+                   {errorHandler}
+                   </div>
                 <div className="create-review-item">
                     <label>Comment :</label>
                     <textarea
