@@ -7,6 +7,8 @@ module.exports = {
     /**
      * Add seed commands here.
      *
+     * see if you can write a function that can result in the location of the url of the image from aws-s3
+     *
      * Example:
      */
     await queryInterface.bulkInsert('Shoes', [

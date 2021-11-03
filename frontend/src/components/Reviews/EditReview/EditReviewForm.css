@@ -21,7 +21,7 @@
 .edit-review-placement{
     display: flex;
     flex-direction: column;
-    background-image: url("../../../background-images/reviews-background-img.jpeg");
+    background-image: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/reviews-background-img.jpeg");
     background-size: 100% 90%;
     height: 890px;
     min-height: 100%;

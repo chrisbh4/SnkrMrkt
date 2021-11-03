@@ -2,7 +2,7 @@
 .form-placement{
     display: flex;
     flex-direction: column;
-    background-image: url("../../../background-images/New-Shoe-background-img.jpeg");
+    background-image: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/New-Shoe-background-img.jpeg");
     background-size: 900px 950px;
     height: 950px;
     width: 100%;
