@@ -16,6 +16,12 @@ const reviewsRouter = require("./reviews.js")
 //   setTokenCookie(res, user);
 //   return res.json({ user });
 // }));
+var http = require("http");
+setInterval(function() {
+    http.get("http://theplugg.herokuapp.com");
+// }, 100); // every 5 minutes (300000)
+}, 300000); // every 5 minutes (300000)
+
 
 // // GET /api/restore-user
 // const { restoreUser } = require('../../utils/auth.js');
