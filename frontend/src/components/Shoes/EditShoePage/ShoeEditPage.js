@@ -11,13 +11,11 @@ function EditShoesForm() {
     const history = useHistory()
     const shoeId = params.id
 
-    //! Does not load anything in or does anything (delete any time)
-    //Dispatch gets single shoe
+
     useEffect(() => {
         dispatch(getAllShoes())
     }, [dispatch]);
 
-    // const user = useSelector((state) => state.session.user.id)
 
     const shoe = useSelector((state) => state.shoes[shoeId])
 
@@ -29,7 +27,6 @@ function EditShoesForm() {
 
     const [errors, setErrors] = useState([])
 
-    console.log("title:", title)
 
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
@@ -39,7 +36,7 @@ function EditShoesForm() {
     const updatePrice = (e) => setPrice(e.target.value)
     const updateShoeSize = (e) => setShoeSize(e.target.value)
     const updateDescription = (e) => setDescription(e.target.value)
-    const updateImage = (e) => setImage(e.target.value)
+    const updateImage = (e) => setImage(e.target.files[0])
 
 
     const onSubmit = async (e) => {
@@ -77,6 +74,7 @@ function EditShoesForm() {
         alert("Shoe has been deleted.");
         history.push('/home')
     }
+    console.log(!errors.length)
 
     return (
 
@@ -84,10 +82,14 @@ function EditShoesForm() {
             <h1 className="page-title">
                 <a href={`/shoes/${shoeId}`}>Edit Shoe</a>
             </h1>
-            <div className="form-container">
+            <div className="edit-shoe-form-container">
                 <form onSubmit={onSubmit}>
+                    <div className="new-errors-edit-shoe" hidden={!errors.errors?.length} >
                    {errorHandler}
-                    <div className="form-item" >
+                   </div>
+
+
+                    <div className="form-item-edit" >
                         <label>Shoe Title: </label>
                         <input
                             type="text"
@@ -96,7 +98,7 @@ function EditShoesForm() {
                             name="title"
                         ></input>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-edit">
                         <label>Shoe Size:</label>
                         <input
                             type="number"
@@ -104,15 +106,16 @@ function EditShoesForm() {
                             onChange={updateShoeSize}
                         ></input>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-edit" id="shoes-edit-description" >
                         <label>Description: </label>
                        <textarea
+                       id="shoe-textarea"
                         onChange={updateDescription}
                         placeholder={description}
                        >
                        </textarea>
                     </div>
-                    <div className="form-item">
+                    <div className="form-item-edit">
                         <label>Price: $</label>
                         <input
                             type="number"
@@ -122,14 +125,23 @@ function EditShoesForm() {
                     </div>
 
                     {/* Add Image to edit form and add it to the editShoe Store */}
-                    <div className="form-item">
+                    <div className="form-item-edit">
+                        <label>Image Url: </label>
+                        <input
+                            type="file"
+                            onChange={updateImage}
+                            accept="image/*"
+                        ></input>
+                    </div>
+
+                    {/* <div className="form-item">
                         <label>Image Url:</label>
                         <input
                             type="text"
                             placeholder={image}
                             onChange={updateImage}
                         ></input>
-                    </div>
+                    </div> */}
 
 
 

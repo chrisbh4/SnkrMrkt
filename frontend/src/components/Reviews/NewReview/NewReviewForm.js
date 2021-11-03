@@ -58,10 +58,13 @@ function NewReviewForm(){
             </h1>
             <div className="create-review-form">
             <form onSubmit={onSubmit}>
-                {errorHandler}
+            <div className="new-errors-review" hidden={!errors.errors?.length} >
+                   {errorHandler}
+                   </div>
                 <div className="create-review-item">
                     <label>Comment :</label>
                     <textarea
+                        id="review-textarea"
                         onChange={updateComment}
                     ></textarea>
                 </div>
@@ -126,8 +129,8 @@ function NewReviewForm(){
                             onChange={updateImage}
                         ></input>
                     </div> */}
-                    <div>
-                        <button className="submit-review-button" type="submit">Submit</button>
+                    <div className="submit-review-button-div">
+                        <button className="new-review-button" type="submit">Submit</button>
                     </div>
             </form>
             </div>

@@ -3,13 +3,12 @@ import React from "react";
 // import { getAllShoes } from "../../store/shoes";
 import '../HomePage/ShoeList.css'
 
+/*
+    TODO:
+        -[] fix imageChecker that will check for a bad image,
+*/
 
 function ShoeList({ shoe }) {
-    // Does not make a difference
-    // const dispatch = useDispatch()
-    // useEffect(()=>{
-    //     dispatch(getAllShoes())
-    // },[dispatch])
 
     let imageCheck;
     if( shoe.image.includes("jpg") || shoe.image.includes("jpeg") || shoe.image.includes("png") || shoe.image.includes("image")){
@@ -33,7 +32,6 @@ function ShoeList({ shoe }) {
                             <p className="homepage-shoe-title">
                                 {shoe.title}
                             </p>
-
                         </div>
                         <div className="shoes-shoeSize">
                             <h4>{shoe.brand.toUpperCase()}</h4>
@@ -47,28 +45,6 @@ function ShoeList({ shoe }) {
                     </div>
 
 
-
-            {/*TODO: Need to add a <a> tag to the shoes image to be able to redirect the
-                the user to the single Shoe's details page */}
-            {/* <div className="shoe-container" key={shoe.id}>
-                <div>
-                    <h2>{shoe.id}</h2>
-                    <div className="shoes-image">
-                        <a href={`/shoes/${shoe.id}`} >
-                            <img src={shoe.image} alt={shoe.title}></img>
-                        </a>
-                    </div>
-                    <div className="shoes-title">
-                        <h2>{shoe.title}</h2>
-                    </div>
-                    <div className="shoes-shoeSize">
-                        <h4>Shoe Size {shoe.shoeSize}</h4>
-                    </div>
-                    <div className="shoes-price">
-                        <h3>${shoe.price}</h3>
-                    </div>
-                </div>
-            </div> */}
         </>
     )
 }

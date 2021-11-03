@@ -54,7 +54,8 @@
     /* width: 500px; */
     text-align: center;
     padding: 20px;
-    background-color: #626364;
+    /* background-color: #626364; */
+    background-color: #24292e;
     background-size: 600px;
     color: white;
 }

@@ -23,7 +23,7 @@
 .page-title >a:hover{
     text-align: center;
     /* text-decoration: underline; */
-    font-size: 45px;
+    /* font-size: 45px; */
     /* text-shadow: 5px 3px 0px #df0202; */
 }
 
@@ -38,19 +38,19 @@
     display: flex;
     justify-content: center;
     /* color: white; */
-    top: 40px;
+    top: 50px;
     text-align: center;
     position: relative;
     font-size: 40px;
 }
 
-.page-title-review:hover > a{
-    text-align: center;
+/* .page-title-review:hover > a{ */
+    /* text-align: center;
     background-color: #a7b9c7;
-    padding: 14px;
+    padding: 14px; */
     /* font-size: 55px; */
     /* text-shadow: 5px 3px 0px #df0202; */
-}
+/* } */
 
 
 
@@ -83,16 +83,35 @@
     align-content: space-around;
     border: 2px solid black;
     background-color: white;
-    width: 50%;
+    width: 30.8%;
 }
 
 .create-review-item{
-    margin-bottom: 10px;
+    margin-bottom: 18px;
+    text-align: center;
 }
 
 
-.submit-review-button{
-    margin-left: 110px;
+.submit-review-button-div{
+    display: flex;
+    justify-content: center;
+    /* margin-left: 60px; */
     margin-bottom: 15px;
 
 }
+
+.new-review-button{
+    /* margin-left: 30px; */
+    background: none;
+	border-radius: 0;
+	padding: 0.45em 2.5em;
+	letter-spacing: 0.3em;
+	font-size: 0.7em;
+	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.new-review-button:hover{
+    color: rgba(255,255,255,1);
+    background-color: #454c53;
+    box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
+ }
