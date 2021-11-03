@@ -16,6 +16,8 @@ const reviewsRouter = require("./reviews.js")
 //   setTokenCookie(res, user);
 //   return res.json({ user });
 // }));
+
+// allows heroku app not to sleep
 var http = require("http");
 setInterval(function() {
     http.get("http://theplugg.herokuapp.com");
