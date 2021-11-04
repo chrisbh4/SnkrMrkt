@@ -60,7 +60,7 @@ color: rgba(0,0,0,0.8);
 
 
   .page{
-      background-image: url("../../background-images/home-page-background-img.jpg");
+      background-image: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/home-page-background-img.jpg");
       /* background-size: 100% 99.999%; */
       background-size: 100% 80%;
       min-height: 100%;

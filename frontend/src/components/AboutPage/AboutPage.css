@@ -1,7 +1,7 @@
 
 .splash-page-img{
 
-   background-image: url("../../background-images/spalsh-page-background-img-2.png");
+   background-image: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png");
    background-size: 100% 99.999%;
    min-height: 100%;
    min-width: 1024px;

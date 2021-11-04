@@ -49,7 +49,7 @@
 }
 
 .bad-image{
-    content: url("../../../../src/background-images/No-Image-Available.png");
+    content: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/No-Image-Available.png");
 }
 
 /*! controls the grid */
