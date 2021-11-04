@@ -13,19 +13,19 @@ live link: [thePlug](https://theplugg.herokuapp.com)
 
 
 ## HomePage
-<img src="https://imgur.com/EgDM7r3.png" alt="home" />
+<img src="https://imgur.com/a/L934Anb" alt="home" />
 
 ## All Shoes Page
-<img src="https://imgur.com/9dfmjOr.png" />
+<img src="https://imgur.com/vfYKJKM" />
 
 ## Shoe Details
-<img src="https://imgur.com/d2Xitah.png" />
+<img src="https://imgur.com/fcahWk6" />
 
-## Shoe Reviews 
-<img src="https://imgur.com/0VetiqM.png" />
+## Shoe Reviews
+<img src="https://imgur.com/I3b3sGJ" />
 
 ## Shopping Cart
-<img src="https://imgur.com/2ivWokR.png" />
+<img src="https://imgur.com/FDgdgOw" />
 
 
 
@@ -40,6 +40,7 @@ live link: [thePlug](https://theplugg.herokuapp.com)
 - Squelize
 - React
 - Redux
+- AWS
 - HTML
 - CSS
 
