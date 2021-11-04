@@ -13,19 +13,19 @@ live link: [thePlug](https://theplugg.herokuapp.com)
 
 
 ## HomePage
-<img src="https://imgur.com/a/L934Anb" alt="home" />
+<img src="https://imgur.com/a/L934Anb.png" alt="home" />
 
 ## All Shoes Page
-<img src="https://imgur.com/vfYKJKM" />
+<img src="https://imgur.com/vfYKJKM.png" />
 
 ## Shoe Details
-<img src="https://imgur.com/fcahWk6" />
+<img src="https://imgur.com/fcahWk6.png" />
 
 ## Shoe Reviews
-<img src="https://imgur.com/I3b3sGJ" />
+<img src="https://imgur.com/I3b3sGJ.png" />
 
 ## Shopping Cart
-<img src="https://imgur.com/FDgdgOw" />
+<img src="https://imgur.com/FDgdgOw.png" />
 
 
 
