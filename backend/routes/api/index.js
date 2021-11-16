@@ -18,11 +18,12 @@ const reviewsRouter = require("./reviews.js")
 // }));
 
 // allows heroku app not to sleep
-var http = require("http");
-setInterval(function() {
-    http.get("http://theplugg.herokuapp.com");
-// }, 100); // every 5 minutes (300000)
-}, 300000); // every 5 minutes (300000)
+
+// var http = require("http");
+// setInterval(function() {
+//     http.get("http://theplugg.herokuapp.com");
+// // }, 100); // every 5 minutes (300000)
+// }, 300000); // every 5 minutes (300000)
 
 
 // // GET /api/restore-user
