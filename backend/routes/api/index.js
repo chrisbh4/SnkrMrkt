@@ -17,8 +17,9 @@ const reviewsRouter = require("./reviews.js")
 //   return res.json({ user });
 // }));
 
-// allows heroku app not to sleep
 
+//* allows heroku app not to sleep
+//* add the google one instead
 // var http = require("http");
 // setInterval(function() {
 //     http.get("http://theplugg.herokuapp.com");
