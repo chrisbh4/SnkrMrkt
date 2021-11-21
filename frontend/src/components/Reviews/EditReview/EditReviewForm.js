@@ -15,7 +15,6 @@ function EditReviewForm(){
 
 
     useEffect(() => {
-
         dispatch(fetchOneReview(reviewId))
     }, [dispatch, reviewId, ]);
 
@@ -39,6 +38,8 @@ function EditReviewForm(){
         setRating(review.rating)
         setImage(review.image)
     },[review.rating, review.comment, review.image])
+
+
 
     console.log("comment:", review?.comment)
     console.log("rating:", review?.rating)
