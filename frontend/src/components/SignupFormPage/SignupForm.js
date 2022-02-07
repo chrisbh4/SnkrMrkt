@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect , useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
@@ -18,13 +18,13 @@ function SignupFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(sessionActions.signup({email,username,password}))
+    const data = await dispatch(sessionActions.signup({ email, username, password }))
 
-    if(data?.errors){
-      if( password !== confirmPassword){
+    if (data?.errors) {
+      if (password !== confirmPassword) {
         const err = [...data?.errors, "Password and Confirm Password must match"]
         setErrors(err)
-      }else{
+      } else {
         setErrors(data?.errors)
       }
     }
@@ -43,7 +43,7 @@ function SignupFormPage() {
         <label>
           Email
           <input
-          className="signup-input"
+            className="signup-input"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -53,7 +53,7 @@ function SignupFormPage() {
         <label>
           Username
           <input
-          className="signup-input"
+            className="signup-input"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -63,7 +63,7 @@ function SignupFormPage() {
         <label>
           Password
           <input
-          className="signup-input"
+            className="signup-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -73,7 +73,7 @@ function SignupFormPage() {
         <label>
           Confirm Password
           <input
-          className="signup-input"
+            className="signup-input"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -82,30 +82,24 @@ function SignupFormPage() {
         </label>
         <button className="signup-submit" type="submit">Sign Up</button>
       </form>
+
       <div>
-      <footer>
+        <footer>
+          <p>Christian Brown</p>
 
-<p>Christian Brown</p>
+          <div class="networking">
+            <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:Chrismbh4@gmail.com">
+              <i class="fas fa-envelope-square"></i>
+            </a>
 
-<div class="networking">
-  <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
-  <i class="fab fa-linkedin"></i>
-</a>
-<a href="mailto:Chrismbh4@gmail.com">
-  <i class="fas fa-envelope-square"></i>
-</a>
-
-<a href="https://github.com/chrisbh4">
-  <i class="fab fa-github"></i>
-</a>
-</div>
-
-
-
-
-
-
-</footer>
+            <a href="https://github.com/chrisbh4">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </footer>
       </div>
     </>
   );
