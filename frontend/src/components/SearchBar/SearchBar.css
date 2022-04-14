@@ -32,6 +32,8 @@
 .searchBar-input{
     position: relative;
     right: 40px;
+    height: 27px;
+    font-size: 14px;
 
 }
 

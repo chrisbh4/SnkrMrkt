@@ -40,7 +40,13 @@ let searchResult = allShoesIds.map((id)=>{
     }
 })
 
-
+let noResult = () =>{
+    return(
+        <>
+        <p>No Results Found.</p>
+        </>
+    )
+}
 
 
     return (
@@ -63,6 +69,7 @@ let searchResult = allShoesIds.map((id)=>{
             {/* Search Result is hidden if query is empty */}
          <div className="results-list-container"  hidden={!query.length }  >
             {searchResult}
+            {/* {searchResult? searchResult : noResult} */}
         </div>
 
         </div>
