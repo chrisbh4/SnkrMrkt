@@ -15,7 +15,6 @@ function ShoesDetailsPage() {
 
     useEffect(() => {
         dispatch(getAllShoes())
-
     }, [dispatch]);
 
     const shoeId = params.id
@@ -45,6 +44,7 @@ function ShoesDetailsPage() {
 
 
     console.log("check image :", imageCheck)
+    
     const addToCart = async () => {
         await dispatch(addShoeToCart(shoe, cart))
         alert("Shoe has been added to your cart!")
@@ -53,7 +53,7 @@ function ShoesDetailsPage() {
     }
 
 
-    const shoeSellerId = shoe?.sellerId
+    const shoeSellerId = shoe?.sellerId;
 
 
     let sellerChecker;
