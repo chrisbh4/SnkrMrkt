@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // import SignupFormPage from './components/SignupFormPage';
 // import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from './store/session';
@@ -37,7 +37,7 @@ function App() {
         </Modal>
       )} */}
       {isLoaded && (
-        <Switch>
+        <Routes>
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
@@ -86,7 +86,7 @@ function App() {
           <Route>
           404 page not found
           </Route>
-        </Switch>
+        </Routes>
       )}
     </>
   );

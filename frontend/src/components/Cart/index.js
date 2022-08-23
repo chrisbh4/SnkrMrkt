@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { purchaseFromCart } from "../../store/shoppingCart";
 import CartItem from "./CartItem";
@@ -9,7 +9,7 @@ import "./Cart.css"
 
 
 function ShoppingCart() {
-    const history = useHistory();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const shoppingCart = useSelector((state) => state.shoppingCart);
     const userTitle = useSelector((state) => state.session.user.username)
@@ -30,7 +30,7 @@ function ShoppingCart() {
     const purchaseTheCart = async () => {
         await dispatch(purchaseFromCart())
         alert("Order has been Placed")
-        history.push('/')
+        navigate('/')
         return
     }
 

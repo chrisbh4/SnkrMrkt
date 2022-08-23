@@ -1,6 +1,6 @@
 import React , {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useHistory, useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { fetchEditReview , fetchOneReview , fetchDeleteReview} from "../../../store/reviews"
 import "./EditReviewForm.css"
 
@@ -9,7 +9,7 @@ import "./EditReviewForm.css"
 function EditReviewForm(){
     const dispatch = useDispatch()
     const params = useParams()
-    const history = useHistory()
+    const navigate = Navigate()
 
     const reviewId = params.id
 
@@ -20,7 +20,7 @@ function EditReviewForm(){
 
 
     const review = useSelector((state)=> state.reviews);
-    
+
 
 
 
@@ -71,7 +71,7 @@ function EditReviewForm(){
 
         if (!data.errors) {
 
-            history.push(`/shoes/${review?.shoeId}`)
+            navigate(`/shoes/${review?.shoeId}`)
             alert("Your Review has been changed")
         }else{
             setErrors(data)
@@ -84,7 +84,7 @@ function EditReviewForm(){
         e.preventDefault();
         await dispatch(fetchDeleteReview(reviewId))
         alert("Review has been deleted.");
-        history.push(`/shoes/${review?.shoeId}`)
+        navigate(`/shoes/${review?.shoeId}`)
     }
 
     return(
