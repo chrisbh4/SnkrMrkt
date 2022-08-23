@@ -15,7 +15,7 @@ function AboutPage() {
 
 
     return (
-        <div className="splash-page-img">
+        <div  class='bg-red-500'>
             <div className="about-formatter">
                 <div className="about-info-placement">
                     <h1 className="about-title">The Plug</h1>

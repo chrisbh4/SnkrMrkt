@@ -15,6 +15,7 @@ import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
+import "./index.css"
 
 
 function App() {
