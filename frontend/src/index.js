@@ -1,17 +1,29 @@
-import React from 'react';
+import {StrictMode} from 'react';
 import { ChakraProvider } from '@chakra-ui/react'
 
-import './index.css';
+// * Next steps
+// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
+// https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom
+// https://reactrouter.com/docs/en/v6/upgrading/v5
 
-import ReactDOM from 'react-dom';
+// Error is coming from Navgiation file and saying I'm destructing an undefined value
+
+
+import './index.css';
+import {createRoot} from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ModalProvider } from './context/Modal';
-import App from './App';
+import App from './App.js';
 
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from './store/session';
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+
 
 //grabs the locally-stored cart and loads all of its items inside the cart
 const loadSavedCart = () =>{
@@ -40,20 +52,15 @@ if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
 }
 
-// const Carrot = () => (
-//   <div style={{ color: "orange", fontSize: "100px" }}>
-//     <i className="fas fa-carrot"></i>
-//   </div>
-// );
 
-function Root() {
+
+function SnkrMrkt() {
   return (
     <ChakraProvider>
       <ModalProvider>
         <Provider store={store}>
           <BrowserRouter>
             <App />
-            {/* <Carrot /> */}
           </BrowserRouter>
         </Provider>
       </ModalProvider>
@@ -61,9 +68,8 @@ function Root() {
   );
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
-  document.getElementById('root')
+ root.render(
+  <StrictMode>
+    <SnkrMrkt />
+  </StrictMode>
 );
