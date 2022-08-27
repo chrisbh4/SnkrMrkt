@@ -1,6 +1,6 @@
 import React , {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Navigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { fetchEditReview , fetchOneReview , fetchDeleteReview} from "../../../store/reviews"
 import "./EditReviewForm.css"
 
@@ -9,7 +9,7 @@ import "./EditReviewForm.css"
 function EditReviewForm(){
     const dispatch = useDispatch()
     const params = useParams()
-    const navigate = Navigate()
+    const navigate = useNavigate()
 
     const reviewId = params.id
 

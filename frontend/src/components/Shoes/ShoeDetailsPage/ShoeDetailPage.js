@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Link, useParams , Navigate} from 'react-router-dom'
+import { Link, useParams , useNavigate} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
@@ -10,7 +10,7 @@ import { addShoeToCart } from "../../../store/shoppingCart"
 function ShoesDetailsPage() {
     const dispatch = useDispatch();
     const params = useParams();
-    const navigate = Navigate();
+    const navigate = useNavigate();
 
 
     useEffect(() => {

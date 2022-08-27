@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useParams, Navigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { getAllShoes, getEditShoe, getDeletedShoe } from "../../../store/shoes"
 
 
@@ -8,7 +8,7 @@ import { getAllShoes, getEditShoe, getDeletedShoe } from "../../../store/shoes"
 function EditShoesForm() {
     const params = useParams()
     const dispatch = useDispatch()
-    const navigate = Navigate()
+    const navigate = useNavigate()
     const shoeId = params.id
 
 

@@ -15,7 +15,7 @@ function AboutPage() {
 
 
     return (
-        <div  class='bg-red-500'>
+        <div>
             <div className="about-formatter">
                 <div className="about-info-placement">
                     <h1 className="about-title">The Plug</h1>
@@ -31,7 +31,7 @@ function AboutPage() {
                     </p>
 
 
-                    <div class="networking">
+                    <div className="networking">
                     <p className="splash-name">Christian Brown</p>
                         <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
                             <i  class="splash-icon fab fa-linkedin"></i>

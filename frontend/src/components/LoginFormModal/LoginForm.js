@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import {Navigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css";
 
 function LoginForm() {
-  const navigate = Navigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");

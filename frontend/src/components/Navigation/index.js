@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -9,7 +9,8 @@ import { login } from '../../store/session';
 import './Navigation.css';
 
 function Navigation({isLoaded}) {
-  const navigate = Navigate();
+  console.log("Nav index ", isLoaded)
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
   const grabAllShoes = useSelector(state => state.shoes)
@@ -23,6 +24,9 @@ function Navigation({isLoaded}) {
     return dispatch(login({ credential, password }))
   }
 
+// Semver
+// small = patch
+// mid = minor change
 
 
   let sessionLinks;

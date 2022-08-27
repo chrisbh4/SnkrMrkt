@@ -3,14 +3,14 @@ import { useState } from "react"
 import { useSelector, useDispatch ,  } from "react-redux"
 
 import { getCreatedShoe } from "../../../store/shoes.js"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import "./NewShoeForm.css"
 
 
 
 function NewShoesForm() {
     const dispatch = useDispatch()
-    const navigate = Navigate()
+    const navigate = useNavigate()
 
     const sellerId = useSelector((state) => state.session.user.id)
 

@@ -26,65 +26,46 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
   }, [dispatch]);
-
-  console.log("loaded :", isLoaded)
-
+  console.log("App.js :", isLoaded)
+  // console.log("loaded :", isLoaded)
+//* Erase inside JSX and only render <Hom
   return (
     <>
       <Navigation isLoaded={isLoaded} />
- 
-      {isLoaded && (
-        <Routes>
-          {/* <Route path="/login" >
-            <LoginFormPage />
-          </Route> */}
-
-          {/* <Route path='/signup'>
-            <SignupFormPage />
-          </Route> */}
-          <Route exact path='/home'>
-            <HomePage />
+      <Routes>
+          <Route exact path='/home' element={<HomePage />}>
           </Route>
 
-          <Route path='/shoes/new'>
-            <NewShoesForm />
+          <Route path='/shoes/new' element={<NewShoesForm />}>
+
           </Route>
 
-          <Route exact path='/shoes/:id'>
-            <ShoesDetailsPage />
+          <Route exact path='/shoes/:id' element={<ShoesDetailsPage />}>
+
           </Route>
 
-          <Route exact path ='/shoes/:id/edit'>
-            <EditShoesForm />
+          <Route exact path ='/shoes/:id/edit' element={ <EditShoesForm />}>
+
           </Route>
 
-          <Route exact path= "/shoes/:id/reviews/new">
-              <NewReviewForm />
+          <Route exact path= "/shoes/:id/reviews/new" element={<NewReviewForm />}>
+
             </Route>
 
-           <Route path = "/reviews/:id/edit">
-              <EditReviewForm />
+           <Route path = "/reviews/:id/edit" element={ <EditReviewForm />}>
+
             </Route>
-            <Route path="/cart">
-              <ShoppingCart />
+            <Route path="/cart" element={<ShoppingCart/>}>
               </Route>
 
 
-            <Route path="/">
-              {/* Rename to Splash Page */}
-            <AboutPage />
-
+            <Route path="/" element={<AboutPage />}>
             </Route>
-
-
-
-
 
           <Route>
           404 page not found
           </Route>
         </Routes>
-      )}
     </>
   );
 }

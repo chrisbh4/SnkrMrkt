@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import {Navigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import * as sessionActions from '../../store/session';
 import {purchaseFromCart} from "../../store/shoppingCart";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const navigate = Navigate()
+  const navigate = useNavigate()
 
   const openMenu = () => {
     if (showMenu) return;

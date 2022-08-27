@@ -1,13 +1,13 @@
 import React , { useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Navigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { fetchCreateReview } from "../../../store/reviews"
 import "./NewReviewForm.css"
 
 
 
 function NewReviewForm(){
-    const naviate = Navigate()
+    const naviate = useNavigate()
     const dispatch = useDispatch()
     const params = useParams()
     const shoeId = params.id ;
