@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { getAllShoes, getEditShoe, getDeletedShoe } from "../../../store/shoes"
 
 
@@ -8,7 +8,7 @@ import { getAllShoes, getEditShoe, getDeletedShoe } from "../../../store/shoes"
 function EditShoesForm() {
     const params = useParams()
     const dispatch = useDispatch()
-    const history = useHistory()
+    const navigate = useNavigate()
     const shoeId = params.id
 
 
@@ -45,7 +45,7 @@ function EditShoesForm() {
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show Edited shoe being listed under them
             alert("Your shoe has now been succesfully edited for sale.")
-            history.push(`/shoes/${shoeId}`)
+            navigate(`/shoes/${shoeId}`)
         }
         else {
             setErrors(data)
@@ -72,7 +72,7 @@ function EditShoesForm() {
 
         await dispatch(getDeletedShoe(shoe.id))
         alert("Shoe has been deleted.");
-        history.push('/home')
+        navigate('/home')
     }
     console.log(!errors.length)
 

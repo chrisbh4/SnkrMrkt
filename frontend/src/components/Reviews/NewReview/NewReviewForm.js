@@ -1,13 +1,13 @@
 import React , { useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useHistory, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { fetchCreateReview } from "../../../store/reviews"
 import "./NewReviewForm.css"
 
 
 
 function NewReviewForm(){
-    const history = useHistory()
+    const naviate = useNavigate()
     const dispatch = useDispatch()
     const params = useParams()
     const shoeId = params.id ;
@@ -42,7 +42,7 @@ function NewReviewForm(){
         const data = await dispatch(fetchCreateReview(shoeId, userId, comment, rating, image))
 
         if (!data.errors) {
-            history.push(`/shoes/${shoeId}`)
+            naviate(`/shoes/${shoeId}`)
             throw alert("Your review has been created :)")
         }
         else {

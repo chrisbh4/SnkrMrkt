@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import "./AboutPage.css"
 import {getLoadCart} from "../../store/shoppingCart"
 import { useDispatch } from "react-redux";
-
+import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 
 
 
@@ -15,7 +15,7 @@ function AboutPage() {
 
 
     return (
-        <div className="splash-page-img">
+        <div>
             <div className="about-formatter">
                 <div className="about-info-placement">
                     <h1 className="about-title">The Plug</h1>
@@ -31,7 +31,7 @@ function AboutPage() {
                     </p>
 
 
-                    <div class="networking">
+                    <div className="networking">
                     <p className="splash-name">Christian Brown</p>
                         <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
                             <i  class="splash-icon fab fa-linkedin"></i>
@@ -47,6 +47,30 @@ function AboutPage() {
                 </div>
 
             </div>
+
+            <div>
+  <div>
+    <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+  </div>
+  <div>
+    <Avatar name='Kola Tioluwani' src='https://bit.ly/tioluwani-kolawole' />
+  </div>
+  <div>
+    <Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />
+  </div>
+  <div>
+    <Avatar name='Ryan Florence' src='https://bit.ly/ryan-florence' />
+  </div>
+  <div>
+    <Avatar name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba' />
+  </div>
+  <div>
+    <Avatar name='Christian Nwamba' src='https://bit.ly/code-beast' />
+  </div>
+  <div>
+    <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+  </div>
+</div>
         </div>
     )
 }

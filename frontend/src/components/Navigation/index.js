@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -8,8 +8,9 @@ import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
 import './Navigation.css';
 
-function Navigation({ isLoaded }) {
-  const history = useHistory();
+function Navigation({isLoaded}) {
+  console.log("Nav index ", isLoaded)
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
   const grabAllShoes = useSelector(state => state.shoes)
@@ -19,64 +20,24 @@ function Navigation({ isLoaded }) {
   const demoLogin = () => {
     let credential = 'demo@user.io'
     let password = 'password'
-    history.push('/home')
+    navigate('/home')
     return dispatch(login({ credential, password }))
   }
 
+// Semver
+// small = patch
+// mid = minor change
 
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      // Logged in Nav-Bar
-      // <div className="nav-logged-in">
-      //   {/* need to change classname */}
-
-
-      //   <h1 color="white">
-      //     The Plug
-      //     </h1>
-
-      //   <div id="search-bar-container">
-      //     <SearchBar  shoes={grabAllShoes} />
-      //   </div>
-
-      //   <NavLink exact to="/home">
-      //     <button className="nav-button">
-      //       Home
-      //     </button>
-      //   </NavLink>
-
-
-      //   <NavLink to="/cart">
-      //     <button className="nav-profile-button">
-      //       <i className="fas fa-shopping-cart"></i>
-      //     </button>
-      //   </NavLink>
-
-      //   <div >
-      //     <ProfileButton user={sessionUser} />
-      //   </div>
-
-      //   {/* <button className="nav-button" >
-      //     <NavLink to="/about">About</NavLink>
-      //     </button> */}
-
-      //   <NavLink to="/shoes/new">
-      //     <button className="nav-button">
-      //       New Shoe
-      //     </button>
-      //   </NavLink>
-
-
-
-      // </div>
       <div className="nav-logged-in">
         {/* need to change classname */}
 
-        <div className="web-title">
-          <a href="/home" id="web-title-redirect">
-            The Plug
+        <div className="text-3xl font-bold underline">
+          <a href="/home" className="text-3xl font-bold underline"  >
+            SNKR Market
           </a>
 
         </div>
@@ -109,31 +70,18 @@ function Navigation({ isLoaded }) {
               <i className="fas fa-shopping-cart"></i>
             </button>
           </NavLink>
-
-
-
-
-
         </div>
-
-
-
       </div>
 
     );
   } else {
-    // Logged out Nav-Bar
     sessionLinks = (
       <div className="nav-logged-out">
-
-
         <div className="web-title-logged-out">
           <a href="/" id="web-title-redirect">
             The Plug
           </a>
         </div>
-
-
 
         <button className="nav-button">
           <LoginFormModal />
@@ -143,8 +91,9 @@ function Navigation({ isLoaded }) {
           <SignUpModal />
         </button>
 
-        <button className="nav-button" onClick={demoLogin} >Demo</button>
-
+        <button className="nav-button" onClick={demoLogin} >
+          Demo
+        </button>
 
         <NavLink exact to="/home">
           <button className="nav-button">
@@ -157,33 +106,14 @@ function Navigation({ isLoaded }) {
             Home
           </button>
         </NavLink>
-
-
       </div>
     );
   }
 
   return (
-    // <ul>
-    //   <li>
-    //     <NavLink exact to="/">Home</NavLink>
-    //     <NavLink to="/shoes/new">New Shoe</NavLink>
-    //     {isLoaded && sessionLinks}
-    //   </li>
-    // </ul>
     <nav >
       {isLoaded && sessionLinks}
     </nav>
-    //   {/* <button className="nav-button">
-    //   <NavLink to="/shoes/new">New Shoe</NavLink>
-    // </button>
-    // <button className="nav-button">
-    //   <NavLink exact to="/">Home</NavLink>
-    // </button> */}
-
-
-
-
   );
 }
 

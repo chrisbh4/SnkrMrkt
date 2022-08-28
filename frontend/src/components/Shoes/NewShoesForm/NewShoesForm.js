@@ -3,14 +3,14 @@ import { useState } from "react"
 import { useSelector, useDispatch ,  } from "react-redux"
 
 import { getCreatedShoe } from "../../../store/shoes.js"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import "./NewShoeForm.css"
 
 
 
 function NewShoesForm() {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const sellerId = useSelector((state) => state.session.user.id)
 
@@ -42,7 +42,7 @@ function NewShoesForm() {
         if (!data?.errors) {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
-            history.push(`/home`)
+            navigate(`/home`)
              alert("Your Shoe has now been listed for sale.")
         }
         else {

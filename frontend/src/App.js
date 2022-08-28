@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // import SignupFormPage from './components/SignupFormPage';
 // import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from './store/session';
@@ -15,6 +15,7 @@ import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
+import "./index.css"
 
 
 function App() {
@@ -25,68 +26,46 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
   }, [dispatch]);
-
+  console.log("App.js :", isLoaded)
+  // console.log("loaded :", isLoaded)
+//* Erase inside JSX and only render <Hom
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {/* <button onClick={() => setShowModal(true)}>Modal</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <h1>Hello I am a Modal</h1>
-        </Modal>
-      )} */}
-      {isLoaded && (
-        <Switch>
-          {/* <Route path="/login" >
-            <LoginFormPage />
-          </Route> */}
-
-          {/* <Route path='/signup'>
-            <SignupFormPage />
-          </Route> */}
-          <Route exact path='/home'>
-            <HomePage />
+      <Routes>
+          <Route exact path='/home' element={<HomePage />}>
           </Route>
 
-          <Route path='/shoes/new'>
-            <NewShoesForm />
+          <Route path='/shoes/new' element={<NewShoesForm />}>
+
           </Route>
 
-          <Route exact path='/shoes/:id'>
-            <ShoesDetailsPage />
+          <Route exact path='/shoes/:id' element={<ShoesDetailsPage />}>
+
           </Route>
 
-          <Route exact path ='/shoes/:id/edit'>
-            <EditShoesForm />
+          <Route exact path ='/shoes/:id/edit' element={ <EditShoesForm />}>
+
           </Route>
 
-          <Route exact path= "/shoes/:id/reviews/new">
-              <NewReviewForm />
+          <Route exact path= "/shoes/:id/reviews/new" element={<NewReviewForm />}>
+
             </Route>
 
-           <Route path = "/reviews/:id/edit">
-              <EditReviewForm />
+           <Route path = "/reviews/:id/edit" element={ <EditReviewForm />}>
+
             </Route>
-            <Route path="/cart">
-              <ShoppingCart />
+            <Route path="/cart" element={<ShoppingCart/>}>
               </Route>
 
 
-            <Route path="/">
-              {/* Rename to Splash Page */}
-            <AboutPage />
-
+            <Route path="/" element={<AboutPage />}>
             </Route>
-
-
-
-
 
           <Route>
           404 page not found
           </Route>
-        </Switch>
-      )}
+        </Routes>
     </>
   );
 }

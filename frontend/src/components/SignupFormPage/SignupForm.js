@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import Navigation from "../Navigation";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -14,7 +15,7 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return  navigate('/');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +29,7 @@ function SignupFormPage() {
         setErrors(data?.errors)
       }
     }
-    history.push('/')
+    navigate('/')
     return data
   };
 
