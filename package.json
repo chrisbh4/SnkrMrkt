@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "npm-check-updates": "^16.0.5",
     "regex": "^0.1.1"
   }
 }
