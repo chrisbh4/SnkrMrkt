@@ -35,8 +35,8 @@ function Navigation({isLoaded}) {
       <div className="nav-logged-in">
         {/* need to change classname */}
 
-        <div className="text-3xl font-bold underline">
-          <a href="/home" className="text-3xl font-bold underline"  >
+        <div className="web-title">
+          <a href="/home" id="web-title-redirect">
             SNKR Market
           </a>
 
