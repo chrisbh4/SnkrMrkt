@@ -33,7 +33,7 @@ button:active{
     width: 100%;
     height: auto;
     position: absolute;
-    top: 30px;
+    top: 50px;
     left: 0px;
     z-index: -1;
 
@@ -172,6 +172,7 @@ z-index: -1;
 
 .empty-cart{
     text-align: center;
+    font-size: 30px;
 }
 .cart-footer-placement{
     margin-top: 75px;
