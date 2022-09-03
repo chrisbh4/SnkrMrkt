@@ -34,8 +34,14 @@ function ShoppingCart() {
         total += parseFloat(item.price)
     })
     const totalPriceOfShoes = total.toFixed(2)
+    const feePrices = total * 0.01
+    const stateTax = 2
+    const pricePostTaxes = total + stateTax + feePrices
+    const totalWithFees = total + feePrices
+    console.log(feePrices.toFixed(2))
 
-    // console.log("total", totalPriceOfShoes);
+
+
     const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
 
     const purchaseTheCart = async () => {
@@ -57,10 +63,10 @@ function ShoppingCart() {
                 ))}
             </div>
             <div className="cart-info">
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Shoes : $${totalPriceOfShoes}` : emptyCart}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : $1.50` : null}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Sales tax: $2.00` : null}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: $${totalPriceOfShoes + 3}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Plug Price : $${totalPriceOfShoes}` : emptyCart}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${feePrices.toFixed(2)}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `State Tax: ${stateTax.toFixed(2)}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${pricePostTaxes.toFixed(2)}` : null}</h2>
 
 
                 {totalPriceOfShoes > 0 ? <button className="cart-purchase-button" onClick={purchaseTheCart} >Purchase</button> : null}
