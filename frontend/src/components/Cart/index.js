@@ -11,10 +11,6 @@ import "./Cart.css"
 Img
 - https://chakra-ui.com/docs/components/image/usage
 
-Container
--
-
-
 */
 
 
@@ -23,7 +19,6 @@ function ShoppingCart() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const shoppingCart = useSelector((state) => state.shoppingCart);
-    const userTitle = useSelector((state) => state.session.user.username)
     const cart = Object.values(shoppingCart);
 
 
@@ -37,7 +32,6 @@ function ShoppingCart() {
     const feePrices = total * 0.01
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
-    const totalWithFees = total + feePrices
     console.log(feePrices.toFixed(2))
 
 
@@ -53,9 +47,6 @@ function ShoppingCart() {
 
 
     return (
-        // <div className="cart-background">
-
-
         <div className="cart-placement">
             <div className="cart-container">
                 {cart.map((item) => (
