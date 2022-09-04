@@ -85,9 +85,7 @@ function ShoesDetailsPage() {
 
     return (
         <div className="details-background" style={{backgroundImage: `url(${shoe?.image})`}}>
-            <h1 className="details-page-title">
-                <a id="details-page-redirect" href="/home">Shoes Details Page</a>
-            </h1>
+            <h1 className="details-page-title"></h1>
             <div className="details-container">
                 <div className="shoe-details-container">
                     <div className="shoe-details-image">

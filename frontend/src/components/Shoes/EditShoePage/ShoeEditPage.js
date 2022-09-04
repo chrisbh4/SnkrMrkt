@@ -79,9 +79,6 @@ function EditShoesForm() {
     return (
 
         <div className="form-placement">
-            <h1 className="page-title">
-                <a href={`/shoes/${shoeId}`}>Edit Shoe</a>
-            </h1>
             <div className="edit-shoe-form-container">
                 <form onSubmit={onSubmit}>
                     <div className="new-errors-edit-shoe" hidden={!errors.errors?.length} >
