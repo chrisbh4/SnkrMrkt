@@ -53,9 +53,7 @@ function NewShoesForm() {
 
     return (
         <div className="form-placement">
-             <h1 id="new-shoe-header">
-                <a href={`/home`}>New Shoe</a>
-            </h1>
+             
             <div className="new-shoe-form-container">
                 <form onSubmit={onSubmit}>
                     <div className="new-errors-new-shoe" hidden={!errors.length} >

@@ -162,6 +162,7 @@ color: rgba(0,0,0,0.8);
 }
 
 .shoe-image{
+    display: revert;
     max-width: 300px;
     max-height: 200px;
     min-width: auto;
