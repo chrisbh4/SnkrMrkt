@@ -6,6 +6,8 @@ import LoginFormModal from '../LoginFormModal';
 import SignUpModal from '../SignupFormPage';
 import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
+import SlideOutCart from '../Cart/slideout-cart';
+
 import './Navigation.css';
 
 function Navigation({isLoaded}) {
@@ -70,6 +72,15 @@ function Navigation({isLoaded}) {
               <i className="fas fa-shopping-cart"></i>
             </button>
           </NavLink>
+
+
+
+            <button className="nav-profile-button">
+            <SlideOutCart />
+            </button>
+
+
+
         </div>
       </div>
 
