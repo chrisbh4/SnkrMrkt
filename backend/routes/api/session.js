@@ -76,6 +76,7 @@ router.get(
 
 router.get('/all-users', asyncHandler(async( req, res )=>{
   const users = await User.findAll()
+  console.log("All Users :.........................")
 
   const allUsers = {};
   // users.forEach((user)=>{
@@ -89,3 +90,8 @@ router.get('/all-users', asyncHandler(async( req, res )=>{
 }))
 
 module.exports = router;
+
+
+
+// Everytime edit review is clicked backend fetches for /restore/users need to find what is triggering it to render that
+// maybe update????
