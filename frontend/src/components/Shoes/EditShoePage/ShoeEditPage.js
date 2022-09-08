@@ -56,7 +56,6 @@ function EditShoesForm() {
    let errorHandler;
    if(errors.errors){
       errorHandler = errors.errors.map((error)=>{
-               console.log(error)
                return (
                         <p key={error.id}>{error}</p>
                     )
@@ -74,7 +73,6 @@ function EditShoesForm() {
         alert("Shoe has been deleted.");
         navigate('/home')
     }
-    console.log(!errors.length)
 
     return (
 

@@ -11,7 +11,6 @@ import SlideOutCart from '../Cart/slideout-cart';
 import './Navigation.css';
 
 function Navigation({isLoaded}) {
-  console.log("Nav index ", isLoaded)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
@@ -75,9 +74,9 @@ function Navigation({isLoaded}) {
 
 
 
-            <button className="nav-profile-button">
+            {/* <button className="nav-profile-button">
             <SlideOutCart />
-            </button>
+            </button> */}
 
 
 

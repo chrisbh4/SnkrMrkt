@@ -36,9 +36,6 @@ router.get('/', asyncHandler(async (req, res) => {
 
 router.get('/:id', asyncHandler(async (req, res) => {
    const review = await Reviews.findByPk(req.params.id)
-   // console.log(shoe)
-   // const allReviews = await Shoes.findAll()
-
    return res.send(review)
 
 }));

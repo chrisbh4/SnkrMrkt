@@ -26,8 +26,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
   }, [dispatch]);
-  console.log("App.js :", isLoaded)
-  // console.log("loaded :", isLoaded)
+  
 //* Erase inside JSX and only render <Hom
   return (
     <>

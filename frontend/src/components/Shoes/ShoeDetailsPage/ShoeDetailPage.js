@@ -43,7 +43,6 @@ function ShoesDetailsPage() {
 
 
 
-    console.log("check image :", imageCheck)
 
     const addToCart = async () => {
         await dispatch(addShoeToCart(shoe, cart))

@@ -26,7 +26,7 @@ function EditReviewForm(){
 
     const userId = useSelector((state)=> state.session.user.id)
     const shoeId = review?.shoeId
-    console.log("review:", review)
+
 
     const [comment, setComment] = useState(review?.comment)
     const [rating, setRating] = useState(review?.rating)
@@ -40,20 +40,13 @@ function EditReviewForm(){
         setImage(review.image)
     },[review.rating, review.comment, review.image])
 
-
-
-    console.log("comment:", review?.comment)
-    console.log("rating:", review?.rating)
-
-    // console.log("comment", review?.rating)
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
-    // const updateImage = (e) => setImage(e.target.value)
+
 
     let errorHandler;
     if(errors.errors){
        errorHandler = errors.errors.map((error)=>{
-                console.log(error)
                 return (
                          <p key={error.id}>{error}</p>
                      )

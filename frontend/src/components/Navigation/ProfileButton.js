@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import {useNavigate} from "react-router-dom"
 import * as sessionActions from '../../store/session';
@@ -9,23 +9,26 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate()
 
+
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    if( showMenu === false) setShowMenu(true)
+    console.log(showMenu)
   };
 
+  console.log("Outside func :", showMenu)
+  // IF true then the menu will open
+  // IF false then the menu will close
+  //* Bug is coming from the setShowMenu not being switched from false -> true
   useEffect(() => {
     if (!showMenu) return;
 
     const closeMenu = () => {
       setShowMenu(false);
+
     };
 
-    document.addEventListener('click', closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-
-
+    // document.addEventListener('click', closeMenu);
+    // return () => document.removeEventListener("click", closeMenu);
 
   }, [showMenu]);
 
