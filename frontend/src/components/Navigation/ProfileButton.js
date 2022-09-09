@@ -11,11 +11,12 @@ function ProfileButton({ user }) {
 
 
   const openMenu = () => {
-    if( showMenu === false) setShowMenu(true)
-    console.log(showMenu)
+
+    if (showMenu) return;
+    setShowMenu(true);
   };
 
-  console.log("Outside func :", showMenu)
+  console.log("Show :", showMenu)
   // IF true then the menu will open
   // IF false then the menu will close
   //* Bug is coming from the setShowMenu not being switched from false -> true
@@ -23,11 +24,12 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = () => {
+
       setShowMenu(false);
 
     };
 
-    // document.addEventListener('click', closeMenu);
+    document.addEventListener('click', closeMenu);
     // return () => document.removeEventListener("click", closeMenu);
 
   }, [showMenu]);
