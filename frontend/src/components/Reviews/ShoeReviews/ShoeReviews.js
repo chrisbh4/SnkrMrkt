@@ -20,15 +20,6 @@ function ShoeReviews({ shoe }) {
     })
 
     const users = useSelector((state) => state.session?.users)
-    // console.log(shoe.image)
-
-    // let userImage;
-    // if(review.image){
-    //     <img src={review.image} alt="user review" className="review-image"></img>
-    // }else{
-    //     <img src={shoe.image} alt="user review" className="review-image"></img>
-    // }
-
     const defaultImage = <img src={shoe?.image} className="review-image" alt="default shoe"></img>
     const defaultImageNoEdit = <img src={shoe?.image} className="review-image-noEdit" alt="default shoe"></img>
 

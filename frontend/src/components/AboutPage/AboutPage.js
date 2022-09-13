@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import "./AboutPage.css"
 import {getLoadCart} from "../../store/shoppingCart"
 import { useDispatch } from "react-redux";
-import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 
 
 
@@ -47,30 +46,6 @@ function AboutPage() {
                 </div>
 
             </div>
-
-            <div>
-  <div>
-    <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
-  </div>
-  <div>
-    <Avatar name='Kola Tioluwani' src='https://bit.ly/tioluwani-kolawole' />
-  </div>
-  <div>
-    <Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />
-  </div>
-  <div>
-    <Avatar name='Ryan Florence' src='https://bit.ly/ryan-florence' />
-  </div>
-  <div>
-    <Avatar name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba' />
-  </div>
-  <div>
-    <Avatar name='Christian Nwamba' src='https://bit.ly/code-beast' />
-  </div>
-  <div>
-    <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
-  </div>
-</div>
         </div>
     )
 }

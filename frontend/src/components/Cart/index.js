@@ -32,7 +32,6 @@ function ShoppingCart() {
     const feePrices = total * 0.01
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
-    console.log(feePrices.toFixed(2))
 
 
 

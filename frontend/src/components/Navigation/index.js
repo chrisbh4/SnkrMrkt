@@ -6,10 +6,11 @@ import LoginFormModal from '../LoginFormModal';
 import SignUpModal from '../SignupFormPage';
 import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
+import SlideOutCart from '../Cart/slideout-cart';
+
 import './Navigation.css';
 
 function Navigation({isLoaded}) {
-  console.log("Nav index ", isLoaded)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
@@ -54,6 +55,13 @@ function Navigation({isLoaded}) {
             </button>
           </NavLink>
 
+
+          <NavLink exact to="/new/home">
+            <button className="nav-button">
+              New Home
+            </button>
+          </NavLink>
+
           <NavLink to="/shoes/new">
             <button className="nav-button">
               New Shoe
@@ -70,6 +78,15 @@ function Navigation({isLoaded}) {
               <i className="fas fa-shopping-cart"></i>
             </button>
           </NavLink>
+
+
+
+            {/* <button className="nav-profile-button">
+            <SlideOutCart />
+            </button> */}
+
+
+
         </div>
       </div>
 

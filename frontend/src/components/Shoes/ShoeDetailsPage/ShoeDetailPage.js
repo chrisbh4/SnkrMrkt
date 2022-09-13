@@ -43,7 +43,6 @@ function ShoesDetailsPage() {
 
 
 
-    console.log("check image :", imageCheck)
 
     const addToCart = async () => {
         await dispatch(addShoeToCart(shoe, cart))
@@ -84,13 +83,11 @@ function ShoesDetailsPage() {
 
 
     return (
-        <div className="details-background" style={{backgroundImage: `url(${shoe?.image})`}}>
+        <div className="details-background">
             <h1 className="details-page-title"></h1>
             <div className="details-container">
                 <div className="shoe-details-container">
                     <div className="shoe-details-image">
-                        {/* <img src={imageCheck} alt={shoe?.title}></img>z */}
-                        {/* <img src="../../../../src/background-images/No-Image-Available.png" alt={shoe?.title}></img> */}
                         {imageCheck}
                     </div>
                     <div className="shoe-title">

@@ -8,6 +8,8 @@ function SearchBar({ shoes }) {
     const allShoesIds = Object.keys(shoes)
     const updateQuery = (e) => setQuery(e.target.value);
 
+    console.log("Query :" ,query)
+
 
     let searchResult = allShoesIds.map((id) => {
 
@@ -34,9 +36,18 @@ function SearchBar({ shoes }) {
             )
         } else {
             return null
+            // return(
+            //     <>
+            //     <h3>empty</h3>
+            //     </>
+            // )
         }
     })
 
+
+    if(query.length){
+        document.getElementsByClassName("results-list-container")
+    }
 
     return (
 

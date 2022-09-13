@@ -27,7 +27,6 @@ function NewReviewForm(){
     let errorHandler;
    if(errors.errors){
       errorHandler = errors.errors.map((error)=>{
-               console.log(error)
                return (
                         <p key={error.id}>{error}</p>
                     )

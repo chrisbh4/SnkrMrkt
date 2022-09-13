@@ -15,6 +15,7 @@ import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
+import  NewHomePage  from './components/NewHome/NewHome';
 import "./index.css"
 
 
@@ -26,8 +27,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
   }, [dispatch]);
-  console.log("App.js :", isLoaded)
-  // console.log("loaded :", isLoaded)
+
 //* Erase inside JSX and only render <Hom
   return (
     <>
@@ -58,9 +58,11 @@ function App() {
             <Route path="/cart" element={<ShoppingCart/>}>
               </Route>
 
+            <Route path="/new/home" element={<NewHomePage />}> </Route>
 
             <Route path="/" element={<AboutPage />}>
             </Route>
+
 
           <Route>
           404 page not found
