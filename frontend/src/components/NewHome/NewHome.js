@@ -27,10 +27,10 @@ function NewHomePage() {
 
         <Box h="20%" bg='yellow.200'>
           <VStack>
-            <Text fontSize="2xl">Just released</Text>
+            <Text fontSize="2xl">Just released (Limit to 8 )</Text>
             <Flex
               w="100%"
-              overflow="scroll" >
+              overflow="hidden" >
               {shoesArray.map((shoe) => {
                 return (
                   <div className="shoe-container" key={shoe.id}>
@@ -44,7 +44,7 @@ function NewHomePage() {
 
         <Box  bg='tomato'   >
           <VStack>
-            <Text fontSize="2xl">Most Popular</Text>
+            <Text fontSize="2xl">Most Popular (Limit to 14)</Text>
             <Flex
               w="100%"
               overflow="scroll" >
@@ -59,22 +59,7 @@ function NewHomePage() {
           </VStack>
         </Box>
 
-        <Box  bg='blue.400'>
-          <VStack>
-            <Text fontSize={"2xl"}>Best Sellers</Text>
-            <Flex
-              w="100%"
-              overflow="scroll" >
-              {shoesArray.map((shoe) => {
-                return (
-                  <div className="shoe-container" key={shoe.id}>
-                    <ShoeList shoe={shoe} key={shoe.id} />
-                  </div>
-                )
-              })}
-            </Flex>
-          </VStack>
-        </Box>
+
 
         <Box  bg='pink.100'>
           <VStack>
@@ -93,6 +78,22 @@ function NewHomePage() {
           </VStack>
         </Box>
 
+    {/* <Box  bg='blue.400'>
+          <VStack>
+            <Text fontSize={"2xl"}>Price Drops</Text>
+            <Flex
+              w="100%"
+              overflow="scroll" >
+              {shoesArray.map((shoe) => {
+                return (
+                  <div className="shoe-container" key={shoe.id}>
+                    <ShoeList shoe={shoe} key={shoe.id} />
+                  </div>
+                )
+              })}
+            </Flex>
+          </VStack>
+        </Box> */}
 
 
       </VStack>
