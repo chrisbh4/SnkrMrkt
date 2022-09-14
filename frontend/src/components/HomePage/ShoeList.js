@@ -1,4 +1,4 @@
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Center, Image, VStack, Link } from "@chakra-ui/react";
 import React from "react";
 // import { useDispatch } from "react-redux";
 // import { getAllShoes } from "../../store/shoes";
@@ -8,30 +8,23 @@ import '../HomePage/ShoeList.css'
 function ShoeList({ shoe }) {
 
     let imageCheck;
-    if( shoe.image.includes("jpg") || shoe.image.includes("jpeg") || shoe.image.includes("png") || shoe.image.includes("image")){
-        imageCheck = <img className="shoe-image" src={shoe.image} alt={shoe.title}></img>
-    }else{
-        imageCheck = <img className="bad-image shoe-image" alt={shoe.title}></img>
+    if (shoe.image.includes("jpg") || shoe.image.includes("jpeg") || shoe.image.includes("png") || shoe.image.includes("image")) {
+        imageCheck = <Image src={shoe.image} alt={shoe.title}></Image>
+    } else {
+        imageCheck = <Image className="bad-image shoe-image" alt={shoe.title}></Image>
 
     }
 
     return (
-        <Center>
-                            <a href={`/shoes/${shoe.id}`} >
-                        <Center >
-                                {imageCheck}
-                        </Center>
-                        <div className="shoes-title">
-                            <p className="home-shoe-title ">
-                                {shoe.title}
-                            </p>
-                        </div>
-                        <div className="shoes-shoeSize">
-                            <h4>{shoe.brand.toUpperCase()}</h4>
-                        </div>
-                        </a>
-
-        </Center>
+        <VStack w='100%' pb='20px'>
+            <Link _hover={{textDecoration: "none"}} href={`/shoes/${shoe.id}`} >
+                <Center paddingBottom={'10px'} >
+                    {imageCheck}
+                </Center  >
+                <Center w='100%' fontSize={'15px'} fontWeight='550' >{shoe.title}</Center>
+                <Center w='100%' fontSize={'15px'} fontWeight='550' >{shoe.brand}</Center>
+            </Link>
+        </VStack>
     )
 }
 

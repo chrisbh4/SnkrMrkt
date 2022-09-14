@@ -86,11 +86,11 @@ function NewHomePage() {
         </GridItem>
 
         {/* Shoe Iteration col */}
-        <GridItem rowSpan={2} colSpan={4} bg='gray'>
-          <Center fontSize='30px' color='white'>
+        <GridItem rowSpan={2} colSpan={4}   >
+          <Center fontSize='30px' color='gray'>
             All Shoe iterations
           </Center>
-          <Wrap bg='black' pl='5px'>
+          <Wrap >
             {shoesArray.map((shoe) => {
               return (
                 <WrapItem className="shoe-container" key={shoe.id}>
@@ -99,8 +99,8 @@ function NewHomePage() {
               )
             })}
           </Wrap>
-
         </GridItem>
+
       </Grid>
     </>)
 }

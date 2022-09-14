@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import React  ,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes} from "../../store/shoes";
@@ -38,7 +39,7 @@ function HomePage(){
         <div className="all-shoes-container">
             {shoesArray.map((shoe)=>{
                 return(
-                    <div className="shoe-container" key={shoe.id}>
+                    <Box key={shoe.id}>
                         <ShoeList shoe={shoe} key={shoe.id} />
 
                     {/* <div>
@@ -65,7 +66,7 @@ function HomePage(){
                             <h3>${shoe.price}</h3>
                         </div>
                     </div> */}
-                </div>
+                </Box>
                 )
                 // <ShoeList key={shoe.id} shoe={shoe} />
     })}
