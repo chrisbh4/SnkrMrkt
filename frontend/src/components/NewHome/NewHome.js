@@ -38,22 +38,23 @@ function NewHomePage() {
             Shoe Filters
           </Center>
           <Box border={'solid'}>
-            <Center fontSize='24px' color='white'>Adidas</Center>
-            <Center fontSize='24px' color='white'>Air Jordan</Center>
-            <Center fontSize='24px' color='white'>Nike</Center>
-            <Center fontSize='24px' color='white'>New Balance</Center>
-            <Center fontSize='24px' color='white'>Reebok</Center>
-            <Center fontSize='24px' color='white'>converse</Center>
-            <Center fontSize='24px' color='white'>PUma</Center>
-            <Center fontSize='24px' color='white'>vans</Center>
-            <Center fontSize='24px' color='white'>Collections</Center>
-            <Center fontSize='24px' color='white'>Luxury Brands</Center>
-            <Center fontSize='24px' color='white'>Other Brands</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Yeezy</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Air Jordan</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Adidas</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Nike</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >New Balance</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Reebok</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >converse</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >PUma</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >vans</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Collections</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Luxury Brands</Center>
+            <Center fontSize='24px' color='white' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.200" }} >Other Brands</Center>
           </Box>
 
-          <Box border={'solid'}>
+          <Box border={'solid'}   >
             <Center fontSize='30px' color='white'>Shoe Style</Center>
-            <VStack >
+            <VStack align={'start'} position='relative' left={'40%'} >
               <Checkbox>Men</Checkbox>
               <Checkbox>woman</Checkbox>
               <Checkbox>Child</Checkbox>
@@ -61,7 +62,7 @@ function NewHomePage() {
             </VStack>
           </Box>
 
-          <VStack border={'white'}>
+          <VStack border={"solid"}  >
           <Center fontSize='30px' color='white'>Shoe Size</Center>
                 <Button>6.5</Button>
                 <Button>7</Button>
@@ -73,7 +74,7 @@ function NewHomePage() {
           <Box border={'solid'}>
             <Center fontSize='30px' color='white'>Prices</Center>
             <VStack >
-              <Button size='sm'>$100 & under</Button>
+              <Button px='4px' >$100 & under</Button>
               <Button>$200-300</Button>
               <Button>$300-400</Button>
               <Button>$500-650</Button>
