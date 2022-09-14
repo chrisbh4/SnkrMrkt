@@ -1,3 +1,4 @@
+import { Box, Center } from "@chakra-ui/react";
 import React from "react";
 // import { useDispatch } from "react-redux";
 // import { getAllShoes } from "../../store/shoes";
@@ -15,11 +16,11 @@ function ShoeList({ shoe }) {
     }
 
     return (
-        <>
+        <Center>
                             <a href={`/shoes/${shoe.id}`} >
-                        <div className="shoe-image-container">
+                        <Center >
                                 {imageCheck}
-                        </div>
+                        </Center>
                         <div className="shoes-title">
                             <p className="home-shoe-title ">
                                 {shoe.title}
@@ -30,7 +31,7 @@ function ShoeList({ shoe }) {
                         </div>
                         </a>
 
-        </>
+        </Center>
     )
 }
 

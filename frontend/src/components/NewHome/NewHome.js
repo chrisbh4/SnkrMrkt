@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Center, GridItem, Box, VStack, StackDivider, Text, Flex } from '@chakra-ui/react'
- import { Wrap, WrapItem } from '@chakra-ui/react'
+import { Grid, Center, GridItem, Box, VStack, Checkbox, Button } from '@chakra-ui/react'
+import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import Navigation from "../Navigation/index";
 import { getAllShoes } from "../../store/shoes";
@@ -27,6 +27,7 @@ function NewHomePage() {
         templateColumns='repeat(5, 1fr)'
         gap={4}
       >
+        {/* Shoe Filter Nav */}
         <GridItem
           rowSpan={2}
           colSpan={1}
@@ -36,19 +37,66 @@ function NewHomePage() {
           <Center fontSize='30px' color='white'>
             Shoe Filters
           </Center>
+          <Box border={'solid'}>
+            <Center fontSize='24px' color='white'>Adidas</Center>
+            <Center fontSize='24px' color='white'>Air Jordan</Center>
+            <Center fontSize='24px' color='white'>Nike</Center>
+            <Center fontSize='24px' color='white'>New Balance</Center>
+            <Center fontSize='24px' color='white'>Reebok</Center>
+            <Center fontSize='24px' color='white'>converse</Center>
+            <Center fontSize='24px' color='white'>PUma</Center>
+            <Center fontSize='24px' color='white'>vans</Center>
+            <Center fontSize='24px' color='white'>Collections</Center>
+            <Center fontSize='24px' color='white'>Luxury Brands</Center>
+            <Center fontSize='24px' color='white'>Other Brands</Center>
+          </Box>
+
+          <Box border={'solid'}>
+            <Center fontSize='30px' color='white'>Shoe Style</Center>
+            <VStack >
+              <Checkbox>Men</Checkbox>
+              <Checkbox>woman</Checkbox>
+              <Checkbox>Child</Checkbox>
+              <Checkbox>toddler</Checkbox>
+            </VStack>
+          </Box>
+
+          <VStack border={'white'}>
+          <Center fontSize='30px' color='white'>Shoe Size</Center>
+                <Button>6.5</Button>
+                <Button>7</Button>
+                <Button>7.5</Button>
+                <Button>8</Button>
+
+          </VStack>
+
+          <Box border={'solid'}>
+            <Center fontSize='30px' color='white'>Prices</Center>
+            <VStack >
+              <Button size='sm'>$100 & under</Button>
+              <Button>$200-300</Button>
+              <Button>$300-400</Button>
+              <Button>$500-650</Button>
+              <Button>$650 +</Button>
+            </VStack>
+          </Box>
+
+
         </GridItem>
+
+        {/* Shoe Iteration col */}
         <GridItem rowSpan={2} colSpan={4} bg='gray'>
           <Center fontSize='30px' color='white'>
             All Shoe iterations
           </Center>
-          <Wrap bg='black'pl='5px'>
-          {shoesArray.map((shoe) => {
-                return (
-                  <WrapItem className="shoe-container" key={shoe.id}>
-                    <ShoeList shoe={shoe} key={shoe.id} />
-                  </WrapItem>
-                )
-              })}
+          <Wrap bg='black' pl='5px'>
+            {shoesArray.map((shoe) => {
+              return (
+                <WrapItem className="shoe-container" key={shoe.id}>
+                  <ShoeList shoe={shoe} key={shoe.id} />
+                </WrapItem>
+              )
+            })}
           </Wrap>
 
         </GridItem>
