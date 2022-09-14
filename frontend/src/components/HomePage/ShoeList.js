@@ -16,13 +16,9 @@ function ShoeList({ shoe }) {
 
     return (
         <>
-         <div>
-                        {/* <h2>{shoe.id}</h2> */}
-                        <div className="shoe-image-container">
-                            {}
                             <a href={`/shoes/${shoe.id}`} >
+                        <div className="shoe-image-container">
                                 {imageCheck}
-                            </a>
                         </div>
                         <div className="shoes-title">
                             <p className="home-shoe-title ">
@@ -32,14 +28,7 @@ function ShoeList({ shoe }) {
                         <div className="shoes-shoeSize">
                             <h4>{shoe.brand.toUpperCase()}</h4>
                         </div>
-                        {/* <div className="shoes-shoeSize">
-                            <h4> Size: {shoe.shoeSize}</h4>
-                        </div> */}
-                        {/* <div className="shoes-price">
-                            <h3>${shoe.price}</h3>
-                        </div> */}
-                    </div>
-
+                        </a>
 
         </>
     )

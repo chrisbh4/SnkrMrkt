@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Center, GridItem, Box, VStack, StackDivider, Text, Flex } from '@chakra-ui/react'
+ import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import Navigation from "../Navigation/index";
 import { getAllShoes } from "../../store/shoes";
@@ -19,84 +20,39 @@ function NewHomePage() {
 
   return (
     <>
-      <VStack
-        divider={<StackDivider borderColor='gray.200' />}
-        spacing={4}
-        align='stretch'
-        py='5%'>
-
-        <Box h="20%" bg='yellow.200'>
-          <VStack>
-            <Text fontSize="2xl">Just released (Limit to 8 )</Text>
-            <Flex
-              w="100%"
-              overflow="hidden" >
-              {shoesArray.map((shoe) => {
+      <Grid
+        pt="4%"
+        h='auto'
+        templateRows='repeat(2, 1fr)'
+        templateColumns='repeat(5, 1fr)'
+        gap={4}
+      >
+        <GridItem
+          rowSpan={2}
+          colSpan={1}
+          bg='brown'
+          h='100%'
+        >
+          <Center fontSize='30px' color='white'>
+            Shoe Filters
+          </Center>
+        </GridItem>
+        <GridItem rowSpan={2} colSpan={4} bg='gray'>
+          <Center fontSize='30px' color='white'>
+            All Shoe iterations
+          </Center>
+          <Wrap bg='black'pl='5px'>
+          {shoesArray.map((shoe) => {
                 return (
-                  <div className="shoe-container" key={shoe.id}>
+                  <WrapItem className="shoe-container" key={shoe.id}>
                     <ShoeList shoe={shoe} key={shoe.id} />
-                  </div>
+                  </WrapItem>
                 )
               })}
-            </Flex>
-          </VStack>
-        </Box>
+          </Wrap>
 
-        <Box  bg='tomato'   >
-          <VStack>
-            <Text fontSize="2xl">Most Popular (Limit to 14)</Text>
-            <Flex
-              w="100%"
-              overflow="scroll" >
-              {shoesArray.map((shoe) => {
-                return (
-                  <div className="shoe-container" key={shoe.id}>
-                    <ShoeList shoe={shoe} key={shoe.id} />
-                  </div>
-                )
-              })}
-            </Flex>
-          </VStack>
-        </Box>
-
-
-
-        <Box  bg='pink.100'>
-          <VStack>
-            <Text fontSize={"2xl"}>Brands</Text>
-            <Flex
-              w="100%"
-              overflow="scroll" >
-              {shoesArray.map((shoe) => {
-                return (
-                  <div className="shoe-container" key={shoe.id}>
-                    <ShoeList shoe={shoe} key={shoe.id} />
-                  </div>
-                )
-              })}
-            </Flex>
-          </VStack>
-        </Box>
-
-    {/* <Box  bg='blue.400'>
-          <VStack>
-            <Text fontSize={"2xl"}>Price Drops</Text>
-            <Flex
-              w="100%"
-              overflow="scroll" >
-              {shoesArray.map((shoe) => {
-                return (
-                  <div className="shoe-container" key={shoe.id}>
-                    <ShoeList shoe={shoe} key={shoe.id} />
-                  </div>
-                )
-              })}
-            </Flex>
-          </VStack>
-        </Box> */}
-
-
-      </VStack>
+        </GridItem>
+      </Grid>
     </>)
 }
 
