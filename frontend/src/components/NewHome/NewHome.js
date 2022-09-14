@@ -22,17 +22,19 @@ function NewHomePage() {
     <>
       <Grid
         pt="4%"
-        h='auto'
         templateRows='repeat(2, 1fr)'
         templateColumns='repeat(5, 1fr)'
         gap={4}
+        // h='auto'
+        h='1150px'
+        overflow='scroll'
       >
         {/* Shoe Filter Nav */}
         <GridItem
           rowSpan={2}
           colSpan={1}
           bg='brown'
-          h='100%'
+          overflow={'scroll'}
         >
           <Center fontSize='30px' color='white'>
             Shoe Filters
@@ -71,7 +73,7 @@ function NewHomePage() {
 
           </VStack>
 
-          <Box border={'solid'}>
+          <Box border={'solid'} pb='15px'>
             <Center fontSize='30px' color='white'>Prices</Center>
             <VStack >
               <Button px='4px' >$100 & under</Button>
@@ -86,10 +88,8 @@ function NewHomePage() {
         </GridItem>
 
         {/* Shoe Iteration col */}
-        <GridItem rowSpan={2} colSpan={4}   >
-          <Center fontSize='30px' color='gray'>
-            All Shoe iterations
-          </Center>
+        <GridItem rowSpan={2} colSpan={4} overflow='scroll'  >
+
           <Wrap >
             {shoesArray.map((shoe) => {
               return (
