@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid } from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
+import { getAllShoes } from "../../store/shoes";
 
 import ShoeList from "../HomePage/ShoeList";
 
@@ -14,6 +15,9 @@ function NewHomePage() {
 
   const shoeSizeChart = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5]
 
+  useEffect(()=>{
+    dispatch(getAllShoes())
+},[dispatch])
 
   return (
     <>
@@ -72,7 +76,7 @@ function NewHomePage() {
                   {shoeSizeChart.map((size) => {
                     return (
                       <>
-                        <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}>{size}</Button>
+                        <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}  >{size}</Button>
                       </>
                     )
                   })}
@@ -85,6 +89,7 @@ function NewHomePage() {
           <Box borderTop={'solid'} pb='15px'>
             <Text pl='2%' fontSize='30px' >Prices</Text>
             <Box position='relative' left={'7.5%'} pt='3%'>
+              {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
               <VStack columns={2} spacingY='9px' justifyContent={'center'} >
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", bg: "gray.300" }} >$100 & under</Checkbox>
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", bg: "gray.300" }} >$200-300</Checkbox>

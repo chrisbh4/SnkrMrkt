@@ -1,4 +1,4 @@
-import { Box, Center, Image, VStack, Link } from "@chakra-ui/react";
+import { Box, Center, Image, VStack, Link, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 // import { useDispatch } from "react-redux";
 // import { getAllShoes } from "../../store/shoes";
@@ -16,15 +16,19 @@ function ShoeList({ shoe }) {
     }
 
     return (
-        <VStack w='100%' pb='20px'>
+        <Box  w='100%' pb='20px'>
             <Link _hover={{textDecoration: "none"}} href={`/shoes/${shoe.id}`} >
                 <Center paddingBottom={'10px'} >
                     {imageCheck}
                 </Center  >
-                <Center w='100%' fontSize={'15px'} fontWeight='550' >{shoe.title}</Center>
-                <Center w='100%' fontSize={'15px'} fontWeight='550' >{shoe.brand}</Center>
+                <Box  w='100%' pl='4%' textAlign={'left'}>
+                <Text w='100%' fontSize={'15px'} fontWeight='550' >{shoe.title}</Text>
+                <Text w='100%' fontSize={'15px'} fontWeight='550' >{shoe.brand}</Text>
+                <Text w='100%' fontSize={'15px'} fontWeight='550' >Lowest price:</Text>
+                <Text w='100%' fontSize={'15px'} fontWeight='550' >${shoe.price}</Text>
+                </Box>
             </Link>
-        </VStack>
+        </Box>
     )
 }
 
