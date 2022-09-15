@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid } from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
-import Navigation from "../Navigation/index";
-import { getAllShoes } from "../../store/shoes";
+
 import ShoeList from "../HomePage/ShoeList";
 
 function NewHomePage() {
@@ -33,7 +32,8 @@ function NewHomePage() {
           rowSpan={2}
           colSpan={1}
 
-          overflow={'scroll'}
+          overflowY={'scroll'}
+          overflowX={'hidden'}
           w='75%'
           pl='2%'
 
