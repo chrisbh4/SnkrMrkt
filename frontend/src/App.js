@@ -15,7 +15,7 @@ import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
-import  NewHomePage  from './components/NewHome/NewHome';
+import NewHomePage from './components/NewHome/NewHome';
 import "./index.css"
 
 
@@ -28,46 +28,44 @@ function App() {
 
   }, [dispatch]);
 
-//* Erase inside JSX and only render <Hom
+  //* Erase inside JSX and only render <Hom
   return (
     <>
       <Navigation isLoaded={isLoaded} />
       <Routes>
-          <Route exact path='/home' element={<HomePage />}>
-          </Route>
+        <Route path="/home" element={<NewHomePage />}> </Route>
 
-          <Route path='/shoes/new' element={<NewShoesForm />}>
+        <Route path='/shoes/new' element={<NewShoesForm />}>
 
-          </Route>
+        </Route>
 
-          <Route exact path='/shoes/:id' element={<ShoesDetailsPage />}>
+        <Route exact path='/shoes/:id' element={<ShoesDetailsPage />}>
 
-          </Route>
+        </Route>
 
-          <Route exact path ='/shoes/:id/edit' element={ <EditShoesForm />}>
+        <Route exact path='/shoes/:id/edit' element={<EditShoesForm />}>
 
-          </Route>
+        </Route>
 
-          <Route exact path= "/shoes/:id/reviews/new" element={<NewReviewForm />}>
+        <Route exact path="/shoes/:id/reviews/new" element={<NewReviewForm />}>
 
-            </Route>
+        </Route>
 
-           <Route path = "/reviews/:id/edit" element={ <EditReviewForm />}>
+        <Route path="/reviews/:id/edit" element={<EditReviewForm />}>
 
-            </Route>
-            <Route path="/cart" element={<ShoppingCart/>}>
-              </Route>
-
-            <Route path="/new/home" element={<NewHomePage />}> </Route>
-
-            <Route path="/" element={<AboutPage />}>
-            </Route>
+        </Route>
+        <Route path="/cart" element={<ShoppingCart />}>
+        </Route>
 
 
-          <Route>
+        <Route path="/" element={<AboutPage />}>
+        </Route>
+
+
+        <Route>
           404 page not found
-          </Route>
-        </Routes>
+        </Route>
+      </Routes>
     </>
   );
 }

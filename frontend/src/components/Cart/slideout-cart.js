@@ -15,7 +15,9 @@ import {
   Image,
   Grid,
   GridItem,
-  useDisclosure
+  useDisclosure,
+  SimpleGrid,
+  Link
 } from '@chakra-ui/react'
 
 
@@ -48,11 +50,13 @@ const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
           placement='right'
           onClose={onClose}
           finalFocusRef={btnRef}
+          size='lg'
+
         >
           <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>
+          <DrawerContent  >
+            <DrawerCloseButton    />
+            <DrawerHeader >
             <h2 className="total-price">{totalPriceOfShoes > 0 ? `Plug Price : $${totalPriceOfShoes}` : emptyCart}</h2>
             </DrawerHeader>
 
@@ -61,20 +65,18 @@ const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
                 {cart.map((item) => (
                     <>
 
-                   <a href={`/shoes/${item.shoeId}`} >{item.title}</a>
 
-                   <Grid templateColumns='repeat(5, 1fr)' gap={6}>
-  <GridItem w='50%' h='10' >
-    <Image
-            src={item.img}
-            borderRadius='full'
-            boxSize='150px'
-    ></Image>
-    </GridItem>
-  <GridItem w='100%' h='10' >{item.title} </GridItem>
-  <GridItem w='100%' h='10' >{item.price} </GridItem>
 
-</Grid>
+<SimpleGrid columns={4} alignContent='center' alignItems={'center'} rows={1} gap={6}>
+  <GridItem w='100%' h='auto' >
+    <Image src={item.img} borderRadius='full' boxSize='150px' ></Image>
+  </GridItem>
+
+  <GridItem w='100%' textAlign={'center'} ><Link _hover={{textDecoration: "none"}}  href={`/shoes/${item.shoeId}`} >{item.title}</Link></GridItem>
+  <GridItem w='100%' textAlign={'center'} >{item.price} </GridItem>
+  <GridItem w='100%' textAlign={'center'} ><Button bg='red.300' fontSize='20px' fontWeight='bold' _hover={{ bg: "black", textColor: "red", border: "2px" }}>X</Button> </GridItem>
+
+</SimpleGrid>
                     </>
                 ))}
             </div>

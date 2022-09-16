@@ -30,6 +30,7 @@ function NewHomePage() {
         // h='auto'
         h='1150px'
         overflow='scroll'
+        w='100%'
       >
         {/* Shoe Filter Nav */}
         <GridItem
@@ -104,9 +105,8 @@ function NewHomePage() {
         </GridItem>
 
         {/* Shoe Iteration col */}
-        <GridItem rowSpan={2} colSpan={4} overflow='scroll'  >
-
-          <Wrap >
+        <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll'  >
+          <Wrap w='100%' minW={'100%'}>
             {shoesArray.map((shoe) => {
               return (
                 <WrapItem className="shoe-container" key={shoe.id}>
