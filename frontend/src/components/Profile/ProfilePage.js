@@ -10,11 +10,11 @@ function ProfilePage() {
     <Box pos='relative' top='50px'>
       <Flex h='1000px'    >
         <Box w='20%' pl='8px'>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text w='100%' fontSize={'xl'} >Profile</Text></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text w='100%' fontSize={'xl'} pb='3%' >Payment Settings</Text></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text w='100%' fontSize={'xl'} pb='3%' >Buying</Text></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text w='100%' fontSize={'xl'} pb='3%' >Selling</Text></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text w='100%' fontSize={'xl'} pb='3%' >Watching</Text></Flex>
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/home' _hover={{textDecor: 'none'}} w='100%' fontSize={'xl'} >Profile</Link></Flex>
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/home' _hover={{textDecor: 'none'}} w='100%' fontSize={'xl'} pb='3%' >Payment Settings</Link></Flex>
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/home' _hover={{textDecor: 'none'}} w='100%' fontSize={'xl'} pb='3%' >Buying</Link></Flex>
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/home' _hover={{textDecor: 'none'}} w='100%' fontSize={'xl'} pb='3%' >Selling</Link></Flex>
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'}_hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/home' _hover={{textDecor: 'none'}} w='100%' fontSize={'xl'} pb='3%' >Watching</Link></Flex>
         </Box>
         <Box w='100%' bg=''>
 
