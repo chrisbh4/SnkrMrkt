@@ -35,7 +35,6 @@ function Navigation({isLoaded}) {
     sessionLinks = (
       <div className="nav-logged-in">
         {/* need to change classname */}
-
         <div className="web-title">
           <a href="/home" id="web-title-redirect">
             SNKR Market
@@ -49,22 +48,20 @@ function Navigation({isLoaded}) {
         </div>
 
         <div className="test-1">
-          <NavLink exact to="/home">
+            <NavLink exact to="/home">
             <button className="nav-button">
               Home
             </button>
           </NavLink>
 
-
-          <NavLink exact to="/new/home">
-            <button className="nav-button">
-              New Home
-            </button>
-          </NavLink>
-
           <NavLink to="/shoes/new">
             <button className="nav-button">
-              New Shoe
+              Sell a Snkr
+            </button>
+          </NavLink>
+          <NavLink to="/profile">
+            <button className="nav-button">
+              Profile
             </button>
           </NavLink>
 
@@ -81,9 +78,9 @@ function Navigation({isLoaded}) {
 
 
 
-            {/* <button className="nav-profile-button">
+            <button className="nav-profile-button">
             <SlideOutCart />
-            </button> */}
+            </button>
 
 
 
