@@ -16,6 +16,7 @@ import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
 import NewHomePage from './components/NewHome/NewHome';
+import ProfilePage from './components/Profile/ProfilePage';
 import "./index.css"
 
 
@@ -56,6 +57,8 @@ function App() {
         </Route>
         <Route path="/cart" element={<ShoppingCart />}>
         </Route>
+
+        <Route path='/profile' element={<ProfilePage />} ></Route>
 
 
         <Route path="/" element={<AboutPage />}>

@@ -56,7 +56,12 @@ function Navigation({isLoaded}) {
 
           <NavLink to="/shoes/new">
             <button className="nav-button">
-              New Shoe
+              Sell a Snkr
+            </button>
+          </NavLink>
+          <NavLink to="/profile">
+            <button className="nav-button">
+              Profile
             </button>
           </NavLink>
 

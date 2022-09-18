@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
-
+import { purchaseFromCart } from "../../store/shoppingCart";
 import {
   Drawer,
   DrawerBody,
@@ -17,7 +18,9 @@ import {
   GridItem,
   useDisclosure,
   SimpleGrid,
-  Link
+  Link,
+  Box,
+  Center
 } from '@chakra-ui/react'
 
 
@@ -25,14 +28,25 @@ import {
 function SlideOutCart() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const shoppingCart = useSelector((state) => state.shoppingCart);
 const cart = Object.values(shoppingCart);
+
+const purchaseTheCart = async () => {
+  await dispatch(purchaseFromCart())
+  alert("Order has been Placed")
+  navigate('/')
+  return
+}
 
 let total = 0.00;
 cart.forEach((item) => {
     total += parseFloat(item.price)
 })
+
+
 const totalPriceOfShoes = total.toFixed(2)
 const feePrices = total * 0.01
 const stateTax = 2
@@ -72,13 +86,22 @@ const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
     <Image src={item.img} borderRadius='full' boxSize='150px' ></Image>
   </GridItem>
 
-  <GridItem w='100%' textAlign={'center'} ><Link _hover={{textDecoration: "none"}}  href={`/shoes/${item.shoeId}`} >{item.title}</Link></GridItem>
+  <GridItem w='100%' pos='relative' left='10%' textAlign={'center'} ><Link _hover={{textDecoration: "none"}}  href={`/shoes/${item.shoeId}`} >{item.title}</Link></GridItem>
   <GridItem w='100%' textAlign={'center'} >{item.price} </GridItem>
   <GridItem w='100%' textAlign={'center'} ><Button bg='red.300' fontSize='20px' fontWeight='bold' _hover={{ bg: "black", textColor: "red", border: "2px" }}>X</Button> </GridItem>
 
 </SimpleGrid>
                     </>
                 ))}
+                <Box>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Plug Prices : $${totalPriceOfShoes}` : emptyCart}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${feePrices.toFixed(2)}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `State Tax: ${stateTax.toFixed(2)}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${pricePostTaxes.toFixed(2)}` : null}</h2>
+                <Center>
+                {totalPriceOfShoes > 0 ? <Button bg='red.300' mt='4%'> <Link href='/cart' > Purchase </Link></Button> : null}
+                </Center>
+                </Box>
             </div>
             </DrawerBody>
 
