@@ -20,7 +20,7 @@ const sneaksRouter = require('./sneaks.js')
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
 router.use("/shoes", shoesRouter);
-router.use("/snkrs", sneaksRouter)
+router.use("/test", sneaksRouter)
 router.use("/reviews",reviewsRouter);
 
 
