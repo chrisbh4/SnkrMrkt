@@ -28,22 +28,28 @@ sneaks.getMostPopular(5, function(err, products){
     console.log(products)
 })
 */
-const MostPopular = sneaks.getMostPopular(5, function(err, products){
-    console.log(products)
-    return products
-});
+const searchSnkr = sneaks.getProducts("Yeezy Cinder", 1, function(err, products){
+    console.log("Before :", products)
+    const objPro =Object.values(products)[0]
+    console.log("Func :", objPro.colorway)
 
-router.get('/most', asyncHandler( async ( req , res ) => {
+    return objPro
+})
 
-    return await res.json({MostPopular});
-}));
+// const MostPopular = sneaks.getMostPopular(1, function(err, products){
+//     console.log(products)
+//     return products
+// });
 
-const test = sneaks.getProducts("Yeezy Cinder", 1, function(err, products){
-    return {products}
-   });
+// router.get('/most', asyncHandler( async ( req , res ) => {
+//     console.log(products[0])
+//     return await res.json(...MostPopular);
+// }));
+
 
 router.get('/', asyncHandler(async (req, res) => {
-      return await res.json(test);
+    console.log("SNKRS route :" , searchSnkr)
+      return res.json(searchSnkr);
 }));
 
 
