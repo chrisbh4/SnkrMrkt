@@ -1,7 +1,7 @@
 # SnkrMrkt
 
 
-live link: [thePlug](https://theplugg.herokuapp.com)
+live link: [SnkrMrkt](https://theplugg.herokuapp.com)
 
 
 ## Features
