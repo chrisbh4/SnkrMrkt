@@ -28,13 +28,13 @@ sneaks.getMostPopular(5, function(err, products){
     console.log(products)
 })
 */
-const searchSnkr = sneaks.getProducts("Yeezy Cinder", 1, function(err, products){
-    console.log("Before :", products)
-    const objPro =Object.values(products)[0]
-    console.log("Func :", objPro.colorway)
 
-    return objPro
-})
+// const searchSnkr = sneaks.getProducts("Yeezy Cinder", 1, function(err, products){
+//     const objPro =Object.values(products)[0]
+//     console.log("Func :", objPro.releaseDate)
+
+//     return objPro
+// })
 
 // const MostPopular = sneaks.getMostPopular(1, function(err, products){
 //     console.log(products)
@@ -47,9 +47,25 @@ const searchSnkr = sneaks.getProducts("Yeezy Cinder", 1, function(err, products)
 // }));
 
 
+
+// router.get('/', asyncHandler(async (req, res) => {
+//     console.log("SNKRS route :" , searchSnkr)
+//     const test = {"snkrs": searchSnkr}
+//     console.log(test)
+
+//       return res.json({"bob": "test"});
+// }));
+
 router.get('/', asyncHandler(async (req, res) => {
-    console.log("SNKRS route :" , searchSnkr)
-      return res.json(searchSnkr);
+    const searchSnkr = await sneaks.getProducts("Yeezy Cinder", 1, function(err, products){
+    // const objPro =Object.values(products)[0]
+    // console.log("Func :", objPro.releaseDate)
+    console.log("Prod :", products)
+    return products
+})
+    console.log("Route :" , searchSnkr)
+
+      return res.json({"bob": "test"});
 }));
 
 
