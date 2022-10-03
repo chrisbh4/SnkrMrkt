@@ -1,4 +1,4 @@
-# ThePlug
+# SnkrMrkt
 
 
 live link: [thePlug](https://theplugg.herokuapp.com)
