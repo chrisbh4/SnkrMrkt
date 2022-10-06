@@ -71,7 +71,7 @@ const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
           <DrawerContent  >
             <DrawerCloseButton    />
             <DrawerHeader >
-            <h2 className="total-price">{totalPriceOfShoes > 0 ? `Plug Price : $${totalPriceOfShoes}` : emptyCart}</h2>
+            {/* <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : $${totalPriceOfShoes}` : emptyCart}</h2> */}
             </DrawerHeader>
 
             <DrawerBody>
@@ -94,22 +94,22 @@ const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
                     </>
                 ))}
                 <Box>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Plug Prices : $${totalPriceOfShoes}` : emptyCart}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : $${totalPriceOfShoes}` : emptyCart}</h2>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${feePrices.toFixed(2)}` : null}</h2>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `State Tax: ${stateTax.toFixed(2)}` : null}</h2>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${pricePostTaxes.toFixed(2)}` : null}</h2>
                 <Center>
-                {totalPriceOfShoes > 0 ? <Button bg='red.300' mt='4%'> <Link href='/cart' > Purchase </Link></Button> : null}
+                {totalPriceOfShoes > 0 ? <Button bg='red.300' mt='4%'> <Link href='/cart' > Checkout </Link></Button> : null}
                 </Center>
                 </Box>
             </div>
             </DrawerBody>
 
             <DrawerFooter>
-              <Button variant='outline' mr={3} onClick={onClose}>
-                Cancel
+              <Button variant='outline' mr={3} bg='red.300' onClick={onClose}>
+                Close
               </Button>
-              <Button colorScheme='blue'>Save</Button>
+
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
