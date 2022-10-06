@@ -2,7 +2,7 @@ import { Box, Center, Image, VStack, Link, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 // import { useDispatch } from "react-redux";
 // import { getAllShoes } from "../../store/shoes";
-import '../HomePage/ShoeList.css'
+import '../OldHomePage/ShoeList.css'
 
 
 function ShoeList({ shoe }) {

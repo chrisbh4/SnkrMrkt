@@ -4,7 +4,7 @@ import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
 
-import ShoeList from "../HomePage/ShoeList";
+import ShoeList from "../OldHomePage/ShoeList";
 
 function NewHomePage() {
 
@@ -44,7 +44,7 @@ function NewHomePage() {
 
         >
 
-          <Box pl='1%' pt='3%' pb='2%'>
+          <Box pl='1%' pt='5%' pb='2%'>
             <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Yeezy</Text>
             <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Air Jordan</Text>
             <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Adidas</Text>
@@ -87,7 +87,7 @@ function NewHomePage() {
             </Flex>
           </Box>
 
-          <Box borderTop={'solid'} pb='15px'>
+          <Box borderTop={'solid'} pb='27px'>
             <Text pl='2%' fontSize='30px' >Prices</Text>
             <Box position='relative' left={'7.5%'} pt='3%'>
               {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
