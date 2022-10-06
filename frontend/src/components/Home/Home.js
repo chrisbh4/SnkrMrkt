@@ -63,10 +63,10 @@ function NewHomePage() {
           <Box borderTop={'1px'}   >
             <Text fontSize='30px' position='relative' left='1%'>Shoe Style</Text>
             <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text fontSize={'20px'} textTransform='uppercase' >Men</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text fontSize={'20px'} textTransform='uppercase' >Woman</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text fontSize={'20px'} textTransform='uppercase' >Child</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Text fontSize={'20px'} textTransform='uppercase' >Toddler</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Men</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Woman</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Child</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Toddler</Text></Checkbox>
             </VStack>
           </Box>
 
@@ -93,11 +93,11 @@ function NewHomePage() {
             <Box position='relative' left={'7.5%'} pt='3%'>
               {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
               <VStack columns={2} spacingY='9px' justifyContent={'center'} >
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", bg: "gray.300" }} >$100 & under</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", bg: "gray.300" }} >$200-300</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", bg: "gray.300" }} >$300-400</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", bg: "gray.300" }} >$500-650</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", bg: "gray.300" }} >$650 +</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$100 & under</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$200-300</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$300-400</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$500-650</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$650 +</Checkbox>
               </VStack>
             </Box>
           </Box>
