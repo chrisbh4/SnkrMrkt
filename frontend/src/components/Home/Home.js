@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid, Link } from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
@@ -13,11 +13,43 @@ function NewHomePage() {
   console.log("shoes :", shoes)
   const shoesArray = Object.values(shoes)
 
-  const shoeSizeChart = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5]
+  const sizeChart = [
+    {id:1 , size: 3},
+    {id:2 , size: 3.5},
+    {id:3 , size: 4},
+    {id:4 , size: 4.5},
+    {id:5 , size: 5},
+    {id:6 , size: 5.5},
+    {id:7 , size: 6},
+    {id:8 , size: 6.5},
+    {id:9 , size: 7},
+    {id:10, size: 7.5},
+    {id:11, size: 8},
+    {id:12, size: 8.5},
+    {id:13, size: 9},
+    {id:14, size: 9.5},
+    {id:15, size: 10},
+    {id:16, size: 10.5},
+    {id:17, size: 11},
+    {id:18, size: 11.5},
+    {id:19, size: 12},
+    {id:20, size: 12.5},
+    {id:21, size: 13},
+    {id:22, size: 13.5},
+    {id:23, size: 14.5},
+    {id:24, size: 15},
+  ]
 
   useEffect(()=>{
     dispatch(getAllShoes())
 },[dispatch])
+
+const [isSize, setIsSize] = useState({id: 0 , size: 0});
+const [selected , setSelected] = useState(0)
+
+const handleSizeBg = (size) => {
+  setSelected(size.id);
+};
 
   return (
     <>
@@ -75,10 +107,15 @@ function NewHomePage() {
             <Flex pl='2%'>
               <Center>
                 <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacingY='9px'>
-                  {shoeSizeChart.map((size) => {
+                  {sizeChart.map((chart) => {
                     return (
                       <>
-                        <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}  >{size}</Button>
+                        <Button  w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
+                                     key={chart.id}
+                                     onClick={() => handleSizeBg(chart)}
+                                     style={{ backgroundColor: chart.id === selected ? "red" : "",  color: chart.id === selected ? "white" : "" }}
+                                     > {chart.size}
+                        </Button>
                       </>
                     )
                   })}
