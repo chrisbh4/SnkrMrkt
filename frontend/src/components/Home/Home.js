@@ -39,16 +39,33 @@ function NewHomePage() {
     {id:23, size: 14.5},
     {id:24, size: 15},
   ]
+  const brandsList = [
+    {id:1 , title: "Yeezy" },
+    {id:2 , title: "Air Jordan"  },
+    {id:3 , title: "Adidas"  },
+    {id:4 , title: "Nike"  },
+    {id:5 , title: "New Balance"  },
+    {id:6 , title: "Reebok"  },
+    {id:7 , title: "converse"  },
+    {id:8 , title: "Puma"  },
+    {id:9 , title: "vans"  },
+    {id:10, title: "Collections"  },
+    {id:11, title: "Designer"  }
+  ]
 
   useEffect(()=>{
     dispatch(getAllShoes())
 },[dispatch])
 
 const [isSize, setIsSize] = useState({id: 0 , size: 0});
-const [selected , setSelected] = useState(0)
+const [selectedBrand , setBrandSelected] = useState(0)
+const [selectedSize , setSizeSelected] = useState(0)
 
+const handleBrandBg = (size) => {
+  setBrandSelected(size.id);
+};
 const handleSizeBg = (size) => {
-  setSelected(size.id);
+  setSizeSelected(size.id);
 };
 
   return (
@@ -78,18 +95,17 @@ const handleSizeBg = (size) => {
         >
 
           <Box pl='1%' pt='5%' pb='2%'>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Yeezy</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Air Jordan</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Adidas</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Nike</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >New Balance</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Reebok</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >converse</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >PUma</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >vans</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Collections</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Luxury Brands</Text> </Link>
-           <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Other Brands</Text> </Link>
+            {brandsList.map((brand) =>{
+              return(
+                <>
+                <Text
+                       onClick={() => handleBrandBg(brand)}
+                       style={{ backgroundColor: brand.id === selectedBrand ? "gray" : "",  color: brand.id === selectedBrand ? "white" : "" }}
+                textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text>
+                  {/* <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text> </Link> */}
+                </>
+              )
+            })}
           </Box>
 
           <Box borderTop={'1px'}   >
@@ -113,7 +129,7 @@ const handleSizeBg = (size) => {
                         <Button  w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
                                      key={chart.id}
                                      onClick={() => handleSizeBg(chart)}
-                                     style={{ backgroundColor: chart.id === selected ? "red" : "",  color: chart.id === selected ? "white" : "" }}
+                                     style={{ backgroundColor: chart.id === selectedSize ? "red" : "",  color: chart.id === selectedSize ? "white" : "" }}
                                      > {chart.size}
                         </Button>
                       </>
