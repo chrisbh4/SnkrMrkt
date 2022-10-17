@@ -7,7 +7,7 @@ import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 // import { Modal } from './context/Modal';
 // import { getAllShoes } from './store/shoes';
-import HomePage from './components/HomePage/HomePage';
+// import HomePage from './components/HomePage/HomePage';
 import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
 import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage';
 import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
@@ -15,7 +15,7 @@ import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
 import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
-import NewHomePage from './components/NewHome/NewHome';
+import HomePage from './components/Home/Home';
 import ProfilePage from './components/Profile/ProfilePage';
 import "./index.css"
 
@@ -34,7 +34,7 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       <Routes>
-        <Route path="/home" element={<NewHomePage />}> </Route>
+        <Route path="/home" element={<HomePage />}> </Route>
 
         <Route path='/shoes/new' element={<NewShoesForm />}>
 
