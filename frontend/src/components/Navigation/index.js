@@ -9,6 +9,7 @@ import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 
 import './Navigation.css';
+import { Box } from '@chakra-ui/react';
 
 function Navigation({isLoaded}) {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ function Navigation({isLoaded}) {
           <SearchBar shoes={grabAllShoes} />
         </div>
 
-        <div className="test-1">
+        <div className="nav-control-btns">
             <NavLink exact to="/home">
             <button className="nav-button">
               Home
@@ -65,22 +66,18 @@ function Navigation({isLoaded}) {
             </button>
           </NavLink>
 
-          <div >
+          <Box >
             <ProfileButton user={sessionUser} />
-          </div>
-
-
-          <NavLink to="/cart">
-            <button className="nav-profile-button">
-              <i className="fas fa-shopping-cart"></i>
-            </button>
-          </NavLink>
+          </Box>
 
 
 
-            <button className="nav-profile-button">
+
+
+
+            <Box mr='30px'  >
             <SlideOutCart />
-            </button>
+            </Box>
 
 
 
