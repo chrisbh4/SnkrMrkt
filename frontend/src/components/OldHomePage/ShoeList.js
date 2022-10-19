@@ -9,7 +9,7 @@ function ShoeList({ shoe }) {
 
     let imageCheck;
     if (shoe.image.includes("jpg") || shoe.image.includes("jpeg") || shoe.image.includes("png") || shoe.image.includes("image")) {
-        imageCheck = <Image src={shoe.image} alt={shoe.title}></Image>
+        imageCheck = <Image src={shoe.image} alt={shoe.title} zIndex='inherit' ></Image>
     } else {
         imageCheck = <Image className="bad-image shoe-image" alt={shoe.title}></Image>
 

@@ -9,7 +9,7 @@ import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 
 import './Navigation.css';
-import { Box } from '@chakra-ui/react';
+import { Box, Menu, MenuButton, MenuItem,Button, MenuList } from '@chakra-ui/react';
 
 function Navigation({isLoaded}) {
   const navigate = useNavigate();
@@ -68,6 +68,20 @@ function Navigation({isLoaded}) {
 
           <Box >
             <ProfileButton user={sessionUser} />
+          </Box>
+          <Box >
+          <Menu>
+  <MenuButton as={Button} >
+    Actions
+  </MenuButton>
+  <MenuList>
+    <MenuItem>Download</MenuItem>
+    <MenuItem>Create a Copy</MenuItem>
+    <MenuItem>Mark as Draft</MenuItem>
+    <MenuItem>Delete</MenuItem>
+    <MenuItem>Attend a Workshop</MenuItem>
+  </MenuList>
+</Menu>
           </Box>
 
 
