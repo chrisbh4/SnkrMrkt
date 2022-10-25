@@ -32,7 +32,7 @@ function App() {
   //* Erase inside JSX and only render <Hom
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded}  />
       <Routes>
         <Route path="/home" element={<HomePage />}> </Route>
 
