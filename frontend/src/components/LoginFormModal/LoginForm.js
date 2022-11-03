@@ -12,12 +12,18 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const handleCredentials = (e) => setCredential(e.target.value)
+  const handlePassword = (e) => {
+    console.log(e.target.value)
+    return setPassword(e.target.value)}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Inside Handle Submit")
 
     const data = await dispatch(sessionActions.login({ credential, password }))
+
+    console.log(data)
 
     if (data?.errors) {
       setErrors(data.errors)
@@ -26,7 +32,6 @@ function LoginForm() {
     navigate('/home')
     return data
   };
-
 
 
   // const handleSubmit = (e) => {
@@ -60,7 +65,7 @@ function LoginForm() {
           type="text"
           id="email"
           value={credential}
-          onChange={(e) => setCredential(e.target.value)}
+          onChange={handleCredentials}
           required
           borderBottom={'2px'}
           borderColor='black'
@@ -79,7 +84,7 @@ function LoginForm() {
           borderColor='black'
           width={'full'} />
 
-        <Button onSubmit={handleSubmit} type="submit" marginRight={'20px'}>Log In</Button>
+        <Button onClick={handleSubmit} type="submit" marginRight={'20px'}>Log In</Button>
       </FormControl>
 
       <footer>
