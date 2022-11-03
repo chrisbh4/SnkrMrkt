@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import * as sessionActions from '../../store/session';
-import {purchaseFromCart} from "../../store/shoppingCart";
+import { purchaseFromCart } from "../../store/shoppingCart";
+
+import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Text } from '@chakra-ui/react';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -22,7 +24,6 @@ function ProfileButton({ user }) {
   //* Bug is coming from the setShowMenu not being switched from false -> true
   useEffect(() => {
     if (!showMenu) return;
-
     const closeMenu = () => {
 
       setShowMenu(false);
@@ -34,9 +35,9 @@ function ProfileButton({ user }) {
 
   }, [showMenu]);
 
-  const logout = async(e) => {
+  const logout = async (e) => {
     e.preventDefault();
-   //Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
+    //Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
     dispatch(purchaseFromCart());
     dispatch(sessionActions.logout());
     navigate('/')
@@ -44,9 +45,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} className="nav-profile-button">
-        <i className="fas fa-user-circle" style={{fontSize: "15px" , marginTop:"4px"}} />
-      </button>
+      {/* <Button onClick={openMenu} className="nav-profile-button">
+        <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
+      </Button>
       {showMenu && (
         <ul className="profile-dropdown">
           <p>username: <span id="user-info"> {user.username} </span> </p>
@@ -55,7 +56,18 @@ function ProfileButton({ user }) {
             <button className="logout-button" onClick={logout}>Log Out</button>
           </div>
         </ul>
-      )}
+      )} */}
+
+          <Menu>
+  <MenuButton as={Button} >
+  <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
+  </MenuButton>
+  <MenuList >
+    <Text>Username: {user.username}</Text>
+    <Text>Email: {user.email}</Text>
+    <MenuItem><button className="logout-button" onClick={logout}>Log Out</button></MenuItem>
+  </MenuList>
+</Menu>
     </>
   );
 }
