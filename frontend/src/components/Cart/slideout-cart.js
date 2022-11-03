@@ -56,8 +56,8 @@ const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
 
     return (
       <>
-        <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-          Open
+        <Button ref={btnRef} colorScheme='black' onClick={onOpen} >
+        <i className="fas fa-shopping-cart" style={{fontSize:"13px"}}></i>
         </Button>
         <Drawer
           isOpen={isOpen}

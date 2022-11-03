@@ -7,8 +7,11 @@ import SignUpModal from '../SignupFormPage';
 import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
+import { purchaseFromCart } from "../../store/shoppingCart";
+import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
+import { Box, Menu, MenuButton, MenuItem,Button, MenuList } from '@chakra-ui/react';
 
 function Navigation({isLoaded}) {
   const navigate = useNavigate();
@@ -25,6 +28,14 @@ function Navigation({isLoaded}) {
     return dispatch(login({ credential, password }))
   }
 
+  const logout = async (e) => {
+    e.preventDefault();
+    //Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
+    dispatch(purchaseFromCart());
+    dispatch(sessionActions.logout());
+    navigate('/')
+  };
+
 // Semver
 // small = patch
 // mid = minor change
@@ -33,21 +44,21 @@ function Navigation({isLoaded}) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <div className="nav-logged-in">
+      <Box className="nav-logged-in">
         {/* need to change classname */}
-        <div className="web-title">
+        <Box className="web-title">
           <a href="/home" id="web-title-redirect">
             SNKR Market
           </a>
 
-        </div>
+        </Box>
 
 
-        <div id="search-bar-container">
+        <Box id="search-bar-container">
           <SearchBar shoes={grabAllShoes} />
-        </div>
+        </Box>
 
-        <div className="test-1">
+        <Box className="nav-control-btns">
             <NavLink exact to="/home">
             <button className="nav-button">
               Home
@@ -65,37 +76,36 @@ function Navigation({isLoaded}) {
             </button>
           </NavLink>
 
-          <div >
+          <Box >
+            <Button onClick={logout}>Log out</Button>
+          </Box>
+
+          <Box mr='30px'  >
+          <SlideOutCart />
+          </Box>
+
+          {/* <Box >
             <ProfileButton user={sessionUser} />
-          </div>
-
-
-          <NavLink to="/cart">
-            <button className="nav-profile-button">
-              <i className="fas fa-shopping-cart"></i>
-            </button>
-          </NavLink>
+          </Box> */}
 
 
 
-            <button className="nav-profile-button">
-            <SlideOutCart />
-            </button>
 
 
 
-        </div>
-      </div>
+
+        </Box>
+      </Box>
 
     );
   } else {
     sessionLinks = (
-      <div className="nav-logged-out">
-        <div className="web-title-logged-out">
+      <Box className="nav-logged-out">
+        <Box className="web-title-logged-out">
           <a href="/" id="web-title-redirect">
             The Plug
           </a>
-        </div>
+        </Box>
 
         <button className="nav-button">
           <LoginFormModal />
@@ -120,7 +130,7 @@ function Navigation({isLoaded}) {
             Home
           </button>
         </NavLink>
-      </div>
+      </Box>
     );
   }
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid, Link, Input, Stack, Form, FormControl, FormLabel, FormErrorMessage, FormHelperText, } from '@chakra-ui/react'
 import "./LoginForm.css";
 
 function LoginForm() {
@@ -11,20 +12,26 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const handleCredentials = (e) => setCredential(e.target.value)
+  const handlePassword = (e) => {
+    console.log(e.target.value)
+    return setPassword(e.target.value)}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Inside Handle Submit")
 
     const data = await dispatch(sessionActions.login({ credential, password }))
 
-    if(data?.errors){
-        setErrors(data.errors)
-        return
+    console.log(data)
+
+    if (data?.errors) {
+      setErrors(data.errors)
+      return
     }
     navigate('/home')
     return data
   };
-
 
 
   // const handleSubmit = (e) => {
@@ -40,70 +47,62 @@ function LoginForm() {
   // };
 
   return (
-    <div>
-      <h1 id="login-header">Log In</h1>
-      <form className="login-form" onSubmit={handleSubmit}>
-        {/* <ul> */}
-          {/* //! Cant console.log for some reason it unHighlights idx
-           might need to make my own errors.map */}
+    <Box p='30px'>
+      <Center fontSize={'xl'} fontWeight='bold'>Log In </Center>
+      <FormControl onSubmit={handleSubmit}  >
+      {/* Error Handler */}
+        {/* <Box>
           {errors.map((error, idx) => {
-           return <p key={idx}>{error}</p>
+            return <Text key={idx}>{error}</Text>
           }
-
           )}
-        {/* </ul> */}
-        <label>
-         Email :
-          <input
-            className="login-input"
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password :
-          <div className="login-input">
+        </Box> */}
 
-          <input
-            className="login-input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          </div>
-        </label>
+        <FormLabel >Email</FormLabel>
+        <Input
+          variant='flushed'
+          placeholder='Enter Email'
+          type="text"
+          id="email"
+          value={credential}
+          onChange={handleCredentials}
+          required
+          borderBottom={'2px'}
+          borderColor='black'
+          width={'full'}
+        />
+        <FormLabel>Password</FormLabel>
+        <Input
+          variant='flushed'
+          placeholder='Enter Password'
+          type="password"
+          id='password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          borderBottom={'2px'}
+          borderColor='black'
+          width={'full'} />
 
-        <button className="login-submit" type="submit">Log In</button>
-      </form>
-      <div>
+        <Button onClick={handleSubmit} type="submit" marginRight={'20px'}>Log In</Button>
+      </FormControl>
+
       <footer>
+        <p>Christian Brown</p>
+        <div class="networking">
+          <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="mailto:Chrismbh4@gmail.com">
+            <i class="fas fa-envelope-square"></i>
+          </a>
 
-<p>Christian Brown</p>
-
-<div class="networking">
-  <a href="https://www.linkedin.com/in/christian-brown-8770311ba/">
-  <i class="fab fa-linkedin"></i>
-</a>
-<a href="mailto:Chrismbh4@gmail.com">
-  <i class="fas fa-envelope-square"></i>
-</a>
-
-<a href="https://github.com/chrisbh4">
-  <i class="fab fa-github"></i>
-</a>
-</div>
-
-
-
-
-
-
-</footer>
-      </div>
-    </div>
+          <a href="https://github.com/chrisbh4">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </footer>
+    </Box>
   );
 }
 

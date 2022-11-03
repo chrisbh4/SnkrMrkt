@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Box, Center, Image, VStack, Link, Flex, Text } from "@chakra-ui/react";
 import "./SearchBar.css"
 
 

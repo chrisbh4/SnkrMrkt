@@ -75,10 +75,7 @@ const handleSizeBg = (size) => {
         pt="2%"
         templateRows='repeat(2, 1fr)'
         templateColumns='repeat(5, 1fr)'
-
-        // h='auto'
         h='1150px'
-        overflow='scroll'
         w='100%'
       >
         {/* Shoe Filter Nav */}
@@ -154,12 +151,11 @@ const handleSizeBg = (size) => {
               </VStack>
             </Box>
           </Box>
-
-
         </GridItem>
 
         {/* Shoe Iteration col */}
-        <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll'  >
+        {/* <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' > */}
+        <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' >
           <Wrap w='100%' minW={'100%'}>
             {shoesArray.map((shoe) => {
               return (
