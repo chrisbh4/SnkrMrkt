@@ -67,7 +67,7 @@ function LoginForm() {
 
 
           <VStack >
-            <FormControl onSubmit={handleSubmit} w='50%'  >
+            <FormControl onSubmit={handleSubmit} w='full' px={'20px'}  >
               {/* Error Handler */}
               {/* <Box>
           {errors.map((error, idx) => {
@@ -85,7 +85,10 @@ function LoginForm() {
                 required
                 borderBottom={'2px'}
                 borderColor='black'
-                width={'full'}
+                width={'90%'}
+                mb='10px'
+                position={'relative'}
+                left='20px'
               />
 
               <Input
@@ -97,7 +100,10 @@ function LoginForm() {
                 required
                 borderBottom={'2px'}
                 borderColor='black'
-                width={'full'} />
+                width={'90%'}
+                position={'relative'}
+                left='20px'
+                 />
               <Center pt='10px' pb='20px'>
                 <Button onClick={handleSubmit} type="submit" color='white' bg='black'>Log In</Button>
               </Center>
