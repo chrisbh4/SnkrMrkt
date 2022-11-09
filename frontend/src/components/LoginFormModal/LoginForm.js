@@ -50,8 +50,8 @@ function LoginForm() {
   return (
 
     <Box>
-      <Center pb='20px' pt='15px' bg='gray.100'>
-        <Text fontSize={'3xl'} position='relative' top='7px'>SNKR MRT</Text>
+      <Center pb='20px' pt='15px' bg='gray.900'>
+        <Text color='white' fontSize={'30px'}  position='relative' top='7px'>SNKR MRT</Text>
         </Center>
 
       <Box pb='100px' px={'50px'} bg='gray.100'  >
@@ -107,7 +107,7 @@ function LoginForm() {
                 left='20px'
                  />
               <Center pt='10px' pb='20px'>
-                <Button onClick={handleSubmit} width='60%' type="submit" color='white' bg='black'>Log In</Button>
+                <Button onClick={handleSubmit} width='60%' type="submit" color='white' bg='gray.900'>Log In</Button>
               </Center>
 
             </FormControl>
