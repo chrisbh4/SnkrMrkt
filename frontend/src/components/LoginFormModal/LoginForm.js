@@ -71,12 +71,12 @@ function LoginForm() {
           <VStack >
             <FormControl onSubmit={handleSubmit} w='full' px={'20px'}  >
               {/* Error Handler */}
-              {/* <Box>
+              <VStack pb='15px' color={'red.500'}>
           {errors.map((error, idx) => {
             return <Text key={idx}>{error}</Text>
           }
           )}
-        </Box> */}
+        </VStack>
 
               <Input
                 placeholder='Enter Email'
