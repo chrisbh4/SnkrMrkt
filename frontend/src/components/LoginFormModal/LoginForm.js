@@ -50,7 +50,9 @@ function LoginForm() {
   return (
 
     <Box>
-      <Center fontSize={'3xl'} pb='20px' pt='10px' bg='gray.200'>SNKR MRT</Center>
+      <Center pb='20px' pt='15px' bg='gray.200'>
+        <Text fontSize={'3xl'} position='relative' top='7px'>SNKR MRT</Text>
+        </Center>
 
       <Box pb='100px' px={'50px'} bg='gray.200'  >
         <Box py='70px' px='0px' border={'2px'} bg='white'>
