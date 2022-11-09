@@ -50,19 +50,19 @@ function LoginForm() {
   return (
 
     <Box>
-      <Center pb='20px' pt='15px' bg='gray.200'>
+      <Center pb='20px' pt='15px' bg='gray.100'>
         <Text fontSize={'3xl'} position='relative' top='7px'>SNKR MRT</Text>
         </Center>
 
-      <Box pb='100px' px={'50px'} bg='gray.200'  >
-        <Box py='70px' px='0px' border={'2px'} bg='white'>
+      <Box pb='100px' px={'50px'} bg='gray.100'  >
+        <Box py='70px' px='0px' border={'2px'} borderColor='gray.300' bg='white'>
 
 
           <Center pb='20px'>
-            <Box borderBottom='4px' borderColor='gray.400' width={'35%'} _hover={{ borderColor: 'black' }}>
+            <Box borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black' }}>
               <Center fontSize={'md'} pb='13px' fontWeight='bold'  >Log In </Center>
             </Box>
-            <Box borderBottom='4px' borderColor='gray.400' width={'35%'} _hover={{ borderColor: 'black' }}>
+            <Box borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black' }}>
               <Center fontSize={'md'} pb='13px' fontWeight='bold'>Sign Up </Center>
             </Box>
           </Center>
