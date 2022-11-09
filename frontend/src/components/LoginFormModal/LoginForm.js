@@ -107,7 +107,7 @@ function LoginForm() {
                 left='20px'
                  />
               <Center pt='10px' pb='20px'>
-                <Button onClick={handleSubmit} type="submit" color='white' bg='black'>Log In</Button>
+                <Button onClick={handleSubmit} width='60%' type="submit" color='white' bg='black'>Log In</Button>
               </Center>
 
             </FormControl>
