@@ -119,6 +119,7 @@ function Navigation({isLoaded}) {
 
         <button>
           <MyChakra/>
+          {/* <SignUpModal/> */}
           </button>
 
         <button className="nav-button" onClick={demoLogin} >
