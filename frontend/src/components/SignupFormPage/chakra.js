@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {
+    Button,
+    Text,
     Modal,
     ModalOverlay,
     ModalContent,
@@ -7,13 +9,12 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    Button,
-    Text,
-} from '@chakra-ui/react'
-import { useDisclosure } from '@chakra-ui/react'
+    useDisclosure
+  } from '@chakra-ui/react'
 
-function myChakra() {
+function MyChakra() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <>
             <Button onClick={onOpen}>Open Modal</Button>
@@ -38,4 +39,4 @@ function myChakra() {
         </>
     )
 }
-export default myChakra
+export default MyChakra

@@ -8,7 +8,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 import { purchaseFromCart } from "../../store/shoppingCart";
-import myChakra from '../SignupFormPage/chakra';
+import MyChakra from '../SignupFormPage/chakra';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
@@ -80,9 +80,7 @@ function Navigation({isLoaded}) {
           <Box >
             <Button onClick={logout}>Log out</Button>
           </Box>
-          <Box >
-          <myChakra/>
-          </Box>
+
 
           <Box mr='30px'  >
           <SlideOutCart />
@@ -118,6 +116,10 @@ function Navigation({isLoaded}) {
         <button className="nav-button">
           <SignUpModal />
         </button>
+
+        <button>
+          <MyChakra/>
+          </button>
 
         <button className="nav-button" onClick={demoLogin} >
           Demo
