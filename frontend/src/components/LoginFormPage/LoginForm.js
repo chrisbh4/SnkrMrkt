@@ -30,7 +30,7 @@ import {
 
 
 
-function LoginChakra() {
+function LoginForm() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -62,7 +62,7 @@ function LoginChakra() {
 
     return (
       <>
-        <Button onClick={onOpen}>Log In</Button>
+        <Button onClick={onOpen} bg='black' >Log In</Button>
 
 <Modal isOpen={isOpen} onClose={onClose} size='3xl'>
     <ModalOverlay
@@ -151,4 +151,4 @@ function LoginChakra() {
     )
   }
 
-  export default LoginChakra
+  export default LoginForm

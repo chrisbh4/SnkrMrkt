@@ -2,14 +2,12 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import SignUpModal from '../SignupFormPage';
 import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 import { purchaseFromCart } from "../../store/shoppingCart";
-import MyChakra from '../SignupFormPage/chakra';
-import LoginChakra from '../LoginFormPage/LoginChakra';
+import SignUpForm from '../SignupFormPage/SignUpForm';
+import LoginForm from '../LoginFormPage/LoginForm';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
@@ -111,22 +109,13 @@ function Navigation({isLoaded}) {
         </Box>
 
         <button className="nav-button">
-          <LoginFormModal />
+        <LoginForm/>
         </button>
 
         <button className="nav-button">
-          <SignUpModal />
+          <SignUpForm/>
         </button>
 
-        <button>
-          <LoginChakra/>
-          {/* <LoginUpModal/> */}
-          </button>
-          
-        <button>
-          <MyChakra/>
-          {/* <SignUpModal/> */}
-          </button>
 
         <button className="nav-button" onClick={demoLogin} >
           Demo
