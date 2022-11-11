@@ -128,7 +128,7 @@ function MyChakra() {
                                 pos={'relative'}
                                 left='15%'
                             >
-                                <Box color={'red.400'} fontSize='lg'>
+                                <Box color={'red.400'} fontSize='lg' fontWeight={'bold'}>
                                     {errors.map((error, idx) => <Text key={idx}>{error}</Text>)}
 
                                 </Box>
@@ -149,7 +149,6 @@ function MyChakra() {
                                     required
                                     size={'lg'}
                                 />
-                                <VStack w='full' spacing={2}>
                                     <Input
                                         placeholder="Password"
                                         type="password"
@@ -158,6 +157,7 @@ function MyChakra() {
                                         required
                                         size={'lg'}
                                     />
+                                <VStack w='full' spacing={2}>
                                     <Input
                                         placeholder="Confirm Password"
                                         type="password"

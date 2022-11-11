@@ -9,6 +9,7 @@ import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 import { purchaseFromCart } from "../../store/shoppingCart";
 import MyChakra from '../SignupFormPage/chakra';
+import LoginChakra from '../LoginFormPage/LoginChakra';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
@@ -117,6 +118,11 @@ function Navigation({isLoaded}) {
           <SignUpModal />
         </button>
 
+        <button>
+          <LoginChakra/>
+          {/* <LoginUpModal/> */}
+          </button>
+          
         <button>
           <MyChakra/>
           {/* <SignUpModal/> */}
