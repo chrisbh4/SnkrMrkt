@@ -88,9 +88,9 @@ function LoginForm() {
                             Log In
                          </Center>
                 </Box>
-                <Box borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black' }}>
-                    <Center fontSize={'md'} pb='13px' fontWeight='bold'>Log In </Center>
-                </Box>
+                <Button onClick={onClose} bg='white' borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black', bg: "gray.100" }}>
+                    <Center fontSize={'md'} pb='13px' fontWeight='bold'>Sign Up </Center>
+                </Button>
             </Center>
 
 

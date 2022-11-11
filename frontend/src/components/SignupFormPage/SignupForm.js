@@ -103,11 +103,11 @@ function SignUpForm() {
                     <ModalCloseButton mt='3px' backgroundColor='white' _hover={{ bg: 'white' }} />
                     <ModalBody>
                         <Center pb='20px'>
-                            <Box borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black' }}>
+                            <Button onClick={onClose} bg='white' borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black', bg: "gray.100" }}>
                                 <Center fontSize={'md'} pb='13px' fontWeight='bold'  >
-                                        Log In
-                                     </Center>
-                            </Box>
+                                    Log In
+                                </Center>
+                            </Button>
                             <Box borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black' }}>
                                 <Center fontSize={'md'} pb='13px' fontWeight='bold'>Sign Up </Center>
                             </Box>
@@ -142,14 +142,14 @@ function SignUpForm() {
                                     required
                                     size={'lg'}
                                 />
-                                    <Input
-                                        placeholder="Password"
-                                        type="password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                        size={'lg'}
-                                    />
+                                <Input
+                                    placeholder="Password"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    size={'lg'}
+                                />
                                 <VStack w='full' spacing={2}>
                                     <Input
                                         placeholder="Confirm Password"
