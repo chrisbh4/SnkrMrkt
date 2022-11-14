@@ -55,13 +55,20 @@ sneaks.getMostPopular(5, function(err, products){
 
 router.get('/', asyncHandler(async (req, res) => {
     let box = []
-    const test = await stockX.searchProducts("Jordan 1 Clay Green").then((searchedProduct) => {
-        // console.log(searchedProduct)
+    //  * Optimized best for Multi single shoe search (Multiple Gender sizes)
+    await stockX.searchProducts("Jordan 1 Clay Green").then((searchedProduct) => {
+        console.log(searchedProduct)
         box.push(searchedProduct)
 
       });
 
-      console.log("TEST_____ ", test)
+    //  * Optimized best for Single shoe search
+    //   stockX.searchProducts("Jordan 1 Clay Green").then((searchedProduct) => {
+    //     //product as a parameter
+    //     stockX.fetchProductDetails(searchedProduct[0]).then((productDetails) => {
+    //       console.log(productDetails);
+    //     });
+    // })
 
       res.json({"RES" : box})
 }));
