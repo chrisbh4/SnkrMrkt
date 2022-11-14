@@ -1,14 +1,15 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 
-const SneaksAPI = require('sneaks-api');
-const sneaks = new SneaksAPI();
+// const SneaksAPI = require('sneaks-api');
+// const sneaks = new SneaksAPI();
 
-/*
-1. API data was rendering when placed outside of the router
-    - I'm tryinng to have the SNKRs API be inside of my OWN API so when I input /api/snkrs/ : Then "Yeezy Cinder" data will show
+const StockXData = require("stockx-data");
+const stockX = new StockXData();
 
-*/
+
+
+
 const router = express.Router();
 
 /*
@@ -29,44 +30,43 @@ sneaks.getMostPopular(5, function(err, products){
 })
 */
 
-// const searchSnkr = sneaks.getProducts("Yeezy Cinder", 1, function(err, products){
-//     const objPro =Object.values(products)[0]
-//     console.log("Func :", objPro.releaseDate)
-
-//     return objPro
-// })
-
-// const MostPopular = sneaks.getMostPopular(1, function(err, products){
-//     console.log(products)
-//     return products
-// });
-
-// router.get('/most', asyncHandler( async ( req , res ) => {
-//     console.log(products[0])
-//     return await res.json(...MostPopular);
-// }));
-
 
 
 // router.get('/', asyncHandler(async (req, res) => {
-//     console.log("SNKRS route :" , searchSnkr)
-//     const test = {"snkrs": searchSnkr}
-//     console.log(test)
+//     await sneaks.getProducts("Yeezy Cinder", 1, function (err, products) {
+//         // const objPro =Object.values(products)[0]
+//         // console.log("Func :", objPro.releaseDate)
+//         // console.log("Prod :", products)
+//         console.log("error :", err)
+//         console.log("products : ", products)
+//         res.json({"OK": products[0].description});
 
-//       return res.json({"bob": "test"});
+//     })
+// }));
+
+// // router.get('/most-popular', asyncHandler(async (req, res) => {
+// router.get('/most', asyncHandler(async (req, res) => {
+//     await sneaks.getMostPopular(10, function(err, products){
+//         console.log(products)
+
+//         res.json({"most_popular": products})
+//     })
 // }));
 
 router.get('/', asyncHandler(async (req, res) => {
-    await sneaks.getProducts("Yeezy Cinder", 1, function (err, products) {
-        // const objPro =Object.values(products)[0]
-        // console.log("Func :", objPro.releaseDate)
-        // console.log("Prod :", products)
-        console.log("error :", err)
-        console.log("products : ", products)
-        res.json({"OK": products});
+    let box = []
+    const test = await stockX.searchProducts("Jordan 1 Clay Green").then((searchedProduct) => {
+        // console.log(searchedProduct)
+        box.push(searchedProduct)
 
-    })
+      });
+
+      console.log("TEST_____ ", test)
+
+      res.json({"RES" : box})
 }));
+
+
 
 
 
