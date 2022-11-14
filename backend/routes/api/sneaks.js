@@ -57,15 +57,15 @@ sneaks.getMostPopular(5, function(err, products){
 // }));
 
 router.get('/', asyncHandler(async (req, res) => {
-    const searchSnkr = await sneaks.getProducts("Yeezy Cinder", 1, function(err, products){
-    // const objPro =Object.values(products)[0]
-    // console.log("Func :", objPro.releaseDate)
-    console.log("Prod :", products)
-    return products
-})
-    console.log("Route :" , searchSnkr)
+    await sneaks.getProducts("Yeezy Cinder", 1, function (err, products) {
+        // const objPro =Object.values(products)[0]
+        // console.log("Func :", objPro.releaseDate)
+        // console.log("Prod :", products)
+        console.log("error :", err)
+        console.log("products : ", products)
+        res.json({"OK": products});
 
-      return res.json({"bob": "test"});
+    })
 }));
 
 
