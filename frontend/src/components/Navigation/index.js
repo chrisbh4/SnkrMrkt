@@ -12,7 +12,7 @@ import LoginForm from '../LoginFormPage/LoginForm';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
-import { Box, Menu, MenuButton, MenuItem, Button, MenuList } from '@chakra-ui/react';
+import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex } from '@chakra-ui/react';
 
 function Navigation({ isLoaded }) {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ function Navigation({ isLoaded }) {
           <SearchBar shoes={grabAllShoes} />
         </Box>
 
-        <Box className="nav-control-btns">
+        <Flex justify={'center'} pr='20px'>
           {/* <NavLink exact to="/home">
             <Button className="nav-button">
               Old Home
@@ -103,7 +103,7 @@ function Navigation({ isLoaded }) {
             >Log out</Button>
           </Box>
 
-          <Box mr='30px'
+          <Box ml='10px' mr='30px'
           // transition='background-color 0.3s, box-shadow 0.3s, color 0.3s'
           >
             <SlideOutCart />
@@ -119,7 +119,7 @@ function Navigation({ isLoaded }) {
 
 
 
-        </Box>
+        </Flex>
       </Box>
 
     );
