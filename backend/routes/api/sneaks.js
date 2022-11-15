@@ -70,7 +70,7 @@ router.get('/', asyncHandler(async (req, res) => {
     //     });
     // })
 
-      res.json({"RES" : box})
+      res.json({"snks_api" : box})
 }));
 
 

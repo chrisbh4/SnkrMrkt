@@ -4,6 +4,8 @@ import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
 
+import { fetchMostPopular } from "../../store/stockX";
+
 import ShoeList from "../OldHomePage/ShoeList";
 
 function NewHomePage() {
@@ -55,6 +57,8 @@ function NewHomePage() {
 
   useEffect(()=>{
     dispatch(getAllShoes())
+
+    dispatch(fetchMostPopular())
 },[dispatch])
 
 const [isSize, setIsSize] = useState({id: 0 , size: 0});
