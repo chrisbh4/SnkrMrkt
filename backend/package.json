@@ -32,7 +32,8 @@
     "pg": "^8.4.2",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
-    "sneaks-api": "^1.2.3"
+    "sneaks-api": "^1.2.3",
+    "stockx-data": "^1.0.3"
   },
   "devDependencies": {
     "dotenv-cli": "^4.0.0",
