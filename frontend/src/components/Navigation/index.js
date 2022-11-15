@@ -6,14 +6,15 @@ import SearchBar from '../SearchBar/SearchBar';
 import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 import { purchaseFromCart } from "../../store/shoppingCart";
-import SignUpForm from '../SignupFormPage/SignUpForm';
+// import SignUpForm from '../SignupFormPage/SignUpForm.js';
+import SignUpForm from "../SignupFormPage/SignupForm"
 import LoginForm from '../LoginFormPage/LoginForm';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
-import { Box, Menu, MenuButton, MenuItem,Button, MenuList } from '@chakra-ui/react';
+import { Box, Menu, MenuButton, MenuItem, Button, MenuList } from '@chakra-ui/react';
 
-function Navigation({isLoaded}) {
+function Navigation({ isLoaded }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
@@ -36,9 +37,9 @@ function Navigation({isLoaded}) {
     navigate('/')
   };
 
-// Semver
-// small = patch
-// mid = minor change
+  // Semver
+  // small = patch
+  // mid = minor change
 
 
   let sessionLinks;
@@ -59,30 +60,53 @@ function Navigation({isLoaded}) {
         </Box>
 
         <Box className="nav-control-btns">
-            <NavLink exact to="/home">
-            <button className="nav-button">
+          {/* <NavLink exact to="/home">
+            <Button className="nav-button">
+              Old Home
+            </Button>
+          </NavLink> */}
+
+          <NavLink exact to="/home">
+            <Button
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+
+            >
               Home
-            </button>
+            </Button>
           </NavLink>
 
           <NavLink to="/shoes/new">
-            <button className="nav-button">
-              Sell a Snkr
-            </button>
+            <Button
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            >
+              Sell
+            </Button>
           </NavLink>
+
           <NavLink to="/profile">
-            <button className="nav-button">
+            <Button
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            >
               Profile
-            </button>
+            </Button>
           </NavLink>
 
           <Box >
-            <Button onClick={logout}>Log out</Button>
+            <Button onClick={logout}
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            // padding='0.9em 4em'
+
+            >Log out</Button>
           </Box>
 
-
-          <Box mr='30px'  >
-          <SlideOutCart />
+          <Box mr='30px'
+          // transition='background-color 0.3s, box-shadow 0.3s, color 0.3s'
+          >
+            <SlideOutCart />
           </Box>
 
           {/* <Box >
@@ -104,34 +128,41 @@ function Navigation({isLoaded}) {
       <Box className="nav-logged-out">
         <Box className="web-title-logged-out">
           <a href="/" id="web-title-redirect">
-            The Plug
+            SNKR MRKT
           </a>
         </Box>
 
-        <button className="nav-button">
-        <LoginForm/>
-        </button>
 
-        <button className="nav-button">
-          <SignUpForm/>
-        </button>
+          <LoginForm />
+
+          <SignUpForm />
 
 
-        <button className="nav-button" onClick={demoLogin} >
+        <Button
+          color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+          _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+          onClick={demoLogin} >
           Demo
-        </button>
-
-        <NavLink exact to="/home">
-          <button className="nav-button">
-            All Shoes
-          </button>
-        </NavLink>
+        </Button>
 
         <NavLink exact to="/">
-          <button className="nav-button">
+          <Button
+            color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+            _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+          >
             Home
-          </button>
+          </Button>
         </NavLink>
+
+        <NavLink exact to="/home">
+          <Button
+            color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+            _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+          >
+            All Shoes
+          </Button>
+        </NavLink>
+
       </Box>
     );
   }

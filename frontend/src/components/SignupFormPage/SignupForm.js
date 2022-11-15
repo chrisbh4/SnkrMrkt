@@ -82,7 +82,12 @@ function SignUpForm() {
 
     return (
         <>
-            <Button onClick={onOpen} bg='black'>Sign up</Button>
+            <Button onClick={onOpen}
+                color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+                _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            >
+                Sign up
+            </Button>
 
             <Modal isOpen={isOpen} onClose={onClose} size='3xl'>
                 <ModalOverlay
