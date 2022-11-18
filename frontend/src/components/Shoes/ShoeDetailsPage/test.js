@@ -1,6 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from 'react';
 import { Link, useParams , useNavigate} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
+import * as sessionActions from '../../../store/session';
 import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes } from "../../../store/shoes"
@@ -25,46 +26,45 @@ import { Grid,
      FormErrorMessage,
      FormHelperText,
  } from '@chakra-ui/react'
+import Navigation from "../../Navigation"
 
 function DetailsTest(){
 
+
     return(
-        <Box  h='full'>
-        <Grid
-        pt='80px'
-  templateAreas={`"title title title"
-                  "image sizes sizes"
-                  "image last-sold checkout"
-                  "related related related"`}
-  gridTemplateRows={'50px 1fr 30px'}
-  gridTemplateColumns={'150px 1fr'}
-  h='full'
-  gap='1'
-  color='blackAlpha.700'
-  fontWeight='bold'
+        <Box bg='gray.300' h='700px' >
+          <Box bg='red.500' h='200px'>
+            Title
+          </Box>
+
+          <Grid
+  h='200px'
+  templateRows='repeat(2, 1fr)'
+  templateColumns='repeat(4, 1fr)'
+
 >
-  <GridItem pl='2' bg='orange.300' area={'title'}>
-    Title
+  <GridItem rowSpan={2} colSpan={2} bg='blue.400'>
+    Images
   </GridItem>
-  <GridItem pl='2' bg='pink.300' area={'image'}>
-    Image
+  <GridItem colSpan={2} bg='tomato'>
+    Size Bar
   </GridItem>
-  <GridItem pl='2' bg='green.300' area={'sizes'}>
-    Size bar
-  </GridItem>
-  <GridItem pl='2' bg='blue.300' area={'last-sold'}>
+  <GridItem colSpan={1} bg='green.300'>
     Last Sold
   </GridItem>
-  <GridItem pl='2' bg='gray.400' area={'checkout'}>
-        Checkout container
-  </GridItem>
-  <GridItem pl='2' bg='red.300' area={'related'}>
-        Related Prodcuts
-  </GridItem>
-  <GridItem pl='2' bg='blue.300' area={'details'}>
-        Description / Details
+  <GridItem colSpan={1} bg='papayawhip'>
+    Checkout button
   </GridItem>
 </Grid>
+
+<Box bg='orange.500' h='200px'>
+            Related Products
+          </Box>
+
+          <Box bg='brown.200' h='200px'>
+            Description
+          </Box>
+
         </Box>
     )
 }
