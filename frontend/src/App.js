@@ -16,6 +16,7 @@ import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
 import HomePage from './components/Home/Home';
+import BoxComp from './components/Shoes/ShoeDetailsPage/Checkout-Box';
 import ProfilePage from './components/Profile/ProfilePage';
 import "./index.css"
 import DetailsTest from './components/Shoes/ShoeDetailsPage/test';
@@ -40,6 +41,7 @@ function App() {
       <Routes>
 
 
+        <Route path="/box" element={<BoxComp />}> </Route>
         <Route path="/test" element={<DetailsTest />}> </Route>
 
 

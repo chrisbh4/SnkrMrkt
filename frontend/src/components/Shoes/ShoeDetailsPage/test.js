@@ -6,7 +6,7 @@ import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes, getOneShoe } from "../../../store/shoes"
 import { addShoeToCart } from "../../../store/shoppingCart"
-
+import BoxComp from './Checkout-Box';
 import {
   Grid,
   Center,
@@ -176,8 +176,7 @@ function DetailsTest() {
           Last Sold
         </GridItem>
         <GridItem colSpan={1} bg='papayawhip'>
-          <Center>Title</Center>
-          <Button>Checkout</Button>
+          <BoxComp />
         </GridItem>
       </Grid>
 
