@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import {  useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import * as sessionActions from '../../../store/session';
 import "./ShoeDetails.css"
@@ -21,6 +21,7 @@ import {
   Select,
   Image,
   Input,
+  Link,
   Stack,
   Form,
   FormControl,
@@ -41,7 +42,7 @@ function DetailsTest() {
   useEffect(() => {
     dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
-  }, [dispatch]);
+  }, [dispatch, shoeId]);
 
 
   const userId = useSelector((state) => {
@@ -136,60 +137,103 @@ function DetailsTest() {
 
 
   return (
-    <Box  px={"10%"} h='full' >
-      <Box h='75px' bg="red.400" >
-        <Text fontSize={'4xl'}> {shoe.title}</Text>
-      </Box>
-      <Flex>
-        <Center h='full' w='50%' bg="orange.400" >
-          <Image
-             src={shoe.image}
-             boxSize='500px'
-             objectFit='cover'
+    <Box px={"15%"} h='full' bg='gray.100' >
+      <Box border={'2 px'} >
+        <Box h='75px' bg="red.400" >
+          <Text
+            fontSize={'4xl'}
+            pl='2px'
+          > {shoe.title}</Text>
+        </Box>
+        <Flex>
+          <Center h='full' w='50%' bg="orange.400" >
+            <Image
+              src={shoe.image}
+              boxSize='500px'
+              objectFit='cover'
 
-             />
-        </Center>
-        <Center w='50%' bg="blue.400" >
-          <BoxComp />
-        </Center>
-      </Flex>
-      <Box     bg="green.400" >
-        <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
-
-        <Flex justify={'center'} >
-        <Image
-             src={shoe.image}
-             boxSize='250px'
-        />
-        <Image
-             src={shoe.image}
-             boxSize='250px'
-        />
-        <Image
-             src={shoe.image}
-             boxSize='250px'
-        />
-        <Image
-             src={shoe.image}
-             boxSize='250px'
-        />
-        <Image
-             src={shoe.image}
-             boxSize='250px'
-        />
+            />
+          </Center>
+          <Center w='50%' bg="blue.400" >
+            <BoxComp />
+          </Center>
         </Flex>
+        <Box bg="green.400" >
+          <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
 
-      </Box>
-      <Box  bg="brown" >
-        <Text>Descripton / Detials </Text>
-        <Text
-            fontSize={'lg'}
-            fontWeight='semibold'
-        >
-          {shoe.description}
-          {shoe.description}
-          {shoe.description}
-        </Text>
+          <Flex justify={'center'} >
+
+            <Link href='/home'>
+            <Image
+              src={shoe.image}
+              boxSize='250px'
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe.image}
+              boxSize='250px'
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe.image}
+              boxSize='250px'
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe.image}
+              boxSize='250px'
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe.image}
+              boxSize='250px'
+              />
+              </Link>
+
+          </Flex>
+
+        </Box>
+
+        <Box pb='8' pt='2'>
+          <Text fontWeight={'bold'} fontSize='lg' >Product Details  </Text>
+        </Box>
+
+
+        <Flex >
+          <Box w='40%'>
+            <Flex justify={'space-between'} w='65%'>
+              <Box>
+                <Text>Style</Text>
+                <Text>Colorway</Text>
+                <Text>Retial Price</Text>
+                <Text>Release Date</Text>
+              </Box>
+
+              <Box>
+                <Text>Style Data </Text>
+                <Text>Colorway Data </Text>
+                <Text>Retial Price Data </Text>
+                <Text>Release Date Data </Text>
+              </Box>
+
+            </Flex>
+          </Box>
+
+          <Box w='50%' pb='10'>
+            <Text fontWeight={'bold'}>Product Descripiton</Text>
+            <Text fontSize={'lg'} fontWeight='semibold' py='4' pr='4' >
+              {shoe.description}
+            </Text>
+          </Box>
+        </Flex>
       </Box>
     </Box>
   )
