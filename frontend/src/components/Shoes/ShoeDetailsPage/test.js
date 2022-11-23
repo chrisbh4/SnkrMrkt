@@ -95,7 +95,7 @@ function DetailsTest() {
 
 
 
-
+  // * Reset layout with Box and Flex instead of grid
 
   const addToCart = async () => {
     await dispatch(addShoeToCart(shoe, cart))
@@ -136,58 +136,61 @@ function DetailsTest() {
 
 
   return (
-    <Box bg='gray.300' >
-      <Box bg='red.500'
-       h='100px'
-      >
-      <Text
-        fontSize={'2xl'}
-      >
-        {shoe.title}
-      </Text>
-        <Box bg='gray.300' w='8%' p='2px' textAlign={'center'}>
-          <Text  >Conditon: New </Text>
-          </Box>
+    <Box  px={"10%"} h='full' >
+      <Box h='75px' bg="red.400" >
+        <Text fontSize={'4xl'}> {shoe.title}</Text>
       </Box>
+      <Flex>
+        <Center h='full' w='50%' bg="orange.400" >
+          <Image
+             src={shoe.image}
+             boxSize='500px'
+             objectFit='cover'
 
-      <Grid
-        templateRows='repeat(2, 1fr)'
-        templateColumns='repeat(4, 1fr)'
-
-      >
-        <GridItem rowSpan={2} colSpan={2} bg='blue.400'>
-          <Box>
-
-          <Image src={shoe.image} boxSize='400px' width={''} objectFit={'fill'} />
-          </Box>
-        </GridItem>
-        <GridItem colSpan={2} bg='tomato.200'>
-          Size Bar
-          <Select placeholder='Select option'>
-          {sizeChart.map((chart) => {
-              return (
-                <option key={chart.id} value={chart.size} >{chart.size}</option>
-              )
-            })}
-
-          </Select>
-        </GridItem>
-        <GridItem colSpan={1} bg='green.300'>
-          Last Sold
-        </GridItem>
-        <GridItem colSpan={1} bg='papayawhip'>
+             />
+        </Center>
+        <Center w='50%' bg="blue.400" >
           <BoxComp />
-        </GridItem>
-      </Grid>
+        </Center>
+      </Flex>
+      <Box     bg="green.400" >
+        <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
 
-      <Box bg='orange.500' h='200px'>
-        Related Products
+        <Flex justify={'center'} >
+        <Image
+             src={shoe.image}
+             boxSize='250px'
+        />
+        <Image
+             src={shoe.image}
+             boxSize='250px'
+        />
+        <Image
+             src={shoe.image}
+             boxSize='250px'
+        />
+        <Image
+             src={shoe.image}
+             boxSize='250px'
+        />
+        <Image
+             src={shoe.image}
+             boxSize='250px'
+        />
+        </Flex>
+
       </Box>
-
-      <Box bg='brown.200' h='200px'>
-        Description
+      <Box  bg="brown" >
+        <Text>Descripton / Detials </Text>
+        <Text
+            fontSize={'lg'}
+            fontWeight='semibold'
+        >
+          {shoe.description}
+          {shoe.description}
+          {shoe.description}
+        </Text>
       </Box>
-
     </Box>
   )
 }
