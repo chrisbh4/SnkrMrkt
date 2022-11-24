@@ -6,6 +6,7 @@ import "./ShoeDetails.css"
 import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes, getOneShoe } from "../../../store/shoes"
 import { addShoeToCart } from "../../../store/shoppingCart"
+import { fetchMostPopular } from '../../../store/stockX';
 import BoxComp from './Checkout-Box';
 import {
   Grid,
@@ -42,8 +43,15 @@ function DetailsTest() {
   useEffect(() => {
     dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
+    dispatch(fetchMostPopular())
   }, [dispatch, shoeId]);
 
+
+  const stockXdata = useSelector((state) => state.stockXapi)
+
+  const testData = stockXdata[0]
+
+  console.log("DATA : " , stockXdata)
 
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -82,8 +90,7 @@ function DetailsTest() {
     { id: 23, size: 14.5 },
     { id: 24, size: 15 },
   ]
-  console.log("TEST")
-  console.log(shoe)
+
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
   let imageCheck;
@@ -150,7 +157,7 @@ function DetailsTest() {
             <Image
               src={shoe.image}
               boxSize='500px'
-              objectFit='cover'
+              // objectFit='cntain'
 
             />
           </Center>
@@ -198,7 +205,13 @@ function DetailsTest() {
               />
               </Link>
 
+
+
           </Flex>
+
+
+
+
 
         </Box>
 
@@ -207,30 +220,39 @@ function DetailsTest() {
         </Box>
 
 
+        <Box>
+                  {/* {stockXdata.map((snkr) =>{
+            return(
+              <Box>
+                <Text>HI</Text>
+              </Box>
+            )
+          })} */}
+        </Box>
+
         <Flex >
           <Box w='40%'>
-            <Flex justify={'space-between'} w='65%'>
+            <Flex justify={'space-between'} w='85%'>
               <Box>
                 <Text>Style</Text>
                 <Text>Colorway</Text>
                 <Text>Retial Price</Text>
-                <Text>Release Date</Text>
+                <Text whiteSpace={'nowrap'} >Release Date</Text>
               </Box>
 
               <Box>
-                <Text>Style Data </Text>
-                <Text>Colorway Data </Text>
-                <Text>Retial Price Data </Text>
-                <Text>Release Date Data </Text>
+                <Text whiteSpace={'nowrap'} >{testData.details.type} </Text>
+                <Text whiteSpace={'nowrap'} >{testData.details.colorway} </Text>
+                <Text>{testData.details.retail} </Text>
+                <Text>{testData.details.releaseDate} </Text>
               </Box>
-
             </Flex>
           </Box>
 
           <Box w='50%' pb='10'>
             <Text fontWeight={'bold'}>Product Descripiton</Text>
             <Text fontSize={'lg'} fontWeight='semibold' py='4' pr='4' >
-              {shoe.description}
+              {testData.details.description}
             </Text>
           </Box>
         </Flex>
