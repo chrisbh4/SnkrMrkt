@@ -37,7 +37,6 @@ export const fetchMostPopular = () => async (dispatch) => {
 
         const data = await res.json()
 
-        console.log("STORE : ", data.snks_api[0])
 
         dispatch(loadSnkr(data.snks_api[0]))
         return data

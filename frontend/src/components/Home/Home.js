@@ -12,7 +12,6 @@ function NewHomePage() {
 
   const dispatch = useDispatch()
   const shoes = useSelector((state) => state.shoes)
-  console.log("shoes :", shoes)
   const shoesArray = Object.values(shoes)
 
   const sizeChart = [

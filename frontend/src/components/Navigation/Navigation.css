@@ -31,9 +31,8 @@
 
 .nav-logged-in{
 background-color:#24292e;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
-  margin: -8px;
   height:60px;
   display: flex;
   justify-content: space-between;

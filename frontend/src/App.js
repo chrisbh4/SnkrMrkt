@@ -18,6 +18,7 @@ import ShoppingCart from './components/Cart';
 import HomePage from './components/Home/Home';
 import ProfilePage from './components/Profile/ProfilePage';
 import "./index.css"
+import DetailsTest from './components/Shoes/ShoeDetailsPage/test';
 
 
 function App() {
@@ -32,37 +33,34 @@ function App() {
   //* Erase inside JSX and only render <Hom
   return (
     <>
+    <div>
+
       <Navigation isLoaded={isLoaded}  />
+    </div>
       <Routes>
+
+
+        <Route path="/test" element={<DetailsTest />}> </Route>
+        <Route path="/test/:id" element={<DetailsTest />}> </Route>
+
+
         <Route path="/home" element={<HomePage />}> </Route>
 
-        <Route path='/shoes/new' element={<NewShoesForm />}>
+        <Route path='/shoes/new' element={<NewShoesForm />}></Route>
 
-        </Route>
+        <Route exact path='/shoes/:id' element={<ShoesDetailsPage />}></Route>
 
-        <Route exact path='/shoes/:id' element={<ShoesDetailsPage />}>
+        <Route exact path='/shoes/:id/edit' element={<EditShoesForm />}></Route>
 
-        </Route>
+        <Route exact path="/shoes/:id/reviews/new" element={<NewReviewForm />}></Route>
 
-        <Route exact path='/shoes/:id/edit' element={<EditShoesForm />}>
+        <Route path="/reviews/:id/edit" element={<EditReviewForm />}></Route>
 
-        </Route>
-
-        <Route exact path="/shoes/:id/reviews/new" element={<NewReviewForm />}>
-
-        </Route>
-
-        <Route path="/reviews/:id/edit" element={<EditReviewForm />}>
-
-        </Route>
-        <Route path="/cart" element={<ShoppingCart />}>
-        </Route>
+        <Route path="/cart" element={<ShoppingCart />}></Route>
 
         <Route path='/profile' element={<ProfilePage />} ></Route>
 
-
-        <Route path="/" element={<AboutPage />}>
-        </Route>
+        <Route path="/" element={<AboutPage />}> </Route>
 
 
         <Route>

@@ -76,7 +76,6 @@ router.get(
 
 router.get('/all-users', asyncHandler(async( req, res )=>{
   const users = await User.findAll()
-  console.log("All Users :.........................")
 
   const allUsers = {};
   // users.forEach((user)=>{
