@@ -17,7 +17,7 @@ import ShoppingCart from './components/Cart';
 import HomePage from './components/Home/Home';
 import ProfilePage from './components/Profile/ProfilePage';
 import "./index.css"
-import ShoeDetialsChakra from './components/Shoes/ShoeDetailsPage/test';
+import ShoeDetialsChakra from './components/Shoes/ShoeDetailsPage/index';
 
 
 function App() {
