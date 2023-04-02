@@ -57,7 +57,7 @@ const sizeChart = [
 
 
 
-function BoxComp() {
+function AddToCartComponent() {
     const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
@@ -112,7 +112,7 @@ function BoxComp() {
   }
 
     return (
-        <Box   w='500px' bg='gray.400' p='20px'>
+        <Box   w='500px' border={'1px'} p='20px'>
             <Box>
               <Box p='10px'>
 
@@ -138,4 +138,4 @@ function BoxComp() {
     )
 }
 
-export default BoxComp
+export default AddToCartComponent

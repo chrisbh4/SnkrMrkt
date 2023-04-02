@@ -7,7 +7,7 @@ import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes, getOneShoe } from "../../../store/shoes"
 import { addShoeToCart } from "../../../store/shoppingCart"
 import { fetchMostPopular } from '../../../store/stockX';
-import BoxComp from './Checkout-Box';
+import AddToCartComponent from './Checkout-Box';
 import {
   Grid,
   Center,
@@ -21,14 +21,8 @@ import {
   SimpleGrid,
   Select,
   Image,
-  Input,
   Link,
   Stack,
-  Form,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
 } from '@chakra-ui/react'
 import Navigation from "../../Navigation"
 
@@ -38,7 +32,7 @@ function DetailsTest() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const shoeId = 1
+  const shoeId = params.id
 
   useEffect(() => {
     dispatch(getAllShoes())
@@ -48,10 +42,9 @@ function DetailsTest() {
 
 
   const stockXdata = useSelector((state) => state.stockXapi)
-
   const testData = stockXdata[0]
-
   console.log("DATA : " , stockXdata)
+
 
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -63,33 +56,6 @@ function DetailsTest() {
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
 
-
-  const sizeChart = [
-    { id: 1, size: 3 },
-    { id: 2, size: 3.5 },
-    { id: 3, size: 4 },
-    { id: 4, size: 4.5 },
-    { id: 5, size: 5 },
-    { id: 6, size: 5.5 },
-    { id: 7, size: 6 },
-    { id: 8, size: 6.5 },
-    { id: 9, size: 7 },
-    { id: 10, size: 7.5 },
-    { id: 11, size: 8 },
-    { id: 12, size: 8.5 },
-    { id: 13, size: 9 },
-    { id: 14, size: 9.5 },
-    { id: 15, size: 10 },
-    { id: 16, size: 10.5 },
-    { id: 17, size: 11 },
-    { id: 18, size: 11.5 },
-    { id: 19, size: 12 },
-    { id: 20, size: 12.5 },
-    { id: 21, size: 13 },
-    { id: 22, size: 13.5 },
-    { id: 23, size: 14.5 },
-    { id: 24, size: 15 },
-  ]
 
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
@@ -107,6 +73,7 @@ function DetailsTest() {
 
   const addToCart = async () => {
     await dispatch(addShoeToCart(shoe, cart))
+    console.log(shoe.id)
     alert("Shoe has been added to your cart!")
     navigate("/home")
     return
@@ -121,7 +88,7 @@ function DetailsTest() {
     if (userId === shoeSellerId) {
       sellerChecker = (
         <div>
-          <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
+          <Link to={`/shoes/${shoe?.id}/edit`} key={shoe?.id}>
             <button className="shoe-details-edit-button">Edit</button>
           </Link>
         </div>
@@ -144,94 +111,36 @@ function DetailsTest() {
 
 
   return (
-    <Box px={"15%"} h='full' bg='gray.100' >
-      <Box border={'2 px'} >
-        <Box h='75px' bg="red.400" >
+    <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
+      <Box pl='10%' bg='gray.300'>
+        <Box h='75px'  >
           <Text
             fontSize={'4xl'}
             pl='2px'
-          > {shoe.title}</Text>
+          > {shoe?.title}</Text>
         </Box>
-        <Flex>
-          <Center h='full' w='50%' bg="orange.400" >
-            <Image
-              src={shoe.image}
-              boxSize='500px'
-              // objectFit='cntain'
 
-            />
-          </Center>
-          <Center w='50%' bg="blue.400" >
-            <BoxComp />
+        <Flex>
+          <Box h='full' w='45%'  >
+            <Image
+              src={shoe?.image}
+              boxSize='550px'
+               />
+          </Box>
+          <Center w='30%' >
+            <AddToCartComponent />
           </Center>
         </Flex>
-        <Box bg="green.400" >
-          <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
 
-          <Flex justify={'center'} >
-
-            <Link href='/home'>
-            <Image
-              src={shoe.image}
-              boxSize='250px'
-              />
-              </Link>
-
-            <Link href='/home'>
-            <Image
-              src={shoe.image}
-              boxSize='250px'
-              />
-              </Link>
-
-            <Link href='/home'>
-            <Image
-              src={shoe.image}
-              boxSize='250px'
-              />
-              </Link>
-
-            <Link href='/home'>
-            <Image
-              src={shoe.image}
-              boxSize='250px'
-              />
-              </Link>
-
-            <Link href='/home'>
-            <Image
-              src={shoe.image}
-              boxSize='250px'
-              />
-              </Link>
-
-
-
+        <Box pb='3' pt='2'  >
+          <Flex  fontWeight={'bold'} fontSize='lg' >
+            <Box w='67%'  h='10' >Product Detials </Box>
+            <Box w='full' h='10' pl='5%' >Product Description </Box>
           </Flex>
-
-
-
-
-
-        </Box>
-
-        <Box pb='8' pt='2'>
-          <Text fontWeight={'bold'} fontSize='lg' >Product Details  </Text>
-        </Box>
-
-
-        <Box>
-                  {/* {stockXdata.map((snkr) =>{
-            return(
-              <Box>
-                <Text>HI</Text>
-              </Box>
-            )
-          })} */}
         </Box>
 
         <Flex >
-          <Box w='40%'>
+          <Box w='40%' >
             <Flex justify={'space-between'} w='85%'>
               <Box>
                 <Text>Style</Text>
@@ -241,21 +150,65 @@ function DetailsTest() {
               </Box>
 
               <Box>
-                <Text whiteSpace={'nowrap'} >{testData.details.type} </Text>
-                <Text whiteSpace={'nowrap'} >{testData.details.colorway} </Text>
-                <Text>{testData.details.retail} </Text>
-                <Text>{testData.details.releaseDate} </Text>
+                <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text>
+                <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text>
+                <Text>{testData?.details.retail} </Text>
+                <Text>{testData?.details.releaseDate} </Text>
               </Box>
             </Flex>
           </Box>
-
-          <Box w='50%' pb='10'>
-            <Text fontWeight={'bold'}>Product Descripiton</Text>
-            <Text fontSize={'lg'} fontWeight='semibold' py='4' pr='4' >
-              {testData.details.description}
+          <Box w='50%' pb='10' pl='4%'>
+            <Text fontSize={'lg'} fontWeight='semibold'   w='75%' >
+              {testData?.details.description}
             </Text>
           </Box>
+
+
         </Flex>
+        <Box borderTop={'22px'} borderColor='black' >
+          <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
+          <Flex >
+            <Link href='/home'>
+            <Image
+              src={shoe?.image}
+              boxSize='250px'
+              border={'1px'}
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe?.image}
+              boxSize='250px'
+              border={'1px'}
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe?.image}
+              boxSize='250px'
+              border={'1px'}
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe?.image}
+              boxSize='250px'
+              border={'1px'}
+              />
+              </Link>
+
+            <Link href='/home'>
+            <Image
+              src={shoe?.image}
+              boxSize='250px'
+              border={'1px'}
+              />
+              </Link>
+          </Flex>
+        </Box>
       </Box>
     </Box>
   )

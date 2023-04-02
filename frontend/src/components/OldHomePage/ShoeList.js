@@ -17,14 +17,14 @@ function ShoeList({ shoe }) {
 
     return (
         <Box  w='100%' pb='20px'>
-            <Link _hover={{textDecoration: "none"}} href={`/shoes/${shoe.id}`} >
+            <Link _hover={{textDecoration: "none"}} href={`/test/${shoe.id}`} >
+            {/* <Link _hover={{textDecoration: "none"}} href={`/test/`} > */}
                 <Center paddingBottom={'10px'} >
                     {imageCheck}
                 </Center  >
                 <Box  w='100%' pl='4%' textAlign={'left'}>
                 <Text w='100%' fontSize={'15px'} fontWeight='550' >{shoe.title}</Text>
                 <Text w='100%' fontSize={'15px'} fontWeight='550' >{shoe.brand}</Text>
-                <Text w='100%' fontSize={'15px'} fontWeight='550' >Lowest price:</Text>
                 <Text w='100%' fontSize={'15px'} fontWeight='550' >${shoe.price}</Text>
                 </Box>
             </Link>
