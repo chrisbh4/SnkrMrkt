@@ -69,8 +69,6 @@ function AddToCartComponent({shoeId}) {
     setSize(e.target.value)
   }
 
-  // const shoeId = 4
-
   useEffect(() => {
     dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
@@ -86,10 +84,9 @@ function AddToCartComponent({shoeId}) {
 
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
-
+  const shoeSellerId = shoe?.sellerId;
 
   const addToCart = async () => {
-
     console.log("Add TO cart: ", shoe)
     await dispatch(addShoeToCart(shoe.shoeSize, cart))
     alert("Shoe has been added to your cart!")
@@ -98,8 +95,10 @@ function AddToCartComponent({shoeId}) {
   }
 
 
-  const shoeSellerId = shoe?.sellerId;
-
+  const unavialableFeature = async () => {
+    alert("Functionality coming soon!")
+    return
+  }
 
 
   let sellerChecker;
@@ -127,7 +126,7 @@ function AddToCartComponent({shoeId}) {
             </Select>
         </Box>
 
-          <Button w='40%' ml='2%'>Place Bid</Button>
+          <Button w='40%' ml='2%' onClick={unavialableFeature}>Place Bid</Button>
           <Button w='40%' ml='5%' onClick={addToCart}> Add to Cart </Button>
         </Box>
       </Box>
