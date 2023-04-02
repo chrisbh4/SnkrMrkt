@@ -115,32 +115,31 @@ function AddToCartComponent({shoeId}) {
   let addToCartVerfication;
   if (userId !== shoeSellerId && userId > 0.99) {
     addToCartVerfication = (
-      <>
-        <Button w='40%'>Place Bid</Button>
-        <Button w='40%' onClick={addToCart}> Add to Cart </Button>
-      </>
+      <Box w='500px' border={'1px'} p='5%'>
+        <Box>
+          <Box p='10px'>
+            <Select placeholder='Select Size:' variant={"filled"} w='90%' >
+              {sizeChart.map((chart) => {
+                return (
+                  <option key={chart.id} value={chart.size} onClick={updateSize} >{chart.size} </option>
+                  )
+                })}
+            </Select>
+        </Box>
+
+          <Button w='40%' ml='2%'>Place Bid</Button>
+          <Button w='40%' ml='5%' onClick={addToCart}> Add to Cart </Button>
+        </Box>
+      </Box>
     )
   }
 
     return (
-        <Box w='500px' border={'1px'} p='20px'>
-            <Box>
-              <Box p='10px'>
-                <Select placeholder='Size:'  >
-                  {sizeChart.map((chart) => {
-                    return (
-                      <option key={chart.id} value={chart.size} onClick={updateSize} >{chart.size} </option>
-                      )
-                    })}
-                </Select>
-            </Box>
 
           <Flex w='full' justify={'space-around'} gap='9' mt='20px'>
             {sellerChecker}
             {addToCartVerfication}
           </Flex>
-            </Box>
-        </Box>
     )
 }
 
