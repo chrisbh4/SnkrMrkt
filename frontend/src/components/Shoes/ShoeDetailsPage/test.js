@@ -77,13 +77,13 @@ function DetailsTest() {
         </Box>
 
         <Flex>
-          <Box h='full' w='45%'  >
+          <Box h='full' w='50%'  >
             <Image
               src={shoe?.image}
               boxSize='550px'
                />
           </Box>
-          <Center w='30%' >
+          <Center w='45%' >
             <AddToCartComponent shoeId={shoeId} />
           </Center>
         </Flex>
@@ -91,7 +91,7 @@ function DetailsTest() {
         <Box pb='3' pt='2'  >
           <Flex  fontWeight={'bold'} fontSize='lg' >
             <Box w='67%'  h='10' >Product Detials </Box>
-            <Box w='full' h='10' pl='5%' >Product Description </Box>
+            <Box w='full' h='10' pl='13%' >Product Description </Box>
           </Flex>
         </Box>
 
@@ -113,8 +113,8 @@ function DetailsTest() {
               </Box>
             </Flex>
           </Box>
-          <Box w='50%' pb='5' pl='4%'>
-            <Text fontSize={'lg'} w='75%' h='90%' fontWeight='semibold' overflow={'scroll'} >
+          <Box w='50%' pb='5' pl='11%'>
+            <Text fontSize={'lg'} w='full' h='90%' fontWeight='semibold' overflow={'scroll'} >
               {/* {shoe?.description} */}
               {testData?.details.description}
             </Text>

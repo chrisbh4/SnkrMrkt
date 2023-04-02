@@ -62,6 +62,13 @@ function AddToCartComponent({shoeId}) {
   const params = useParams();
   const navigate = useNavigate();
 
+//* Need to be able to grab the clicked on value for selecting shoe size
+  const [size, setSize] = useState("")
+  const updateSize = (e) => {
+    console.log(e.target.value)
+    setSize(e.target.value)
+  }
+
   // const shoeId = 4
 
   useEffect(() => {
@@ -82,7 +89,9 @@ function AddToCartComponent({shoeId}) {
 
 
   const addToCart = async () => {
-    await dispatch(addShoeToCart(shoe, cart))
+
+    console.log("Add TO cart: ", shoe)
+    await dispatch(addShoeToCart(shoe.shoeSize, cart))
     alert("Shoe has been added to your cart!")
     navigate("/home")
     return
@@ -90,6 +99,7 @@ function AddToCartComponent({shoeId}) {
 
 
   const shoeSellerId = shoe?.sellerId;
+
 
 
   let sellerChecker;
@@ -113,13 +123,13 @@ function AddToCartComponent({shoeId}) {
   }
 
     return (
-        <Box   w='500px' border={'1px'} p='20px'>
+        <Box w='500px' border={'1px'} p='20px'>
             <Box>
               <Box p='10px'>
-                <Select placeholder='Size:'>
+                <Select placeholder='Size:'  >
                   {sizeChart.map((chart) => {
                     return (
-                      <option key={chart.id} value={chart.size} >{chart.size}</option>
+                      <option key={chart.id} value={chart.size} onClick={updateSize} >{chart.size} </option>
                       )
                     })}
                 </Select>
