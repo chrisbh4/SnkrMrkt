@@ -96,16 +96,19 @@ function AddToCartComponent({shoeId}) {
   if (userId) {
     if (userId === shoeSellerId) {
       sellerChecker = (
-        <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id} w=''>
-            <Button >Edit</Button>
-          </Link>
+        <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
+            <Button px='30px' py='10px' >Edit</Button>
+        </Link>
       )
     }
   }
   let addToCartVerfication;
   if (userId !== shoeSellerId && userId > 0.99) {
     addToCartVerfication = (
+      <>
+        <Button w='40%'>Place Bid</Button>
         <Button w='40%' onClick={addToCart}> Add to Cart </Button>
+      </>
     )
   }
 
@@ -123,9 +126,6 @@ function AddToCartComponent({shoeId}) {
             </Box>
 
           <Flex w='full' justify={'space-around'} gap='9' mt='20px'>
-            <Button w='40%'>
-                Place Bid
-            </Button>
             {sellerChecker}
             {addToCartVerfication}
           </Flex>

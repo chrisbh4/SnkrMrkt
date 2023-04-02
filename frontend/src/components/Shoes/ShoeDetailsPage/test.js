@@ -48,6 +48,7 @@ function DetailsTest() {
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
 
+  console.log(shoe)
 
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
@@ -60,16 +61,6 @@ function DetailsTest() {
   }
 
 
-
-  // * Reset layout with Box and Flex instead of grid
-
-  const addToCart = async () => {
-    await dispatch(addShoeToCart(shoe, cart))
-    console.log(shoe.id)
-    alert("Shoe has been added to your cart!")
-    navigate("/home")
-    return
-  }
 
 
   const shoeSellerId = shoe?.sellerId;
@@ -122,14 +113,16 @@ function DetailsTest() {
               </Box>
             </Flex>
           </Box>
-          <Box w='50%' pb='10' pl='4%'>
-            <Text fontSize={'lg'} fontWeight='semibold'   w='75%' >
+          <Box w='50%' pb='5' pl='4%'>
+            <Text fontSize={'lg'} w='75%' h='90%' fontWeight='semibold' overflow={'scroll'} >
+              {/* {shoe?.description} */}
               {testData?.details.description}
             </Text>
           </Box>
 
 
         </Flex>
+        {/* Related Products () */}
         <Box borderTop={'22px'} borderColor='black' >
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
           <Flex >
