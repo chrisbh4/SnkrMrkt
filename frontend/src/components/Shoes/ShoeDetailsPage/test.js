@@ -7,22 +7,14 @@ import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
 import { getAllShoes, getOneShoe } from "../../../store/shoes"
 import { addShoeToCart } from "../../../store/shoppingCart"
 import { fetchMostPopular } from '../../../store/stockX';
-import AddToCartComponent from './Checkout-Box';
+import AddToCartComponent from './AddToCartCompoent';
 import {
-  Grid,
   Center,
-  GridItem,
   Box,
-  VStack,
-  Checkbox,
-  Button,
   Text,
   Flex,
-  SimpleGrid,
-  Select,
   Image,
   Link,
-  Stack,
 } from '@chakra-ui/react'
 import Navigation from "../../Navigation"
 
@@ -112,8 +104,8 @@ function DetailsTest() {
 
   return (
     <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
-      <Box pl='10%' bg='gray.300'>
-        <Box h='75px'  >
+      <Box pl='10%'>
+        <Box h='75px' pt='3'>
           <Text
             fontSize={'4xl'}
             pl='2px'
