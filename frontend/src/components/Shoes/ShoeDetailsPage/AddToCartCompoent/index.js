@@ -57,12 +57,12 @@ const sizeChart = [
 
 
 
-function AddToCartComponent() {
+function AddToCartComponent({shoeId}) {
     const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
 
-  const shoeId = 4
+  // const shoeId = 4
 
   useEffect(() => {
     dispatch(getAllShoes())
@@ -105,9 +105,7 @@ function AddToCartComponent() {
   let addToCartVerfication;
   if (userId !== shoeSellerId && userId > 0.99) {
     addToCartVerfication = (
-
         <Button w='40%' onClick={addToCart}> Add to Cart </Button>
-
     )
   }
 
@@ -115,21 +113,19 @@ function AddToCartComponent() {
         <Box   w='500px' border={'1px'} p='20px'>
             <Box>
               <Box p='10px'>
-
-            <Select placeholder='Size:'  >
-          {sizeChart.map((chart) => {
-            return (
-              <option key={chart.id} value={chart.size} >{chart.size}</option>
-              )
-            })}
-          </Select>
+                <Select placeholder='Size:'>
+                  {sizeChart.map((chart) => {
+                    return (
+                      <option key={chart.id} value={chart.size} >{chart.size}</option>
+                      )
+                    })}
+                </Select>
             </Box>
 
           <Flex w='full' justify={'space-around'} gap='9' mt='20px'>
             <Button w='40%'>
                 Place Bid
             </Button>
-
             {sellerChecker}
             {addToCartVerfication}
           </Flex>

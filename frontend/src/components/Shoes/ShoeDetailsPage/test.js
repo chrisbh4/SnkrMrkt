@@ -75,33 +75,6 @@ function DetailsTest() {
   const shoeSellerId = shoe?.sellerId;
 
 
-  let sellerChecker;
-  if (userId) {
-    if (userId === shoeSellerId) {
-      sellerChecker = (
-        <div>
-          <Link to={`/shoes/${shoe?.id}/edit`} key={shoe?.id}>
-            <button className="shoe-details-edit-button">Edit</button>
-          </Link>
-        </div>
-      )
-    }
-  } else {
-    return sellerChecker;
-  }
-  let addToCartVerfication;
-  if (userId !== shoeSellerId && userId > 0.99) {
-    addToCartVerfication = (
-      <div>
-        {/* <Link to={`/`}> */}
-        <button className="addToCart-button" onClick={addToCart}> Add to Cart </button>
-        {/* </Link> */}
-      </div>
-    )
-  }
-
-
-
   return (
     <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
       <Box pl='10%'>
@@ -120,7 +93,7 @@ function DetailsTest() {
                />
           </Box>
           <Center w='30%' >
-            <AddToCartComponent />
+            <AddToCartComponent shoeId={shoeId} />
           </Center>
         </Flex>
 
