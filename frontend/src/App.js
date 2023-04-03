@@ -19,6 +19,7 @@ import HomePage from './components/Home/Home';
 import ProfilePage from './components/Profile/ProfilePage';
 import "./index.css"
 import DetailsTest from './components/Shoes/ShoeDetailsPage/test';
+import NewShoeFormChakra from "./components/Shoes/NewShoesForm/index"
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
       <Routes>
 
 
-        <Route path="/test" element={<DetailsTest />}> </Route>
+        <Route path="/test" element={<NewShoeFormChakra />}> </Route>
         <Route path="/test/:id" element={<DetailsTest />}> </Route>
 
 
