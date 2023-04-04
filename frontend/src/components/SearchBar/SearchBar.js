@@ -9,7 +9,7 @@ function SearchBar({ shoes }) {
     const allShoesIds = Object.keys(shoes)
     const updateQuery = (e) => setQuery(e.target.value);
 
-    console.log("Query :" ,query)
+    // console.log("Query :" ,query)
 
 
     let searchResult = allShoesIds.map((id) => {
