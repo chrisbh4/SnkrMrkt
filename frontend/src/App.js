@@ -8,7 +8,6 @@ import Navigation from './components/Navigation';
 // import { Modal } from './context/Modal';
 // import { getAllShoes } from './store/shoes';
 // import HomePage from './components/HomePage/HomePage';
-import NewShoesForm from './components/Shoes/NewShoesForm/NewShoesForm';
 import ShoesDetailsPage from './components/Shoes/ShoeDetailsPage/ShoeDetailPage';
 import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
 import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
@@ -19,6 +18,7 @@ import HomePage from './components/Home/Home';
 import ProfilePage from './components/Profile/ProfilePage';
 import "./index.css"
 import DetailsTest from './components/Shoes/ShoeDetailsPage/test';
+import NewShoeFormChakra from "./components/Shoes/NewShoesForm/index"
 
 
 function App() {
@@ -40,13 +40,12 @@ function App() {
       <Routes>
 
 
-        <Route path="/test" element={<DetailsTest />}> </Route>
+        <Route path="/test" element={<NewShoeFormChakra />}> </Route>
         <Route path="/test/:id" element={<DetailsTest />}> </Route>
-
 
         <Route path="/home" element={<HomePage />}> </Route>
 
-        <Route path='/shoes/new' element={<NewShoesForm />}></Route>
+        <Route path='/shoes/new' element={<NewShoeFormChakra />}></Route>
 
         <Route exact path='/shoes/:id' element={<ShoesDetailsPage />}></Route>
 
