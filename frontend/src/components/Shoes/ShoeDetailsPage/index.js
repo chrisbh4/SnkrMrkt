@@ -16,9 +16,10 @@ import {
   Image,
   Link,
 } from '@chakra-ui/react'
-import Navigation from "../../Navigation"
 
-function DetailsTest() {
+
+
+function ShoeDetialsChakra() {
 
   const dispatch = useDispatch();
   const params = useParams();
@@ -59,11 +60,6 @@ function DetailsTest() {
     imageCheck = <img className="bad-image" alt={shoe?.title}></img>
 
   }
-
-
-
-
-  const shoeSellerId = shoe?.sellerId;
 
 
   return (
@@ -173,4 +169,4 @@ function DetailsTest() {
 }
 
 
-export default DetailsTest;
+export default ShoeDetialsChakra;

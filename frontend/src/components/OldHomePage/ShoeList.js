@@ -17,7 +17,7 @@ function ShoeList({ shoe }) {
 
     return (
         <Box  w='100%' pb='20px'>
-            <Link _hover={{textDecoration: "none"}} href={`/test/${shoe.id}`} >
+            <Link _hover={{textDecoration: "none"}} href={`/shoes/${shoe.id}`} >
             {/* <Link _hover={{textDecoration: "none"}} href={`/test/`} > */}
                 <Center paddingBottom={'10px'} >
                     {imageCheck}

@@ -55,8 +55,6 @@ const sizeChart = [
   ]
 
 
-
-
 function AddToCartComponent({shoeId}) {
     const dispatch = useDispatch();
   const params = useParams();
@@ -64,12 +62,12 @@ function AddToCartComponent({shoeId}) {
 
 //* Need to be able to grab the clicked on value for selecting shoe size
   const [size, setSize] = useState("")
-  const updateSize = (e) => {
+
+  const updateSize = async(e) => {
     console.log(e.target.value)
     setSize(e.target.value)
+    return
   }
-
-  // const shoeId = 4
 
   useEffect(() => {
     dispatch(getAllShoes())
@@ -86,20 +84,21 @@ function AddToCartComponent({shoeId}) {
 
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
-
+  const shoeSellerId = shoe?.sellerId;
 
   const addToCart = async () => {
-
-    console.log("Add TO cart: ", shoe)
-    await dispatch(addShoeToCart(shoe.shoeSize, cart))
+    console.log("Add TO cart: ", size)
+    await dispatch(addShoeToCart(shoe, cart))
     alert("Shoe has been added to your cart!")
     navigate("/home")
     return
   }
 
 
-  const shoeSellerId = shoe?.sellerId;
-
+  const unavialableFeature = async () => {
+    alert("Functionality coming soon!")
+    return
+  }
 
 
   let sellerChecker;
@@ -118,16 +117,16 @@ function AddToCartComponent({shoeId}) {
       <Box w='500px' border={'1px'} p='5%'>
         <Box>
           <Box p='10px'>
-            <Select placeholder='Select Size:' variant={"filled"} w='90%' >
+            <Select placeholder='Select Size:' variant={"filled"} w='90%'  onClick={updateSize} >
               {sizeChart.map((chart) => {
                 return (
-                  <option key={chart.id} value={chart.size} onClick={updateSize} >{chart.size} </option>
+                  <option key={chart.id} value={chart.size}  onChange={updateSize} >{chart.size} </option>
                   )
                 })}
             </Select>
         </Box>
 
-          <Button w='40%' ml='2%'>Place Bid</Button>
+          <Button w='40%' ml='2%' onClick={unavialableFeature}>Place Bid</Button>
           <Button w='40%' ml='5%' onClick={addToCart}> Add to Cart </Button>
         </Box>
       </Box>
@@ -135,7 +134,6 @@ function AddToCartComponent({shoeId}) {
   }
 
     return (
-
           <Flex w='full' justify={'space-around'} gap='9' mt='20px'>
             {sellerChecker}
             {addToCartVerfication}
