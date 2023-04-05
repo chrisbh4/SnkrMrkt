@@ -29,18 +29,12 @@ function EditShoesFormChakra() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const shoeId = params.id
-    // const shoeId = 1
-
 
     useEffect(() => {
         dispatch(getAllShoes())
     }, [dispatch]);
 
-
     const shoe = useSelector((state) => state.shoes[shoeId])
-
-    console.log("shoe :", shoe)
-
 
     const [title, setTitle] = useState(shoe?.title)
     const [description, setDescription] = useState(shoe?.description)
@@ -97,7 +91,7 @@ function EditShoesFormChakra() {
         navigate('/home')
     }
 
-
+console.log(shoe)
     return(
         <>
             <FormControl pt={"2%"}   >
@@ -114,34 +108,37 @@ function EditShoesFormChakra() {
                         <Flex h={'20'} justify={'start'}>
                             <Box w={'40%'}>
                                 <FormLabel>Shoe Title</FormLabel>
-                                <Input borderColor={"black"} bg='gray.50' placeholder="Shoe Title" onChange={updateTitle} value={shoe?.title} />
+                                <Input borderColor={"black"} bg='gray.50' onChange={updateTitle} placeholder={shoe?.title} />
                             </Box>
                             <Box w={'40%'}>
                                 <FormLabel ml={'6%'}>Shoe Size</FormLabel>
-                                <Input borderColor={"black"} bg='gray.50' placeholder="Shoe Size" ml={'6%'} onChange={updateShoeSize} value={shoe.shoeSize} />
+                                <Input borderColor={"black"} bg='gray.50' ml={'6%'} onChange={updateShoeSize} placeholder={shoe.shoeSize} />
                             </Box>
                         </Flex>
                         <Box h={'20'} w={"70%"}>
                             <FormLabel>Description</FormLabel>
-                            <Textarea borderColor={"black"} bg='gray.50' h={"90px"} placeholder="Description" onChange={updateDescription} value={shoe.description} />
+                            <Textarea borderColor={"black"} bg='gray.50' h={"90px"} onChange={updateDescription} placeholder={shoe.description} />
                         </Box>
                         <Box h={'20'} w={"35%"} mt={"2%"} >
                             <FormLabel>Brand</FormLabel>
-                            <Input borderColor={"black"} bg='gray.50' placeholder="Brand" onChange={updateBrand} value={shoe.brand} />
+                            <Input borderColor={"black"} bg='gray.50' onChange={updateBrand} placeholder={shoe.brand} />
                         </Box>
                         <Box h={'20'} w={"35%"} mt={"2%"} >
                             <FormLabel>Price</FormLabel>
                             <InputGroup>
                                 <InputLeftAddon children='$' />
-                                <Input borderColor={"black"} bg='gray.50' placeholder="Price" onChange={updatePrice}  value={shoe.price} />
+                                <Input borderColor={"black"} bg='gray.50' onChange={updatePrice}  placeholder={shoe.price} />
                             </InputGroup>
                         </Box>
                         <Box  w={"50%"} >
                             <FormLabel>Upload Images</FormLabel>
-                            <Input borderColor={"black"} type="file"  placeholder="Upload Images" border={"none"} onChange={updateImageFile}  />
+                            <Input borderColor={"black"} type="file" border={"none"} onChange={updateImageFile}  />
                         </Box>
 
+                        <Flex >
                         <Button w={"30%"} mt={"1%"} onClick={onSubmit} colorScheme="green">Submit</Button>
+                        <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={handleDelete} colorScheme="green">Delete</Button>
+                        </Flex>
                     </Grid>
 
                     <Box color={"red.400"}  >
