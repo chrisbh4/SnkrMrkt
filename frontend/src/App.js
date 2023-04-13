@@ -31,7 +31,6 @@ function App() {
 
   }, [dispatch]);
 
-  //* Erase inside JSX and only render <Hom
   return (
     <>
     <div>
@@ -42,7 +41,7 @@ function App() {
 
         <Route path="/test" element={<EditShoesFormChakra />}> </Route>
 
-        <Route path="/home" element={<HomePage />}> </Route>
+        <Route exact path="/home" element={<HomePage />}> </Route>
 
         <Route exact path='/shoes/:id' element={<ShoeDetialsChakra />}></Route>
 

@@ -72,6 +72,7 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(allShoes)
 
 }));
+
 router.get('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
         include: [Reviews]

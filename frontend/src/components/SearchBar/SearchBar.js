@@ -18,10 +18,10 @@ function SearchBar({ shoes }) {
 
             return (
                 <div hidden={!shoes}>
-                    <div className="search-grid">
+                    <div className="search-grid" >
                         <div className="search-col-one">
-                            <a href={`/shoes/${id}`}>
-                                <img className="search-image" src={`${shoes[id].image}`} alt={shoes[id]} />
+                            <a href={`/shoes/${id}`}  >
+                                <img className="search-image" src={`${shoes[id].image}`} alt={shoes[id]} key={id} />
                             </a>
                         </div>
 

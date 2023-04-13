@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid, Link } from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
-import { getAllShoes } from "../../store/shoes";
+import { getAllShoes, getOneShoe } from "../../store/shoes";
 
 import { fetchMostPopular } from "../../store/stockX";
 
@@ -56,8 +56,7 @@ function NewHomePage() {
 
   useEffect(()=>{
     dispatch(getAllShoes())
-
-    dispatch(fetchMostPopular())
+    // dispatch(getOneShoe(1))
 },[dispatch])
 
 const [isSize, setIsSize] = useState({id: 0 , size: 0});

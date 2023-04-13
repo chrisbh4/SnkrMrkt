@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import {  useParams, useNavigate } from 'react-router-dom'
+import React, {useEffect} from 'react';
+import {  useParams} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
-import * as sessionActions from '../../../store/session';
 import "./ShoeDetails.css"
-import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
-import { getAllShoes, getOneShoe } from "../../../store/shoes"
-import { addShoeToCart } from "../../../store/shoppingCart"
-import { fetchMostPopular } from '../../../store/stockX';
+import { getOneShoe } from "../../../store/shoes"
+
 import AddToCartComponent from './AddToCartCompoent';
 import {
   Center,
@@ -17,26 +14,24 @@ import {
   Link,
 } from '@chakra-ui/react'
 
-
+// * Something is dispathcing a data fetch on a parent & child compoent just need to find it
 
 function ShoeDetialsChakra() {
 
   const dispatch = useDispatch();
   const params = useParams();
-  const navigate = useNavigate();
 
   const shoeId = params.id
+  const shoe = useSelector((state) => state.shoes[shoeId])
+
+    const stockXdata = useSelector((state) => state.stockXapi)
+    const testData = stockXdata[0]
 
   useEffect(() => {
-    dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
-    dispatch(fetchMostPopular())
-  }, [dispatch, shoeId]);
+  }, [shoeId]);
 
 
-  const stockXdata = useSelector((state) => state.stockXapi)
-  const testData = stockXdata[0]
-  console.log("DATA : " , stockXdata)
 
 
   const userId = useSelector((state) => {
@@ -45,11 +40,6 @@ function ShoeDetialsChakra() {
     }
     return 0.5;
   })
-
-  const shoe = useSelector((state) => state.shoes[shoeId])
-  const cart = useSelector((state) => state.shoppingCart)
-
-  console.log(shoe)
 
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
