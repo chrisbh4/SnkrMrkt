@@ -6,6 +6,14 @@ import reviews from "./reviews"
 import shoppingCart from "./shoppingCart"
 import stockXapi from "./stockX"
 
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
+
+import counterReducer from "./counterSlice"
+import shoeSlice from './shoeSlice';
+
+
+
+
 
 const rootReducer = combineReducers({
   session,
@@ -26,8 +34,17 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-const configureStore = (preloadedState) => {
-  return createStore(rootReducer, preloadedState, enhancer);
-};
 
-export default configureStore;
+export default configureStore({
+  reducer: {
+    counter: counterReducer,
+    shoes: shoeSlice,
+    middleware: {enhancer}
+  }
+})
+
+// const configureStore = (preloadedState) => {
+//   return createStore(rootReducer, preloadedState, enhancer);
+// };
+
+// export default configureStore;

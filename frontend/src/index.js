@@ -40,7 +40,9 @@ const loadSavedCart = () =>{
 
 //sets the state to have a key: of shoppingCart and values of the loaded shoes inside the cart
 const savedCart = { shoppingCart: loadSavedCart()}
-const store = configureStore(savedCart);
+// const store = configureStore(savedCart);
+
+const store = configureStore
 
 // Testing purposes only
 if (process.env.NODE_ENV !== "production") {

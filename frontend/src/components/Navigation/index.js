@@ -17,8 +17,9 @@ import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex } from '@chakra
 function Navigation({ isLoaded }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user)
-  const grabAllShoes = useSelector(state => state.shoes)
+  // const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = {"id": 1 , "username": "test", "email": "fake@email.com"}
+  // const grabAllShoes = useSelector(state => state.shoes)
 
   // const [query, setQuery] = useState("");
 
@@ -32,8 +33,8 @@ function Navigation({ isLoaded }) {
   const logout = async (e) => {
     e.preventDefault();
     //Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
-    dispatch(purchaseFromCart());
-    dispatch(sessionActions.logout());
+    // dispatch(purchaseFromCart());
+    // dispatch(sessionActions.logout());
     navigate('/')
   };
 
@@ -55,9 +56,9 @@ function Navigation({ isLoaded }) {
         </Box>
 
 
-        <Box id="search-bar-container">
+        {/* <Box id="search-bar-container">
           <SearchBar shoes={grabAllShoes} />
-        </Box>
+        </Box> */}
 
         <Flex justify={'center'} pr='20px'>
           {/* <NavLink exact to="/home">
@@ -116,7 +117,7 @@ function Navigation({ isLoaded }) {
           <Box ml='10px' mr='30px'
           // transition='background-color 0.3s, box-shadow 0.3s, color 0.3s'
           >
-            <SlideOutCart />
+            {/* <SlideOutCart /> */}
           </Box>
 
           {/* <Box >

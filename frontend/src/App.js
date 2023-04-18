@@ -21,6 +21,8 @@ import ShoeDetialsChakra from './components/Shoes/ShoeDetailsPage/index';
 import NewShoeFormChakra from "./components/Shoes/NewShoesForm/index"
 import EditShoesFormChakra from './components/Shoes/EditShoePage';
 
+import Counter from './components/UI/test';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +41,7 @@ function App() {
     </div>
       <Routes>
 
-        <Route path="/test" element={<EditShoesFormChakra />}> </Route>
+        <Route path="/test" element={<Counter/>}> </Route>
 
         <Route exact path="/home" element={<HomePage />}> </Route>
 
