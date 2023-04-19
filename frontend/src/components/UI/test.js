@@ -29,9 +29,15 @@ export default function Counter() {
         </button>
         <button
           aria-label="Get all SHoes"
-          onClick={() => dispatch(getOneShoe(1))}
+          onClick={() => dispatch(getAllShoes())}
         >
           All SHoes
+        </button>
+        <button
+          aria-label="Get One shoe"
+          onClick={() => dispatch(getOneShoe(1))}
+        >
+          Single Shoe
         </button>
       </div>
     </div>
