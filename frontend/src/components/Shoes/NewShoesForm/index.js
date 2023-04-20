@@ -1,8 +1,6 @@
 import React from "react"
 import { useState } from "react"
 import { useSelector, useDispatch ,  } from "react-redux"
-
-
 import { getCreatedShoe } from "../../../store/shoes.js"
 import { useNavigate } from "react-router-dom"
 import "./NewShoeForm.css"
@@ -55,7 +53,7 @@ function NewShoesForm() {
         e.preventDefault();
         let payload = {sellerId, title, shoeSize, imageFile, price, brand, description}
         const data = await dispatch(getCreatedShoe(payload))
-        
+
         if (!data?.errors) {
 
             // TODO: Create User Profile and redirect user to show new shoe being listed under them

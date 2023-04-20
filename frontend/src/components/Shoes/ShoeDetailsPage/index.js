@@ -47,9 +47,7 @@ function ShoeDetialsChakra() {
   })
 
   const shoe = useSelector((state) => state.shoes[shoeId])
-  const cart = useSelector((state) => state.shoppingCart)
-
-  console.log(shoe)
+  // const cart = useSelector((state) => state.shoppingCart)
 
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
@@ -71,6 +69,12 @@ function ShoeDetialsChakra() {
             pl='2px'
           > {shoe?.title}</Text>
         </Box>
+
+        <Box h='75px' pt='3'>
+          <Link href={`/shoes/${shoe?.id}/reviews/new`}
+          > Create Review</Link>
+        </Box>
+
 
         <Flex>
           <Box h='full' w='50%'  >

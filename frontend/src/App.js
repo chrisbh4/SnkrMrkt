@@ -20,6 +20,7 @@ import "./index.css"
 import ShoeDetialsChakra from './components/Shoes/ShoeDetailsPage/index';
 import NewShoeFormChakra from "./components/Shoes/NewShoesForm/index"
 import EditShoesFormChakra from './components/Shoes/EditShoePage';
+import NewReviewChakraForm from './components/Reviews/NewReview';
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
     </div>
       <Routes>
 
-        <Route path="/test" element={<EditShoesFormChakra />}> </Route>
+        <Route path="/test" element={<NewReviewChakraForm />}> </Route>
 
         <Route path="/home" element={<HomePage />}> </Route>
 
@@ -48,7 +49,7 @@ function App() {
 
         <Route exact path='/shoes/:id/edit' element={<EditShoesFormChakra />}></Route>
 
-        <Route exact path="/shoes/:id/reviews/new" element={<NewReviewForm />}></Route>
+        <Route exact path="/shoes/:id/reviews/new" element={<NewReviewChakraForm />}></Route>
 
         <Route path='/shoes/new' element={<NewShoeFormChakra />}></Route>
 
