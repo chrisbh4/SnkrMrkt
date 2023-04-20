@@ -9,8 +9,8 @@ function AboutPage() {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getLoadCart())
-    }, [dispatch]);
+        // dispatch(getLoadCart())
+    }, [ ]);
 
 
     return (

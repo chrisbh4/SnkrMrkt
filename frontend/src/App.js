@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 // import SignupFormPage from './components/SignupFormPage';
 // import LoginFormPage from "./components/LoginFormPage";
-import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 // import { Modal } from './context/Modal';
 // import { getAllShoes } from './store/shoes';
@@ -15,12 +14,14 @@ import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
 import HomePage from './components/Home/Home';
 import ProfilePage from './components/Profile/ProfilePage';
-import "./index.css"
-
 import ShoeDetialsChakra from './components/Shoes/ShoeDetailsPage/index';
 import NewShoeFormChakra from "./components/Shoes/NewShoesForm/index"
 import EditShoesFormChakra from './components/Shoes/EditShoePage';
+import "./index.css"
 
+
+// import * as sessionActions from './store/session';
+import { restoreUser } from './store/session';
 import Counter from './components/UI/test';
 
 
@@ -29,8 +30,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   // const [showModal, setShowModal] = useState(false);
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-
+    dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (

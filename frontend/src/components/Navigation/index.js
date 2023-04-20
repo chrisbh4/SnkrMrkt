@@ -17,8 +17,8 @@ import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex } from '@chakra
 function Navigation({ isLoaded }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const sessionUser = useSelector(state => state.session.user)
-  const sessionUser = {"id": 1 , "username": "test", "email": "fake@email.com"}
+  const sessionUser = useSelector(state => state.session.user)
+  // const sessionUser = {"id": 1 , "username": "test", "email": "fake@email.com"}
   // const grabAllShoes = useSelector(state => state.shoes)
 
   // const [query, setQuery] = useState("");
@@ -26,16 +26,18 @@ function Navigation({ isLoaded }) {
   const demoLogin = () => {
     let credential = 'demo@user.io'
     let password = 'password'
+    dispatch(login({ credential, password }))
     navigate('/home')
-    return dispatch(login({ credential, password }))
+    return
   }
 
   const logout = async (e) => {
     e.preventDefault();
     //Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
-    // dispatch(purchaseFromCart());
-    // dispatch(sessionActions.logout());
+    dispatch(purchaseFromCart());
+    dispatch(sessionActions.logout());
     navigate('/')
+    return
   };
 
   // Semver
@@ -66,6 +68,16 @@ function Navigation({ isLoaded }) {
               Old Home
             </Button>
           </NavLink> */}
+
+          <NavLink exact to="/">
+            <Button
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
+              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+
+            >
+              /
+            </Button>
+          </NavLink>
 
           <NavLink exact to="/test">
             <Button

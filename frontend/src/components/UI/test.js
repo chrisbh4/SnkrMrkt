@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from '../../store/counterSlice'
 
 import { getAllShoes, getOneShoe } from '../../store/shoeSlice'
+import { restoreUser } from '../../store/session'
 
 
 export default function Counter() {
@@ -40,6 +41,22 @@ export default function Counter() {
           Single Shoe
         </button>
       </div>
+        <button
+          aria-label="Get One shoe"
+          onClick={() => dispatch(getOneShoe(1))}
+        >
+          Single Shoe
+        </button>
+
+        <button
+          aria-label="Get One shoe"
+          onClick={() => dispatch(restoreUser())}
+        >
+          Restore User
+        </button>
+
+
+
     </div>
   )
 }

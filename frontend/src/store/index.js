@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import ThunkMiddleware from 'redux-thunk';
 import thunk from 'redux-thunk';
-import session from './session'
+import sessionSlice from './sessionSlice'
 import shoes from '../store/shoes'
 import reviews from "./reviews"
 import shoppingCart from "./shoppingCart"
@@ -12,16 +13,21 @@ import counterReducer from "./counterSlice"
 import shoeSlice from './shoeSlice';
 
 
+// * Redux updated 'Enhancers'
+//* ------------------------------------------------------------------
+// const middlewares = [ThunkMiddleware]
+// const middlewareEnhancer = applyMiddleware(...middlewares)
 
+// const enhancers = [middlewareEnhancer]
+// const composeEnhancers = compose(...enhancers)
 
-
-const rootReducer = combineReducers({
-  session,
-  shoes,
-  reviews,
-  shoppingCart,
-  stockXapi
-});
+// const rootReducer = combineReducers({
+//   shoes,
+//   reviews,
+//   shoppingCart,
+//   stockXapi
+// });
+//* ------------------------------------------------------------------
 
 let enhancer;
 
@@ -38,9 +44,10 @@ if (process.env.NODE_ENV === 'production') {
 export default configureStore({
   reducer: {
     counter: counterReducer,
+    session: sessionSlice,
     shoes: shoeSlice,
-    middleware: {enhancer}
-  }
+  },
+  middleware: getDefaultMiddleware()
 })
 
 // const configureStore = (preloadedState) => {

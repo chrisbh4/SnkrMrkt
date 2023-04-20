@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid, Link } from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
-import { getAllShoes, getOneShoe } from "../../store/shoes";
+import { getAllShoes, getOneShoe } from "../../store/shoeSlice";
 
 import { fetchMostPopular } from "../../store/stockX";
 
@@ -98,6 +98,7 @@ const handleSizeBg = (size) => {
               return(
                 <>
                 <Text
+                       key={1}
                        onClick={() => handleBrandBg(brand)}
                        style={{ backgroundColor: brand.id === selectedBrand ? "gray" : "",  color: brand.id === selectedBrand ? "white" : "" }}
                 textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text>
@@ -121,7 +122,7 @@ const handleSizeBg = (size) => {
             <Text fontSize='30px' pl='2%'>Shoe Size</Text>
             <Flex pl='2%'>
               <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacingY='9px'>
+                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
                   {sizeChart.map((chart) => {
                     return (
                       <>
@@ -144,7 +145,7 @@ const handleSizeBg = (size) => {
             <Text pl='2%' fontSize='30px' >Prices</Text>
             <Box position='relative' left={'7.5%'} pt='3%'>
               {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
-              <VStack columns={2} spacingY='9px' justifyContent={'center'} >
+              <VStack columns={2}  justifyContent={'center'} >
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$100 & under</Checkbox>
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$200-300</Checkbox>
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$300-400</Checkbox>
