@@ -71,7 +71,6 @@ export const logout = () => async (dispatch) => {
 
 export const fetchAllUsers = () => async (dispatch)=>{
   const res = await csrfFetch("/api/session/all-users")
-
   if(res.ok){
     const data = await res.json()
     dispatch(allUsers(data))
