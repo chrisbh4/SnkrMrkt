@@ -20,11 +20,9 @@ import {
 
 
 function ShoeDetialsChakra() {
-
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
-
   const shoeId = params.id
 
   useEffect(() => {
@@ -36,8 +34,6 @@ function ShoeDetialsChakra() {
 
   const stockXdata = useSelector((state) => state.stockXapi)
   const testData = stockXdata[0]
-  console.log("DATA : " , stockXdata)
-
 
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -48,7 +44,6 @@ function ShoeDetialsChakra() {
 
   const shoe = useSelector((state) => state.shoes[shoeId])
   // const cart = useSelector((state) => state.shoppingCart)
-
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
   let imageCheck;
@@ -75,6 +70,10 @@ function ShoeDetialsChakra() {
           > Create Review</Link>
         </Box>
 
+        <Box h='75px' pt='3'>
+          <Link href={`/reviews/1/edit`}
+          > Edit Review</Link>
+        </Box>
 
         <Flex>
           <Box h='full' w='50%'  >

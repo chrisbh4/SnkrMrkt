@@ -29,38 +29,30 @@ function NewReviewChakraForm() {
     const naviate = useNavigate()
     const dispatch = useDispatch()
     const params = useParams()
-    // const shoeId = params.id ;
-    const shoeId = 1
-    // const userId = useSelector((state)=> state.session.user?.id)
-    const userId = 1;
-
+    const shoeId = params.id ;
+    const userId = useSelector((state)=> state.session.user?.id)
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(0)
-    // const [image , setImage ] = useState("")
-    const [image  ] = useState("")
+    const [image] = useState("")
     const [errors , setErrors] = useState([])
 
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
-    // const updateImage = (e) => setImage(e.target.value)
-
 
     let errorHandler;
-   if(errors.errors){
-      errorHandler = errors.errors.map((error)=>{
-               return (
-                        <p key={error.id}>{error}</p>
-                    )
-           })
-   }
-   else{
-        errorHandler=null;
-   }
+    if(errors.errors){
+        errorHandler = errors.errors.map((error)=>{
+                return (
+                            <p key={error.id}>{error}</p>
+                        )})
+    }
+    else{
+            errorHandler=null;
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(fetchCreateReview(shoeId, userId, comment, rating, image))
-
         if (!data.errors) {
             alert("Your review has been created :)")
             naviate(`/shoes/${shoeId}`)
@@ -71,7 +63,6 @@ function NewReviewChakraForm() {
         return data
     }
 
-    // TODO: Add live input validation as a next feature
     return (
         <>
             <FormControl pt={"2%"}   >
@@ -114,7 +105,4 @@ function NewReviewChakraForm() {
         </>
     )
 }
-
-
-
-export default NewReviewChakraForm
+export default NewReviewChakraForm;
