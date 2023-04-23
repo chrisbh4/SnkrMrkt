@@ -85,7 +85,6 @@ const handleSizeBg = (size) => {
         <GridItem
           rowSpan={2}
           colSpan={1}
-
           overflowY={'scroll'}
           overflowX={'hidden'}
           w='75%'
@@ -97,13 +96,13 @@ const handleSizeBg = (size) => {
           <Box pl='1%' pt='5%' pb='2%'>
             {brandsList.map((brand) =>{
               return(
-                <>
+                <div key={brand.id}>
                 <Text
                        onClick={() => handleBrandBg(brand)}
                        style={{ backgroundColor: brand.id === selectedBrand ? "gray" : "",  color: brand.id === selectedBrand ? "white" : "" }}
                 textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text>
                   {/* <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text> </Link> */}
-                </>
+                </div>
               )
             })}
           </Box>
@@ -125,14 +124,14 @@ const handleSizeBg = (size) => {
                 <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
                   {sizeChart.map((chart) => {
                     return (
-                      <>
+                      <div key={chart.id}>
                         <Button  w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
                                      key={chart.id}
                                      onClick={() => handleSizeBg(chart)}
                                      style={{ backgroundColor: chart.id === selectedSize ? "red" : "",  color: chart.id === selectedSize ? "white" : "" }}
                                      > {chart.size}
                         </Button>
-                      </>
+                      </div>
                     )
                   })}
                 </SimpleGrid>

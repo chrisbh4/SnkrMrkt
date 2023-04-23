@@ -67,7 +67,7 @@ function SlideOutCart() {
           <DrawerBody>
             <div className="cart-container">
               {cart.map((item) => (
-                <SlideOutCartItem item={item} />
+                <SlideOutCartItem item={item} key={item.shoeId} />
               ))}
               <Box>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : $${totalPriceOfShoes}` : emptyCart}</h2>
