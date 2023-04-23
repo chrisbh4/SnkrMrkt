@@ -17,6 +17,7 @@ import {
   Link,
   VStack,
   Button,
+  textDecoration,
 } from '@chakra-ui/react'
 
 
@@ -38,7 +39,7 @@ function ShoeDetialsChakra() {
 
   const userId = useSelector((state) => {
     if (state.session.user) {
-      return state.session.user.id
+      return state.session.user?.id
     }
     return 0.5;
   })
@@ -59,7 +60,8 @@ function ShoeDetialsChakra() {
 
 
   return (
-    <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
+    // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
+    <Box px={"15%"} h='full'  pb='20px' >
       <Box pl='10%'>
         <Box h='75px' pt='3'>
           <Text
@@ -162,21 +164,30 @@ function ShoeDetialsChakra() {
 
         {/* Reviews */}
         <Box>
-        <Text fontSize={'2xl'} fontWeight='bold' pt={"2%"} >Reviews</Text>
-
-          <Button bg={"gray.300"}>
-            <Link href={`/shoes/${shoe?.id}/reviews/new`}>
-             Create Review
-            </Link>
-          </Button>
-
-          <Button bg={"gray.300"}>
-            <Link href={`/reviews/1/edit`}>
-              Edit Review
-            </Link>
-          </Button>
+          <Text fontSize={'2xl'} fontWeight='bold' pt={"2%"} >{shoe?.title} Reviews</Text>
+          
+          <Box py={"2%"}>
+            <Button>
+              <Link href={`/shoes/${shoe?.id}/reviews/new`} _hover={{ textDecoration: "none" }}>
+                Create Review
+              </Link>
+            </Button>
+          </Box>
 
           {shoe?.Reviews.map((review) => {
+            if (review.userId === userId) {
+              return (
+                <Flex>
+                  <Text>{review.rating}</Text>
+                  <Text ml={"4%"}>{review.comment}</Text>
+                  <Button ml={'2%'} h={"30px"}>
+                    <Link href={`/reviews/${review.id}/edit`} _hover={{ textDecoration: "none" }}>
+                      Edit Review
+                    </Link>
+                  </Button>
+                </Flex>
+              )
+            }
             return (
               <Flex>
                 <Text>{review.rating}</Text>
