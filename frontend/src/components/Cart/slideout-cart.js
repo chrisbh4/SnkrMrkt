@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
-import { purchaseFromCart, removeShoeFromCart } from "../../store/shoppingCart";
+import { removeShoeFromCart } from "../../store/shoppingCart";
+import SlideOutCartItem from "./slideout-item";
 import {
   Drawer,
   DrawerBody,
@@ -23,8 +24,6 @@ import {
   Center
 } from '@chakra-ui/react'
 
-import CartItem from "./CartItem"
-import SlideOutCartItem from "./slideout-item";
 
 function SlideOutCart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -35,18 +34,10 @@ function SlideOutCart() {
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const cart = Object.values(shoppingCart);
 
-  const removeShoe = async (id) => {
-    await dispatch(removeShoeFromCart(id, cart))
-    return
-  }
-
-
-
   let total = 0.00;
   cart.forEach((item) => {
     total += parseFloat(item.price)
   })
-
 
   const totalPriceOfShoes = total.toFixed(2)
   const feePrices = total * 0.01
@@ -72,9 +63,7 @@ function SlideOutCart() {
         <DrawerContent  >
           <DrawerCloseButton />
           <DrawerHeader >
-            {/* <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : $${totalPriceOfShoes}` : emptyCart}</h2> */}
           </DrawerHeader>
-
           <DrawerBody>
             <div className="cart-container">
               {cart.map((item) => (
