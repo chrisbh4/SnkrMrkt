@@ -29,7 +29,7 @@ function NewShoesForm() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const sellerId = useSelector((state) => state.session.user.id)
+    const sellerId = useSelector((state) => state.session.user?.id)
 
     const [title, setTitle] = useState("")
     const [shoeSize, setShoeSize] = useState(0)

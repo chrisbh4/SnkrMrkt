@@ -112,22 +112,22 @@ console.log(shoe)
                             </Box>
                             <Box w={'40%'}>
                                 <FormLabel ml={'6%'}>Shoe Size</FormLabel>
-                                <Input borderColor={"black"} bg='gray.50' ml={'6%'} onChange={updateShoeSize} placeholder={shoe.shoeSize} />
+                                <Input borderColor={"black"} bg='gray.50' ml={'6%'} onChange={updateShoeSize} placeholder={shoe?.shoeSize} />
                             </Box>
                         </Flex>
                         <Box h={'20'} w={"70%"}>
                             <FormLabel>Description</FormLabel>
-                            <Textarea borderColor={"black"} bg='gray.50' h={"90px"} onChange={updateDescription} placeholder={shoe.description} />
+                            <Textarea borderColor={"black"} bg='gray.50' h={"90px"} onChange={updateDescription} placeholder={shoe?.description} />
                         </Box>
                         <Box h={'20'} w={"35%"} mt={"2%"} >
                             <FormLabel>Brand</FormLabel>
-                            <Input borderColor={"black"} bg='gray.50' onChange={updateBrand} placeholder={shoe.brand} />
+                            <Input borderColor={"black"} bg='gray.50' onChange={updateBrand} placeholder={shoe?.brand} />
                         </Box>
                         <Box h={'20'} w={"35%"} mt={"2%"} >
                             <FormLabel>Price</FormLabel>
                             <InputGroup>
                                 <InputLeftAddon children='$' />
-                                <Input borderColor={"black"} bg='gray.50' onChange={updatePrice}  placeholder={shoe.price} />
+                                <Input borderColor={"black"} bg='gray.50' onChange={updatePrice}  placeholder={shoe?.price} />
                             </InputGroup>
                         </Box>
                         <Box  w={"50%"} >
