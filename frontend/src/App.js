@@ -22,6 +22,7 @@ import NewShoeFormChakra from "./components/Shoes/NewShoesForm/index"
 import EditShoesFormChakra from './components/Shoes/EditShoePage';
 import NewReviewChakraForm from './components/Reviews/NewReview';
 import EditReviewChakraForm from './components/Reviews/EditReview';
+import NewShoeModalForm from './components/Shoes/NewShoesForm/modalForm';
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
     </div>
       <Routes>
 
-        <Route path="/test" element={<EditReviewChakraForm />}> </Route>
+        <Route path="/test" element={<NewShoeModalForm />}> </Route>
 
         <Route path="/home" element={<HomePage />}> </Route>
 
