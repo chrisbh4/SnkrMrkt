@@ -13,6 +13,7 @@ import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
 import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex } from '@chakra-ui/react';
+import NewShoeModalForm from '../Shoes/NewShoesForm/modalForm';
 
 function Navigation({ isLoaded }) {
   const navigate = useNavigate();
@@ -66,19 +67,21 @@ function Navigation({ isLoaded }) {
             </Button>
           </NavLink> */}
 
+          <NewShoeModalForm />
+
           <NavLink exact to="/test">
             <Button
-              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-
             >
               Test
             </Button>
           </NavLink>
 
+
           <NavLink exact to="/home">
             <Button
-              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
 
             >
@@ -88,25 +91,25 @@ function Navigation({ isLoaded }) {
 
           <NavLink to="/shoes/new">
             <Button
-              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
             >
               Sell
             </Button>
           </NavLink>
 
-          <NavLink to="/profile">
+          {/* <NavLink to="/profile">
             <Button
-              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
             >
               Profile
             </Button>
-          </NavLink>
+          </NavLink> */}
 
           <Box >
             <Button onClick={logout}
-              color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
             // padding='0.9em 4em'
 
@@ -143,13 +146,13 @@ function Navigation({ isLoaded }) {
         </Box>
 
 
-          <LoginForm />
+        <LoginForm />
 
-          <SignUpForm />
+        <SignUpForm />
 
 
         <Button
-          color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+          color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
           _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
           onClick={demoLogin} >
           Demo
@@ -157,7 +160,7 @@ function Navigation({ isLoaded }) {
 
         <NavLink exact to="/">
           <Button
-            color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+            color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
             _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
           >
             Home
@@ -166,7 +169,7 @@ function Navigation({ isLoaded }) {
 
         <NavLink exact to="/home">
           <Button
-            color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' font-size='0.7em' padding='0.9em 4em'
+            color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
             _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
           >
             All Shoes

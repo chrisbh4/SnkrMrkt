@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-// import SignupFormPage from './components/SignupFormPage';
-// import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-// import { Modal } from './context/Modal';
-// import { getAllShoes } from './store/shoes';
-// import HomePage from './components/HomePage/HomePage';
-import EditShoesForm from './components/Shoes/EditShoePage/ShoeEditPage';
-import NewReviewForm from './components/Reviews/NewReview/NewReviewForm';
-import EditReviewForm from './components/Reviews/EditReview/EditReviewForm';
 import AboutPage from './components/AboutPage/AboutPage';
 import ShoppingCart from './components/Cart';
 import HomePage from './components/Home/Home';
 import ProfilePage from './components/Profile/ProfilePage';
-import "./index.css"
-
 import ShoeDetialsChakra from './components/Shoes/ShoeDetailsPage/index';
-import NewShoeFormChakra from "./components/Shoes/NewShoesForm/index"
-import EditShoesFormChakra from './components/Shoes/EditShoePage';
 import NewReviewChakraForm from './components/Reviews/NewReview';
 import EditReviewChakraForm from './components/Reviews/EditReview';
+import NewShoeModalForm from './components/Shoes/NewShoesForm/modalForm';
+import "./index.css"
 
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 
@@ -42,17 +32,13 @@ function App() {
     </div>
       <Routes>
 
-        <Route path="/test" element={<EditReviewChakraForm />}> </Route>
+        <Route path="/test" element={<NewShoeModalForm />}> </Route>
 
         <Route path="/home" element={<HomePage />}> </Route>
 
         <Route exact path='/shoes/:id' element={<ShoeDetialsChakra />}></Route>
 
-        <Route exact path='/shoes/:id/edit' element={<EditShoesFormChakra />}></Route>
-
         <Route exact path="/shoes/:id/reviews/new" element={<NewReviewChakraForm />}></Route>
-
-        <Route path='/shoes/new' element={<NewShoeFormChakra />}></Route>
 
         <Route path="/reviews/:id/edit" element={<EditReviewChakraForm />}></Route>
 

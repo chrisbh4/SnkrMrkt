@@ -85,7 +85,6 @@ const handleSizeBg = (size) => {
         <GridItem
           rowSpan={2}
           colSpan={1}
-
           overflowY={'scroll'}
           overflowX={'hidden'}
           w='75%'
@@ -97,13 +96,13 @@ const handleSizeBg = (size) => {
           <Box pl='1%' pt='5%' pb='2%'>
             {brandsList.map((brand) =>{
               return(
-                <>
+                <div key={brand.id}>
                 <Text
                        onClick={() => handleBrandBg(brand)}
                        style={{ backgroundColor: brand.id === selectedBrand ? "gray" : "",  color: brand.id === selectedBrand ? "white" : "" }}
                 textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text>
                   {/* <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text> </Link> */}
-                </>
+                </div>
               )
             })}
           </Box>
@@ -122,17 +121,17 @@ const handleSizeBg = (size) => {
             <Text fontSize='30px' pl='2%'>Shoe Size</Text>
             <Flex pl='2%'>
               <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacingY='9px'>
+                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
                   {sizeChart.map((chart) => {
                     return (
-                      <>
+                      <div key={chart.id}>
                         <Button  w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
                                      key={chart.id}
                                      onClick={() => handleSizeBg(chart)}
                                      style={{ backgroundColor: chart.id === selectedSize ? "red" : "",  color: chart.id === selectedSize ? "white" : "" }}
                                      > {chart.size}
                         </Button>
-                      </>
+                      </div>
                     )
                   })}
                 </SimpleGrid>
@@ -145,7 +144,7 @@ const handleSizeBg = (size) => {
             <Text pl='2%' fontSize='30px' >Prices</Text>
             <Box position='relative' left={'7.5%'} pt='3%'>
               {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
-              <VStack columns={2} spacingY='9px' justifyContent={'center'} >
+              <VStack columns={2} justifyContent={'center'} >
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$100 & under</Checkbox>
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$200-300</Checkbox>
                 <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$300-400</Checkbox>

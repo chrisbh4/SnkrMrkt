@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import * as sessionActions from '../../../store/session';
 import "./ShoeDetails.css"
@@ -15,6 +15,9 @@ import {
   Flex,
   Image,
   Link,
+  VStack,
+  Button,
+  textDecoration,
 } from '@chakra-ui/react'
 
 
@@ -26,7 +29,6 @@ function ShoeDetialsChakra() {
   const shoeId = params.id
 
   useEffect(() => {
-    dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
     dispatch(fetchMostPopular())
   }, [dispatch, shoeId]);
@@ -37,12 +39,14 @@ function ShoeDetialsChakra() {
 
   const userId = useSelector((state) => {
     if (state.session.user) {
-      return state.session.user.id
+      return state.session.user?.id
     }
     return 0.5;
   })
 
   const shoe = useSelector((state) => state.shoes[shoeId])
+
+  console.log(shoe)
   // const cart = useSelector((state) => state.shoppingCart)
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
@@ -56,7 +60,8 @@ function ShoeDetialsChakra() {
 
 
   return (
-    <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
+    // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
+    <Box px={"15%"} h='full'  pb='20px' >
       <Box pl='10%'>
         <Box h='75px' pt='3'>
           <Text
@@ -65,22 +70,12 @@ function ShoeDetialsChakra() {
           > {shoe?.title}</Text>
         </Box>
 
-        <Box h='75px' pt='3'>
-          <Link href={`/shoes/${shoe?.id}/reviews/new`}
-          > Create Review</Link>
-        </Box>
-
-        <Box h='75px' pt='3'>
-          <Link href={`/reviews/1/edit`}
-          > Edit Review</Link>
-        </Box>
-
         <Flex>
           <Box h='full' w='50%'  >
             <Image
               src={shoe?.image}
               boxSize='550px'
-               />
+            />
           </Box>
           <Center w='45%' >
             <AddToCartComponent shoeId={shoeId} />
@@ -88,8 +83,8 @@ function ShoeDetialsChakra() {
         </Flex>
 
         <Box pb='3' pt='2'  >
-          <Flex  fontWeight={'bold'} fontSize='lg' >
-            <Box w='67%'  h='10' >Product Detials </Box>
+          <Flex fontWeight={'bold'} fontSize='lg' >
+            <Box w='67%' h='10' >Product Detials </Box>
             <Box w='full' h='10' pl='13%' >Product Description </Box>
           </Flex>
         </Box>
@@ -126,45 +121,80 @@ function ShoeDetialsChakra() {
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
           <Flex >
             <Link href='/home'>
-            <Image
-              src={shoe?.image}
-              boxSize='250px'
-              border={'1px'}
+              <Image
+                src={shoe?.image}
+                boxSize='250px'
+                border={'1px'}
               />
-              </Link>
+            </Link>
 
             <Link href='/home'>
-            <Image
-              src={shoe?.image}
-              boxSize='250px'
-              border={'1px'}
+              <Image
+                src={shoe?.image}
+                boxSize='250px'
+                border={'1px'}
               />
-              </Link>
+            </Link>
 
             <Link href='/home'>
-            <Image
-              src={shoe?.image}
-              boxSize='250px'
-              border={'1px'}
+              <Image
+                src={shoe?.image}
+                boxSize='250px'
+                border={'1px'}
               />
-              </Link>
+            </Link>
 
             <Link href='/home'>
-            <Image
-              src={shoe?.image}
-              boxSize='250px'
-              border={'1px'}
+              <Image
+                src={shoe?.image}
+                boxSize='250px'
+                border={'1px'}
               />
-              </Link>
+            </Link>
 
             <Link href='/home'>
-            <Image
-              src={shoe?.image}
-              boxSize='250px'
-              border={'1px'}
+              <Image
+                src={shoe?.image}
+                boxSize='250px'
+                border={'1px'}
               />
-              </Link>
+            </Link>
           </Flex>
+        </Box>
+
+        {/* Reviews */}
+        <Box>
+          <Text fontSize={'2xl'} fontWeight='bold' pt={"2%"} >{shoe?.title} Reviews</Text>
+          
+          <Box py={"2%"}>
+            <Button>
+              <Link href={`/shoes/${shoe?.id}/reviews/new`} _hover={{ textDecoration: "none" }}>
+                Create Review
+              </Link>
+            </Button>
+          </Box>
+
+          {shoe?.Reviews.map((review) => {
+            if (review.userId === userId) {
+              return (
+                <Flex>
+                  <Text>{review.rating}</Text>
+                  <Text ml={"4%"}>{review.comment}</Text>
+                  <Button ml={'2%'} h={"30px"}>
+                    <Link href={`/reviews/${review.id}/edit`} _hover={{ textDecoration: "none" }}>
+                      Edit Review
+                    </Link>
+                  </Button>
+                </Flex>
+              )
+            }
+            return (
+              <Flex>
+                <Text>{review.rating}</Text>
+                <Text ml={"4%"}>{review.comment}</Text>
+              </Flex>
+            )
+          })}
         </Box>
       </Box>
     </Box>
