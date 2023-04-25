@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useSelector, useDispatch ,  } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { fetchCreateReview } from "../../../store/reviews"
+import {getAllShoes} from "../../../store/shoes"
 
 
 import {
@@ -25,7 +26,7 @@ import {
 } from '@chakra-ui/react'
 
 
-function NewReviewChakraForm() {
+function NewReviewChakraForm({onClose}) {
     const naviate = useNavigate()
     const dispatch = useDispatch()
     const params = useParams()
@@ -55,7 +56,9 @@ function NewReviewChakraForm() {
         const data = await dispatch(fetchCreateReview(shoeId, userId, comment, rating, image))
         if (!data.errors) {
             alert("Your review has been created :)")
-            naviate(`/shoes/${shoeId}`)
+            // naviate(`/shoes/${shoeId}`)
+            await dispatch(getAllShoes())
+            onClose()
         }
         else {
             setErrors(data)

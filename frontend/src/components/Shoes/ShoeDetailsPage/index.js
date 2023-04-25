@@ -19,6 +19,7 @@ import {
   Button,
   textDecoration,
 } from '@chakra-ui/react'
+import CreateReviewModal from '../../Reviews/NewReview/ModalForm';
 
 
 
@@ -165,13 +166,9 @@ function ShoeDetialsChakra() {
         {/* Reviews */}
         <Box>
           <Text fontSize={'2xl'} fontWeight='bold' pt={"2%"} >{shoe?.title} Reviews</Text>
-          
+
           <Box py={"2%"}>
-            <Button>
-              <Link href={`/shoes/${shoe?.id}/reviews/new`} _hover={{ textDecoration: "none" }}>
-                Create Review
-              </Link>
-            </Button>
+            <CreateReviewModal />
           </Box>
 
           {shoe?.Reviews.map((review) => {
