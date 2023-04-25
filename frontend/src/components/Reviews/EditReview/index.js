@@ -1,8 +1,8 @@
-import React, {useEffect} from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
-import { useSelector, useDispatch} from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
-import { fetchOneReview, fetchDeleteReview, fetchEditReview} from "../../../store/reviews"
+import { useSelector, useDispatch } from "react-redux"
+import { fetchDeleteReview, fetchEditReview } from "../../../store/reviews"
+import { getAllShoes } from "../../../store/shoes"
 import {
     FormControl,
     FormLabel,
@@ -23,62 +23,47 @@ import {
 } from '@chakra-ui/react'
 
 
-function EditReviewChakraForm() {
+function EditReviewChakraForm({ onClose, review }) {
     const dispatch = useDispatch()
-    const params = useParams()
-    const navigate = useNavigate()
-
-    const reviewId = params.id
-    // const reviewId = 1
-
-    useEffect(() => {
-        dispatch(fetchOneReview(reviewId))
-    }, [dispatch, reviewId]);
-
-    const review = useSelector((state)=> state.reviews);
-    const user = useSelector((state)=> state.session.user)
-    const userId = useSelector((state)=> state.session.user?.id)
+    const reviewId = review.id
+    const user = useSelector((state) => state.session.user)
+    const userId = useSelector((state) => state.session.user?.id)
     const shoeId = review?.shoeId
-
-
     const [comment, setComment] = useState(review?.comment)
     const [rating, setRating] = useState(review?.rating)
-    const [image , setImage ] = useState(review?.image)
-    const [errors , setErrors] = useState([])
+    const [image, setImage] = useState(review?.image)
+    const [errors, setErrors] = useState([])
 
-
-    useEffect(()=>{
+    useEffect(() => {
         setComment(review?.comment)
         setRating(review.rating)
         setImage(review.image)
-    },[review.rating, review.comment, review.image])
+    }, [review.rating, review.comment, review.image])
 
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
 
 
     let errorHandler;
-    if(errors.errors){
-       errorHandler = errors.errors.map((error)=>{
-                return (
-                         <p key={error.id}>{error}</p>
-                     )
-            })
+    if (errors.errors) {
+        errorHandler = errors.errors.map((error) => {
+            return (
+                <p key={error.id}>{error}</p>
+            )
+        })
     }
-    else{
-         errorHandler=null;
+    else {
+        errorHandler = null;
     }
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(fetchEditReview(shoeId,userId, comment, rating, image , reviewId))
-
+        const data = await dispatch(fetchEditReview(shoeId, userId, comment, rating, image, reviewId))
         if (!data.errors) {
-
-            navigate(`/shoes/${review?.shoeId}`)
-            alert("Your Review has been changed")
-        }else{
+            await dispatch(getAllShoes())
+            onClose()
+        } else {
             setErrors(data)
             return data
         }
@@ -87,8 +72,8 @@ function EditReviewChakraForm() {
     const handleDelete = async (e) => {
         e.preventDefault();
         await dispatch(fetchDeleteReview(reviewId))
-        alert("Review has been deleted.");
-        navigate(`/shoes/${review?.shoeId}`)
+        await dispatch(getAllShoes())
+        onClose()
     }
 
 
@@ -103,12 +88,10 @@ function EditReviewChakraForm() {
                         templateColumns="repeat(1, 1fr)"
                         gap={4}
                         p="4%"
-                        // borderBottom={"1px"}
-                        // borderColor={"gray.500"}
                     >
-                    <Box color={"red.400"} hidden={!errors.errors?.length}  >
-                    {errorHandler}
-                    </Box>
+                        <Box color={"red.400"} hidden={!errors.errors?.length}  >
+                            {errorHandler}
+                        </Box>
                         <Box h={'20'} w={"70%"}>
                             <FormLabel>Comment </FormLabel>
                             <Textarea borderColor={"black"} bg='gray.50' h={"90px"} placeholder={comment} onChange={updateComment} />

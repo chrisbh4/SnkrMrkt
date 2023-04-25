@@ -45,7 +45,8 @@ router.put('/:id',validateReview, asyncHandler (async (req ,res)=>{
 
    review.comment = req.body.comment;
    review.rating = req.body.rating;
-   review.image = req.body.image;
+   // review.image = req.body.image;
+   review.image = ""
 
    await review.save();
    return res.json(review)

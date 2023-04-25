@@ -20,6 +20,7 @@ import {
   textDecoration,
 } from '@chakra-ui/react'
 import CreateReviewModal from '../../Reviews/NewReview/ModalForm';
+import EditReviewModal from '../../Reviews/EditReview/ModalForm';
 
 
 
@@ -177,11 +178,10 @@ function ShoeDetialsChakra() {
                 <Flex>
                   <Text>{review.rating}</Text>
                   <Text ml={"4%"}>{review.comment}</Text>
-                  <Button ml={'2%'} h={"30px"}>
-                    <Link href={`/reviews/${review.id}/edit`} _hover={{ textDecoration: "none" }}>
-                      Edit Review
-                    </Link>
-                  </Button>
+                  <Box ml={"2%"}>
+                    <EditReviewModal  review={review} />
+                  </Box>
+
                 </Flex>
               )
             }
