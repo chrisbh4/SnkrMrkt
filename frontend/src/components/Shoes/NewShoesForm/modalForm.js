@@ -39,7 +39,7 @@ function NewShoeModalForm() {
             <ModalHeader>New Shoe Form</ModalHeader>
             <ModalCloseButton />
             <ModalBody w={"full"}>
-                <NewShoesForm/>
+                <NewShoesForm onClose={onClose} />
             </ModalBody>
 
             <ModalFooter>

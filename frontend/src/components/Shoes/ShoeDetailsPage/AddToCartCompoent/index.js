@@ -26,6 +26,7 @@ import {
     FormErrorMessage,
     FormHelperText,
   } from '@chakra-ui/react'
+import EditShoeModalForm from '../../EditShoePage/ModalForm';
 
 const sizeChart = [
     { id: 1, size: 3 },
@@ -105,9 +106,7 @@ function AddToCartComponent({shoeId}) {
   if (userId) {
     if (userId === shoeSellerId) {
       sellerChecker = (
-        <Link to={`/shoes/${shoe?.id}/edit`} key={shoe.id}>
-            <Button px='30px' py='10px' >Edit</Button>
-        </Link>
+            <EditShoeModalForm px='30px' py='10px' shoe={shoe} >Edit</EditShoeModalForm>
       )
     }
   }

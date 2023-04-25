@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useParams, useNavigate } from "react-router-dom"
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { getAllShoes, getEditShoe, getDeletedShoe } from "../../../store/shoes"
 
 import {
@@ -24,21 +24,13 @@ import {
 
 
 
-function EditShoesFormChakra() {
-    const params = useParams()
+function EditShoesFormChakra({ shoe, onClose }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const shoeId = params.id
-
-    useEffect(() => {
-        dispatch(getAllShoes())
-    }, [dispatch]);
-
-    const shoe = useSelector((state) => state.shoes[shoeId])
-
+    const shoeId = shoe?.id
     const [title, setTitle] = useState(shoe?.title)
     const [description, setDescription] = useState(shoe?.description)
-    const [image , setImage] = useState(shoe?.image)
+    const [image, setImage] = useState(shoe?.image)
     const [brand, setBrand] = useState(shoe?.brand)
 
     const [errors, setErrors] = useState([])
@@ -58,11 +50,12 @@ function EditShoesFormChakra() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(getEditShoe(title, shoeSize, image, price, brand,description, shoeId))
+        const data = await dispatch(getEditShoe(title, shoeSize, image, price, brand, description, shoeId))
         if (!data.errors) {
             // TODO: Create User Profile and redirect user to show Edited shoe being listed under them
-            alert("Your shoe has now been succesfully edited for sale.")
-            navigate(`/shoes/${shoeId}`)
+            alert("Your changes have been updated.")
+            dispatch(getAllShoes())
+            onClose()
         }
         else {
             setErrors(data)
@@ -70,17 +63,17 @@ function EditShoesFormChakra() {
         return data
     }
 
-   let errorHandler;
-   if(errors.errors){
-      errorHandler = errors.errors.map((error)=>{
-               return (
-                        <p key={error.id}>{error}</p>
-                    )
-           })
-   }
-   else{
-        errorHandler=null;
-   }
+    let errorHandler;
+    if (errors.errors) {
+        errorHandler = errors.errors.map((error) => {
+            return (
+                <p key={error.id}>{error}</p>
+            )
+        })
+    }
+    else {
+        errorHandler = null;
+    }
 
 
     const handleDelete = async (e) => {
@@ -91,8 +84,8 @@ function EditShoesFormChakra() {
         navigate('/home')
     }
 
-console.log(shoe)
-    return(
+    console.log(shoe)
+    return (
         <>
             <FormControl pt={"2%"}   >
                 <Box pb={8} px='25%'  >
@@ -102,10 +95,10 @@ console.log(shoe)
                         templateColumns="repeat(1, 1fr)"
                         gap={4}
                         p="4%"
-                        // borderBottom={"1px"}
-                        // borderColor={"gray.500"}
+                    // borderBottom={"1px"}
+                    // borderColor={"gray.500"}
                     >
-                        <Flex h={'20'} justify={'start'}>
+                        <Flex justify={'start'}>
                             <Box w={'40%'}>
                                 <FormLabel>Shoe Title</FormLabel>
                                 <Input borderColor={"black"} bg='gray.50' onChange={updateTitle} placeholder={shoe?.title} />
@@ -115,45 +108,45 @@ console.log(shoe)
                                 <Input borderColor={"black"} bg='gray.50' ml={'6%'} onChange={updateShoeSize} placeholder={shoe?.shoeSize} />
                             </Box>
                         </Flex>
-                        <Box h={'20'} w={"70%"}>
+                        <Box w={"70%"}>
                             <FormLabel>Description</FormLabel>
-                            <Textarea borderColor={"black"} bg='gray.50' h={"90px"} onChange={updateDescription} placeholder={shoe?.description} />
+                            <Textarea borderColor={"black"} bg='gray.50' h={"100px"} onChange={updateDescription} placeholder={shoe?.description} />
                         </Box>
-                        <Box h={'20'} w={"35%"} mt={"2%"} >
+                        <Box w={"35%"} pt={"4%"}  >
                             <FormLabel>Brand</FormLabel>
                             <Input borderColor={"black"} bg='gray.50' onChange={updateBrand} placeholder={shoe?.brand} />
                         </Box>
-                        <Box h={'20'} w={"35%"} mt={"2%"} >
+                        <Box w={"35%"}   >
                             <FormLabel>Price</FormLabel>
                             <InputGroup>
                                 <InputLeftAddon children='$' />
-                                <Input borderColor={"black"} bg='gray.50' onChange={updatePrice}  placeholder={shoe?.price} />
+                                <Input borderColor={"black"} bg='gray.50' onChange={updatePrice} placeholder={shoe?.price} />
                             </InputGroup>
                         </Box>
-                        <Box  w={"50%"} >
+                        <Box w={"50%"} >
                             <FormLabel>Upload Images</FormLabel>
-                            <Input borderColor={"black"} type="file" border={"none"} onChange={updateImageFile}  />
+                            <Input borderColor={"black"} type="file" border={"none"} onChange={updateImageFile} />
                         </Box>
 
                         <Flex >
-                        <Button w={"30%"} mt={"1%"} onClick={onSubmit} colorScheme="green">Submit</Button>
-                        <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={handleDelete} colorScheme="green">Delete</Button>
+                            <Button w={"30%"} mt={"1%"} onClick={onSubmit} colorScheme="green">Submit</Button>
+                            <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={handleDelete} colorScheme="green">Delete</Button>
                         </Flex>
                     </Grid>
 
                     <Box color={"red.400"}  >
-                    {
-                    errors.map((error) => {
-                        if (error) {
-                            return (
-                                <Center bg={"white"}>
-                                <Text key={error.id} fontSize={"2xl"} >{error}</Text>
-                                </Center>
-                            )
+                        {
+                            errors.map((error) => {
+                                if (error) {
+                                    return (
+                                        <Center bg={"white"}>
+                                            <Text key={error.id} fontSize={"2xl"} >{error}</Text>
+                                        </Center>
+                                    )
+                                }
+                                return null;
+                            })
                         }
-                        return null;
-                    })
-                }
                     </Box>
                 </Box>
 
