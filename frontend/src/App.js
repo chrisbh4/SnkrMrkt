@@ -12,6 +12,7 @@ import NewReviewChakraForm from './components/Reviews/NewReview';
 import EditReviewChakraForm from './components/Reviews/EditReview';
 import NewShoeModalForm from './components/Shoes/NewShoesForm/modalForm';
 import "./index.css"
+import CheckoutForm from './components/Cart/NewCart';
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
 
         <Route path="/reviews/:id/edit" element={<EditReviewChakraForm />}></Route>
 
-        <Route path="/cart" element={<ShoppingCart />}></Route>
+        <Route path="/cart" element={<CheckoutForm/>}></Route>
 
         <Route path='/profile' element={<ProfilePage />} ></Route>
 

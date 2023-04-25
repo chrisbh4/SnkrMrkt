@@ -119,6 +119,7 @@ function ShoeDetialsChakra() {
 
         </Flex>
         {/* Related Products () */}
+        {/* Write a while loop while iterating through the Shoes array up to i >= 5 */}
         <Box borderTop={'22px'} borderColor='black' >
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
           <Flex >

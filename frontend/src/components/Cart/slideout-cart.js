@@ -44,7 +44,7 @@ function SlideOutCart() {
   const stateTax = 2
   const pricePostTaxes = total + stateTax + feePrices
 
-  const emptyCart = <h1 className="empty-cart">Shoppping Cart is empty </h1>
+  const emptyCart = <h1 className="empty-cart">Cart is empty </h1>
 
   return (
     <>
