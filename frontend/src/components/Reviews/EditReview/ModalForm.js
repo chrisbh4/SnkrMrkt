@@ -15,8 +15,6 @@ import { useDisclosure } from '@chakra-ui/react'
 import EditReviewChakraForm from '.'
 
 
-
-
 function EditReviewModal({review}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const finalRef = React.useRef(null)

@@ -67,16 +67,14 @@ function Navigation({ isLoaded }) {
             </Button>
           </NavLink> */}
 
-          <NewShoeModalForm />
-
-          <NavLink exact to="/test">
+          {/* <NavLink exact to="/test">
             <Button
               color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
             >
               Test
             </Button>
-          </NavLink>
+          </NavLink> */}
 
 
           <NavLink exact to="/home">
@@ -89,14 +87,10 @@ function Navigation({ isLoaded }) {
             </Button>
           </NavLink>
 
-          <NavLink to="/shoes/new">
-            <Button
-              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
-              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            >
-              Sell
-            </Button>
-          </NavLink>
+          <Box>
+
+            <NewShoeModalForm />
+          </Box>
 
           {/* <NavLink to="/profile">
             <Button
