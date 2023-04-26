@@ -90,7 +90,7 @@ function AddToCartComponent({shoeId}) {
   const addToCart = async () => {
     console.log("Add TO cart: ", size)
     await dispatch(addShoeToCart(shoe, cart))
-    alert("Shoe has been added to your cart!")
+    // alert("Shoe has been added to your cart!")
     navigate("/home")
     return
   }

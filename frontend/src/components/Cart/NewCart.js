@@ -21,7 +21,11 @@ import {
     Textarea,
     Center,
     Image,
-    Checkbox
+    Checkbox,
+    Select,
+    border,
+    VStack,
+    Stack,
 } from '@chakra-ui/react'
 
 
@@ -30,6 +34,21 @@ import {
 
 function CheckoutForm() {
     const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch();
+    const shoppingCart = useSelector((state) => state.shoppingCart);
+    const cart = Object.values(shoppingCart);
+
+
+    let total = 0.00;
+    cart.forEach((item) => {
+        total += parseFloat(item.price)
+    })
+    const totalPriceOfShoes = total.toFixed(2)
+    const feePrices = total * 0.01
+    const stateTax = 2
+    const pricePostTaxes = total + stateTax + feePrices
+    const emptyCart = <Box h={'500px'}></Box>
+
 
     const onSubmit = async (e) => {
         // e.preventDefault();
@@ -49,8 +68,8 @@ function CheckoutForm() {
 
     return (
         <>
-            <Box px={'10%'}>
-                <Flex   border={'solid'} borderColor={'red.400'}>
+            <Box>
+                <Flex bg={'gray.100'}>
                     <Box w={"full"}>
                         <FormControl pt={"2%"}   >
                             <Box pb={8} px='25%'  >
@@ -64,7 +83,10 @@ function CheckoutForm() {
                                         </Box>
                                     </Flex>
                                 </Box>
-                                <Box mt={"8%"}>
+
+
+                                <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
+                                <Box mt={"4%"}>
                                     <Text fontSize={'2xl'}>Payment Details </Text>
                                     <Box w={'full'} mt={"2%"}>
                                         <FormLabel>Name on card</FormLabel>
@@ -87,8 +109,20 @@ function CheckoutForm() {
                                     </Flex>
                                 </Box>
 
+                                <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
                                 <Box mt={"8%"}>
-                                    <Text fontSize={'2xl'}>Shipping Address</Text>
+                                    <Text fontSize={'2xl'}>Shipping Information</Text>
+                                    <Flex>
+                                        <Box w={'full'} mt={"2%"}>
+                                            <FormLabel>First Name</FormLabel>
+                                            <Input borderColor={"black"} bg='gray.50' />
+                                        </Box>
+                                        <Box w={'full'} mt={"2%"}>
+                                            <FormLabel>Last Name</FormLabel>
+                                            <Input borderColor={"black"} bg='gray.50' />
+                                        </Box>
+                                    </Flex>
+
                                     <Box w={'full'} mt={"2%"}>
                                         <FormLabel>Company (optional)</FormLabel>
                                         <Input borderColor={"black"} bg='gray.50' />
@@ -99,7 +133,7 @@ function CheckoutForm() {
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Apartment, suite, etc.</FormLabel>
-                                        <Input borderColor={"black"} bg='gray.50' placeholder="(MM/YYYY)" />
+                                        <Input borderColor={"black"} bg='gray.50' />
                                     </Box>
                                     <Flex w={'full'} mt={"5%"}>
                                         <Box>
@@ -108,22 +142,37 @@ function CheckoutForm() {
                                         </Box>
 
                                         <Box>
+                                            <FormLabel>Country</FormLabel>
+                                            <Select borderColor={"black"} bg='gray.50' />
+                                        </Box>
+
+                                    </Flex>
+                                    <Flex>
+
+                                        <Box mt={'5%'}>
                                             <FormLabel>State/Province</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
 
-                                        <Box>
+                                        <Box mt={'5%'}>
                                             <FormLabel>Zip Code</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
                                     </Flex>
+
+                                    <Box mt={'5%'}>
+                                        <FormLabel>Phone Number</FormLabel>
+                                        <Input borderColor={"black"} bg='gray.50' />
+                                    </Box>
+
                                 </Box>
 
+                                <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
                                 <Box mt={"8%"}>
                                     <Text fontSize={'2xl'}>Billing Information</Text>
                                     <Flex w={'full'}>
-                                        <Checkbox borderColor={"black"} bg='gray.50' checked />
-                                        <FormLabel pt={"2%"}  ml={'2%'}>Same as shipping Information</FormLabel>
+                                        <Checkbox borderColor={"black"} bg='gray.50' defaultChecked />
+                                        <FormLabel pt={"2%"} ml={'2%'}>Same as shipping Information</FormLabel>
                                     </Flex>
                                 </Box>
 
@@ -145,7 +194,34 @@ function CheckoutForm() {
                             </Box>
                         </FormControl>
                     </Box>
-                    <Box bg={'gray.500'} w={'full'}></Box>
+                    <Stack w={'full'} p={'3%'}>
+                        {emptyCart}
+                        <Box bg={'gray.500'} w={'full'}  >
+                            {cart.map((item) => (
+                                <CartItem item={item} key={item.id} />
+                            ))}
+                        </Box>
+
+                        <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
+                        <Box>
+                            <Flex justify={'space-between'}>
+                                <Text>Subtotal</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${totalPriceOfShoes}` : '$0.00'}</Text>
+                            </Flex>
+                            <Flex justify={'space-between'}>
+                                <Text>Fees</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${feePrices.toFixed(2)}` : null}</Text>
+                            </Flex>
+                            <Flex justify={'space-between'}>
+                                <Text>Taxes</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${stateTax.toFixed(2)}` : null}</Text>
+                            </Flex>
+                            <Flex justify={'space-between'}>
+                                <Text>Total</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${pricePostTaxes.toFixed(2)}` : '$0.00'}</Text>
+                            </Flex>
+                        </Box>
+                    </Stack>
                 </Flex>
             </Box>
         </>
