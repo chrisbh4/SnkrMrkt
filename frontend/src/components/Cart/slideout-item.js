@@ -48,7 +48,6 @@ function SlideOutCartItem({ item }) {
             <GridItem w='100%' textAlign={'center'} >{item.price} </GridItem>
             <GridItem w='100%' textAlign={'center'} >
                 <Button onClick={removeShoe} bg='red.300' fontSize='20px' fontWeight='bold' _hover={{ bg: "black", textColor: "red", border: "2px" }}>X</Button>
-
             </GridItem>
         </SimpleGrid>
     )
