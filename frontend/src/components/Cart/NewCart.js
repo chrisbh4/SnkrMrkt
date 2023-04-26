@@ -47,7 +47,7 @@ function CheckoutForm() {
     const feePrices = total * 0.01
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
-    const emptyCart = <Box h={'500px'}></Box>
+    const emptyCart = <Box pl={'4%'} pt={'2%'} fontSize={'xl'}>Cart is empty</Box>
 
 
     const onSubmit = async (e) => {
@@ -78,7 +78,6 @@ function CheckoutForm() {
                                     <Flex justify={'start'}>
                                         <Box w={'full'}>
                                             <FormLabel>Email Address</FormLabel>
-                                            {/* <Input borderColor={"black"} bg='gray.50' onChange={} /> */}
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
                                     </Flex>
@@ -195,8 +194,7 @@ function CheckoutForm() {
                         </FormControl>
                     </Box>
                     <Stack w={'full'} p={'3%'}>
-                        {emptyCart}
-                        <Box bg={'gray.500'} w={'full'}  >
+                        <Box bg={'gray.200'} w={'full'} minH={'500px'} maxH={'500px'} overflow={'scroll'} >
                             {cart.map((item) => (
                                 <CartItem item={item} key={item.id} />
                             ))}
