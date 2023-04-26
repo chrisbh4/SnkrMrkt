@@ -111,12 +111,12 @@ function CheckoutForm() {
                                 <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
                                 <Box mt={"8%"}>
                                     <Text fontSize={'2xl'}>Shipping Information</Text>
-                                    <Flex>
-                                        <Box w={'full'} mt={"2%"}>
+                                    <Flex w={'full'} justify={'space-between'}>
+                                        <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>First Name</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
-                                        <Box w={'full'} mt={"2%"}>
+                                        <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>Last Name</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
@@ -134,29 +134,29 @@ function CheckoutForm() {
                                         <FormLabel>Apartment, suite, etc.</FormLabel>
                                         <Input borderColor={"black"} bg='gray.50' />
                                     </Box>
-                                    <Flex w={'full'} mt={"5%"}>
-                                        <Box>
+                                    <Flex w={'full'} mt={"5%"} justify={'space-between'}>
+                                        <Box w={'47%'} >
                                             <FormLabel>City</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
 
-                                        <Box>
+                                        <Box w={'47%'}>
                                             <FormLabel>Country</FormLabel>
                                             <Select borderColor={"black"} bg='gray.50' />
                                         </Box>
 
                                     </Flex>
-                                    <Flex>
-
-                                        <Box mt={'5%'}>
+                                    <Flex w={'full'} mt={"5%"} justify={'space-between'}>
+                                        <Box w={'47%'} >
                                             <FormLabel>State/Province</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
 
-                                        <Box mt={'5%'}>
-                                            <FormLabel>Zip Code</FormLabel>
+                                        <Box w={'47%'}>
+                                            <FormLabel>Postal Code</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' />
                                         </Box>
+
                                     </Flex>
 
                                     <Box mt={'5%'}>
@@ -209,6 +209,10 @@ function CheckoutForm() {
                             <Flex justify={'space-between'}>
                                 <Text>Fees</Text>
                                 <Text>{totalPriceOfShoes > 0 ? `${feePrices.toFixed(2)}` : null}</Text>
+                            </Flex>
+                            <Flex justify={'space-between'}>
+                                <Text>Delivery Method</Text>
+                                <Text>Free Shipping</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Taxes</Text>
