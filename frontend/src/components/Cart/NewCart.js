@@ -194,7 +194,7 @@ function CheckoutForm() {
                         </FormControl>
                     </Box>
                     <Stack w={'full'} p={'3%'}>
-                        <Box bg={'gray.200'} w={'full'} minH={'500px'} maxH={'500px'} overflow={'scroll'} >
+                        <Box bg={'gray.100'} w={'full'} minH={'500px'} maxH={'500px'} overflow={'scroll'} >
                             {cart.map((item) => (
                                 <CartItem item={item} key={item.id} />
                             ))}
