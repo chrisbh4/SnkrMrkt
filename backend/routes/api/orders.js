@@ -49,7 +49,12 @@ router.post('/new', asyncHandler(async (req, res) => {
            stateProvince,
            postalCode,
            phoneNumber,
-           shoeIds} = req.body
+           shoeIds} = req.body.payload
+
+
+         //   console.log(req.body)
+           console.log(email)
+           console.log(cvvNumber)
 
    const newOrder = await orders.create({username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
                                          otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds  })
@@ -60,6 +65,3 @@ router.post('/new', asyncHandler(async (req, res) => {
 
 
 module.exports = router;
-
-
-

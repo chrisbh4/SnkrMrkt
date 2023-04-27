@@ -37,9 +37,10 @@ function CheckoutForm() {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
     const shoppingCart = useSelector((state) => state.shoppingCart);
+    const user = useSelector((state) => state.user);
     const cart = Object.values(shoppingCart);
 
-    const [username, setUserName] = useState("");
+    // const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [nameOnCard, setNameOnCard] = useState("");
     const [cardNumber, setCardNumber] = useState("");
@@ -49,13 +50,42 @@ function CheckoutForm() {
     const [lastName, setLastName] = useState("");
     const [company, setCompany] = useState("");
     const [address, setAddress] = useState("");
-    const [otherAddress, SetOtherAddress] = useState("");
+    const [otherAddress, setOtherAddress] = useState("");
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
     const [stateProvince, setStateProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    //* key into the cart state and iterate through the shoes
     const [shoeIds, setShoeIds] = useState("");
+
+    const usStateInitials = [
+        'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+        'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+        'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+        'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+        'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+    ];
+
+
+
+    const username = "demo"
+    // const updateUserName = (e) => setUserName(e.target.value)
+    const updateEmail = (e) => setEmail(e.target.value)
+    const updateNameOnCard = (e) => setNameOnCard(e.target.value)
+    const updateCardNumber = (e) => setCardNumber(e.target.value)
+    const updateExpirationDate = (e) => setExpirationDate(e.target.value)
+    const updateCvvNumber = (e) => setCvvNumber(e.target.value)
+    const updateFirstName = (e) => setFirstName(e.target.value)
+    const updateLastName = (e) => setLastName(e.target.value)
+    const updateCompany = (e) => setCompany(e.target.value)
+    const updateAddress = (e) => setAddress(e.target.value)
+    const updateOtherAddress = (e) => setOtherAddress(e.target.value)
+    const updateCity = (e) => setCity(e.target.value)
+    const updateCountry = (e) => setCountry(e.target.value)
+    const updateStateProvince = (e) => setStateProvince(e.target.value)
+    const updatePostalCode = (e) => setPostalCode(e.target.value)
+    const updatePhoneNumber = (e) => setPhoneNumber(e.target.value)
 
     let total = 0.00;
     cart.forEach((item) => {
@@ -67,10 +97,9 @@ function CheckoutForm() {
     const pricePostTaxes = total + stateTax + feePrices
     const emptyCart = <Box pl={'4%'} pt={'2%'} fontSize={'xl'}>Cart is empty</Box>
 
-
     const onSubmit = async (e) => {
         e.preventDefault();
-        let payload = {username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds  }
+        const payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
 
         const data = await dispatch(fetchCreateNewOrder(payload))
         if (!data?.errors) {
@@ -94,7 +123,7 @@ function CheckoutForm() {
                                     <Flex justify={'start'}>
                                         <Box w={'full'}>
                                             <FormLabel>Email Address</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' />
+                                            <Input borderColor={"black"} bg='gray.50' onChange={updateEmail} />
                                         </Box>
                                     </Flex>
                                 </Box>
@@ -105,21 +134,21 @@ function CheckoutForm() {
                                     <Text fontSize={'2xl'}>Payment Details </Text>
                                     <Box w={'full'} mt={"2%"}>
                                         <FormLabel>Name on card</FormLabel>
-                                        <Input borderColor={"black"} bg='gray.50' />
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updateNameOnCard} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Card Number</FormLabel>
-                                        <Input borderColor={"black"} bg='gray.50' />
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updateCardNumber} />
                                     </Box>
                                     <Flex w={'full'} mt={"5%"}>
                                         <Box>
                                             <FormLabel>Expiration date</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' w={'120%'} />
+                                            <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} />
                                         </Box>
 
                                         <Box w={'15%'} ml={'15%'}>
                                             <FormLabel>CVC</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' />
+                                            <Input borderColor={"black"} bg='gray.50' onChange={updateCvvNumber} />
                                         </Box>
                                     </Flex>
                                 </Box>
@@ -130,54 +159,66 @@ function CheckoutForm() {
                                     <Flex w={'full'} justify={'space-between'}>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>First Name</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' />
+                                            <Input borderColor={"black"} bg='gray.50' onChange={updateFirstName} />
                                         </Box>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>Last Name</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' />
+                                            <Input borderColor={"black"} bg='gray.50' onChange={updateLastName} />
                                         </Box>
                                     </Flex>
 
                                     <Box w={'full'} mt={"2%"}>
                                         <FormLabel>Company (optional)</FormLabel>
-                                        <Input borderColor={"black"} bg='gray.50' />
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updateCompany} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Address</FormLabel>
-                                        <Input borderColor={"black"} bg='gray.50' />
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updateAddress} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Apartment, suite, etc.</FormLabel>
-                                        <Input borderColor={"black"} bg='gray.50' />
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updateOtherAddress} />
                                     </Box>
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>City</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' />
+                                            <Input borderColor={"black"} bg='gray.50' onChange={updateCity} />
                                         </Box>
 
                                         <Box w={'47%'}>
                                             <FormLabel>Country</FormLabel>
-                                            <Select borderColor={"black"} bg='gray.50' />
+                                            <Select borderColor={"black"} bg='gray.50' onChange={updateCountry} >
+                                                <option value=''></option>
+                                                <option value='United States'>United States</option>
+                                                <option value='Canada'>Canada</option>
+                                                <option value='Mexico'>Mexico</option>
+                                            </Select>
                                         </Box>
 
                                     </Flex>
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>State/Province</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' />
+                                            {/* <Input borderColor={"black"} bg='gray.50' onChange={updateStateProvince} /> */}
+                                            <Select borderColor={"black"} bg='gray.50' onChange={updateStateProvince}>
+                                                <option value=""></option>
+                                                {usStateInitials.map(state => (
+                                                    <option key={state} value={state}>{state}</option>
+                                                ))}
+                                            </Select>
+
                                         </Box>
 
                                         <Box w={'47%'}>
                                             <FormLabel>Postal Code</FormLabel>
-                                            <Input borderColor={"black"} bg='gray.50' />
+                                            <Input borderColor={"black"} bg='gray.50' onChange={updatePostalCode} />
                                         </Box>
 
                                     </Flex>
 
                                     <Box mt={'5%'}>
                                         <FormLabel>Phone Number</FormLabel>
-                                        <Input borderColor={"black"} bg='gray.50' />
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updatePhoneNumber} />
                                     </Box>
 
                                 </Box>
