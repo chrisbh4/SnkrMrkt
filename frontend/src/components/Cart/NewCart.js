@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { purchaseFromCart } from "../../store/shoppingCart";
 import CartItem from "./CartItem";
+import { fetchCreateNewOrder, fetchOrderByID } from "../../store/orders";
 import "./Cart.css"
 import {
     FormControl,
@@ -38,6 +39,23 @@ function CheckoutForm() {
     const shoppingCart = useSelector((state) => state.shoppingCart);
     const cart = Object.values(shoppingCart);
 
+    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [nameOnCard, setNameOnCard] = useState("");
+    const [cardNumber, setCardNumber] = useState("");
+    const [expirationDate, setExpirationDate] = useState("");
+    const [cvvNumber, setCvvNumber] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [company, setCompany] = useState("");
+    const [address, setAddress] = useState("");
+    const [otherAddress, SetOtherAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+    const [stateProvince, setStateProvince] = useState("");
+    const [postalCode, setPostalCode] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [shoeIds, setShoeIds] = useState("");
 
     let total = 0.00;
     cart.forEach((item) => {
@@ -51,19 +69,17 @@ function CheckoutForm() {
 
 
     const onSubmit = async (e) => {
-        // e.preventDefault();
-        // let payload = { sellerId, title, shoeSize, imageFile, price, brand, description }
-        // const data = await dispatch(getCreatedShoe(payload))
-        // await dispatch(getAllShoes())
+        e.preventDefault();
+        let payload = {username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds  }
 
-        // if (!data?.errors) {
-        //     alert("Your Shoe has now been listed for sale.")
-        //     onClose();
-        // }
-        // else {
-        //     setErrors(data?.errors)
-        // }
-        // return data
+        const data = await dispatch(fetchCreateNewOrder(payload))
+        if (!data?.errors) {
+            return data
+        }
+        else {
+            setErrors(data?.errors)
+        }
+        return data
     }
 
     return (

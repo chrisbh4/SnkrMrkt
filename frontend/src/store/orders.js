@@ -26,13 +26,18 @@ export const fetchOrderByID = (orderId) => async (dispatch) => {
 }
 
 export const fetchCreateNewOrder = (payload) => async (dispatch) => {
-    const res = await csrfFetch('/api/orders/new')
+    const res = await csrfFetch('/api/orders/new', {
+        method: "POST",
+        header: { "Content-Type": "application/json" },
+        body: JSON.stringify({payload})
+    })
+
     if (res.ok) {
         const data = await res.json()
         dispatch(createNewOrder(payload))
         return data
     }
-    return 
+    return
 }
 
 
