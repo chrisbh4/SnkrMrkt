@@ -36,6 +36,7 @@ import {
 function CheckoutForm() {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const shoppingCart = useSelector((state) => state.shoppingCart);
     const user = useSelector((state) => state.user);
     const cart = Object.values(shoppingCart);
@@ -95,7 +96,7 @@ function CheckoutForm() {
     const feePrices = total * 0.01
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
-    const emptyCart = <Box pl={'4%'} pt={'2%'} fontSize={'xl'}>Cart is empty</Box>
+    // const emptyCart = <Box pl={'4%'} pt={'2%'} fontSize={'xl'}>Cart is empty</Box>
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -103,6 +104,9 @@ function CheckoutForm() {
 
         const data = await dispatch(fetchCreateNewOrder(payload))
         if (!data?.errors) {
+            dispatch(purchaseFromCart())
+            alert("Your order is being processed you will recieve an order confirmation email soon")
+            navigate("/home")
             return data
         }
         else {
