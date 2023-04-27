@@ -103,15 +103,15 @@ function CheckoutForm() {
         const payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
 
         const data = await dispatch(fetchCreateNewOrder(payload))
+        console.log(data)
         if (!data?.errors) {
             dispatch(purchaseFromCart())
             alert("Your order is being processed you will recieve an order confirmation email soon")
-            navigate("/home")
+            // navigate("/home")
             return data
         }
-        else {
-            setErrors(data?.errors)
-        }
+        console.log("errors")
+        setErrors(data?.errors)
         return data
     }
 
@@ -121,6 +121,21 @@ function CheckoutForm() {
                 <Flex bg={'gray.100'}>
                     <Box w={"full"}>
                         <FormControl pt={"2%"}   >
+                            <Box py={"20px"}>
+                            {
+                                errors.map((error) => {
+                                    if (error) {
+                                        return (
+                                            <Center>
+                                                <Text key={error.id} fontSize={"md"} >{error}</Text>
+                                            </Center>
+                                        )
+                                    }
+                                    return null;
+                                })
+                            }
+
+                            </Box>
                             <Box pb={8} px='25%'  >
                                 <Box>
                                     <Text fontSize={'2xl'}>Contact information</Text>
@@ -237,20 +252,6 @@ function CheckoutForm() {
                                 </Box>
 
                                 <Button w={"30%"} mt={"5%"} onClick={onSubmit} colorScheme="green">Submit</Button>
-                                <Box color={"red.400"}  >
-                                    {
-                                        errors.map((error) => {
-                                            if (error) {
-                                                return (
-                                                    <Center bg={"white"}>
-                                                        <Text key={error.id} fontSize={"2xl"} >{error}</Text>
-                                                    </Center>
-                                                )
-                                            }
-                                            return null;
-                                        })
-                                    }
-                                </Box>
                             </Box>
                         </FormControl>
                     </Box>

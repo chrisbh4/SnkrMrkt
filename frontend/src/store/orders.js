@@ -32,12 +32,12 @@ export const fetchCreateNewOrder = (payload) => async (dispatch) => {
         body: JSON.stringify({payload})
     })
 
+    const data = await res.json()
     if (res.ok) {
-        const data = await res.json()
         dispatch(createNewOrder(payload))
         return data
     }
-    return
+    return data
 }
 
 
