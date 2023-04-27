@@ -4,6 +4,7 @@ const usersRouter = require("./users.js");
 const shoesRouter = require("./shoes.js")
 const reviewsRouter = require("./reviews.js")
 const sneaksRouter = require('./sneaks.js')
+const ordersRouter = require('./orders.js')
 
 
 //* allows heroku app not to sleep
@@ -22,6 +23,7 @@ router.use("/users", usersRouter);
 router.use("/shoes", shoesRouter);
 router.use("/test", sneaksRouter)
 router.use("/reviews",reviewsRouter);
+router.use("/orders",ordersRouter);
 
 
 module.exports = router;
