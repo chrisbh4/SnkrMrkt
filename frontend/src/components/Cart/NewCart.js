@@ -101,17 +101,17 @@ function CheckoutForm() {
     const onSubmit = async (e) => {
         e.preventDefault();
         const payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
-
         const data = await dispatch(fetchCreateNewOrder(payload))
-        console.log(data)
+
         if (!data?.errors) {
             dispatch(purchaseFromCart())
             alert("Your order is being processed you will recieve an order confirmation email soon")
-            // navigate("/home")
+            navigate("/home")
             return data
         }
-        console.log("errors")
-        setErrors(data?.errors)
+        else{
+            setErrors(data?.errors)
+        }
         return data
     }
 
@@ -123,11 +123,11 @@ function CheckoutForm() {
                         <FormControl pt={"2%"}   >
                             <Box py={"20px"}>
                             {
-                                errors.map((error) => {
+                                errors?.map((error) => {
                                     if (error) {
                                         return (
-                                            <Center>
-                                                <Text key={error.id} fontSize={"md"} >{error}</Text>
+                                            <Center key={error.id}>
+                                                <Text  fontSize={"md"} color={'red.400'} fontWeight={'bold'} >{error}</Text>
                                             </Center>
                                         )
                                     }

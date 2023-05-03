@@ -56,7 +56,6 @@ function NewShoesForm({ onClose }) {
         await dispatch(getAllShoes())
 
         if (!data?.errors) {
-
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
             // navigate(`/home`)
             alert("Your Shoe has now been listed for sale.")
