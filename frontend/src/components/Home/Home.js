@@ -54,24 +54,26 @@ function NewHomePage() {
     {id:11, title: "Designer"  }
   ]
 
+  const [filterBrand , setFilterBrand] = useState({id: null, brand: null})
+  const [filterShoeSize , setFilterShoeSize] = useState({id: null, size: null})
+  const [filterStyleType, setFilterStyleType] = useState({id: null, style: null})
+  const [filterPricing , setFilterPricing] = useState({})
+
+  const updateFilterBrand = (filter) => { setFilterBrand({id: filter.id , brand: filter.title}) };
+  const updateFilterShoeSize = (filter) => { setFilterShoeSize({id: filter.id, size: filter.size}) };
+  //* Idea: change Pricing checkbox to buttons to allow only a single price to be selected instead of multiple
+  const updateFilterPricing = (e) => { setFilterPricing(e.target.value)};
+  const updateFilterStyle = (e) => { setFilterStyleType(e.target.value)};
+
+  //* Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state 
+  const payload = {filterBrand, filterShoeSize, filterStyleType, filterPricing}
+
+
   useEffect(()=>{
     dispatch(getAllShoes())
-
     dispatch(fetchMostPopular())
+    // dispatch()
 },[dispatch])
-
-const [filterBrand , setFilterBrand] = useState({id: null, brand: null})
-const [filterShoeSize , setFilterShoeSize] = useState({id: null, size: null})
-const [filterStyleType, setFilterStyleType] = useState({id: null, style: null})
-const [filterPricing , setFilterPricing] = useState({})
-
-
-const updateFilterBrand = (filter) => { setFilterBrand({id: filter.id , brand: filter.title}) };
-const updateFilterShoeSize = (filter) => { setFilterShoeSize({id: filter.id, size: filter.size}) };
-//* Idea: change Pricing checkbox to buttons to allow only a single price to be selected instead of multiple
-const updateFilterPricing = (e) => { setFilterPricing(e.target.value)};
-const updateFilterStyle = (e) => { setFilterStyleType(e.target.value)};
-
 
   return (
     <>
