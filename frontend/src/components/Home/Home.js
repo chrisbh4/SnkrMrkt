@@ -60,16 +60,18 @@ function NewHomePage() {
     dispatch(fetchMostPopular())
 },[dispatch])
 
-const [isSize, setIsSize] = useState({id: 0 , size: 0});
-const [selectedBrand , setBrandSelected] = useState(0)
-const [selectedSize , setSizeSelected] = useState(0)
+const [filterBrand , setFilterBrand] = useState({id: null, brand: null})
+const [filterShoeSize , setFilterShoeSize] = useState({id: null, size: null})
+const [filterStyleType, setFilterStyleType] = useState({id: null, style: null})
+const [filterPricing , setFilterPricing] = useState({})
 
-const handleBrandBg = (size) => {
-  setBrandSelected(size.id);
-};
-const handleSizeBg = (size) => {
-  setSizeSelected(size.id);
-};
+
+const updateFilterBrand = (filter) => { setFilterBrand({id: filter.id , brand: filter.title}) };
+const updateFilterShoeSize = (filter) => { setFilterShoeSize({id: filter.id, size: filter.size}) };
+//* Idea: change Pricing checkbox to buttons to allow only a single price to be selected instead of multiple
+const updateFilterPricing = (e) => { setFilterPricing(e.target.value)};
+const updateFilterStyle = (e) => { setFilterStyleType(e.target.value)};
+
 
   return (
     <>
@@ -98,8 +100,8 @@ const handleSizeBg = (size) => {
               return(
                 <div key={brand.id}>
                 <Text
-                       onClick={() => handleBrandBg(brand)}
-                       style={{ backgroundColor: brand.id === selectedBrand ? "gray" : "",  color: brand.id === selectedBrand ? "white" : "" }}
+                       onClick={() => updateFilterBrand(brand)}
+                       style={{ backgroundColor: brand.id === filterBrand.id ? "gray" : "",  color: brand.id === filterBrand.id ? "white" : "" }}
                 textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text>
                   {/* <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text> </Link> */}
                 </div>
@@ -110,10 +112,10 @@ const handleSizeBg = (size) => {
           <Box borderTop={'1px'}   >
             <Text fontSize='30px' position='relative' left='1%'>Shoe Style</Text>
             <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Men</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Woman</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Child</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} ><Text fontSize={'20px'} textTransform='uppercase' >Toddler</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"men"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase' >Men</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"woman"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase' >Woman</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"youth"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase'>Youth</Text></Checkbox>
+              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"toddler"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Checkbox>
             </VStack>
           </Box>
 
@@ -127,8 +129,8 @@ const handleSizeBg = (size) => {
                       <div key={chart.id}>
                         <Button  w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
                                      key={chart.id}
-                                     onClick={() => handleSizeBg(chart)}
-                                     style={{ backgroundColor: chart.id === selectedSize ? "red" : "",  color: chart.id === selectedSize ? "white" : "" }}
+                                     onClick={() => updateFilterShoeSize(chart)}
+                                     style={{ backgroundColor: chart.id === filterShoeSize.id ? "red" : "",  color: chart.id === filterShoeSize.id ? "white" : "" }}
                                      > {chart.size}
                         </Button>
                       </div>
@@ -145,11 +147,11 @@ const handleSizeBg = (size) => {
             <Box position='relative' left={'7.5%'} pt='3%'>
               {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
               <VStack columns={2} justifyContent={'center'} >
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$100 & under</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$200-300</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$300-400</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$500-650</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} >$650 +</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"0-100"} onChange={updateFilterPricing} >$100 & under</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"200-300"} onChange={updateFilterPricing} >$200-300</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"300-400"} onChange={updateFilterPricing} >$300-400</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"500-650"} onChange={updateFilterPricing} >$500-650</Checkbox>
+                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"650+"} onChange={updateFilterPricing} >$650+</Checkbox>
               </VStack>
             </Box>
           </Box>
