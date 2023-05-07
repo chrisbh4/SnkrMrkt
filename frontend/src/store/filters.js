@@ -9,6 +9,7 @@ const setFilter = (filters) => ({
 
 export const setSelectedFilters = (payload) => async (dispatch) => {
     const data = payload
+    console.log("Store : ", data)
     if (data) {
         dispatch(setFilter(data))
         return data

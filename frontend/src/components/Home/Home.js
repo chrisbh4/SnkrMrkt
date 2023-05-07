@@ -7,6 +7,7 @@ import { getAllShoes } from "../../store/shoes";
 import { fetchMostPopular } from "../../store/stockX";
 
 import ShoeList from "../OldHomePage/ShoeList";
+import { setSelectedFilters } from "../../store/filters";
 
 function NewHomePage() {
 
@@ -65,15 +66,20 @@ function NewHomePage() {
   const updateFilterPricing = (e) => { setFilterPricing(e.target.value)};
   const updateFilterStyle = (e) => { setFilterStyleType(e.target.value)};
 
-  //* Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state 
+  //* Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
   const payload = {filterBrand, filterShoeSize, filterStyleType, filterPricing}
 
 
   useEffect(()=>{
     dispatch(getAllShoes())
     dispatch(fetchMostPopular())
-    // dispatch()
 },[dispatch])
+
+const onSubmit = async (e) => {
+  e.preventDefault();
+  const data = await dispatch(setSelectedFilters(payload))
+  return data
+}
 
   return (
     <>
@@ -157,6 +163,14 @@ function NewHomePage() {
               </VStack>
             </Box>
           </Box>
+
+          <Button
+             bg={'gray.500'} border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
+            //  _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            onClick={onSubmit}
+          >
+           Submit
+          </Button>
         </GridItem>
 
         {/* Shoe Iteration col */}
