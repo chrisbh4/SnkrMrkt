@@ -3,14 +3,11 @@ import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, Simp
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
-
 import { fetchMostPopular } from "../../store/stockX";
-
 import ShoeList from "../OldHomePage/ShoeList";
 import { setSelectedFilters } from "../../store/filters";
 
 function NewHomePage() {
-
   const dispatch = useDispatch()
   const shoes = useSelector((state) => state.shoes)
   const shoesArray = Object.values(shoes)
@@ -67,7 +64,7 @@ function NewHomePage() {
   const updateFilterStyle = (e) => { setFilterStyleType(e.target.value)};
 
   //* Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
-  const payload = {brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType, price: filterPricing}
+  const payload = {brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType.style, price: filterPricing}
 
 
   useEffect(()=>{
@@ -100,7 +97,6 @@ const onSubmit = async (e) => {
           w='75%'
           pl='2%'
           pr='5%'
-
         >
 
           <Box pl='1%' pt='5%' pb='2%'>
