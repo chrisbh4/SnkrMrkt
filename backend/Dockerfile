@@ -14,7 +14,7 @@ RUN npm ci
 COPY . .
 
 # Expose the port that the server will run on
-EXPOSE 8080
+EXPOSE 4000
 
 # Start the server
 CMD ["npm", "start"]

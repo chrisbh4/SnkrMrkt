@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.d4c9f1f4.chunk.css",
-    "main.js": "/static/js/main.93b00f98.chunk.js",
-    "main.js.map": "/static/js/main.93b00f98.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.471bbd45.js",
-    "runtime-main.js.map": "/static/js/runtime-main.471bbd45.js.map",
-    "static/js/2.abe7ad6f.chunk.js": "/static/js/2.abe7ad6f.chunk.js",
-    "static/js/2.abe7ad6f.chunk.js.map": "/static/js/2.abe7ad6f.chunk.js.map",
+    "main.css": "/static/css/main.490840ac.css",
+    "main.js": "/static/js/main.7d6f665f.js",
     "index.html": "/index.html",
-    "static/css/main.d4c9f1f4.chunk.css.map": "/static/css/main.d4c9f1f4.chunk.css.map",
-    "static/js/2.abe7ad6f.chunk.js.LICENSE.txt": "/static/js/2.abe7ad6f.chunk.js.LICENSE.txt",
-    "static/js/main.93b00f98.chunk.js.LICENSE.txt": "/static/js/main.93b00f98.chunk.js.LICENSE.txt",
-    "static/media/NewReviewForm.css": "/static/media/reviews-background-img.8173fe70.jpeg"
+    "main.490840ac.css.map": "/static/css/main.490840ac.css.map",
+    "main.7d6f665f.js.map": "/static/js/main.7d6f665f.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.471bbd45.js",
-    "static/js/2.abe7ad6f.chunk.js",
-    "static/css/main.d4c9f1f4.chunk.css",
-    "static/js/main.93b00f98.chunk.js"
+    "static/css/main.490840ac.css",
+    "static/js/main.7d6f665f.js"
   ]
 }

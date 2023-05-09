@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for snkr-mrkt on 2023-05-04T19:10:40-07:00
+# fly.toml app configuration file generated for snkr-mrkt on 2023-05-08T13:56:58-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -12,14 +12,14 @@ processes = []
 [build]
 
 [env]
-  PORT = "8080"
+  NODE_ENV = "production"
 
 [experimental]
   auto_rollback = true
 
 [[services]]
   http_checks = []
-  internal_port = 8080
+  internal_port = 4000
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
@@ -42,13 +42,3 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
-
-# [[services]]
-#   internal_port = 4000
-#   protocol = "tcp"
-#   script = "start_backend.sh"
-
-# [[services]]
-#   internal_port = 80
-#   protocol = "tcp"
-#   script = "start_frontend.sh"
