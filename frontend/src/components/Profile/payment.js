@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Button, Link, Flex, Text, SimpleGrid, Wrap, WrapItem, Avatar } from "@chakra-ui/react";
+import { Box, Button, Center, Image, VStack, Link, Flex, Text, SimpleGrid, GridItem, Wrap, WrapItem, Avatar } from "@chakra-ui/react";
 import * as sessionActions from '../../store/session';
 import { purchaseFromCart } from "../../store/shoppingCart";
 
 
 
-function ProfilePage() {
+function PaymentPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,6 +17,8 @@ function ProfilePage() {
 
   const logout = async (e) => {
     e.preventDefault();
+    //Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
+
     dispatch(purchaseFromCart());
     dispatch(sessionActions.logout());
     navigate('/')
@@ -43,36 +45,34 @@ function ProfilePage() {
 
           <Box>
             <Flex justify={'space-between'} w='75%' py='8px' pos='relative' left='5%' borderBottom={'2px'}>
-              <Text fontSize={'30px'}>Profile</Text>
+              <Text fontSize={'30px'}>Auto save payment</Text>
               <Box >
                 <Button bg='red.300' mr='15px'>Edit</Button>
                 <Button onClick={logout} bg='red.300' >Log out</Button>
               </Box>
             </Flex>
 
-            <Wrap pl='6%' pt='10px'>
-              <WrapItem>
-                <Avatar size='2xl' name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />{' '}
-              </WrapItem>
-            </Wrap>
 
 
             <SimpleGrid columns={3} spacing={10} px='5%' pt='2%'>
               <Box height='80px'>
                 <Text >Full Name :</Text>
-                <Text >Test User</Text>
               </Box>
               <Box height='80px'>
-                <Text >Username :</Text>
-                <Text >{user?.username}</Text>
+                <Text >Card Number</Text>
               </Box>
               <Box height='80px'>
-                <Text>Shoe Size :</Text>
-                <Text>13 Mens</Text>
+                <Text >Expiration Date</Text>
               </Box>
               <Box height='80px'>
-                <Text>Email :</Text>
-                <Text>{user?.email}</Text>
+                <Text>Shipping Address</Text>
+                <Text></Text>
+              </Box>
+              <Box height='80px'>
+                <Text>City</Text>
+              </Box>
+              <Box height='80px'>
+                <Text>State/Province</Text>
               </Box>
               <Box height='80px'>
                 <Text>Phone Number :</Text>
@@ -89,4 +89,4 @@ function ProfilePage() {
 }
 
 
-export default ProfilePage;
+export default PaymentPage;
