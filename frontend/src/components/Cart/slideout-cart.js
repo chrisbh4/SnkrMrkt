@@ -71,7 +71,7 @@ function SlideOutCart() {
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `State Tax: ${stateTax.toFixed(2)}` : null}</h2>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${pricePostTaxes.toFixed(2)}` : null}</h2>
                 <Center>
-                  {totalPriceOfShoes > 0 ? <Button bg='red.300' mt='4%'> <Link href='/cart' _hover={{ textDecor: "none"}} > Checkout </Link></Button> : null}
+                  {totalPriceOfShoes > 0 ? <Link href='/cart' mt='4%' _hover={{ textDecor: "none"}} > <Button bg='red.300' > Checkout </Button></Link> : null}
                 </Center>
               </Box>
             </div>
