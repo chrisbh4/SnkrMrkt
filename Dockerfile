@@ -25,15 +25,15 @@ COPY --link ./backend/package.json ./backend/package-lock.json ./
 RUN npm install
 
 # Copy application code
-COPY --link . .
-
-
+COPY --link ./ .
 
 # Final stage for app image
 FROM base
 
 # Copy built application
 COPY --from=build /app /app
+
+WORKDIR /app/backend
 
 # Start the server by default, this can be overwritten at runtime
 CMD [ "npm", "run", "start" ]

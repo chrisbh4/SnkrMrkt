@@ -14,6 +14,9 @@ processes = []
 [env]
   NODE_ENV = "production"
 
+[deploy]
+  release_command = "npx sequelize db:migrate"
+
 [experimental]
   auto_rollback = true
 
