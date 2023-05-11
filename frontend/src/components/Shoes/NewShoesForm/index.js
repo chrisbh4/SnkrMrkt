@@ -2,14 +2,12 @@ import React from "react"
 import { useState } from "react"
 import { useSelector, useDispatch, } from "react-redux"
 import { getCreatedShoe, getAllShoes } from "../../../store/shoes.js"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import "./NewShoeForm.css"
 
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Box,
     Input,
     InputGroup,
@@ -27,7 +25,7 @@ import {
 
 function NewShoesForm({ onClose }) {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const sellerId = useSelector((state) => state.session.user?.id)
 

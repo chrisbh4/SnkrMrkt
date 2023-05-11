@@ -1,8 +1,9 @@
 import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux";
-import { removeShoeFromCart } from "../../store/shoppingCart";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom"
+// import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+// import { removeShoeFromCart } from "../../store/shoppingCart";
 import SlideOutCartItem from "./slideout-item";
 import {
   Drawer,
@@ -13,12 +14,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input,
-  Image,
-  Grid,
-  GridItem,
   useDisclosure,
-  SimpleGrid,
   Link,
   Box,
   Center
@@ -28,8 +24,8 @@ import {
 function SlideOutCart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  // const dispatch = useDispatch()
+  // const navigate = useNavigate()
 
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const cart = Object.values(shoppingCart);
@@ -75,7 +71,7 @@ function SlideOutCart() {
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `State Tax: ${stateTax.toFixed(2)}` : null}</h2>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${pricePostTaxes.toFixed(2)}` : null}</h2>
                 <Center>
-                  {totalPriceOfShoes > 0 ? <Button bg='red.300' mt='4%'> <Link href='/cart' > Checkout </Link></Button> : null}
+                  {totalPriceOfShoes > 0 ? <Button bg='red.300' mt='4%'> <Link href='/cart' _hover={{ textDecor: "none"}} > Checkout </Link></Button> : null}
                 </Center>
               </Box>
             </div>

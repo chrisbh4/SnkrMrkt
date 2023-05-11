@@ -3,29 +3,19 @@ import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { purchaseFromCart } from "../../store/shoppingCart";
 import CartItem from "./CartItem";
-import { fetchCreateNewOrder, fetchOrderByID } from "../../store/orders";
+import { fetchCreateNewOrder } from "../../store/orders";
 import "./Cart.css"
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Box,
     Input,
-    InputGroup,
-    InputLeftAddon,
-    Heading,
     Text,
-    Grid,
     Flex,
     Button,
-    Textarea,
     Center,
-    Image,
     Checkbox,
     Select,
-    border,
-    VStack,
     Stack,
 } from '@chakra-ui/react'
 
@@ -38,7 +28,7 @@ function CheckoutForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const shoppingCart = useSelector((state) => state.shoppingCart);
-    const user = useSelector((state) => state.user);
+    // const user = useSelector((state) => state.user);
     const cart = Object.values(shoppingCart);
 
     // const [username, setUserName] = useState("");
@@ -58,7 +48,8 @@ function CheckoutForm() {
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     //* key into the cart state and iterate through the shoes
-    const [shoeIds, setShoeIds] = useState("");
+    // const [shoeIds, setShoeIds] = useState("");
+    const shoeIds = ""
 
     const usStateInitials = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
