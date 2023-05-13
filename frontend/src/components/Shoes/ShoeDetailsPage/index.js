@@ -123,41 +123,41 @@ function ShoeDetialsChakra() {
         <Box borderTop={'22px'} borderColor='black' >
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
           <Flex >
-            <Link href='/home'>
+            <Link href='/shoes/1'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-1.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/2'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-2.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/3'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-3.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/4'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-4.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/5'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-5.png"}
                 boxSize='250px'
                 border={'1px'}
               />

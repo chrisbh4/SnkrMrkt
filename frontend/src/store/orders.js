@@ -36,8 +36,9 @@ export const fetchCreateNewOrder = (payload) => async (dispatch) => {
     if (res.ok) {
         dispatch(createNewOrder(payload))
         return data
+    }else{
+        return data
     }
-    return data
 }
 
 

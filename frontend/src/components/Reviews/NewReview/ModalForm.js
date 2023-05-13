@@ -8,7 +8,7 @@ import {
     ModalBody,
     ModalCloseButton,
     Button,
-    Box
+    Image
 } from '@chakra-ui/react'
 
 import { useDisclosure } from '@chakra-ui/react'
@@ -37,17 +37,18 @@ function CreateReviewModal() {
             <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} size={'6xl'} >
                 <ModalOverlay />
                 <ModalContent >
-                    <ModalHeader>Edit Shoe Form</ModalHeader>
+                    <ModalHeader></ModalHeader>
                     <ModalCloseButton />
                     <ModalBody w={"full"}>
-                        <NewReviewChakraForm onClose={onClose}  />
+                        <NewReviewChakraForm onClose={onClose} />
                     </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                    </ModalFooter>
+                    <ModalFooter></ModalFooter>
+                    <Image
+                        src="https://theplug-app-aws.s3.us-west-1.amazonaws.com/New-Shoe-background-img.jpeg"
+                        w={"full"}
+                        h="300px"
+                        fit="cover"
+                    />
                 </ModalContent>
             </Modal>
         </>
