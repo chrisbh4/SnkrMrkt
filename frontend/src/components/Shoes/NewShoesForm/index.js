@@ -69,7 +69,7 @@ function NewShoesForm({ onClose }) {
     return (
         <>
             <FormControl pt={"2%"}   >
-                <Box pb={8} px='25%'  >
+                <Box   px='25%'  >
                     <Heading size="lg" fontWeight="semibold" color="gray.900" ml={"4%"}>Shoe Details</Heading>
                     <Grid
                         templateRows="repeat(5, 1fr)"
@@ -107,8 +107,10 @@ function NewShoesForm({ onClose }) {
                             <FormLabel>Upload Images</FormLabel>
                             <Input borderColor={"black"} type="file" placeholder="Upload Images" border={"none"} onChange={updateImageFile} />
                         </Box>
-
+                        <Flex justify={'flex-start'}>
                         <Button w={"30%"} mt={"1%"} onClick={onSubmit} colorScheme="green">Submit</Button>
+                        <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={onClose} colorScheme="blue">Close</Button>
+                        </Flex>
                     </Grid>
 
                     <Box color={"red.400"}  >
@@ -126,13 +128,6 @@ function NewShoesForm({ onClose }) {
                         }
                     </Box>
                 </Box>
-
-                <Image
-                    src="https://theplug-app-aws.s3.us-west-1.amazonaws.com/New-Shoe-background-img.jpeg"
-                    w={"full"}
-                    h="300px"
-                    fit="cover"
-                />
             </FormControl>
 
         </>
