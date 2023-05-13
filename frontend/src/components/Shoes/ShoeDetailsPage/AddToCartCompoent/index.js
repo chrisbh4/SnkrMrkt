@@ -1,30 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom'
+// import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 
 import { getAllShoes, getOneShoe } from "../../../../store/shoes"
 import { addShoeToCart } from "../../../../store/shoppingCart"
 
 import {
-    Grid,
-    Center,
-    GridItem,
     Box,
-    VStack,
-    Checkbox,
     Button,
-    Text,
     Flex,
-    SimpleGrid,
     Select,
-    Image,
-    Input,
-    Stack,
-    Form,
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
   } from '@chakra-ui/react'
 import EditShoeModalForm from '../../EditShoePage/ModalForm';
 
@@ -58,7 +44,7 @@ const sizeChart = [
 
 function AddToCartComponent({shoeId}) {
     const dispatch = useDispatch();
-  const params = useParams();
+  // const params = useParams();
   const navigate = useNavigate();
 
 //* Need to be able to grab the clicked on value for selecting shoe size
@@ -73,7 +59,7 @@ function AddToCartComponent({shoeId}) {
   useEffect(() => {
     dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
-  }, [dispatch]);
+  }, [dispatch, shoeId]);
 
 
   const userId = useSelector((state) => {

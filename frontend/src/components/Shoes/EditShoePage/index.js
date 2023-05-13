@@ -15,7 +15,6 @@ import {
     Flex,
     Button,
     Textarea,
-    Image
 } from '@chakra-ui/react'
 
 

@@ -19,7 +19,6 @@ import {
     Button,
     Textarea,
     Center,
-    Image
 } from '@chakra-ui/react'
 
 
