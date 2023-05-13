@@ -14,6 +14,7 @@ import * as sessionActions from '../../store/session';
 import './Navigation.css';
 import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex } from '@chakra-ui/react';
 import NewShoeModalForm from '../Shoes/NewShoesForm/modalForm';
+import NavBtnSignUpForm from '../SignupFormPage/NavButton';
 
 function Navigation({ isLoaded }) {
   const navigate = useNavigate();
@@ -142,7 +143,7 @@ function Navigation({ isLoaded }) {
 
         <LoginForm />
 
-        <SignUpForm />
+        <NavBtnSignUpForm/>
 
 
         <Button

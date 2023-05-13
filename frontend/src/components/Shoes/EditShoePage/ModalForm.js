@@ -8,7 +8,7 @@ import {
     ModalBody,
     ModalCloseButton,
     Button,
-    Box
+    Image
 } from '@chakra-ui/react'
 
 import { useDisclosure } from '@chakra-ui/react'
@@ -43,11 +43,14 @@ function EditShoeModalForm({shoe}) {
                         <EditShoesFormChakra onClose={onClose} shoe={shoe} />
                     </ModalBody>
 
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                    </ModalFooter>
+                    <ModalFooter></ModalFooter>
+
+                    <Image
+                    src="https://theplug-app-aws.s3.us-west-1.amazonaws.com/New-Shoe-background-img.jpeg"
+                    w={"full"}
+                    h="300px"
+                    fit="cover"
+                />
                 </ModalContent>
             </Modal>
         </>

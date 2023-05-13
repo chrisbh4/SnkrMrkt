@@ -5,7 +5,9 @@ import shoes from '../store/shoes'
 import reviews from "./reviews"
 import shoppingCart from "./shoppingCart"
 import stockXapi from "./stockX"
+import orders from "./orders"
 import filters from "./filters"
+
 
 
 const rootReducer = combineReducers({
@@ -14,6 +16,7 @@ const rootReducer = combineReducers({
   reviews,
   shoppingCart,
   stockXapi,
+  orders,
   filters
 });
 

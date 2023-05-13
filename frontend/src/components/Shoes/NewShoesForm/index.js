@@ -2,14 +2,12 @@ import React from "react"
 import { useState } from "react"
 import { useSelector, useDispatch, } from "react-redux"
 import { getCreatedShoe, getAllShoes } from "../../../store/shoes.js"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import "./NewShoeForm.css"
 
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Box,
     Input,
     InputGroup,
@@ -21,13 +19,12 @@ import {
     Button,
     Textarea,
     Center,
-    Image
 } from '@chakra-ui/react'
 
 
 function NewShoesForm({ onClose }) {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const sellerId = useSelector((state) => state.session.user?.id)
 
@@ -56,7 +53,6 @@ function NewShoesForm({ onClose }) {
         await dispatch(getAllShoes())
 
         if (!data?.errors) {
-
             // TODO: Create User Profile and redirect user to show new shoe being listed under them
             // navigate(`/home`)
             alert("Your Shoe has now been listed for sale.")
@@ -72,7 +68,7 @@ function NewShoesForm({ onClose }) {
     return (
         <>
             <FormControl pt={"2%"}   >
-                <Box pb={8} px='25%'  >
+                <Box   px='25%'  >
                     <Heading size="lg" fontWeight="semibold" color="gray.900" ml={"4%"}>Shoe Details</Heading>
                     <Grid
                         templateRows="repeat(5, 1fr)"
@@ -110,8 +106,10 @@ function NewShoesForm({ onClose }) {
                             <FormLabel>Upload Images</FormLabel>
                             <Input borderColor={"black"} type="file" placeholder="Upload Images" border={"none"} onChange={updateImageFile} />
                         </Box>
-
+                        <Flex justify={'flex-start'}>
                         <Button w={"30%"} mt={"1%"} onClick={onSubmit} colorScheme="green">Submit</Button>
+                        <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={onClose} colorScheme="blue">Close</Button>
+                        </Flex>
                     </Grid>
 
                     <Box color={"red.400"}  >
@@ -129,13 +127,6 @@ function NewShoesForm({ onClose }) {
                         }
                     </Box>
                 </Box>
-
-                <Image
-                    src="https://theplug-app-aws.s3.us-west-1.amazonaws.com/New-Shoe-background-img.jpeg"
-                    w={"full"}
-                    h="300px"
-                    fit="cover"
-                />
             </FormControl>
 
         </>

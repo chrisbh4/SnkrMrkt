@@ -23,7 +23,7 @@ import {
 
 
 
-function SignUpForm() {
+function NavBtnSignUpForm() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const dispatch = useDispatch();
@@ -82,19 +82,19 @@ function SignUpForm() {
 
     return (
         <>
-            {/* <Button onClick={onOpen}
+            <Button onClick={onOpen}
                 color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
                 _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
             >
                 Sign up
-            </Button> */}
+            </Button>
 
-            <Button onClick={onOpen}
+            {/* <Button onClick={onOpen}
                 borderBottom='4px' borderColor='gray.300' width={'35%'} pb='13px' bg={'white'}
                 _hover={{ borderColor: 'black' }}
             >
                 Sign up
-            </Button>
+            </Button> */}
 
             <Modal isOpen={isOpen} onClose={onClose} size='3xl'>
                 <ModalOverlay
@@ -222,4 +222,4 @@ function SignUpForm() {
         </>
     )
 }
-export default SignUpForm
+export default NavBtnSignUpForm
