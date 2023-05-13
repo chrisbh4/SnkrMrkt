@@ -18,7 +18,7 @@ import {
 
 function EditReviewChakraForm({ onClose, review }) {
     const dispatch = useDispatch()
-    const reviewId = review.id
+    const reviewId = review?.id
     const user = useSelector((state) => state.session.user)
     const userId = useSelector((state) => state.session.user?.id)
     const shoeId = review?.shoeId

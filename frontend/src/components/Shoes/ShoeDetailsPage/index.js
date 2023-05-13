@@ -180,7 +180,7 @@ function ShoeDetialsChakra() {
                 <Grid templateColumns='10% 1fr 1fr'>
                   <GridItem h='10' bg='none'>{review.rating}</GridItem>
                   <GridItem mr={"8%"} h='10' bg='none' whiteSpace={"nowrap"} pr={"4%"}>{review.comment}</GridItem>
-                  <GridItem ml={"8%"} h='10' bg='none'><EditReviewModal /></GridItem>
+                  <GridItem ml={"8%"} h='10' bg='none'><EditReviewModal review={review} /></GridItem>
                 </Grid>
               )
             }
