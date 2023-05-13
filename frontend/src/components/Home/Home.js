@@ -161,7 +161,7 @@ const handleSizeBg = (size) => {
           <Wrap w='100%' minW={'100%'}>
             {shoesArray.map((shoe) => {
               return (
-                <WrapItem className="shoe-container" key={shoe.id}>
+                <WrapItem className="shoe-container" key={shoe.id} w={"24%"}>
                   <ShoeList shoe={shoe} key={shoe.id} />
                 </WrapItem>
               )
