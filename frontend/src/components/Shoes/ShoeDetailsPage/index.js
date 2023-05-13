@@ -15,9 +15,8 @@ import {
   Flex,
   Image,
   Link,
-  VStack,
-  Button,
-  textDecoration,
+  Grid,
+  GridItem
 } from '@chakra-ui/react'
 import CreateReviewModal from '../../Reviews/NewReview/ModalForm';
 import EditReviewModal from '../../Reviews/EditReview/ModalForm';
@@ -63,7 +62,7 @@ function ShoeDetialsChakra() {
 
   return (
     // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
-    <Box px={"15%"} h='full'  pb='20px' >
+    <Box px={"15%"} h='full' pb='20px' >
       <Box pl='10%'>
         <Box h='75px' pt='3'>
           <Text
@@ -173,10 +172,15 @@ function ShoeDetialsChakra() {
             <CreateReviewModal />
           </Box>
 
-          {shoe?.Reviews.map((review) => {
+          <Grid templateColumns='repeat(3, 1fr)' >
+                  <GridItem w='100%' h='10' bg='none' fontSize={"20"} fontWeight={"bold"} >Rating</GridItem>
+                  <GridItem w='100%' h='10' bg='none' fontSize={"20"} fontWeight={"bold"}  whiteSpace={"nowrap"} pr={"4%"}>Comment</GridItem>
+                </Grid>
+
+          {/* {shoe?.Reviews.map((review) => {
             if (review.userId === userId) {
               return (
-                <Flex>
+                <Flex justify={"flex-start"}>
                   <Text>{review.rating}</Text>
                   <Text ml={"4%"}>{review.comment}</Text>
                   <Box ml={"2%"}>
@@ -191,6 +195,23 @@ function ShoeDetialsChakra() {
                 <Text>{review.rating}</Text>
                 <Text ml={"4%"}>{review.comment}</Text>
               </Flex>
+            )
+          })} */}
+          {shoe?.Reviews.map((review) => {
+            if (review.userId === userId) {
+              return (
+                <Grid templateColumns='repeat(3, 1fr)' >
+                  <GridItem w='10%' h='10' bg='none'>{review.rating}</GridItem>
+                  <GridItem w='100%' mr={"8%"} h='10' bg='none' whiteSpace={"nowrap"} pr={"4%"}>{review.comment}</GridItem>
+                  <GridItem w='100%' ml={"8%"} h='10' bg='none'><EditReviewModal /></GridItem>
+                </Grid>
+              )
+            }
+            return (
+              <Grid templateColumns='repeat(3, 1fr)' >
+              <GridItem w='100%' h='10' bg='none'>{review.rating}</GridItem>
+              <GridItem w='100%' h='10' bg='none'>{review.comment}</GridItem>
+            </Grid>
             )
           })}
         </Box>
