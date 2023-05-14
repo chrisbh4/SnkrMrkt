@@ -85,8 +85,6 @@ router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
       phoneNumber,
       shoeIds } = req.body.payload
 
-      console.log(req.body.payload)
-
    const newOrder = await orders.create({
       username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
       otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds

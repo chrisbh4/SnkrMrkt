@@ -79,11 +79,8 @@ export const getCreatedShoe = (payload) => async (dispatch) => {
   });
 
 
-
     const data = await res.json()
     if (data.ok) {
-
-
         dispatch(createShoe(data))
     } else {
 
