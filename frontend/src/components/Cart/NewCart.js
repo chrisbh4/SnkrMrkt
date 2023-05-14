@@ -3,29 +3,19 @@ import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { purchaseFromCart } from "../../store/shoppingCart";
 import CartItem from "./CartItem";
-import { fetchCreateNewOrder, fetchOrderByID } from "../../store/orders";
+import { fetchCreateNewOrder } from "../../store/orders";
 import "./Cart.css"
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Box,
     Input,
-    InputGroup,
-    InputLeftAddon,
-    Heading,
     Text,
-    Grid,
     Flex,
     Button,
-    Textarea,
     Center,
-    Image,
     Checkbox,
     Select,
-    border,
-    VStack,
     Stack,
 } from '@chakra-ui/react'
 
@@ -38,7 +28,7 @@ function CheckoutForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const shoppingCart = useSelector((state) => state.shoppingCart);
-    const user = useSelector((state) => state.user);
+    // const user = useSelector((state) => state.user);
     const cart = Object.values(shoppingCart);
 
     // const [username, setUserName] = useState("");
@@ -58,7 +48,8 @@ function CheckoutForm() {
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     //* key into the cart state and iterate through the shoes
-    const [shoeIds, setShoeIds] = useState("");
+    // const [shoeIds, setShoeIds] = useState("");
+    const shoeIds = ""
 
     const usStateInitials = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -100,19 +91,20 @@ function CheckoutForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+        let payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+        let data = await dispatch(fetchCreateNewOrder(payload))
 
-        const data = await dispatch(fetchCreateNewOrder(payload))
-        console.log(data)
         if (!data?.errors) {
             dispatch(purchaseFromCart())
             alert("Your order is being processed you will recieve an order confirmation email soon")
-            // navigate("/home")
+            navigate("/home")
             return data
         }
-        console.log("errors")
-        setErrors(data?.errors)
-        return data
+        else{
+            setErrors(data?.errors)
+            return data
+        }
+        // return data
     }
 
     return (
@@ -123,11 +115,11 @@ function CheckoutForm() {
                         <FormControl pt={"2%"}   >
                             <Box py={"20px"}>
                             {
-                                errors.map((error) => {
+                                errors?.map((error) => {
                                     if (error) {
                                         return (
-                                            <Center>
-                                                <Text key={error.id} fontSize={"md"} >{error}</Text>
+                                            <Center key={error.id}>
+                                                <Text  fontSize={"md"} color={'red.400'} fontWeight={'bold'} >{error}</Text>
                                             </Center>
                                         )
                                     }

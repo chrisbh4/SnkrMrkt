@@ -1,26 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeShoeFromCart } from "../../store/shoppingCart";
-
-
+import { DeleteIcon } from '@chakra-ui/icons'
 import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
     Button,
-    Input,
     Image,
-    Grid,
     GridItem,
-    useDisclosure,
     SimpleGrid,
     Link,
-    Box,
-    Center
 } from '@chakra-ui/react'
 
 
@@ -46,8 +33,10 @@ function SlideOutCartItem({ item }) {
 
             <GridItem w='100%' pos='relative' left='10%' textAlign={'center'} ><Link _hover={{ textDecoration: "none" }} href={`/shoes/${item.shoeId}`} >{item.title}</Link></GridItem>
             <GridItem w='100%' textAlign={'center'} >{item.price} </GridItem>
-            <GridItem w='100%' textAlign={'center'} >
-                <Button onClick={removeShoe} bg='red.300' fontSize='20px' fontWeight='bold' _hover={{ bg: "black", textColor: "red", border: "2px" }}>X</Button>
+            <GridItem w='100%' >
+                <Button onClick={removeShoe} bg='none' size={"sm"} fontSize='20px' fontWeight='bold' _hover={{ bg: "none" }}>
+                    <DeleteIcon />
+                </Button>
             </GridItem>
         </SimpleGrid>
     )

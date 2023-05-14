@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+// import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
-import * as sessionActions from '../../../store/session';
+// import * as sessionActions from '../../../store/session';
 import "./ShoeDetails.css"
-import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
-import { getAllShoes, getOneShoe } from "../../../store/shoes"
-import { addShoeToCart } from "../../../store/shoppingCart"
+// import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
+// import { addShoeToCart } from "../../../store/shoppingCart"
+import { getOneShoe } from "../../../store/shoes"
 import { fetchMostPopular } from '../../../store/stockX';
 import AddToCartComponent from './AddToCartCompoent';
 import {
@@ -15,9 +16,8 @@ import {
   Flex,
   Image,
   Link,
-  VStack,
-  Button,
-  textDecoration,
+  Grid,
+  GridItem
 } from '@chakra-ui/react'
 import CreateReviewModal from '../../Reviews/NewReview/ModalForm';
 import EditReviewModal from '../../Reviews/EditReview/ModalForm';
@@ -25,9 +25,9 @@ import EditReviewModal from '../../Reviews/EditReview/ModalForm';
 
 
 function ShoeDetialsChakra() {
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
-  const navigate = useNavigate();
   const shoeId = params.id
 
   useEffect(() => {
@@ -47,8 +47,6 @@ function ShoeDetialsChakra() {
   })
 
   const shoe = useSelector((state) => state.shoes[shoeId])
-
-  console.log(shoe)
   // const cart = useSelector((state) => state.shoppingCart)
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
@@ -57,13 +55,12 @@ function ShoeDetialsChakra() {
     imageCheck = <img src={shoe?.image} alt={shoe?.title}></img>
   } else {
     imageCheck = <img className="bad-image" alt={shoe?.title}></img>
-
   }
 
 
   return (
     // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
-    <Box px={"15%"} h='full'  pb='20px' >
+    <Box px={"15%"} h='full' pb='20px' >
       <Box pl='10%'>
         <Box h='75px' pt='3'>
           <Text
@@ -123,41 +120,41 @@ function ShoeDetialsChakra() {
         <Box borderTop={'22px'} borderColor='black' >
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
           <Flex >
-            <Link href='/home'>
+            <Link href='/shoes/1'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-1.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/2'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-2.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/3'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-3.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/4'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-4.png"}
                 boxSize='250px'
                 border={'1px'}
               />
             </Link>
 
-            <Link href='/home'>
+            <Link href='/shoes/5'>
               <Image
-                src={shoe?.image}
+                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-5.png"}
                 boxSize='250px'
                 border={'1px'}
               />
@@ -165,7 +162,6 @@ function ShoeDetialsChakra() {
           </Flex>
         </Box>
 
-        {/* Reviews */}
         <Box>
           <Text fontSize={'2xl'} fontWeight='bold' pt={"2%"} >{shoe?.title} Reviews</Text>
 
@@ -173,24 +169,26 @@ function ShoeDetialsChakra() {
             <CreateReviewModal />
           </Box>
 
+          <Grid templateColumns='10% 1fr 1fr' pb={"3"}>
+            <GridItem w='100%' h='10' bg='none' fontSize={"20"} fontWeight={"bold"} >Ratings</GridItem>
+            <GridItem w='100%' h='10' bg='none' fontSize={"20"} fontWeight={"bold"} whiteSpace={"nowrap"} pr={"4%"}>Comments</GridItem>
+          </Grid>
+
           {shoe?.Reviews.map((review) => {
             if (review.userId === userId) {
               return (
-                <Flex>
-                  <Text>{review.rating}</Text>
-                  <Text ml={"4%"}>{review.comment}</Text>
-                  <Box ml={"2%"}>
-                    <EditReviewModal  review={review} />
-                  </Box>
-
-                </Flex>
+                <Grid templateColumns='10% 1fr 1fr'>
+                  <GridItem h='10' bg='none'>{review.rating}</GridItem>
+                  <GridItem mr={"8%"} h='10' bg='none' whiteSpace={"nowrap"} pr={"4%"}>{review.comment}</GridItem>
+                  <GridItem ml={"8%"} h='10' bg='none'><EditReviewModal review={review} /></GridItem>
+                </Grid>
               )
             }
             return (
-              <Flex>
-                <Text>{review.rating}</Text>
-                <Text ml={"4%"}>{review.comment}</Text>
-              </Flex>
+              <Grid templateColumns='10% 1fr 1fr'>
+                <GridItem h='10' bg='none'>{review.rating}</GridItem>
+                <GridItem h='10' bg='none'>{review.comment}</GridItem>
+              </Grid>
             )
           })}
         </Box>

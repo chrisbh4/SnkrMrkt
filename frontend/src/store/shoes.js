@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_SHOES = 'shoes/LOAD_SHOES';
+const ONE_SHOE = 'shoes/ONE_SHOE';
 const CREATE_SHOE = 'shoes/CREATE_SHOE';
 const EDIT_SHOE = 'shoes/EDIT_SHOE';
 const DELETE_SHOE = 'shoes/DELETE_SHOE';
@@ -13,6 +14,10 @@ const loadShoes = (shoes) => ({
     shoes
 });
 
+const loadSingleShoe = (shoes) => ({
+    type: ONE_SHOE,
+    shoes
+});
 
 const createShoe = (shoe) => ({
     type: CREATE_SHOE,
@@ -44,7 +49,7 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
     const res = await csrfFetch(`/api/shoes/${shoeId}`)
     const data = await res.json()
     if (data.ok) {
-        dispatch(loadShoes(data))
+        dispatch(loadSingleShoe(data))
     }
     return data
 };
@@ -79,11 +84,8 @@ export const getCreatedShoe = (payload) => async (dispatch) => {
   });
 
 
-
     const data = await res.json()
     if (data.ok) {
-
-
         dispatch(createShoe(data))
     } else {
 
@@ -148,6 +150,8 @@ function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_SHOES:
             return { ...state, ...action.shoes }
+        case ONE_SHOE:
+            return { ...action.shoes }
         case CREATE_SHOE:
             newState[action.shoe.id] = action.shoe
             return newState

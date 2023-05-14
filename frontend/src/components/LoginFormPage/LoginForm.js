@@ -40,18 +40,11 @@ function LoginForm() {
     const [errors, setErrors] = useState([]);
 
     const handleCredentials = (e) => setCredential(e.target.value)
-    const handlePassword = (e) => {
-        console.log(e.target.value)
-        return setPassword(e.target.value)
-    }
+    const handlePassword = (e) => setPassword(e.target.value)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Inside Handle Submit")
-
         const data = await dispatch(sessionActions.login({ credential, password }))
-
-        console.log(data)
 
         if (data?.errors) {
             setErrors(data.errors)
