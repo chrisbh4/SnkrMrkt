@@ -13,8 +13,6 @@ function ProfilePage() {
 
   const user = useSelector(state => state.session.user)
 
-  console.log(user)
-
   const logout = async (e) => {
     e.preventDefault();
     dispatch(purchaseFromCart());

@@ -51,7 +51,6 @@ function AddToCartComponent({shoeId}) {
   const [size, setSize] = useState("")
 
   const updateSize = async(e) => {
-    console.log(e.target.value)
     setSize(e.target.value)
     return
   }
@@ -74,7 +73,6 @@ function AddToCartComponent({shoeId}) {
   const shoeSellerId = shoe?.sellerId;
 
   const addToCart = async () => {
-    console.log("Add TO cart: ", size)
     await dispatch(addShoeToCart(shoe, cart))
     // alert("Shoe has been added to your cart!")
     navigate("/home")

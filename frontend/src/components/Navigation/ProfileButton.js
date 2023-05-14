@@ -18,7 +18,6 @@ function ProfileButton({ user }) {
     setShowMenu(true);
   };
 
-  console.log("Show :", showMenu)
   // IF true then the menu will open
   // IF false then the menu will close
   //* Bug is coming from the setShowMenu not being switched from false -> true

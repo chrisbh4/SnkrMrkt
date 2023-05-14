@@ -91,8 +91,8 @@ function CheckoutForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
-        const data = await dispatch(fetchCreateNewOrder(payload))
+        let payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+        let data = await dispatch(fetchCreateNewOrder(payload))
 
         if (!data?.errors) {
             dispatch(purchaseFromCart())
@@ -102,8 +102,9 @@ function CheckoutForm() {
         }
         else{
             setErrors(data?.errors)
+            return data
         }
-        return data
+        // return data
     }
 
     return (

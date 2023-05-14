@@ -55,8 +55,6 @@ function EditShoesFormChakra({ shoe, onClose }) {
         return data
     }
 
-    console.log(errors.errors)
-
 
 
 
@@ -67,8 +65,7 @@ function EditShoesFormChakra({ shoe, onClose }) {
         alert("Shoe has been deleted.");
         navigate('/home')
     }
-
-    console.log(shoe)
+    
     return (
         <>
             <FormControl pt={"2%"}   >
