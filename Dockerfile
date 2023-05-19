@@ -22,6 +22,7 @@ RUN apt-get update -qq && \
 
 # Install node modules
 COPY --link ./backend/package.json ./backend/package-lock.json ./
+
 RUN npm install
 
 # Copy application code
