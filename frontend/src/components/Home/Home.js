@@ -78,101 +78,45 @@ const onSubmit = async (e) => {
   return data
 }
 
+  // return (
+  //   <>
+  //     <Grid
+  //       pl='3px'
+  //       pt="2%"
+  //       templateRows='repeat(2, 1fr)'
+  //       // templateColumns='repeat(5, 1fr)'
+  //       h='1150px'
+  //       w='100%'
+  //     >
+  //       {/* Shoe Filter Nav */}
+
+
+  //       {/* Shoe Iteration col */}
+  //       {/* <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' > */}
+  //       <GridItem rowSpan={2} colSpan={4} minW={'100%'} w={"full"} overflow='scroll' mt='0.7%' >
+  //         <Wrap w='100%' minW={'100%'}>
+  //           {shoesArray.map((shoe) => {
+  //             return (
+  //               <WrapItem className="shoe-container" key={shoe.id} w={"24%"}>
+  //                 <ShoeList shoe={shoe} key={shoe.id} />
+  //               </WrapItem>
+  //             )
+  //           })}
+  //         </Wrap>
+  //       </GridItem>
+
+  //     </Grid>
+  //   </>)
+
   return (
     <>
-      <Grid
-        pl='3px'
-        pt="2%"
-        templateRows='repeat(2, 1fr)'
-        templateColumns='repeat(5, 1fr)'
-        h='1150px'
-        w='100%'
-      >
         {/* Shoe Filter Nav */}
-        <GridItem
-          rowSpan={2}
-          colSpan={1}
-          overflowY={'scroll'}
-          overflowX={'hidden'}
-          w='75%'
-          pl='2%'
-          pr='5%'
-        >
 
-          <Box pl='1%' pt='5%' pb='2%'>
-            {brandsList.map((brand) =>{
-              return(
-                <div key={brand.id}>
-                <Text
-                       onClick={() => updateFilterBrand(brand)}
-                       style={{ backgroundColor: brand.id === filterBrand.id ? "gray" : "",  color: brand.id === filterBrand.id ? "white" : "" }}
-                textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text>
-                  {/* <Link href={`/shoes/brands/:id`} _hover={{textDecoration: "none"}} > <Text textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >{brand.title}</Text> </Link> */}
-                </div>
-              )
-            })}
-          </Box>
-
-          <Box borderTop={'1px'}   >
-            <Text fontSize='30px' position='relative' left='1%'>Shoe Style</Text>
-            <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"men"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase' >Men</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"woman"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase' >Woman</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"youth"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase'>Youth</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"toddler"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Checkbox>
-            </VStack>
-          </Box>
-
-          <Box borderTop={"1px"}  >
-            <Text fontSize='30px' pl='2%'>Shoe Size</Text>
-            <Flex pl='2%'>
-              <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
-                  {sizeChart.map((chart) => {
-                    return (
-                      <div key={chart.id}>
-                        <Button  w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
-                                     key={chart.id}
-                                     onClick={() => updateFilterShoeSize(chart)}
-                                     style={{ backgroundColor: chart.id === filterShoeSize.id ? "red" : "",  color: chart.id === filterShoeSize.id ? "white" : "" }}
-                                     > {chart.size}
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </SimpleGrid>
-
-              </Center>
-            </Flex>
-          </Box>
-
-          <Box borderTop={'1px'} pb='27px'>
-            <Text pl='2%' fontSize='30px' >Prices</Text>
-            <Box position='relative' left={'7.5%'} pt='3%'>
-              {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
-              <VStack columns={2} justifyContent={'center'} >
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"0-100"} onChange={updateFilterPricing} >$100 & under</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"200-300"} onChange={updateFilterPricing} >$200-300</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"300-400"} onChange={updateFilterPricing} >$300-400</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"500-650"} onChange={updateFilterPricing} >$500-650</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"650+"} onChange={updateFilterPricing} >$650+</Checkbox>
-              </VStack>
-            </Box>
-          </Box>
-
-          <Button
-             bg={'gray.500'} border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
-            //  _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            onClick={onSubmit}
-          >
-           Submit
-          </Button>
-        </GridItem>
 
         {/* Shoe Iteration col */}
         {/* <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' > */}
-        <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' >
-          <Wrap w='100%' minW={'100%'}>
+        <Box rowSpan={2} colSpan={4} minW={'100%'} w={"full"} overflow='scroll' mt='0.7%' >
+          <Wrap w='100%' minW={'100%'} justify={'center'} bg={""}>
             {shoesArray.map((shoe) => {
               return (
                 <WrapItem className="shoe-container" key={shoe.id} w={"24%"}>
@@ -181,9 +125,7 @@ const onSubmit = async (e) => {
               )
             })}
           </Wrap>
-        </GridItem>
-
-      </Grid>
+        </Box>
     </>)
 }
 
