@@ -78,36 +78,6 @@ const onSubmit = async (e) => {
   return data
 }
 
-  // return (
-  //   <>
-  //     <Grid
-  //       pl='3px'
-  //       pt="2%"
-  //       templateRows='repeat(2, 1fr)'
-  //       // templateColumns='repeat(5, 1fr)'
-  //       h='1150px'
-  //       w='100%'
-  //     >
-  //       {/* Shoe Filter Nav */}
-
-
-  //       {/* Shoe Iteration col */}
-  //       {/* <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' > */}
-  //       <GridItem rowSpan={2} colSpan={4} minW={'100%'} w={"full"} overflow='scroll' mt='0.7%' >
-  //         <Wrap w='100%' minW={'100%'}>
-  //           {shoesArray.map((shoe) => {
-  //             return (
-  //               <WrapItem className="shoe-container" key={shoe.id} w={"24%"}>
-  //                 <ShoeList shoe={shoe} key={shoe.id} />
-  //               </WrapItem>
-  //             )
-  //           })}
-  //         </Wrap>
-  //       </GridItem>
-
-  //     </Grid>
-  //   </>)
-
   return (
     <>
         {/* Shoe Filter Nav */}
