@@ -84,10 +84,10 @@ router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
       stateProvince,
       postalCode,
       phoneNumber,
-      shoeIds } = req.body.payload
+      shoeIds } = req.body
 
    const newOrder = await orders.create({
-      username, userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
+      userId, username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
       otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds
    })
 

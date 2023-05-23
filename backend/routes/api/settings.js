@@ -17,11 +17,11 @@ router.get('/:id/selling', asyncHandler(async (req, res) => {
 
 
 router.get('/:id/orders', asyncHandler(async (req, res) => {
-    // const user = await User.findByPk(req.params.id, {
-    //     include: [Orders]
-    // })
-    // return res.json({user})
-    return res.send("userId fk needs to be added")
+    const user = await User.findByPk(req.params.id, {
+        include: [Orders]
+    })
+    return res.json({user})
+    // return res.send("userId fk needs to be added")
 }))
 
 router.get('/:id/watching', asyncHandler(async (req, res) => {

@@ -27,7 +27,7 @@ export const fetchOrderByID = (orderId) => async (dispatch) => {
 
 export const fetchCreateNewOrder = (payload) => async (dispatch) => {
 
-    const {username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
+    const {username,userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
            otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds} = payload;
     const res = await csrfFetch('/api/orders/new', {
         method: "POST",
