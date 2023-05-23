@@ -2,23 +2,50 @@ import { csrfFetch } from "./csrf";
 
 const LOAD = 'settings/LOAD';
 
-const loadUserSellingList = (selling) => ({
+const loadUsersSellingList = (data) => ({
     type: LOAD,
-    selling
+    data
 });
 
+const loadUsersOrdersList = (data) => ({
+    type: LOAD,
+    data
+});
 
+const loadUsersWatchList = (data) => ({
+    type: LOAD,
+    data
+});
 
 export const fetchUserSellingList = (userId) => async (dispatch) => {
     const res = await csrfFetch(`/api/settings/${userId}/selling`)
     if (res.ok) {
         const data = await res.json()
-        dispatch(loadUserSellingList(data))
+        dispatch(loadUsersSellingList(data))
         return data
     }
     return
 }
 
+export const fetchUsersOrdersList = (userId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/settings/${userId}/orders`)
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(loadUsersOrdersList(data))
+        return data
+    }
+    return
+}
+
+export const fetchUsersWatchList = (userId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/settings/${userId}/watching`)
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(loadUsersWatchList(data))
+        return data
+    }
+    return
+}
 
 // export const fetchCreateNewOrder = (payload) => async (dispatch) => {
 
@@ -48,7 +75,7 @@ const initialState = {};
 function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD:
-            return {...action.selling }
+            return {...action.data }
         default:
             return state
 
