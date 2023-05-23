@@ -11,10 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Orders.belongsTo(models.User, {foreignKey:'userId'})
     }
   };
   Orders.init({
     username: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
     email: DataTypes.STRING,
     nameOnCard: DataTypes.STRING,
     cardNumber: DataTypes.STRING,
