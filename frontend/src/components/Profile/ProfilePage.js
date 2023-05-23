@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Box, Button, Link, Flex, Text, SimpleGrid, Wrap, WrapItem, Avatar } from "@chakra-ui/react";
@@ -19,6 +19,8 @@ function ProfilePage() {
     dispatch(sessionActions.logout());
     navigate('/')
   };
+
+
 
   return (
     <Box pos='relative' top='50px'>
