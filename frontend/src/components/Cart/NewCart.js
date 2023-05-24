@@ -28,10 +28,11 @@ function CheckoutForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const shoppingCart = useSelector((state) => state.shoppingCart);
-    // const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.session.user);
+    const userId = user?.id
+    const username = user?.username
     const cart = Object.values(shoppingCart);
 
-    // const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [nameOnCard, setNameOnCard] = useState("");
     const [cardNumber, setCardNumber] = useState("");
@@ -61,7 +62,7 @@ function CheckoutForm() {
 
 
 
-    const username = "demo"
+
     // const updateUserName = (e) => setUserName(e.target.value)
     const updateEmail = (e) => setEmail(e.target.value)
     const updateNameOnCard = (e) => setNameOnCard(e.target.value)
@@ -91,13 +92,15 @@ function CheckoutForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        let payload = { username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+        let payload = { username, userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+
+        console.log(username)
         let data = await dispatch(fetchCreateNewOrder(payload))
 
         if (!data?.errors) {
-            dispatch(purchaseFromCart())
+            // dispatch(purchaseFromCart())
             alert("Your order is being processed you will recieve an order confirmation email soon")
-            navigate("/home")
+            // navigate("/home")
             return data
         }
         else{
