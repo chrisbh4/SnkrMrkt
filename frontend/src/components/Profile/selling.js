@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Link, Flex, Text, SimpleGrid, Image, WrapItem } from "@chakra-ui/react";
+import { Box, Link, Flex, Text, SimpleGrid, Image, WrapItem, Wrap } from "@chakra-ui/react";
 import { fetchUserSellingList } from "../../store/settings";
+import ShoeList from "../OldHomePage/ShoeList";
 
 
 function SellingPage() {
@@ -29,20 +30,18 @@ function SellingPage() {
 
           <Box>
             <Flex justify={'space-between'} w='75%' py='8px' pos='relative' left='5%' borderBottom={'2px'}>
-              <Text fontSize={'30px'}>Snkrs your selling</Text>
+              <Text fontSize={'30px'}>Selling List</Text>
             </Flex>
 
-            <Flex>
-
+            <Wrap w={"full"} padding={"3"} ml={"3%"}>
               {shoes?.map((shoe) => {
-
                 return (
-                  <>
-                    <Image src={shoe.image} w={"full"} h="300px" fit="cover"></Image>
-                  </>
+                  <WrapItem w={"20%"} _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}} >
+                    <ShoeList shoe={shoe} key={shoe.id} />
+                  </WrapItem>
                 )
               })}
-            </Flex>
+            </Wrap>
 
           </Box>
         </Box>
