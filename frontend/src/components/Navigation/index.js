@@ -58,7 +58,7 @@ function Navigation({ isLoaded }) {
 
 
         <Box id="search-bar-container">
-          <SearchBar shoes={grabAllShoes} />
+          {/* <SearchBar shoes={grabAllShoes} /> */}
         </Box>
 
         <Flex justify={'center'} pr='20px'>

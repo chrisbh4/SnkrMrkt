@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Link, Flex, Text, SimpleGrid, GridItem } from "@chakra-ui/react";
+import { Box, Link, Flex, Text } from "@chakra-ui/react";
 import { fetchUsersOrdersList } from "../../store/settings";
 
 
@@ -35,14 +35,16 @@ function PurchasedPage() {
 
 
 
-            <SimpleGrid columns={3} spacing={10} px='5%' pt='2%'>
+            <Box px='5%' pt='2%'>
             {orders?.map((order) =>{
-
               return(
-                <Text>Order Id: {order.id}</Text>
+                <Flex h={"14"} fontSize={"lg"} >
+                  <Text>Order Number: {order?.id}00{order?.id}0</Text>
+                  <Text ml={"3%"}>Purchased Date: {order?.createdAt}</Text>
+                </Flex>
               )
             })}
-            </SimpleGrid>
+            </Box>
 
           </Box>
         </Box>
