@@ -23,8 +23,6 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 - CSS
 - Chakra UI
 
-## HomePage
-
 <style>
     #screenshots {
         width: 70%;
@@ -32,9 +30,10 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
     }
 </style>
 
+## Home Page
 <img id="screenshots" src="https://i.imgur.com/nWhSavf.png" alt="home" />
 
-## All Shoes Page
+## All Shoes
 <img id="screenshots" src="https://imgur.com/olGFJxu.png" />
 
 ## Shoe Details
