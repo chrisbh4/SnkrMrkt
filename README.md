@@ -1,54 +1,55 @@
 # SnkrMrkt
-
-
-live link: [SnkrMrkt](https://theplugg.herokuapp.com)
+live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 
 
 ## Features
 - User Sign Up/Login with email and password ( Demo account provided )
 - Non-Users and Users can view all listed shoes and reviews
-- Users can create, edit,and delete a shoe listings
+- Users can create, edit, and delete a shoe listings
 - Users can create, edit, and delete a shoe reviews
-- Users can create, edit, and delete a shopping cart
-
-
-## HomePage
-
-<img src="https://imgur.com/3CpfUFx.png" alt="home" />
-
-## All Shoes Page
-<img src="https://imgur.com/vfYKJKM.png" />
-
-## Shoe Details
-<img src="https://imgur.com/fcahWk6.png" />
-
-## Shoe Reviews
-<img src="https://imgur.com/I3b3sGJ.png" />
-
-## Shopping Cart
-<img src="https://imgur.com/FDgdgOw.png" />
-
-
-
-
-
+- Users can create, edit, and delete a shoe from the shopping cart
+- Users can create a shoe order
 
 ### Technologies:
 - JavaScript
 - Express
 - Nodejs
 - SQL
-- Squelize
+- Sequelize
 - React
 - Redux
 - AWS
 - HTML
 - CSS
+- Chakra UI
+
+## HomePage
+
+<style>
+    #screenshots {
+        width: 70%;
+        height: 450px;
+    }
+</style>
+
+<img id="screenshots" src="https://i.imgur.com/nWhSavf.png" alt="home" />
+
+## All Shoes Page
+<img id="screenshots" src="https://imgur.com/olGFJxu.png" />
+
+## Shoe Details
+<img id="screenshots" src="https://imgur.com/IUAoMGS.png" />
+
+## Checkout Form
+<img id="screenshots" src="https://imgur.com/4ujp8MW.png" />
+
+
+
 
 
 ### Installation:
 
-1. After cloning the project, from the root folder of (ThePlug) run in the terminal
+1. After cloning the project, from the root folder 'Snkr_Mrkt' run in the terminal
 > npm install
 
 2. In the root of the backend folder create the database
