@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid, Link } from '@chakra-ui/react'
+import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid } from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
@@ -69,7 +69,6 @@ function NewHomePage() {
 
   useEffect(()=>{
     dispatch(getAllShoes())
-    dispatch(fetchMostPopular())
 },[dispatch])
 
 const onSubmit = async (e) => {

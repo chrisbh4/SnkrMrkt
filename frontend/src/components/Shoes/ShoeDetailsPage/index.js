@@ -32,12 +32,12 @@ function ShoeDetialsChakra() {
 
   useEffect(() => {
     dispatch(getOneShoe(shoeId))
-    dispatch(fetchMostPopular())
+    // dispatch(fetchMostPopular())
   }, [dispatch, shoeId]);
 
 
-  const stockXdata = useSelector((state) => state.stockXapi)
-  const testData = stockXdata[0]
+  // const stockXdata = useSelector((state) => state.stockXapi)
+  // const testData = stockXdata[0]
 
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -99,17 +99,24 @@ function ShoeDetialsChakra() {
               </Box>
 
               <Box>
-                <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text>
-                <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text>
-                <Text>{testData?.details.retail} </Text>
-                <Text>{testData?.details.releaseDate} </Text>
+                {/* <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text> */}
+                <Text whiteSpace={'nowrap'} >Lorem ipsum dolor </Text>
+                
+                {/* <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text> */}
+                <Text whiteSpace={'nowrap'} >dolor um Lorem  </Text>
+
+                {/* <Text>${testData?.details.retail} </Text> */}
+                <Text>$220 </Text>
+
+                {/* <Text>{testData?.details.releaseDate} </Text> */}
+                <Text>05-20-2018 </Text>
               </Box>
             </Flex>
           </Box>
           <Box w='50%' pb='5' pl='11%'>
-            <Text fontSize={'lg'} w='full' h='90%' fontWeight='semibold' overflow={'scroll'} >
-              {/* {shoe?.description} */}
-              {testData?.details.description}
+            <Text fontSize={'lg'} w='full' h='200px' fontWeight='semibold' overflow={'scroll'} >
+              {shoe?.description}
+              {/* {testData?.details.description} */}
             </Text>
           </Box>
 
