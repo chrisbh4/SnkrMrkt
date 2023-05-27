@@ -1,41 +1,61 @@
-import React from "react";
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, {useEffect} from "react";
+// import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Link, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import { Box, Link, Flex, Text } from "@chakra-ui/react";
+import { fetchUsersOrdersList } from "../../store/settings";
 
 
 function PurchasedPage() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
+  const orders = useSelector(state => state.settings.user?.Orders)
+
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const formattedDate = `${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}/${year}`;
+    return formattedDate;
+  }
+
+
+
+  useEffect(() => {
+    dispatch(fetchUsersOrdersList(user?.id))
+}, [dispatch, user])
 
 
   return (
     <Box pos='relative' top='50px'>
       <Flex h='1000px'    >
         <Box w='20%' pl='8px'>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/profile' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} >Profile</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/payment' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Payment Settings</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/purchased' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Orders</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/sell' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Selling</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href='/watch' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Watching</Link></Flex>
-          {/* <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href={`/${user.id}/selling`} _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} >Profile</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href={`/${user.id}/payments`} _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Payment Preference</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href={`/${user.id}/purchased`} _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Orders</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href={`/${user.id}/selling`} _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Selling</Link></Flex>
-          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} ><Link href={`/${user.id}/watching`} _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Watching</Link></Flex> */}
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/profile' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} >Profile</Link></Flex>
+          {/* <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/payment' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Payment Settings</Link></Flex> */}
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/purchased' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Order History</Link></Flex>
+          <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/sell' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Selling</Link></Flex>
+          {/* <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/watch' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Watching</Link></Flex> */}
         </Box>
         <Box w='100%'>
 
           <Box>
             <Flex justify={'space-between'} w='75%' py='8px' pos='relative' left='5%' borderBottom={'2px'}>
-              <Text fontSize={'30px'}>Orders</Text>
+              <Text fontSize={'30px'}>Order History</Text>
             </Flex>
 
 
 
-            <SimpleGrid columns={3} spacing={10} px='5%' pt='2%'>
-            </SimpleGrid>
+            <Box px='5%' pt='2%'>
+            {orders?.map((order) =>{
+              return(
+                <Flex h={"14"} fontSize={"lg"} >
+                  <Text>Order Number: {order?.id}00{order?.id}0</Text>
+                  <Text ml={"3%"}>Purchased Date: {formatDate(order?.createdAt)}</Text>
+                </Flex>
+              )
+            })}
+            </Box>
 
           </Box>
         </Box>

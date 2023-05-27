@@ -7,6 +7,7 @@ import shoppingCart from "./shoppingCart"
 import stockXapi from "./stockX"
 import orders from "./orders"
 import filters from "./filters"
+import settings from "./settings"
 
 
 
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   shoppingCart,
   stockXapi,
   orders,
-  filters
+  filters,
+  settings
 });
 
 let enhancer;

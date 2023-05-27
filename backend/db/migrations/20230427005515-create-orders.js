@@ -8,6 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        // will not allow the same user to sell multiple shoes
+        // unique:true,
+        references:{model:"Users"}
+      },
       username: {
         type: Sequelize.STRING
       },
