@@ -36,6 +36,27 @@ function ShoeDetialsChakra() {
   }, [dispatch, shoeId]);
 
 
+  const getRandomRetialPrice =() => {
+    const randomNumber = Math.random() < 0.5 ? 180 : 220;
+    return randomNumber;
+}
+
+const getRandomDate = () => {
+  const startDate = new Date('2018-05-20');
+  const endDate = new Date('2022-12-25');
+  const startTimestamp = startDate.getTime();
+  const endTimestamp = endDate.getTime();
+
+  const randomTimestamp = Math.floor(Math.random() * (endTimestamp - startTimestamp + 1) + startTimestamp);
+
+  const randomDate = new Date(randomTimestamp);
+  const formattedDate = `${randomDate.getMonth() + 1}/${randomDate.getDate()}/${randomDate.getFullYear()}`;
+
+  return formattedDate;
+}
+
+
+
   // const stockXdata = useSelector((state) => state.stockXapi)
   // const testData = stockXdata[0]
 
@@ -101,15 +122,15 @@ function ShoeDetialsChakra() {
               <Box>
                 {/* <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text> */}
                 <Text whiteSpace={'nowrap'} >Lorem ipsum dolor </Text>
-                
+
                 {/* <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text> */}
                 <Text whiteSpace={'nowrap'} >dolor um Lorem  </Text>
 
                 {/* <Text>${testData?.details.retail} </Text> */}
-                <Text>$220 </Text>
+                <Text>${getRandomRetialPrice()}</Text>
 
                 {/* <Text>{testData?.details.releaseDate} </Text> */}
-                <Text>05-20-2018 </Text>
+                <Text>{getRandomDate()} </Text>
               </Box>
             </Flex>
           </Box>
