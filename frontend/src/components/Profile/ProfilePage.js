@@ -37,10 +37,10 @@ function ProfilePage() {
           <Box>
             <Flex justify={'space-between'} w='75%' py='8px' pos='relative' left='5%' borderBottom={'2px'}>
               <Text fontSize={'30px'}>Profile</Text>
-              <Box >
+              {/* <Box >
                 <Button bg='red.300' mr='15px'>Edit</Button>
                 <Button onClick={logout} bg='red.300' >Log out</Button>
-              </Box>
+              </Box> */}
             </Flex>
 
             <SimpleGrid columns={3} spacing={10} px='5%' pt='2%'>
