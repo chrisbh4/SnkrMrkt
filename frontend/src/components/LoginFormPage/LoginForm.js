@@ -56,8 +56,10 @@ function LoginForm() {
 
     return (
         <>
-            <Button onClick={onOpen} color='rgba(255,255,255,1)' background='none' border-radius='square' letter-spacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
-                _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            <Button
+            onClick={onOpen}
+            color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.7em 4em'
+            _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
             >Log In</Button>
 
             <Modal isOpen={isOpen} onClose={onClose} size='3xl'>
