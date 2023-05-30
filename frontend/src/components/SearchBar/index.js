@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, List, ListItem, ListIcon, Box, Link, textDecoration} from '@chakra-ui/react';
+import { Input, List, ListItem, ListIcon, Box, Link } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 
 const SearchBar = ({ shoes }) => {
@@ -41,12 +41,12 @@ const SearchBar = ({ shoes }) => {
                 >
                     <List spacing={2} >
                         {filteredData.map((item) => (
-                                <Link href={`/shoes/${item.id}`}  _hover={{textDecoration: "none"}}>
-                            <ListItem key={item.id} _hover={{bg: "gray.200"}} fontSize={"lg"}  >
-                                <ListIcon as={SearchIcon} color="teal.500" />
-                                {item.title}
-                            </ListItem>
-                                </Link>
+                            <Link href={`/shoes/${item.id}`} _hover={{ textDecoration: "none" }}>
+                                <ListItem key={item.id} _hover={{ bg: "gray.200" }} fontSize={"lg"}  >
+                                    <ListIcon as={SearchIcon} color="teal.500" />
+                                    {item.title}
+                                </ListItem>
+                            </Link>
                         ))}
                     </List>
                 </Box>
