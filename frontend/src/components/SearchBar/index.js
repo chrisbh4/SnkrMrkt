@@ -1,62 +1,58 @@
 import React, { useState } from 'react';
-import { Input, List, ListItem, ListIcon, Box } from '@chakra-ui/react';
+import { Input, List, ListItem, ListIcon, Box, Link, textDecoration} from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 
-const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState('');
+const SearchBar = ({ shoes }) => {
+    const [searchValue, setSearchValue] = useState('');
 
-  const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
-  };
+    const handleInputChange = (event) => {
+        setSearchValue(event.target.value);
+    };
 
-  // Replace this dummy data with your actual data source
-  const data = [
-    { id: 1, title: 'Nike Air Max' },
-    { id: 2, title: 'Adidas Ultraboost' },
-    { id: 3, title: 'Puma Suede' },
-    { id: 4, title: 'New Balance 574' },
-    { id: 5, title: 'Vans Old Skool' },
-  ];
+    const data = Object.values(shoes)
 
-  const filteredData = data.filter((item) =>
-    item.title.toLowerCase().includes(searchValue.toLowerCase())
-  );
+    const filteredData = data.filter((item) =>
+        item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
-  const shouldShowResults = searchValue !== '';
+    const shouldShowResults = searchValue !== '';
 
-  return (
-    <Box p={4} position="relative">
-      <Input
-        type="text"
-        value={searchValue}
-        onChange={handleInputChange}
-        placeholder="Search..."
-        mb={4}
-        size="lg"
-        variant="filled"
-        leftIcon={<SearchIcon color="gray.500" />}
-      />
-      {shouldShowResults && (
-        <Box
-          position="absolute"
-          width="100%"
-          bg="white"
-          boxShadow="md"
-          borderRadius="md"
-          zIndex={1}
-        >
-          <List spacing={2}>
-            {filteredData.map((item) => (
-              <ListItem key={item.id}>
-                <ListIcon as={SearchIcon} color="teal.500" />
-                {item.title}
-              </ListItem>
-            ))}
-          </List>
+    return (
+        <Box position="relative" top={"10px"} left={"40px"} >
+            <Input
+                bg={"white"}
+                type="text"
+                value={searchValue}
+                onChange={handleInputChange}
+                placeholder="Search..."
+                mb={4}
+                size="lg"
+                leftIcon={<SearchIcon color="gray.500" />}
+            />
+            {shouldShowResults && (
+                <Box
+                    position="absolute"
+                    width="100%"
+                    bg="white"
+                    boxShadow="md"
+                    borderRadius="md"
+                    zIndex={1}
+                    py={2}
+                >
+                    <List spacing={2} >
+                        {filteredData.map((item) => (
+                                <Link href={`/shoes/${item.id}`}  _hover={{textDecoration: "none"}}>
+                            <ListItem key={item.id} _hover={{bg: "gray.200"}} fontSize={"lg"}  >
+                                <ListIcon as={SearchIcon} color="teal.500" />
+                                {item.title}
+                            </ListItem>
+                                </Link>
+                        ))}
+                    </List>
+                </Box>
+            )}
         </Box>
-      )}
-    </Box>
-  );
+    );
 };
 
 export default SearchBar;

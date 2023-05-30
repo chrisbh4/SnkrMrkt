@@ -21,7 +21,7 @@ function Navigation({ isLoaded }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
-  const grabAllShoes = useSelector(state => state.shoes)
+  const grabAllShoes = useSelector(state => state?.shoes)
 
   // const [query, setQuery] = useState("");
 
@@ -59,9 +59,9 @@ function Navigation({ isLoaded }) {
 
 
         {/* <Box id="search-bar-container"> */}
-        <Box bg={"white"} w={"30%"}>
-          {/* <SearchBar shoes={grabAllShoes} /> */}
-          <SearchBar />
+        <Box w={"25%"}>
+          <SearchBar shoes={grabAllShoes} />
+          {/* <SearchBar /> */}
         </Box>
 
 
