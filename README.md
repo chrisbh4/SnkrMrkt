@@ -8,7 +8,7 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 - Users can create, edit, and delete a shoe listings
 - Users can create, edit, and delete a shoe reviews
 - Users can create, edit, and delete a shoe from the shopping cart
-- Users can create a shoe order
+- Users can create a purchase order and view order history
 
 ### Technologies:
 - JavaScript
@@ -23,28 +23,23 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 - CSS
 - Chakra UI
 
-<style>
+<!-- <style>
     #screenshots {
-        width: 70%;
-        height: 450px;
+        width: 70%; height: 450px;
     }
-</style>
+</style> -->
 
 ## Home Page
-<img id="screenshots" src="https://i.imgur.com/nWhSavf.png" alt="home" />
+<img src="https://i.imgur.com/nWhSavf.png" style="width: 60%; height: 500px;" alt="home" />
 
-## All Shoes
-<img id="screenshots" src="https://imgur.com/olGFJxu.png" />
+## All Shoes Page
+<img src="https://imgur.com/olGFJxu.png" style="width: 60%; height: 500px;" />
 
-## Shoe Details
-<img id="screenshots" src="https://imgur.com/IUAoMGS.png" />
+## Shoe Details Page
+<img src="https://imgur.com/IUAoMGS.png" style="width: 60%; height: 500px;" />
 
-## Checkout Form
-<img id="screenshots" src="https://imgur.com/4ujp8MW.png" />
-
-
-
-
+## Checkout Form Page
+<img src="https://imgur.com/4ujp8MW.png" style="width: 60%; height: 500px;" />
 
 ### Installation:
 
