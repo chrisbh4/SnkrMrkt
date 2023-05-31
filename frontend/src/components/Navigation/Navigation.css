@@ -9,31 +9,28 @@
   border: 1.5px solid black;
 }
 
-.profile-dropdown > p{
+.profile-dropdown>p {
   font-size: 15px;
 }
 
-#user-info{
+#user-info {
   font-size: 17px;
   font-weight: bold;
 }
 
-.nav-logged-out{
-  background-color:#24292e;
-    position: fixed;
-    width: 100%;
-    /* margin: -8px; */
-    height:75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-.nav-logged-in{
-background-color:#24292e;
-  /* position: fixed; */
+.nav-logged-out {
+  background-color: #24292e;
   width: 100%;
-  height:75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-logged-in {
+  background-color: #24292e;
+  width: 100%;
+  height: 75px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,91 +42,91 @@ background-color:#24292e;
 /** make this a universal transition:
 transition: background-color 0.3s, box-shadow 0.3s, color 0.3s; */
 
-.nav-button{
+.nav-button {
   /* width: 110px;
   height: 30px; */
   margin-right: 20px;
   margin-left: 10px;
-  color: rgba(255,255,255,1);
-	background: none;
-	border-radius: 0;
-	padding: 0.9em 4em;
-	letter-spacing: 0.35em;
-	font-size: 0.7em;
-	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+  color: rgba(255, 255, 255, 1);
+  background: none;
+  border-radius: 0;
+  padding: 0.9em 4em;
+  letter-spacing: 0.35em;
+  font-size: 0.7em;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 
 }
 
-.nav-button:hover{
-  color: rgba(0,0,0,0.8);
-      background-color: #fff;
-      box-shadow: inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5);
-   }
+.nav-button:hover {
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #fff;
+  box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.3), 0 0 1.2em rgba(255, 255, 255, 0.5);
+}
 
-.nav-profile-button{
+.nav-profile-button {
   /* margin-right: 10px; */
   margin-right: 20px;
   margin-left: 10px;
-  color: rgba(255,255,255,1);
-	background: none;
-	border-radius: 0;
-	padding: 0.9em 4em;
-	letter-spacing: 0.35em;
-	font-size: 0.7em;
-	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+  color: rgba(255, 255, 255, 1);
+  background: none;
+  border-radius: 0;
+  padding: 0.9em 4em;
+  letter-spacing: 0.35em;
+  font-size: 0.7em;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
-.nav-control-btns{
+.nav-control-btns {
   display: flex;
   justify-content: center;
 }
 
-.web-title{
+.web-title {
   position: relative;
   left: 30px;
 }
 
-#web-title-redirect{
+#web-title-redirect {
   padding: 10px;
   font-size: 40px;
   color: white;
 
 }
 
-.web-title-logged-out{
+.web-title-logged-out {
   position: relative;
   right: 250px;
 }
 
-button > *{
+button>* {
   text-decoration: none;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 
 }
 
-a:visited{
+a:visited {
   color: black;
 }
 
 
-.logout-button{
+.logout-button {
   background: none;
-	border-radius: 0;
-	padding: 0.7em 3.5em;
-	letter-spacing: 0.3em;
-	font-size: 0.7em;
-	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+  border-radius: 0;
+  padding: 0.7em 3.5em;
+  letter-spacing: 0.3em;
+  font-size: 0.7em;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 
 }
 
-.logout-button:hover{
-  color: rgba(255,255,255,1);
+.logout-button:hover {
+  color: rgba(255, 255, 255, 1);
   /* color: rgba(0,0,0,0.8); */
-      background-color: #454c53;
-      /* background-color: #fff; */
-      box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
-   }
+  background-color: #454c53;
+  /* background-color: #fff; */
+  box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
+}

@@ -23,8 +23,6 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user)
   const grabAllShoes = useSelector(state => state?.shoes)
 
-  // const [query, setQuery] = useState("");
-
   const demoLogin = () => {
     let credential = 'demo@user.io'
     let password = 'password'
@@ -39,11 +37,6 @@ function Navigation({ isLoaded }) {
     dispatch(sessionActions.logout());
     navigate('/')
   };
-
-  // Semver
-  // small = patch
-  // mid = minor change
-
 
   let sessionLinks;
   if (sessionUser) {
