@@ -145,14 +145,14 @@ const getRandomDate = () => {
         </Flex>
         {/* Related Products () */}
         {/* Write a while loop while iterating through the Shoes array up to i >= 5 */}
-        <Box borderTop={'22px'} borderColor='black' >
+        <Box>
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
           <Flex >
             <Link href='/shoes/1'>
               <Image
                 src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-1.png"}
                 boxSize='250px'
-                border={'1px'}
+                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
               />
             </Link>
 
@@ -160,7 +160,7 @@ const getRandomDate = () => {
               <Image
                 src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-2.png"}
                 boxSize='250px'
-                border={'1px'}
+                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
               />
             </Link>
 
@@ -168,7 +168,7 @@ const getRandomDate = () => {
               <Image
                 src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-3.png"}
                 boxSize='250px'
-                border={'1px'}
+                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
               />
             </Link>
 
@@ -176,7 +176,7 @@ const getRandomDate = () => {
               <Image
                 src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-4.png"}
                 boxSize='250px'
-                border={'1px'}
+                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
               />
             </Link>
 
@@ -184,7 +184,7 @@ const getRandomDate = () => {
               <Image
                 src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-5.png"}
                 boxSize='250px'
-                border={'1px'}
+                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
               />
             </Link>
           </Flex>

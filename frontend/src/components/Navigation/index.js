@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import SearchBar from '../SearchBar/SearchBar';
+// import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '../SearchBar/index.js';
 import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 import { purchaseFromCart } from "../../store/shoppingCart";
@@ -20,7 +21,7 @@ function Navigation({ isLoaded }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
-  const grabAllShoes = useSelector(state => state.shoes)
+  const grabAllShoes = useSelector(state => state?.shoes)
 
   // const [query, setQuery] = useState("");
 
@@ -57,9 +58,12 @@ function Navigation({ isLoaded }) {
         </Box>
 
 
-        <Box id="search-bar-container">
-          {/* <SearchBar shoes={grabAllShoes} /> */}
+        {/* <Box id="search-bar-container"> */}
+        <Box w={"25%"}>
+          <SearchBar shoes={grabAllShoes} />
+          {/* <SearchBar /> */}
         </Box>
+
 
         <Flex justify={'center'} pr='20px'>
           {/* <NavLink exact to="/home">
