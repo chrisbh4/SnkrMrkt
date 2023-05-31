@@ -37,8 +37,9 @@ const sizeChart = [
     { id: 20, size: 12.5 },
     { id: 21, size: 13 },
     { id: 22, size: 13.5 },
-    { id: 23, size: 14.5 },
-    { id: 24, size: 15 },
+    { id: 23, size: 14 },
+    { id: 24, size: 14.5 },
+    { id: 25, size: 15 },
   ]
 
 
@@ -71,8 +72,13 @@ function AddToCartComponent({shoeId}) {
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
   const shoeSellerId = shoe?.sellerId;
+  console.log(shoe?.shoeSize)
+  console.log("Size :", size)
 
   const addToCart = async () => {
+    shoe.shoeSize = size
+
+    console.log(shoe)
     await dispatch(addShoeToCart(shoe, cart))
     // alert("Shoe has been added to your cart!")
     navigate("/home")
@@ -97,13 +103,13 @@ function AddToCartComponent({shoeId}) {
   let addToCartVerfication;
   if (userId !== shoeSellerId && userId > 0.99) {
     addToCartVerfication = (
-      <Box w='500px' border={'1px'} p='5%'>
+      <Box w='500px' p='5%'>
         <Box>
           <Box p='10px'>
-            <Select placeholder='Select Size:' variant={"filled"} w='90%'  onClick={updateSize} >
+            <Select placeholder='Select Size:' variant={"filled"} w='90%'  onChange={updateSize} >
               {sizeChart.map((chart) => {
                 return (
-                  <option key={chart.id} value={chart.size}  onChange={updateSize} >{chart.size} </option>
+                  <option key={chart.id} value={chart.size} >{chart.size} </option>
                   )
                 })}
             </Select>
