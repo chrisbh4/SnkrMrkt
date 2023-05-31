@@ -49,6 +49,7 @@ function CartItem({item}){
                 <Image src={item.img} borderRadius='full' boxSize='150px' ></Image>
                 <Box w={'30%'}>{item.title} </Box>
                 <Box>${item.price}</Box>
+                <Box>Size: {item.size}(M)</Box>
                 <Button onClick={removeShoe} bg='none' fontSize='20px' fontWeight='bold' _hover={{ bg: "none" }}>
                     <DeleteIcon />
                 </Button>

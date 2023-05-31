@@ -52,7 +52,7 @@ function SlideOutCart() {
         placement='right'
         onClose={onClose}
         finalFocusRef={btnRef}
-        size='lg'
+        size='xl'
 
       >
         <DrawerOverlay />

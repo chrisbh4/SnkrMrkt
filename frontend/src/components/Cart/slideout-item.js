@@ -26,13 +26,14 @@ function SlideOutCartItem({ item }) {
 
 
     return (
-        <SimpleGrid columns={4} alignContent='center' alignItems={'center'} rows={1} gap={6}>
+        <SimpleGrid columns={5} alignContent='center' alignItems={'center'} rows={1} gap={6}>
             <GridItem w='100%' h='auto' >
                 <Image src={item.img} borderRadius='full' boxSize='150px' ></Image>
             </GridItem>
 
             <GridItem w='100%' pos='relative' left='10%' textAlign={'center'} ><Link _hover={{ textDecoration: "none" }} href={`/shoes/${item.shoeId}`} >{item.title}</Link></GridItem>
             <GridItem w='100%' textAlign={'center'} >{item.price} </GridItem>
+            <GridItem w='100%' textAlign={'center'} >Size: {item.size} (M) </GridItem>
             <GridItem w='100%' >
                 <Button onClick={removeShoe} bg='none' size={"sm"} fontSize='20px' fontWeight='bold' _hover={{ bg: "none" }}>
                     <DeleteIcon />
