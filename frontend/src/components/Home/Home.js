@@ -84,7 +84,7 @@ const onSubmit = async (e) => {
 
         {/* Shoe Iteration col */}
         {/* <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' > */}
-        <Box rowSpan={2} colSpan={4} minW={'100%'} w={"full"} overflow='scroll' mt='0.7%' >
+        <Box rowSpan={2} colSpan={4} minW={'100%'} w={"full"} overflow='scroll' mt='0.7%' pl={"2%"} >
           <Wrap w='100%' minW={'100%'} justify={'start'}>
             {shoesArray.map((shoe) => {
               return (
