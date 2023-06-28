@@ -13,14 +13,16 @@ const db = {};
 const readReplicas = [
   {
     // host: 'top1.nearest.of.chaos-postgres.internal',
-    port: 5433
+    port: 5433,
+    // username: "repmgr",
+    // password: process.env.REPL_PASSWORD
   }
 ];
 
 // Write replica configuration
 const writeReplica = {
   // host: 'top1.nearest.of.chaos-postgres.internal',
-  port: 5432
+  port: 5432,
 };
 
 // Sequelize connection options
@@ -40,9 +42,6 @@ let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env.DATABASE_URL, sequelizeOptions);
   // sequelize = new Sequelize(process.env[config.use_env_variable], config);
-
-  // console.log(process.env)
-  console.log("Inside sequelize options")
 
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
