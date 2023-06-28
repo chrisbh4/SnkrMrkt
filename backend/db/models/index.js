@@ -8,14 +8,60 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../../config/database.js')[env];
 const db = {};
 
+
+
+const readReplicas = [
+  {
+    // host: 'top1.nearest.of.chaos-postgres.internal',
+    port: 5433
+  }
+];
+
+// Write replica configuration
+const writeReplica = {
+  // host: 'top1.nearest.of.chaos-postgres.internal',
+  port: 5432
+};
+
+// Sequelize connection options
+const sequelizeOptions = {
+  dialect: 'postgres',
+  replication: {
+    read: readReplicas,
+    write: writeReplica
+  },
+  pool: {
+    max: 20,
+    idle: 30000
+  }
+};
+
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env.DATABASE_URL);
+  sequelize = new Sequelize(process.env.DATABASE_URL, sequelizeOptions);
   // sequelize = new Sequelize(process.env[config.use_env_variable], config);
+
+  // console.log(process.env)
+  console.log("Inside sequelize options")
+
 } else {
-  // sequelize = new Sequelize(proces.env.DATABASE_URL);
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+
+
+
+
+  (async () => {
+    try {
+      await sequelize.authenticate();
+      console.log('Connected to the database!!!!!');
+      // console.log(`FLY REGION: ${process.env.FLY_REGION}`);
+      // console.log(sequelize.getDatabaseName());
+    } catch (err) {
+      console.error('Error connecting to the database:', err);
+    }
+  })();
+
 
 fs
   .readdirSync(__dirname)

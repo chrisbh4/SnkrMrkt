@@ -19,6 +19,7 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     seederStorage: 'sequelize',
+    port: process.env.FLY_REGION === 'sjc' ? 5432 : 5433,
     // dialectOptions: {
     //   ssl: {
     //     require: false,

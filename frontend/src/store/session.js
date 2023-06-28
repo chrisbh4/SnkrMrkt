@@ -18,7 +18,7 @@ const allUsers = (users) => ({
 });
 
 
-let logoutTimer; // Timer variable
+let logoutTimer;
 
 const startLogoutTimer = (expirationTime) => (dispatch) => {
   logoutTimer = setTimeout(() => {
@@ -54,9 +54,6 @@ export const logout = () => async (dispatch) => {
   dispatch(removeUser());
   return response;
 };
-
-
-
 
 
 export const restoreUser = () => async dispatch => {
