@@ -156,7 +156,7 @@ function CheckoutForm() {
                                     </Box>
                                     <Flex w={'full'} mt={"5%"}>
                                         <Box>
-                                            <FormLabel>Expiration date</FormLabel>
+                                        <FormLabel>Expiration Date (MM/YY)</FormLabel>
                                             <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} />
                                         </Box>
 
@@ -238,13 +238,6 @@ function CheckoutForm() {
                                 </Box>
 
                                 <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
-                                <Box mt={"8%"}>
-                                    <Text fontSize={'2xl'}>Billing Information</Text>
-                                    <Flex w={'full'}>
-                                        <Checkbox borderColor={"black"} bg='gray.50' defaultChecked />
-                                        <FormLabel pt={"2%"} ml={'2%'}>Same as shipping Information</FormLabel>
-                                    </Flex>
-                                </Box>
 
                                 <Button w={"30%"} mt={"5%"} onClick={onSubmit} colorScheme="green">Submit</Button>
                             </Box>
