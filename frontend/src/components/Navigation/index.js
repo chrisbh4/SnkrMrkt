@@ -13,7 +13,7 @@ import LoginForm from '../LoginFormPage/LoginForm';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
-import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex } from '@chakra-ui/react';
+import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex, Image } from '@chakra-ui/react';
 import NewShoeModalForm from '../Shoes/NewShoesForm/modalForm';
 import NavBtnSignUpForm from '../SignupFormPage/NavButton';
 
@@ -45,9 +45,9 @@ function Navigation({ isLoaded }) {
         {/* need to change classname */}
         <Box className="web-title">
           <a href="/home" id="web-title-redirect">
-            SNKR MRKT
+            <Image src='https://imgur.com/KOgkPYD.png' boxSize={'100px'} ></Image>
           </a>
-
+        
         </Box>
 
 
@@ -120,10 +120,6 @@ function Navigation({ isLoaded }) {
 
 
 
-
-
-
-
         </Flex>
       </Box>
 
@@ -133,7 +129,8 @@ function Navigation({ isLoaded }) {
       <Box className="nav-logged-out">
         <Box className="web-title-logged-out" ml={'5%'}>
           <a href="/" id="web-title-redirect">
-            SNKR MRKT
+            {/* SNKR MRKT */}
+            <Image src='https://imgur.com/KOgkPYD.png' boxSize={'100px'} ></Image>
           </a>
         </Box>
 
