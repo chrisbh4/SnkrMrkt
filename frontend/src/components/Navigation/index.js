@@ -134,11 +134,9 @@ function Navigation({ isLoaded }) {
           </a>
         </Box>
 
-
         <LoginForm />
 
         <NavBtnSignUpForm/>
-
 
         <Button
           color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'

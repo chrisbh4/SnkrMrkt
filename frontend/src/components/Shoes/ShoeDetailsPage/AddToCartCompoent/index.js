@@ -47,8 +47,7 @@ function AddToCartComponent({shoeId}) {
     const dispatch = useDispatch();
   // const params = useParams();
   const navigate = useNavigate();
-
-//* Need to be able to grab the clicked on value for selecting shoe size
+  
   const [size, setSize] = useState("")
 
   const updateSize = async(e) => {
@@ -72,15 +71,17 @@ function AddToCartComponent({shoeId}) {
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
   const shoeSellerId = shoe?.sellerId;
-  console.log(shoe?.shoeSize)
-  console.log("Size :", size)
 
   const addToCart = async () => {
     shoe.shoeSize = size
 
-    console.log(shoe)
+    if (size.length === 0 ){
+      alert("Select a shoe size before adding to cart")
+      return
+    }
+
     await dispatch(addShoeToCart(shoe, cart))
-    // alert("Shoe has been added to your cart!")
+    alert("Shoe has been added to your cart!")
     navigate("/home")
     return
   }
