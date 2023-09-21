@@ -44,29 +44,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      {/* <Button onClick={openMenu} className="nav-profile-button">
-        <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
-      </Button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <p>username: <span id="user-info"> {user.username} </span> </p>
-          <p>Email: <span id="user-info">{user.email} </span></p>
-          <div>
-            <button className="logout-button" onClick={logout}>Log Out</button>
-          </div>
-        </ul>
-      )} */}
-
-          <Menu>
-  <MenuButton as={Button} >
-  <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
-  </MenuButton>
-  <MenuList >
-    <Text>Username: {user.username}</Text>
-    <Text>Email: {user.email}</Text>
-    <MenuItem><button className="logout-button" onClick={logout}>Log Out</button></MenuItem>
-  </MenuList>
-</Menu>
+      <Menu>
+        <MenuButton as={Button} >
+          <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
+        </MenuButton>
+        <MenuList >
+          <Text>Username: {user.username}</Text>
+          <Text>Email: {user.email}</Text>
+          <MenuItem><button className="logout-button" onClick={logout}>Log Out</button></MenuItem>
+        </MenuList>
+      </Menu>
     </>
   );
 }
