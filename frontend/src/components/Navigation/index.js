@@ -1,19 +1,15 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ProfileButton from './ProfileButton';
-// import SearchBar from '../SearchBar/SearchBar';
 import SearchBar from '../SearchBar/index.js';
 import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 import { purchaseFromCart } from "../../store/shoppingCart";
-// import SignUpForm from '../SignupFormPage/SignUpForm.js';
-import SignUpForm from "../SignupFormPage/SignupForm"
 import LoginForm from '../LoginFormPage/LoginForm';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
-import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex, Image } from '@chakra-ui/react';
+import { Box, Button, Flex, Image } from '@chakra-ui/react';
 import NewShoeModalForm from '../Shoes/NewShoesForm/modalForm';
 import NavBtnSignUpForm from '../SignupFormPage/NavButton';
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import * as sessionActions from '../../store/session';
 import { purchaseFromCart } from "../../store/shoppingCart";
 
-import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Text } from '@chakra-ui/react';
+import {Menu, MenuButton, MenuItem, Button, MenuList, Text } from '@chakra-ui/react';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -12,11 +12,6 @@ function ProfileButton({ user }) {
   const navigate = useNavigate()
 
 
-  const openMenu = () => {
-
-    if (showMenu) return;
-    setShowMenu(true);
-  };
 
   // IF true then the menu will open
   // IF false then the menu will close
