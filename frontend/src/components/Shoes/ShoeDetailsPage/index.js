@@ -46,16 +46,12 @@ const getRandomDate = () => {
   const endDate = new Date('2022-12-25');
   const startTimestamp = startDate.getTime();
   const endTimestamp = endDate.getTime();
-
   const randomTimestamp = Math.floor(Math.random() * (endTimestamp - startTimestamp + 1) + startTimestamp);
-
   const randomDate = new Date(randomTimestamp);
   const formattedDate = `${randomDate.getMonth() + 1}/${randomDate.getDate()}/${randomDate.getFullYear()}`;
 
   return formattedDate;
 }
-
-
 
   // const stockXdata = useSelector((state) => state.stockXapi)
   // const testData = stockXdata[0]

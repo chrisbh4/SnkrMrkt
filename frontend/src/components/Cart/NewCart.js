@@ -265,12 +265,12 @@ function CheckoutForm() {
                                 <Text>Free Shipping</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
-                                <Text>Taxes</Text>
+                                <Text>Tax</Text>
                                 <Text>{totalPriceOfShoes > 0 ? `${stateTax.toFixed(2)}` : null}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Total</Text>
-                                <Text>{totalPriceOfShoes > 0 ? `${pricePostTaxes.toFixed(2)}` : '$0.00'}</Text>
+                                <Text>${totalPriceOfShoes > 0 ? `${pricePostTaxes.toFixed(2)}` : '0.00'}</Text>
                             </Flex>
                         </Box>
                     </Stack>

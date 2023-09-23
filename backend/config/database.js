@@ -19,11 +19,12 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     seederStorage: 'sequelize',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    port: process.env.FLY_REGION === 'sjc' ? 5432 : 5433,
+    // dialectOptions: {
+    //   ssl: {
+    //     require: false,
+    //     rejectUnauthorized: false,
+    //   },
+    // },
   },
 };

@@ -1,19 +1,15 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ProfileButton from './ProfileButton';
-// import SearchBar from '../SearchBar/SearchBar';
 import SearchBar from '../SearchBar/index.js';
 import { login } from '../../store/session';
 import SlideOutCart from '../Cart/slideout-cart';
 import { purchaseFromCart } from "../../store/shoppingCart";
-// import SignUpForm from '../SignupFormPage/SignUpForm.js';
-import SignUpForm from "../SignupFormPage/SignupForm"
 import LoginForm from '../LoginFormPage/LoginForm';
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
-import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Flex } from '@chakra-ui/react';
+import { Box, Button, Flex, Image } from '@chakra-ui/react';
 import NewShoeModalForm from '../Shoes/NewShoesForm/modalForm';
 import NavBtnSignUpForm from '../SignupFormPage/NavButton';
 
@@ -22,8 +18,6 @@ function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
   const grabAllShoes = useSelector(state => state?.shoes)
-
-  // const [query, setQuery] = useState("");
 
   const demoLogin = () => {
     let credential = 'demo@user.io'
@@ -40,53 +34,25 @@ function Navigation({ isLoaded }) {
     navigate('/')
   };
 
-  // Semver
-  // small = patch
-  // mid = minor change
-
-
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <Box className="nav-logged-in">
-        {/* need to change classname */}
-        <Box className="web-title">
+      <Box bg={'#24292e'} height={'100px'} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+        <Box>
           <a href="/home" id="web-title-redirect">
-            SNKR MRKT
+            <Image src='https://imgur.com/KOgkPYD.png' boxSize={'100px'} ></Image>
           </a>
-
         </Box>
-
-
-        {/* <Box id="search-bar-container"> */}
         <Box w={"25%"}>
           <SearchBar shoes={grabAllShoes} />
-          {/* <SearchBar /> */}
         </Box>
 
 
         <Flex justify={'center'} pr='20px'>
-          {/* <NavLink exact to="/home">
-            <Button className="nav-button">
-              Old Home
-            </Button>
-          </NavLink> */}
-
-          {/* <NavLink exact to="/test">
+            <NavLink exact to="/home">
             <Button
               color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            >
-              Test
-            </Button>
-          </NavLink> */}
-
-
-          <NavLink exact to="/home">
-            <Button
-              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
-              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-
             >
               Home
             </Button>
@@ -110,71 +76,55 @@ function Navigation({ isLoaded }) {
             <Button onClick={logout}
               color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
               _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            // padding='0.9em 4em'
-
             >Log out</Button>
           </Box>
 
-          <Box ml='10px' mr='30px'
-          // transition='background-color 0.3s, box-shadow 0.3s, color 0.3s'
-          >
+          <Box ml='10px' mr='30px'>
             <SlideOutCart />
           </Box>
 
           {/* <Box >
             <ProfileButton user={sessionUser} />
           </Box> */}
-
-
-
-
-
-
-
         </Flex>
       </Box>
 
     );
   } else {
     sessionLinks = (
-      <Box className="nav-logged-out">
-        <Box className="web-title-logged-out" ml={'5%'}>
-          <a href="/" id="web-title-redirect">
-            SNKR MRKT
+      <Box bg={'#24292e'} height={'100px'} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+        <Box>
+          <a href="/">
+            <Image src='https://imgur.com/KOgkPYD.png' boxSize={'100px'} ></Image>
           </a>
         </Box>
 
-
-        <LoginForm />
-
-        <NavBtnSignUpForm/>
-
-
-        <Button
-          color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
-          _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-          onClick={demoLogin} >
-          Demo
-        </Button>
-
-        <NavLink exact to="/">
+        <Box marginRight={'21%'}>
+          <LoginForm />
+          <NavBtnSignUpForm />
           <Button
             color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
             _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-          >
-            Home
+            onClick={demoLogin} >
+            Demo
           </Button>
-        </NavLink>
-
-        <NavLink exact to="/home">
-          <Button
-            color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
-            _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-          >
-            All Shoes
-          </Button>
-        </NavLink>
-
+          <NavLink exact to="/">
+            <Button
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
+              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            >
+              Home
+            </Button>
+          </NavLink>
+          <NavLink exact to="/home">
+            <Button
+              color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
+              _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            >
+              All Shoes
+            </Button>
+          </NavLink>
+        </Box>
       </Box>
     );
   }

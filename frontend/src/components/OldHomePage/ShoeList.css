@@ -106,22 +106,18 @@ color: rgba(0,0,0,0.8);
     display: flex;
     justify-content: space-evenly;
     /* need to figure out how to have the products be evenly placed */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .shoe-container{
     text-align: center;
     background-color: white;
     border: 2px solid white;
-    width:350px;
-    /* max-width:351px; */
+    width:375px;
     max-height: 430px;
     margin-right: 8.5px;
     margin-left: 1px;
-
-    /* might look better with images */
-    /* height: auto; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 25px;
 }
 

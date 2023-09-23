@@ -46,7 +46,7 @@ function LoginForm() {
 
     <Box>
       <Center pb='20px' pt='15px' bg='gray.900'>
-        <Text color='white' fontSize={'30px'}  position='relative' top='7px'>SNKR MRT</Text>
+        <Text color='white' fontSize={'30px'}  position='relative' top='7px'>SNKR MRKT</Text>
         </Center>
 
       <Box pb='100px' px={'50px'} bg='gray.100'  >
