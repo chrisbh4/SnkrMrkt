@@ -32,7 +32,7 @@ function ShoeDetialsChakra() {
 
   useEffect(() => {
     dispatch(getOneShoe(shoeId))
-    dispatch(fetchMostPopular())
+    // dispatch(fetchMostPopular())
   }, [dispatch, shoeId]);
 
 
