@@ -54,22 +54,25 @@ function NewHomePage() {
 
   const [filterBrand, setFilterBrand] = useState({ id: null, brand: null })
   const [filterShoeSize, setFilterShoeSize] = useState({ id: null, size: null })
-  const [filterStyleType, setFilterStyleType] = useState({ id: null, style: null })
+  const [filterStyleType, setFilterStyleType] = useState({})
   const [filterPricing, setFilterPricing] = useState({})
 
   const updateFilterBrand = (filter) => { setFilterBrand({ id: filter.id, brand: filter.title }) };
   const updateFilterShoeSize = (filter) => { setFilterShoeSize({ id: filter.id, size: filter.size }) };
   //* Idea: change Pricing checkbox to buttons to allow only a single price to be selected instead of multiple
-  const updateFilterPricing = (e) => { setFilterPricing(e.target.value) };
-  const updateFilterStyle = (e) => { setFilterStyleType(e.target.value) };
+  const updateFilterStyle = (value) => { setFilterStyleType(value) };
+  const updateFilterPricing = (value) => { setFilterPricing(value) };
+
+  console.log("Pricing :", filterPricing)
+  console.log(filterBrand)
+
 
   //* Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
-  const payload = { brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType.style, price: filterPricing }
-
+  const payload = { brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType, price: filterPricing }
+  const filters = useSelector((state) => state.filters)
 
   useEffect(() => {
     dispatch(getAllShoes())
-    // dispatch(fetchMostPopular())
     dispatch(getLoadFilters(payload))
   }, [dispatch])
 
@@ -113,10 +116,13 @@ function NewHomePage() {
                   <Text
                     onClick={() => updateFilterBrand(brand)}
                     style={{
-                      backgroundColor: brand.id === filterBrand.id ? "red" : "gray.400", color: brand.id === filterBrand.id ? "white" : "" }}
+                      // backgroundColor: brand.title === filters.brand || brand.title === filterBrand.title ? "lightgray" : "", color: brand.id === filterBrand.id ? "white" : ""
+                      backgroundColor: brand.title === filters.brand ? "red" : brand.title === filterBrand.brand ? "green" : ""
+
+                    }}
                     textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >
                     {brand.title}</Text>
-                 
+
                 </div>
               )
             })}
@@ -125,10 +131,26 @@ function NewHomePage() {
           <Box borderTop={'1px'}   >
             <Text fontSize='30px' position='relative' left='1%'>Shoe Style</Text>
             <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"men"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase' >Men</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"woman"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase' >Woman</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"youth"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase'>Youth</Text></Checkbox>
-              <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"toddler"} onChange={updateFilterStyle}><Text fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Checkbox>
+              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
+                style={{
+                  backgroundColor: filters.style === "men" ? "red" : filterStyleType === "men" ? "green" : ""
+                }}
+              ><Text onClick={() => updateFilterStyle("men")} fontSize={'20px'} textTransform='uppercase' >Men</Text></Text>
+              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
+                style={{
+                  backgroundColor: filters.style === "woman" ? "red" : filterStyleType === "woman" ? "green" : ""
+                }}
+              ><Text onClick={() => updateFilterStyle("woman")} fontSize={'20px'} textTransform='uppercase' >Woman</Text></Text>
+              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
+                style={{
+                  backgroundColor: filters.style === "youth" ? "red" : filterStyleType === "youth" ? "green" : ""
+                }}
+              ><Text onClick={() => updateFilterStyle("youth")} fontSize={'20px'} textTransform='uppercase'>Youth</Text></Text>
+              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
+                style={{
+                  backgroundColor: filters.style === "toddler" ? "red" : filterStyleType === "toddler" ? "green" : ""
+                }}
+              ><Text onClick={() => updateFilterStyle("toddler")} fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Text>
             </VStack>
           </Box>
 
@@ -143,7 +165,7 @@ function NewHomePage() {
                         <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
                           key={chart.id}
                           onClick={() => updateFilterShoeSize(chart)}
-                          style={{ backgroundColor: chart.id === filterShoeSize.id ? "red" : "", color: chart.id === filterShoeSize.id ? "white" : "" }}
+                          style={{ backgroundColor: chart.id === filterShoeSize.id ? "black" : "", color: chart.id === filterShoeSize.id ? "white" : "" }}
                         > {chart.size}
                         </Button>
                       </div>
@@ -160,29 +182,49 @@ function NewHomePage() {
             <Box position='relative' left={'7.5%'} pt='3%'>
               {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
               <VStack columns={2} justifyContent={'center'} >
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"0-100"} onChange={updateFilterPricing} >$100 & under</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"200-300"} onChange={updateFilterPricing} >$200-300</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"300-400"} onChange={updateFilterPricing} >$300-400</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"500-650"} onChange={updateFilterPricing} >$500-650</Checkbox>
-                <Checkbox size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600" }} value={"650+"} onChange={updateFilterPricing} >$650+</Checkbox>
+                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("100")}
+                  style={{
+                    backgroundColor: filters.price === "100" ? "red" : filterPricing === "100" ? "green" : ""
+                  }}
+                >$100 & under</Text>
+                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("200-300")}
+                  style={{
+                    backgroundColor: filters.price === "200-300" ? "red" : filterPricing === "200-300" ? "green" : ""
+                  }}
+                >$200-300</Text>
+                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("300-400")}
+                  style={{
+                    backgroundColor: filters.price === "300-400" ? "red" : filterPricing === "300-400" ? "green" : ""
+                  }}
+                >$300-400</Text>
+                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("500-650")}
+                  style={{
+                    backgroundColor: filters.price === "500-650" ? "red" : filterPricing === "500-650" ? "green" : ""
+                  }}
+                >$500-650</Text>
+                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("650+")}
+                  style={{
+                    backgroundColor: filters.price === "650+" ? "red" : filterPricing === "650+" ? "green" : ""
+                  }}
+                >$650+</Text>
               </VStack>
             </Box>
           </Box>
 
-          <Button
-            bg={'gray.500'} border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em' w={'55%'}
-            //  _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            onClick={onSubmit}
-          >
-            Submit
-          </Button>
-          <Button
-            bg={'gray.500'} border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em' marginTop={'5px'} w={'55%'}
-            //  _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            onClick={clearFilter}
-          >
-            Clear
-          </Button>
+          <Flex justify={'space-between'} paddingBottom={'2em'}>
+            <Button
+              bg={'gray.500'} border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em' w={'35%'}
+              onClick={onSubmit}
+            >
+              Submit
+            </Button>
+            <Button
+              bg={'gray.500'} border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em' w={'35%'} marginRight={'2em'}
+              onClick={clearFilter}
+            >
+              Clear
+            </Button>
+          </Flex>
         </GridItem>
 
         {/* Shoe Iteration col */}
