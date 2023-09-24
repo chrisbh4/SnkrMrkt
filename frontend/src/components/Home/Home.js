@@ -35,8 +35,9 @@ function NewHomePage() {
     { id: 20, size: 12.5 },
     { id: 21, size: 13 },
     { id: 22, size: 13.5 },
-    { id: 23, size: 14.5 },
-    { id: 24, size: 15 },
+    { id: 23, size: 14 },
+    { id: 24, size: 14.5 },
+    { id: 25, size: 15 },
   ]
   const brandsList = [
     { id: 1, title: "Yeezy" },
@@ -98,7 +99,6 @@ function NewHomePage() {
         h='1150px'
         w='100%'
       >
-        {/* Shoe Filter Nav */}
         <GridItem
           rowSpan={2}
           colSpan={1}
@@ -116,9 +116,7 @@ function NewHomePage() {
                   <Text
                     onClick={() => updateFilterBrand(brand)}
                     style={{
-                      // backgroundColor: brand.title === filters.brand || brand.title === filterBrand.title ? "lightgray" : "", color: brand.id === filterBrand.id ? "white" : ""
                       backgroundColor: brand.title === filters.brand ? "red" : brand.title === filterBrand.brand ? "green" : ""
-
                     }}
                     textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >
                     {brand.title}</Text>
@@ -165,7 +163,10 @@ function NewHomePage() {
                         <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
                           key={chart.id}
                           onClick={() => updateFilterShoeSize(chart)}
-                          style={{ backgroundColor: chart.id === filterShoeSize.id ? "black" : "", color: chart.id === filterShoeSize.id ? "white" : "" }}
+                          style={{
+                            backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
+                            color: chart.id === filterShoeSize.id ? "white" : ""
+                          }}
                         > {chart.size}
                         </Button>
                       </div>
@@ -180,7 +181,6 @@ function NewHomePage() {
           <Box borderTop={'1px'} pb='27px'>
             <Text pl='2%' fontSize='30px' >Prices</Text>
             <Box position='relative' left={'7.5%'} pt='3%'>
-              {/*  Checkbox styling : https://chakra-ui.com/docs/hooks/use-checkbox */}
               <VStack columns={2} justifyContent={'center'} >
                 <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("100")}
                   style={{
@@ -228,7 +228,6 @@ function NewHomePage() {
         </GridItem>
 
         {/* Shoe Iteration col */}
-        {/* <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' > */}
         <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' >
           <Wrap w='100%' minW={'100%'}>
             {shoesArray.map((shoe) => {
