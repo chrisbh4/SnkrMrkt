@@ -38,6 +38,30 @@ function ShoeDetialsChakra() {
 
   const stockXdata = useSelector((state) => state.stockXapi)
   const testData = stockXdata[0]
+  // Fetch all shoes from the store
+  const allShoes = useSelector((state) => state.shoes)
+
+  // Function to generate 5 unique random numbers
+  function generateRandomShoes() {
+    let randomNumbers = [];
+    while (randomNumbers.length < 5) {
+      let num = Math.floor(Math.random() * allShoes.length);
+      if (!randomNumbers.includes(num)) {
+        randomNumbers.push(num);
+      }
+    }
+    return randomNumbers;
+  }
+
+  // Generate the random numbers
+  const randomShoeIndices = generateRandomShoes();
+
+  // In your JSX, map over the randomShoeIndices to render the shoe titles
+  // {
+  //   randomShoeIndices.map(index => (
+  //     <Text key={index}>{allShoes[index].title}</Text>
+  //   ))
+  // }
 
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -48,7 +72,6 @@ function ShoeDetialsChakra() {
 
   const shoe = useSelector((state) => state.shoes[shoeId])
 
-  console.log(shoe)
   // const cart = useSelector((state) => state.shoppingCart)
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
@@ -60,10 +83,23 @@ function ShoeDetialsChakra() {
 
   }
 
+  function generateRandomShoes() {
+    let randomNumbers = [];
+    while (randomNumbers.length < 5) {
+      let num = Math.floor(Math.random() * 20) + 1;
+      if (!randomNumbers.includes(num)) {
+        randomNumbers.push(num);
+      }
+    } // This will log the array of 5 unique random numbers between 1 and 20
+    return randomNumbers;
+  }
+
+  generateRandomShoes();
+
 
   return (
     // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
-    <Box px={"15%"} h='full'  pb='20px' >
+    <Box px={"15%"} h='full' pb='20px' >
       <Box pl='10%'>
         <Box h='75px' pt='3'>
           <Text
@@ -118,50 +154,28 @@ function ShoeDetialsChakra() {
 
 
         </Flex>
-        {/* Related Products () */}
-        {/* Write a while loop while iterating through the Shoes array up to i >= 5 */}
         <Box borderTop={'22px'} borderColor='black' >
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
-          <Flex >
-            <Link href='/home'>
-              <Image
-                src={shoe?.image}
-                boxSize='250px'
-                border={'1px'}
-              />
-            </Link>
-
-            <Link href='/home'>
-              <Image
-                src={shoe?.image}
-                boxSize='250px'
-                border={'1px'}
-              />
-            </Link>
-
-            <Link href='/home'>
-              <Image
-                src={shoe?.image}
-                boxSize='250px'
-                border={'1px'}
-              />
-            </Link>
-
-            <Link href='/home'>
-              <Image
-                src={shoe?.image}
-                boxSize='250px'
-                border={'1px'}
-              />
-            </Link>
-
-            <Link href='/home'>
-              <Image
-                src={shoe?.image}
-                boxSize='250px'
-                border={'1px'}
-              />
-            </Link>
+          <Flex>
+            {randomShoeIndices.map(index => (
+              <Box
+              // boxShadow="0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+              marginLeft={'5px'}
+              _hover={{
+                backgroundColor: "#c7d4dd",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)"
+              }}
+              >
+                <Link href={`/shoes/${index}`}>
+                  <Image
+                    src={allShoes[index]?.image}
+                    boxSize='250px'
+                    // border={'1px'}
+                    p={'3px'}
+                  />
+                </Link>
+              </Box>
+            ))}
           </Flex>
         </Box>
 
@@ -180,7 +194,7 @@ function ShoeDetialsChakra() {
                   <Text>{review.rating}</Text>
                   <Text ml={"4%"}>{review.comment}</Text>
                   <Box ml={"2%"}>
-                    <EditReviewModal  review={review} />
+                    <EditReviewModal review={review} />
                   </Box>
 
                 </Flex>
