@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
-import * as sessionActions from '../../../store/session';
 import "./ShoeDetails.css"
-import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
-import { getAllShoes, getOneShoe } from "../../../store/shoes"
-import { addShoeToCart } from "../../../store/shoppingCart"
-import { fetchMostPopular } from '../../../store/stockX';
+import { getOneShoe } from "../../../store/shoes"
+// import { addShoeToCart } from "../../../store/shoppingCart"
+// import { fetchMostPopular } from '../../../store/stockX';
 import AddToCartComponent from './AddToCartCompoent';
 import {
   Center,
@@ -15,9 +13,7 @@ import {
   Flex,
   Image,
   Link,
-  VStack,
-  Button,
-  textDecoration,
+  Grid,
 } from '@chakra-ui/react'
 import CreateReviewModal from '../../Reviews/NewReview/ModalForm';
 import EditReviewModal from '../../Reviews/EditReview/ModalForm';
@@ -27,7 +23,6 @@ import EditReviewModal from '../../Reviews/EditReview/ModalForm';
 function ShoeDetialsChakra() {
   const dispatch = useDispatch();
   const params = useParams();
-  const navigate = useNavigate();
   const shoeId = params.id
 
   useEffect(() => {
@@ -38,30 +33,30 @@ function ShoeDetialsChakra() {
 
   const stockXdata = useSelector((state) => state.stockXapi)
   const testData = stockXdata[0]
-  // Fetch all shoes from the store
-  const allShoes = useSelector((state) => state.shoes)
 
   // Function to generate 5 unique random numbers
+  const allShoes = Object.values(useSelector((state) => state.shoes))
+  console.log("Shoes :", Object.values(allShoes).length)
+
+
   function generateRandomShoes() {
     let randomNumbers = [];
-    while (randomNumbers.length < 5) {
-      let num = Math.floor(Math.random() * allShoes.length);
-      if (!randomNumbers.includes(num)) {
-        randomNumbers.push(num);
+    if (allShoes.length > 0) {
+      while (randomNumbers.length < 4) {
+        let num = Math.floor(Math.random() * Object.values(allShoes).length);
+        if (!randomNumbers.includes(num)) {
+          randomNumbers.push(num);
+        }
       }
     }
+    console.log("randomNumbers :", randomNumbers)
     return randomNumbers;
   }
 
-  // Generate the random numbers
+  // // Generate the random numbers
   const randomShoeIndices = generateRandomShoes();
+  // const randomShoeIndices = [];
 
-  // In your JSX, map over the randomShoeIndices to render the shoe titles
-  // {
-  //   randomShoeIndices.map(index => (
-  //     <Text key={index}>{allShoes[index].title}</Text>
-  //   ))
-  // }
 
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -75,26 +70,14 @@ function ShoeDetialsChakra() {
   // const cart = useSelector((state) => state.shoppingCart)
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
-  let imageCheck;
-  if (shoe?.image.includes("jpeg") || shoe?.image.includes("png") || shoe?.image.includes("image")) {
-    imageCheck = <img src={shoe?.image} alt={shoe?.title}></img>
-  } else {
-    imageCheck = <img className="bad-image" alt={shoe?.title}></img>
+  // let imageCheck;
+  // if (shoe?.image.includes("jpeg") || shoe?.image.includes("png") || shoe?.image.includes("image")) {
+  //   imageCheck = <img src={shoe?.image} alt={shoe?.title}></img>
+  // } else {
+  //   imageCheck = <img className="bad-image" alt={shoe?.title}></img>
+  // }
 
-  }
 
-  function generateRandomShoes() {
-    let randomNumbers = [];
-    while (randomNumbers.length < 5) {
-      let num = Math.floor(Math.random() * 20) + 1;
-      if (!randomNumbers.includes(num)) {
-        randomNumbers.push(num);
-      }
-    } // This will log the array of 5 unique random numbers between 1 and 20
-    return randomNumbers;
-  }
-
-  generateRandomShoes();
 
 
   return (
@@ -122,7 +105,7 @@ function ShoeDetialsChakra() {
 
         <Box pb='3' pt='2'  >
           <Flex fontWeight={'bold'} fontSize='lg' >
-            <Box w='67%' h='10' >Product Detials </Box>
+            <Box w='67%' h='10' >Product Details </Box>
             <Box w='full' h='10' pl='13%' >Product Description </Box>
           </Flex>
         </Box>
@@ -154,23 +137,20 @@ function ShoeDetialsChakra() {
 
 
         </Flex>
-        <Box borderTop={'22px'} borderColor='black' >
+        <Box borderTop={'22px'} borderColor='black' pt={'1em'} >
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
-          <Flex>
+          <Flex justify={'space-between'}>
             {randomShoeIndices.map(index => (
               <Box
-              // boxShadow="0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
-              marginLeft={'5px'}
-              _hover={{
-                backgroundColor: "#c7d4dd",
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)"
-              }}
+                marginLeft={'5px'}
+                _hover={{
+                  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)"
+                }}
               >
                 <Link href={`/shoes/${index}`}>
                   <Image
                     src={allShoes[index]?.image}
-                    boxSize='250px'
-                    // border={'1px'}
+                    boxSize='300px'
                     p={'3px'}
                   />
                 </Link>
@@ -180,31 +160,32 @@ function ShoeDetialsChakra() {
         </Box>
 
         {/* Reviews */}
-        <Box>
+        <Box pb={'3em'}>
           <Text fontSize={'2xl'} fontWeight='bold' pt={"2%"} >{shoe?.title} Reviews</Text>
-
           <Box py={"2%"}>
             <CreateReviewModal />
           </Box>
 
+          <Grid templateColumns={"repeat(3, 1fr)"} pb={'1em'} gap={6}>
+            <Text ml={"4%"} fontSize={'xl'} >Reviews</Text>
+            <Text ml={"4%"} fontSize={'xl'} >Ratings</Text>
+          </Grid>
+          
           {shoe?.Reviews.map((review) => {
             if (review.userId === userId) {
               return (
-                <Flex>
-                  <Text>{review.rating}</Text>
-                  <Text ml={"4%"}>{review.comment}</Text>
-                  <Box ml={"2%"}>
-                    <EditReviewModal review={review} />
-                  </Box>
-
-                </Flex>
+                <Grid templateColumns={"repeat(3, 1fr)"} gap={6}>
+                  <Text ml={"4%"} pt={'1em'}>{review.comment}</Text>
+                  <Text ml={"2.5em"} pt={'1em'}>{review.rating}</Text>
+                  <EditReviewModal pt={'3em'} review={review} />
+                </Grid>
               )
             }
             return (
-              <Flex>
-                <Text>{review.rating}</Text>
-                <Text ml={"4%"}>{review.comment}</Text>
-              </Flex>
+              <Grid templateColumns={"repeat(3, 1fr)"} gap={6}>
+                <Text ml={"4%"} pt={'1em'} >{review.comment}</Text>
+                <Text ml={"2.5em"} pt={'1em'} >{review.rating}</Text>
+              </Grid>
             )
           })}
         </Box>

@@ -64,6 +64,8 @@ function AddToCartComponent({shoeId}) {
 //* Need to be able to grab the clicked on value for selecting shoe size
   const [size, setSize] = useState("")
 
+  console.log(size)
+
   const updateSize = async(e) => {
     console.log(e.target.value)
     setSize(e.target.value)
@@ -85,6 +87,7 @@ function AddToCartComponent({shoeId}) {
 
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
+  const filters = useSelector((state) => state.filters)
   const shoeSellerId = shoe?.sellerId;
 
   const addToCart = async () => {
@@ -116,13 +119,24 @@ function AddToCartComponent({shoeId}) {
       <Box w='500px' border={'1px'} p='5%'>
         <Box>
           <Box p='10px'>
-            <Select placeholder='Select Size:' variant={"filled"} w='90%'  onClick={updateSize} >
+            
+            <Select  placeholder='Select Size:' variant={"filled"} w='90%'  onClick={updateSize} >
+              {filters.size && <option value={filters.size}>{filters.size}</option>}
+              {sizeChart.map((chart) => {
+                return (
+                  <option key={chart.id} value={chart.size}  onChange={updateSize} >{chart.size} </option>
+                )
+              })}
+            </Select>
+
+  {/*! Check Fly-deploy branch and see if size gets updated on each onChange */}
+            {/* <Select placeholder='Select Size:' variant={"filled"} w='90%'  onClick={updateSize} >
               {sizeChart.map((chart) => {
                 return (
                   <option key={chart.id} value={chart.size}  onChange={updateSize} >{chart.size} </option>
                   )
                 })}
-            </Select>
+            </Select> */}
         </Box>
 
           <Button w='40%' ml='2%' onClick={unavialableFeature}>Place Bid</Button>
