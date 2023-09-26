@@ -64,8 +64,6 @@ function NewHomePage() {
   const updateFilterStyle = (value) => { setFilterStyleType(value) };
   const updateFilterPricing = (value) => { setFilterPricing(value) };
 
-  console.log("Pricing :", filterPricing)
-  console.log(filterBrand)
 
 
   //* Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state

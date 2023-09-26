@@ -2,6 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { Shoe, Review } = require('../../db/models');
 const {check} = require("express-validator");
+const {Op} = require('sequelize')
 const { handleValidationErrors } = require("../../utils/validation");
 const {  singleMulterUpload  , awsImageUpload} = require('../../aws-S3')
 
@@ -72,10 +73,54 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(allShoes)
 
 }));
+
+router.get('/filter', asyncHandler( async (req, res) => {
+    // Extract the filter values from the Redux store
+    const { size, brand, style, prices } = req.query;
+
+    console.log("body :", req.body)
+    console.log("params :", req.params)
+    console.log("Query :", req.query)
+    // Construct the database query based on the filters
+    const query = {
+        where: {},
+      };
+    
+      if (size) {
+        query.where.shoeSize = parseInt(size);
+      }
+      if (brand) {
+        query.where.brand = brand;
+      }
+
+    //TODO: Style Needs to be added to database Schema
+    //   if (style) {
+    //     query.where.style = style;
+    //   }
+      //* Query if shoe.price is less than query.price
+      // TODO: Update Shoes.DB.Schema.prices to be a Integer instead of a number
+    //   if (prices) {
+    //     query.where.price = {
+    //         [Op.lt]: prices
+    //     }
+    //   }
+    
+      console.log(query);
+      // Execute the database query
+      const shoes = await Shoes.findAll(query);
+    //   console.log(shoes);
+
+    
+    
+      return res.json(shoes);
+    }));
+
+
 router.get('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
         include: [Reviews]
     })
+
     return res.send(shoe)
 }))
 
@@ -137,6 +182,9 @@ router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(a
 
     return res.json({ newShoe })
 }))
+
+ 
+
 
 
 module.exports = router

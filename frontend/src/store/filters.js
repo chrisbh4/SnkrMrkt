@@ -19,7 +19,6 @@ const saveFilters = (filters) => {
     try{
         const jsonCart = JSON.stringify(filters)
         localStorage.setItem('filters',jsonCart)
-        console.log(localStorage)
     }catch(err){
         return
     }
@@ -37,15 +36,44 @@ export const getLoadFilters = () => async(dispatch)=>{
 }
 
 export const setSelectedFilters = (payload) => async (dispatch) => {
-    const data = payload
-    //Erase the condtional statment if it's not neeeded
-    console.log("Store : ", data)
-    if (data) {
-        dispatch(setFilter(data))
+    // const data = payload
+    // const res = await csrfFetch('/api/shoes/filter', { params: payload});
+    const { size, brand, style, prices } = payload; // Destructure the payload object
+    // const res = await csrfFetch('/api/shoes/filter', { params: { size, brand, style, prices } });
+    // const res = await csrfFetch('/api/shoes/filter', {size: size, brand: brand, style: style, prices: prices});
+    const res = await csrfFetch(`/api/shoes/filter?size=${size}&brand=${brand}&style=${style}&prices=${prices}`);
+    
+
+
+    console.log("Store : ", payload)
+    if (res.ok) {
+        dispatch(setFilter(payload))
         saveFilters(payload)
-        return data
+        return payload
     }
 };
+
+
+// export const getAllShoes = () => async (dispatch) => {
+//     const res = await csrfFetch('/api/shoes')
+//     const data = await res.json()
+//     if (res.ok) {
+//         dispatch(loadShoes(data))
+//         return data
+//     }
+// };
+
+export const fetchFilteredShoes = (filters) => async (dispatch) => {
+    const res = await csrfFetch('/api/shoes/filter', { params: filters});
+    if (res.ok){
+       const data = await res.json()
+        // dispatch(setFilter(data))
+        // saveFilters(data)
+        return data
+    }
+  
+    return "No filters store"
+  };
 
 
 export const getclearFilters = ()=> async (dispatch) =>{
