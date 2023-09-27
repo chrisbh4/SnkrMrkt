@@ -78,18 +78,20 @@ router.get('/filter', asyncHandler( async (req, res) => {
     // Extract the filter values from the Redux store
     const { size, brand, style, prices } = req.query;
 
-    console.log("body :", req.body)
-    console.log("params :", req.params)
-    console.log("Query :", req.query)
     // Construct the database query based on the filters
     const query = {
         where: {},
       };
     
-      if (size) {
-        query.where.shoeSize = parseInt(size);
-      }
-      if (brand) {
+    //! Shoe size doesn't matter since the Filter.size is only being used to pre-set the "add to cart button" size selection
+    //* Delete when ready
+    //   if (size !== "null") {
+        //     query.where.shoeSize = parseInt(size);
+        //   }
+    //* Delete when ready
+
+
+      if (brand !== "null") {
         query.where.brand = brand;
       }
 
@@ -99,19 +101,16 @@ router.get('/filter', asyncHandler( async (req, res) => {
     //   }
       //* Query if shoe.price is less than query.price
       // TODO: Update Shoes.DB.Schema.prices to be a Integer instead of a number
-    //   if (prices) {
-    //     query.where.price = {
-    //         [Op.lt]: prices
-    //     }
-    //   }
-    
-      console.log(query);
+      if (prices !== 'undefined') {
+        query.where.price = prices
+        // query.where.price = {
+        //     // [Op.lt]: prices
+        //     //     query.where.style = style;
+        // }
+      }
       // Execute the database query
       const shoes = await Shoes.findAll(query);
-    //   console.log(shoes);
-
-    
-    
+    //   console.log("Shoes Filter :", shoes);
       return res.json(shoes);
     }));
 
