@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid, Link } from '@chakra-ui/react'
+import { Grid, Center, GridItem, Box, VStack, Button, Text, Flex, SimpleGrid} from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
-import { fetchMostPopular } from "../../store/stockX";
 import ShoeList from "../OldHomePage/ShoeList";
 import { getLoadFilters, getclearFilters, setSelectedFilters } from "../../store/filters";
 
@@ -82,7 +81,6 @@ function NewHomePage() {
   }
 
   const clearFilter = async (e) => {
-    // e.preventDefault();
     const data = await dispatch(getclearFilters())
     return data
   }
