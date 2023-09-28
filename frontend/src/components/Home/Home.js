@@ -65,15 +65,43 @@ function NewHomePage() {
   const [filterStyleType, setFilterStyleType] = useState({})
   const [filterPricing, setFilterPricing] = useState({})
 
-  const updateFilterBrand = (filter) => { setFilterBrand({ id: filter.id, brand: filter.title }) };
-  const updateFilterShoeSize = (filter) => { setFilterShoeSize({ id: filter.id, size: filter.size }) };
-  //* Idea: change Pricing checkbox to buttons to allow only a single price to be selected instead of multiple
-  const updateFilterStyle = (value) => { setFilterStyleType(value) };
-  const updateFilterPricing = (value) => { setFilterPricing(value) };
+  // const updateFilterBrand = (filter) => { setFilterBrand({ id: filter.id, brand: filter.title }) };
+  // const updateFilterShoeSize = (filter) => { setFilterShoeSize({ id: filter.id, size: filter.size }) };
+  // const updateFilterStyle = (value) => { setFilterStyleType(value) };
+  // const updateFilterPricing = (value) => { setFilterPricing(value) };
 
+  const updateFilterBrand = (filter) => {
+    if (filter.id === filterBrand.id) {
+      setFilterBrand({});
+    } else {
+      setFilterBrand({ id: filter.id, brand: filter.title });
+    }
+  };
 
+  
+  const updateFilterShoeSize = (filter) => {
+    if (filter.id === filterShoeSize.id) {
+      setFilterShoeSize({});
+    } else {
+      setFilterShoeSize({ id: filter.id, size: filter.size });
+    }
+  };
 
-  //* Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
+  const updateFilterStyle = (value) => {
+  if (value === filterStyleType) {
+    setFilterStyleType("");
+  } else {
+    setFilterStyleType(value);
+  }};
+
+  const updateFilterPricing = (value) => {
+  if (value === filterPricing) {
+    setFilterPricing("");
+  } else {
+    setFilterPricing(value);
+  }};
+
+//TODO: Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
   const payload = { brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType, price: filterPricing }
   const filters = useSelector((state) => state.filters)
 
@@ -84,6 +112,10 @@ function NewHomePage() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (payload.brand === undefined){
+      return 
+    }
+
     const data = await dispatch(setSelectedFilters(payload))
     return data
   }
@@ -120,7 +152,10 @@ function NewHomePage() {
                   <Text
                     onClick={() => updateFilterBrand(brand)}
                     style={{
-                      backgroundColor: brand.title === filters.brand ? "red" : brand.title === filterBrand.brand ? "green" : ""
+                      // backgroundColor: brand.title === filters.brand ? "red" : brand.title === filterBrand.brand ? "green" : "",
+                      // pointerEvents: brand.title === filters.brand ? "none" : "auto"
+                      backgroundColor: filters.brand === brand.title ? "red" : brand.id === filterBrand.id ? "green" : "",
+                      color: brand.id === filterBrand.id ? "white" : ""
                     }}
                     textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >
                     {brand.title}</Text>
