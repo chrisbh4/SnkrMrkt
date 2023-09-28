@@ -43,6 +43,8 @@ export const setSelectedFilters = (payload) => async (dispatch) => {
         const shoes = await res.json()
         dispatch(setFilter(payload))
         dispatch(loadShoes(shoes))
+        const jsonCart = JSON.stringify(shoes)
+        localStorage.setItem('filtered_shoes',jsonCart)
         saveFilters(payload)
         return payload
     }
@@ -55,6 +57,7 @@ export const getclearFilters = ()=> async (dispatch) =>{
         const shoes = await res.json()
         dispatch(loadShoes(shoes))
         localStorage.removeItem('filters')
+        localStorage.removeItem('filtered_shoes')
         return shoes
     }
 };

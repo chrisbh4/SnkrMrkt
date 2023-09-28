@@ -9,7 +9,15 @@ import { getLoadFilters, getclearFilters, setSelectedFilters } from "../../store
 function NewHomePage() {
   const dispatch = useDispatch()
   const shoes = useSelector((state) => state.shoes)
-  const shoesArray = Object.values(shoes)
+
+  let shoesArray;
+  if (localStorage.filtered_shoes){
+      shoesArray = JSON.parse(localStorage.getItem("filtered_shoes"))
+    }else{
+      shoesArray = Object.values(shoes)
+    }
+  
+
 
   const sizeChart = [
     { id: 1, size: 3 },
