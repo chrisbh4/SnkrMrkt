@@ -14,7 +14,6 @@ export const loadFilters = (filters) =>({
     filters
 })
 
-
 const saveFilters = (filters) => {
     try{
         const jsonCart = JSON.stringify(filters)
@@ -29,15 +28,15 @@ const clearFilters = () =>({
     
 })
 
-//Needs to load the cart on every change
 export const getLoadFilters = () => async(dispatch)=>{
     dispatch(loadFilters())
     return
 }
 
 export const setSelectedFilters = (payload) => async (dispatch) => {
-    const { size, brand, style, prices } = payload; 
-    const res = await csrfFetch(`/api/shoes/filter?size=${size}&brand=${brand}&style=${style}&prices=${prices}`);
+    const { size, brand, style, price } = payload; 
+     console.log("filters.js :", price)
+    const res = await csrfFetch(`/api/shoes/filter?size=${size}&brand=${brand}&style=${style}&price=${price}`);
     
     if (res.ok) {
         const shoes = await res.json()

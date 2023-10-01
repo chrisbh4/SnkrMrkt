@@ -63,7 +63,7 @@ function NewHomePage() {
   const [filterBrand, setFilterBrand] = useState({ id: null, brand: null })
   const [filterShoeSize, setFilterShoeSize] = useState({ id: null, size: null })
   const [filterStyleType, setFilterStyleType] = useState({})
-  const [filterPricing, setFilterPricing] = useState({})
+  const [filterPricing, setFilterPricing] = useState("")
 
   // const updateFilterBrand = (filter) => { setFilterBrand({ id: filter.id, brand: filter.title }) };
   // const updateFilterShoeSize = (filter) => { setFilterShoeSize({ id: filter.id, size: filter.size }) };
@@ -112,9 +112,10 @@ function NewHomePage() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (payload.brand === undefined){
-      return 
-    }
+    console.log("OnSubmit :" , payload.brand)
+    // if (payload.brand === null || payload.brand === undefined){
+    //   return 
+    // }
 
     const data = await dispatch(setSelectedFilters(payload))
     return data
@@ -122,6 +123,10 @@ function NewHomePage() {
 
   const clearFilter = async (e) => {
     const data = await dispatch(getclearFilters())
+    setFilterBrand({})
+    setFilterShoeSize({})
+    setFilterStyleType({})
+    setFilterPricing("")
     return data
   }
 
@@ -218,29 +223,29 @@ function NewHomePage() {
           </Box>
 
           <Box borderTop={'1px'} pb='27px'>
-            <Text pl='2%' fontSize='30px' >Prices</Text>
+            <Text pl='2%' fontSize='2xl' >Shop by Price</Text>
             <Box position='relative' left={'7.5%'} pt='3%'>
               <VStack columns={2} justifyContent={'center'} >
-                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("100")}
+                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("0-100")}
                   style={{
-                    backgroundColor: filters.price === "100" ? "red" : filterPricing === "100" ? "green" : ""
+                    backgroundColor: filters.price === "0-100" ? "red" : filterPricing === "0-100" ? "green" : ""
                   }}
-                >$100 & under</Text>
+                >$0-$100</Text>
                 <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("200-300")}
                   style={{
                     backgroundColor: filters.price === "200-300" ? "red" : filterPricing === "200-300" ? "green" : ""
                   }}
-                >$200-300</Text>
+                >$200-$300</Text>
                 <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("300-400")}
                   style={{
                     backgroundColor: filters.price === "300-400" ? "red" : filterPricing === "300-400" ? "green" : ""
                   }}
-                >$300-400</Text>
-                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("500-650")}
+                >$300-$400</Text>
+                <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("400-650")}
                   style={{
-                    backgroundColor: filters.price === "500-650" ? "red" : filterPricing === "500-650" ? "green" : ""
+                    backgroundColor: filters.price === "400-650" ? "red" : filterPricing === "400-650" ? "green" : ""
                   }}
-                >$500-650</Text>
+                >$400-$650</Text>
                 <Text fontSize={'xl'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} onClick={() => updateFilterPricing("650+")}
                   style={{
                     backgroundColor: filters.price === "650+" ? "red" : filterPricing === "650+" ? "green" : ""
