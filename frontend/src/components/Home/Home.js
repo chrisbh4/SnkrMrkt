@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
 import ShoeList from "../OldHomePage/ShoeList";
 import { getLoadFilters, getclearFilters, setSelectedFilters } from "../../store/filters";
+import ShoeStyleGrid from "./StyleGrid";
 
 function NewHomePage() {
   const dispatch = useDispatch()
@@ -195,6 +196,8 @@ function NewHomePage() {
               ><Text onClick={() => updateFilterStyle("toddler")} fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Text>
             </VStack>
           </Box>
+
+          {/* <ShoeStyleGrid /> */}
 
           <Box borderTop={"1px"}  >
             <Text fontSize='2xl' pl='2%'>Shoe Size</Text>
