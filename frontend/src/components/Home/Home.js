@@ -162,7 +162,7 @@ function NewHomePage() {
                       backgroundColor: filters.brand === brand.title ? "red" : brand.id === filterBrand.id ? "green" : "",
                       color: brand.id === filterBrand.id ? "white" : ""
                     }}
-                    textAlign={'left'} fontSize='24px' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >
+                    textAlign={'left'} fontSize='2xl' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >
                     {brand.title}</Text>
 
                 </div>
@@ -171,7 +171,7 @@ function NewHomePage() {
           </Box>
 
           <Box borderTop={'1px'}   >
-            <Text fontSize='30px' position='relative' left='1%'>Shoe Style</Text>
+            <Text fontSize='2xl' position='relative' left='1%'>Shoe Style</Text>
             <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
               <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
                 style={{
@@ -197,7 +197,7 @@ function NewHomePage() {
           </Box>
 
           <Box borderTop={"1px"}  >
-            <Text fontSize='30px' pl='2%'>Shoe Size</Text>
+            <Text fontSize='2xl' pl='2%'>Shoe Size</Text>
             <Flex pl='2%'>
               <Center>
                 <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
