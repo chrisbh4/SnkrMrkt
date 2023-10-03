@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Center, GridItem, Box, VStack, Button, Text, Flex, SimpleGrid} from '@chakra-ui/react'
+import { Grid, Center, GridItem, Box, VStack, Button, Text, Flex, SimpleGrid } from '@chakra-ui/react'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
@@ -12,12 +12,12 @@ function NewHomePage() {
   const shoes = useSelector((state) => state.shoes)
 
   let shoesArray;
-  if (localStorage.filtered_shoes){
-      shoesArray = JSON.parse(localStorage.getItem("filtered_shoes"))
-    }else{
-      shoesArray = Object.values(shoes)
-    }
-  
+  if (localStorage.filtered_shoes) {
+    shoesArray = JSON.parse(localStorage.getItem("filtered_shoes"))
+  } else {
+    shoesArray = Object.values(shoes)
+  }
+
 
 
   const sizeChart = [
@@ -79,7 +79,7 @@ function NewHomePage() {
     }
   };
 
-  
+
   const updateFilterShoeSize = (filter) => {
     if (filter.id === filterShoeSize.id) {
       setFilterShoeSize({});
@@ -89,20 +89,22 @@ function NewHomePage() {
   };
 
   const updateFilterStyle = (value) => {
-  if (value === filterStyleType) {
-    setFilterStyleType("");
-  } else {
-    setFilterStyleType(value);
-  }};
+    if (value === filterStyleType) {
+      setFilterStyleType("");
+    } else {
+      setFilterStyleType(value);
+    }
+  };
 
   const updateFilterPricing = (value) => {
-  if (value === filterPricing) {
-    setFilterPricing("");
-  } else {
-    setFilterPricing(value);
-  }};
+    if (value === filterPricing) {
+      setFilterPricing("");
+    } else {
+      setFilterPricing(value);
+    }
+  };
 
-//TODO: Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
+  //TODO: Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
   const payload = { brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType, price: filterPricing }
   const filters = useSelector((state) => state.filters)
 
@@ -113,7 +115,7 @@ function NewHomePage() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("OnSubmit :" , payload.brand)
+    console.log("OnSubmit :", payload.brand)
     // if (payload.brand === null || payload.brand === undefined){
     //   return 
     // }
@@ -129,6 +131,23 @@ function NewHomePage() {
     setFilterStyleType({})
     setFilterPricing("")
     return data
+  }
+
+
+  function renderShoes() {
+    if (shoesArray.length === 0) {
+      return (
+        <Text textAlign="center" fontSize="xl" mt="4">
+          No results found
+        </Text>
+      );
+    }
+
+    return shoesArray.map((shoe) => (
+      <WrapItem className="shoe-container" key={shoe.id}>
+        <ShoeList shoe={shoe} key={shoe.id} />
+      </WrapItem>
+    ));
   }
 
   return (
@@ -277,13 +296,7 @@ function NewHomePage() {
         {/* Shoe Iteration col */}
         <GridItem rowSpan={2} colSpan={4} minW={'100%'} overflow='scroll' mt='0.7%' >
           <Wrap w='100%' minW={'100%'}>
-            {shoesArray.map((shoe) => {
-              return (
-                <WrapItem className="shoe-container" key={shoe.id}>
-                  <ShoeList shoe={shoe} key={shoe.id} />
-                </WrapItem>
-              )
-            })}
+            {renderShoes()}
           </Wrap>
         </GridItem>
 
