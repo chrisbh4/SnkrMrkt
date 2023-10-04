@@ -18,7 +18,7 @@ function AboutPage() {
         <div  className="splash-page-img">
             <div className="about-formatter">
                 <div className="about-info-placement">
-                    <h1 className="about-title">Snkr Mrkt</h1>
+                    <h1 className="about-title">SNKR MRKT</h1>
                     {/* <p className="about-info">
                 This application is a clone based off the E-Commerce designer clothing/shoes store 'GOAT'.
                 This site allows logged in users to buy or sell high-end designer shoes and also high end
@@ -27,7 +27,7 @@ function AboutPage() {
             </p> */}
 
                     <Center>
-                        <Text w={"50%"} fontSize={'xl'} >
+                        <Text w={"50%"} fontSize={'2xl'} >
                         Welcome to Snkr Mrkt! We are a team of sneaker enthusiasts who are passionate about bringing the best selection of exclusive sneakers to our customers.
                         Our goal is to provide a reliable and secure platform for sneakerheads to buy and sell their most sought-after sneakers.
                         With a focus on customer satisfaction, we strive to offer competitive prices and excellent customer service.

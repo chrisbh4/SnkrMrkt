@@ -14,17 +14,12 @@ function LoginForm() {
 
   const handleCredentials = (e) => setCredential(e.target.value)
   const handlePassword = (e) => {
-    console.log(e.target.value)
     return setPassword(e.target.value)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Inside Handle Submit")
-
     const data = await dispatch(sessionActions.login({ credential, password }))
-
-    console.log(data)
 
     if (data?.errors) {
       setErrors(data.errors)
@@ -51,7 +46,7 @@ function LoginForm() {
 
     <Box>
       <Center pb='20px' pt='15px' bg='gray.900'>
-        <Text color='white' fontSize={'30px'}  position='relative' top='7px'>SNKR MRT</Text>
+        <Text color='white' fontSize={'30px'}  position='relative' top='7px'>SNKR MRKT</Text>
         </Center>
 
       <Box pb='100px' px={'50px'} bg='gray.100'  >

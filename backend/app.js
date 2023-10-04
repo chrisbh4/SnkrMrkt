@@ -29,8 +29,6 @@ app.use(helmet({
 
 // Set the _csrf token and create req.csrfToken method
 //Comment out to use postman
-
-
 app.use(
   csurf({
     cookie: {

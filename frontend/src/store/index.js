@@ -5,7 +5,10 @@ import shoes from '../store/shoes'
 import reviews from "./reviews"
 import shoppingCart from "./shoppingCart"
 import stockXapi from "./stockX"
+import orders from "./orders"
 import filters from "./filters"
+import settings from "./settings"
+
 
 
 const rootReducer = combineReducers({
@@ -14,7 +17,9 @@ const rootReducer = combineReducers({
   reviews,
   shoppingCart,
   stockXapi,
-  filters
+  orders,
+  filters,
+  settings
 });
 
 let enhancer;

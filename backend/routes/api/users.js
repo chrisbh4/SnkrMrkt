@@ -10,7 +10,7 @@ const router = express.Router();
 
 const validateSignup = [
   check('email')
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email.'),
   check('username')
@@ -20,7 +20,7 @@ const validateSignup = [
     .isLength({min: 5 , max:20})
     .withMessage("Username must be 5 to 20 characters "),
   check('password')
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isLength({ min: 5 , max: 10 })
     .withMessage('Password must be 5 to 10 characters'),
   handleValidationErrors,

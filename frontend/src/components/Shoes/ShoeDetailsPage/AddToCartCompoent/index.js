@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { useParams, useNavigate } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 
@@ -46,7 +47,6 @@ function AddToCartComponent({ shoeId }) {
   const [size, setSize] = useState("")
 
   const updateSize = async (e) => {
-    console.log(e.target.value)
     setSize(e.target.value)
     return
   }
@@ -70,7 +70,13 @@ function AddToCartComponent({ shoeId }) {
   const shoeSellerId = shoe?.sellerId;
 
   const addToCart = async () => {
-    console.log("Add TO cart: ", size)
+    shoe.shoeSize = size
+
+    if (size.length === 0 ){
+      alert("Select a shoe size before adding to cart")
+      return
+    }
+
     await dispatch(addShoeToCart(shoe, cart))
     alert("Shoe has been added to your cart!")
     navigate("/home")
@@ -93,7 +99,7 @@ function AddToCartComponent({ shoeId }) {
   let addToCartVerfication;
   if (userId !== shoeSellerId && userId > 0.99) {
     addToCartVerfication = (
-      <Box w='500px' border={'1px'} p='5%'>
+      <Box w='500px' p='5%'>
         <Box>
           <Box p='10px'>
             <Select placeholder='Select Size:' variant={"filled"} w='90%' onClick={updateSize}>

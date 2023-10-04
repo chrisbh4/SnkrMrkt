@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import * as sessionActions from '../../store/session';
 import { purchaseFromCart } from "../../store/shoppingCart";
 
-import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Text } from '@chakra-ui/react';
+import {Menu, MenuButton, MenuItem, Button, MenuList, Text } from '@chakra-ui/react';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -12,13 +12,7 @@ function ProfileButton({ user }) {
   const navigate = useNavigate()
 
 
-  const openMenu = () => {
 
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-
-  console.log("Show :", showMenu)
   // IF true then the menu will open
   // IF false then the menu will close
   //* Bug is coming from the setShowMenu not being switched from false -> true
@@ -45,29 +39,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      {/* <Button onClick={openMenu} className="nav-profile-button">
-        <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
-      </Button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <p>username: <span id="user-info"> {user.username} </span> </p>
-          <p>Email: <span id="user-info">{user.email} </span></p>
-          <div>
-            <button className="logout-button" onClick={logout}>Log Out</button>
-          </div>
-        </ul>
-      )} */}
-
-          <Menu>
-  <MenuButton as={Button} >
-  <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
-  </MenuButton>
-  <MenuList >
-    <Text>Username: {user.username}</Text>
-    <Text>Email: {user.email}</Text>
-    <MenuItem><button className="logout-button" onClick={logout}>Log Out</button></MenuItem>
-  </MenuList>
-</Menu>
+      <Menu>
+        <MenuButton as={Button} >
+          <i className="fas fa-user-circle" style={{ fontSize: "15px", marginTop: "4px" }} />
+        </MenuButton>
+        <MenuList >
+          <Text>Username: {user.username}</Text>
+          <Text>Email: {user.email}</Text>
+          <MenuItem><button className="logout-button" onClick={logout}>Log Out</button></MenuItem>
+        </MenuList>
+      </Menu>
     </>
   );
 }

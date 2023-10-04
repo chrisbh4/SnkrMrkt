@@ -13,6 +13,10 @@ import EditReviewChakraForm from './components/Reviews/EditReview';
 import NewShoeModalForm from './components/Shoes/NewShoesForm/modalForm';
 import "./index.css"
 import CheckoutForm from './components/Cart/NewCart';
+import PaymentPage from './components/Profile/payment';
+import PurchasedPage from './components/Profile/purchased';
+import SellingPage from './components/Profile/selling';
+import WatchingPage from './components/Profile/watching';
 
 
 function App() {
@@ -47,6 +51,14 @@ function App() {
 
         <Route path='/profile' element={<ProfilePage />} ></Route>
 
+        <Route path='/payment' element={<PaymentPage />} ></Route>
+
+        <Route path='/purchased' element={<PurchasedPage />} ></Route>
+
+        <Route path='/sell' element={<SellingPage />} ></Route>
+
+        <Route path='/watch' element={<WatchingPage />} ></Route>
+        
         <Route path="/" element={<AboutPage />}> </Route>
 
 

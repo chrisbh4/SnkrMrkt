@@ -11,7 +11,7 @@ function EditReviewForm(){
     const params = useParams()
     const navigate = useNavigate()
 
-    const reviewId = params.id
+    const reviewId = params?.id
 
 
     useEffect(() => {

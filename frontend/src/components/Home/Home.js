@@ -113,6 +113,7 @@ function NewHomePage() {
     dispatch(getLoadFilters(payload))
   }, [dispatch])
 
+
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("OnSubmit :", payload.brand)
@@ -298,9 +299,8 @@ function NewHomePage() {
           <Wrap w='100%' minW={'100%'}>
             {renderShoes()}
           </Wrap>
-        </GridItem>
-
-      </Grid>
+         <GridItem/>
+        </Box>
     </>)
 }
 

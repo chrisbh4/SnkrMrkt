@@ -55,7 +55,7 @@ function ShoppingCart() {
             <div className="cart-info">
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : $${totalPriceOfShoes}` : emptyCart}</h2>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${feePrices.toFixed(2)}` : null}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `State Tax: ${stateTax.toFixed(2)}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Tax: ${stateTax.toFixed(2)}` : null}</h2>
                 <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${pricePostTaxes.toFixed(2)}` : null}</h2>
 
 

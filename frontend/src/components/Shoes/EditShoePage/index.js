@@ -6,20 +6,15 @@ import { getAllShoes, getEditShoe, getDeletedShoe } from "../../../store/shoes"
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Box,
     Input,
     InputGroup,
     InputLeftAddon,
-    Heading,
     Text,
     Grid,
     Flex,
     Button,
     Textarea,
-    Center,
-    Image
 } from '@chakra-ui/react'
 
 
@@ -32,10 +27,7 @@ function EditShoesFormChakra({ shoe, onClose }) {
     const [description, setDescription] = useState(shoe?.description)
     const [image, setImage] = useState(shoe?.image)
     const [brand, setBrand] = useState(shoe?.brand)
-
     const [errors, setErrors] = useState([])
-
-
     const [shoeSize, setShoeSize] = useState(shoe?.shoeSize)
     const [price, setPrice] = useState(shoe?.price)
 
@@ -58,22 +50,12 @@ function EditShoesFormChakra({ shoe, onClose }) {
             onClose()
         }
         else {
-            setErrors(data)
+            setErrors(data.errors)
         }
         return data
     }
 
-    let errorHandler;
-    if (errors.errors) {
-        errorHandler = errors.errors.map((error) => {
-            return (
-                <p key={error.id}>{error}</p>
-            )
-        })
-    }
-    else {
-        errorHandler = null;
-    }
+
 
 
     const handleDelete = async (e) => {
@@ -83,13 +65,26 @@ function EditShoesFormChakra({ shoe, onClose }) {
         alert("Shoe has been deleted.");
         navigate('/home')
     }
-
-    console.log(shoe)
+    
     return (
         <>
             <FormControl pt={"2%"}   >
-                <Box pb={8} px='25%'  >
-                    <Heading size="lg" fontWeight="semibold" color="gray.900" ml={"4%"}>Edit Shoe Form</Heading>
+                <Box px='25%'  >
+                    {/* <Heading size="lg" fontWeight="semibold" color="gray.900" ml={"4%"}>Edit Shoe Form</Heading> */}
+                    <Box color={"red.400"}  >
+                        {
+                            errors.map((error) => {
+                                if (error) {
+                                    return (
+                                        <Box bg={"white"}>
+                                            <Text ml="4%" key={error.id} fontSize={"2xl"} >{error}</Text>
+                                        </Box>
+                                    )
+                                }
+                                return null;
+                            })
+                        }
+                    </Box>
                     <Grid
                         templateRows="repeat(5, 1fr)"
                         templateColumns="repeat(1, 1fr)"
@@ -131,31 +126,10 @@ function EditShoesFormChakra({ shoe, onClose }) {
                         <Flex >
                             <Button w={"30%"} mt={"1%"} onClick={onSubmit} colorScheme="green">Submit</Button>
                             <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={handleDelete} colorScheme="green">Delete</Button>
+                            <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={onClose} colorScheme="blue">Close</Button>
                         </Flex>
                     </Grid>
-
-                    <Box color={"red.400"}  >
-                        {
-                            errors.map((error) => {
-                                if (error) {
-                                    return (
-                                        <Center bg={"white"}>
-                                            <Text key={error.id} fontSize={"2xl"} >{error}</Text>
-                                        </Center>
-                                    )
-                                }
-                                return null;
-                            })
-                        }
-                    </Box>
                 </Box>
-
-                <Image
-                    src="https://theplug-app-aws.s3.us-west-1.amazonaws.com/New-Shoe-background-img.jpeg"
-                    w={"full"}
-                    h="300px"
-                    fit="cover"
-                />
             </FormControl>
         </>
     )

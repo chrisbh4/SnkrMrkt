@@ -68,6 +68,7 @@ export const getCreatedShoe = (payload) => async (dispatch) => {
     // for single file
     if (imageFile) formData.append("image", imageFile);
 
+
     const res = await csrfFetch(`/api/shoes/new`, {
         method: "POST",
         headers: {
@@ -75,11 +76,9 @@ export const getCreatedShoe = (payload) => async (dispatch) => {
         },
         body: formData,
     });
-
+  
     const data = await res.json()
     if (data.ok) {
-
-
         dispatch(createShoe(data))
     } else {
 

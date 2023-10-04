@@ -14,6 +14,7 @@ import {
   Image,
   Link,
   Grid,
+  GridItem
 } from '@chakra-ui/react'
 import CreateReviewModal from '../../Reviews/NewReview/ModalForm';
 import EditReviewModal from '../../Reviews/EditReview/ModalForm';
@@ -21,6 +22,7 @@ import EditReviewModal from '../../Reviews/EditReview/ModalForm';
 
 
 function ShoeDetialsChakra() {
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
   const shoeId = params.id
@@ -31,8 +33,25 @@ function ShoeDetialsChakra() {
   }, [dispatch, shoeId]);
 
 
-  const stockXdata = useSelector((state) => state.stockXapi)
-  const testData = stockXdata[0]
+  const getRandomRetialPrice =() => {
+    const randomNumber = Math.random() < 0.5 ? 180 : 220;
+    return randomNumber;
+}
+
+const getRandomDate = () => {
+  const startDate = new Date('2018-05-20');
+  const endDate = new Date('2022-12-25');
+  const startTimestamp = startDate.getTime();
+  const endTimestamp = endDate.getTime();
+  const randomTimestamp = Math.floor(Math.random() * (endTimestamp - startTimestamp + 1) + startTimestamp);
+  const randomDate = new Date(randomTimestamp);
+  const formattedDate = `${randomDate.getMonth() + 1}/${randomDate.getDate()}/${randomDate.getFullYear()}`;
+
+  return formattedDate;
+}
+
+  // const stockXdata = useSelector((state) => state.stockXapi)
+  // const testData = stockXdata[0]
 
   // Function to generate 5 unique random numbers
   const allShoes = Object.values(useSelector((state) => state.shoes))
@@ -77,9 +96,6 @@ function ShoeDetialsChakra() {
   //   imageCheck = <img className="bad-image" alt={shoe?.title}></img>
   // }
 
-
-
-
   return (
     // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
     <Box px={"15%"} h='full' pb='20px' >
@@ -121,17 +137,24 @@ function ShoeDetialsChakra() {
               </Box>
 
               <Box>
-                <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text>
-                <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text>
-                <Text>{testData?.details.retail} </Text>
-                <Text>{testData?.details.releaseDate} </Text>
+                {/* <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text> */}
+                <Text whiteSpace={'nowrap'} >Lorem ipsum dolor </Text>
+
+                {/* <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text> */}
+                <Text whiteSpace={'nowrap'} >dolor um Lorem  </Text>
+
+                {/* <Text>${testData?.details.retail} </Text> */}
+                <Text>${getRandomRetialPrice()}</Text>
+
+                {/* <Text>{testData?.details.releaseDate} </Text> */}
+                <Text>{getRandomDate()} </Text>
               </Box>
             </Flex>
           </Box>
           <Box w='50%' pb='5' pl='11%'>
-            <Text fontSize={'lg'} w='full' h='90%' fontWeight='semibold' overflow={'scroll'} >
-              {/* {shoe?.description} */}
-              {testData?.details.description}
+            <Text fontSize={'lg'} w='full' h='200px' fontWeight='semibold' overflow={'scroll'} >
+              {shoe?.description}
+              {/* {testData?.details.description} */}
             </Text>
           </Box>
 
