@@ -57,8 +57,8 @@ function NewHomePage() {
     { id: 7, title: "converse" },
     { id: 8, title: "Puma" },
     { id: 9, title: "vans" },
-    { id: 10, title: "Collections" },
-    { id: 11, title: "Designer" }
+    // { id: 10, title: "Collections" },
+    { id: 11, title: "Gucci" }
   ]
 
   const [filterBrand, setFilterBrand] = useState({ id: null, brand: null })
