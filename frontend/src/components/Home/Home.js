@@ -299,10 +299,12 @@ function NewHomePage() {
           <Wrap w='100%' minW={'100%'}>
             {renderShoes()}
           </Wrap>
-         <GridItem/>
-        </Box>
-    </>)
-}
+        </GridItem>
+      </Grid>
+      </>)
+      
+      }
 
 
-export default NewHomePage;
+
+      export default NewHomePage;
