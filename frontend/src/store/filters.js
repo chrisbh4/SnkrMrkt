@@ -35,7 +35,6 @@ export const getLoadFilters = () => async(dispatch)=>{
 
 export const setSelectedFilters = (payload) => async (dispatch) => {
     const { size, brand, style, price } = payload; 
-     console.log("filters.js :", price)
     const res = await csrfFetch(`/api/shoes/filter?size=${size}&brand=${brand}&style=${style}&price=${price}`);
     
     if (res.ok) {

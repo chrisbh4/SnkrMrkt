@@ -55,8 +55,6 @@ const getRandomDate = () => {
 
   // Function to generate 5 unique random numbers
   const allShoes = Object.values(useSelector((state) => state.shoes))
-  console.log("Shoes :", Object.values(allShoes).length)
-
 
   function generateRandomShoes() {
     let randomNumbers = [];
@@ -68,7 +66,6 @@ const getRandomDate = () => {
         }
       }
     }
-    console.log("randomNumbers :", randomNumbers)
     return randomNumbers;
   }
 

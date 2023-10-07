@@ -45,18 +45,19 @@ function AddToCartComponent({ shoeId }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [size, setSize] = useState("")
-
-  const updateSize = async (e) => {
-    setSize(e.target.value)
-    return
-  }
-
   useEffect(() => {
     dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
+
+    if (filters.size > 0) {
+      setSize(filters?.size)
+    }
   }, [dispatch, shoeId]);
 
-
+  const shoe = useSelector((state) => state.shoes[shoeId])
+  const cart = useSelector((state) => state.shoppingCart)
+  const filters = useSelector((state) => state.filters)
+  const shoeSellerId = shoe?.sellerId;
   const userId = useSelector((state) => {
     if (state.session.user) {
       return state.session.user.id
@@ -64,22 +65,20 @@ function AddToCartComponent({ shoeId }) {
     return 0.5;
   })
 
-  const shoe = useSelector((state) => state.shoes[shoeId])
-  const cart = useSelector((state) => state.shoppingCart)
-  const filters = useSelector((state) => state.filters)
-  const shoeSellerId = shoe?.sellerId;
-
   const addToCart = async () => {
-    shoe.shoeSize = size
-
-    if (size.length === 0 ){
+    if (size.length === 0) {
       alert("Select a shoe size before adding to cart")
       return
     }
-
+    shoe.shoeSize = size
     await dispatch(addShoeToCart(shoe, cart))
     alert("Shoe has been added to your cart!")
     navigate("/home")
+    return
+  }
+
+  const updateSize = async (e) => {
+    setSize(e.target.value)
     return
   }
 

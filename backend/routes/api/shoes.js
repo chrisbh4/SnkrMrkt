@@ -160,8 +160,6 @@ router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(a
 
     const awsImageObj = req.file;
     const { sellerId, title, shoeSize, price, brand, description } = req.body;
-
-    // console.log(awsImageObj)
     const image = await awsImageUpload(awsImageObj)
 
     const newShoe = await Shoes.create({

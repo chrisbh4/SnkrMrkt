@@ -116,11 +116,6 @@ function NewHomePage() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("OnSubmit :", payload.brand)
-    // if (payload.brand === null || payload.brand === undefined){
-    //   return 
-    // }
-
     const data = await dispatch(setSelectedFilters(payload))
     return data
   }
