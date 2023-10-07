@@ -1,8 +1,7 @@
 import { Box, Center, Image, VStack, Link, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-// import { useDispatch } from "react-redux";
-// import { getAllShoes } from "../../store/shoes";
 import '../OldHomePage/ShoeList.css'
+
 
 
 function ShoeList({ shoe }) {
@@ -18,7 +17,6 @@ function ShoeList({ shoe }) {
     return (
         <Box  w='100%' pb='20px'>
             <Link _hover={{textDecoration: "none"}} href={`/shoes/${shoe.id}`} >
-            {/* <Link _hover={{textDecoration: "none"}} href={`/test/`} > */}
                 <Center paddingBottom={'10px'} >
                     {imageCheck}
                 </Center  >
