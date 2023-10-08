@@ -1,9 +1,10 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { Shoe, Review } = require('../../db/models');
-const {check} = require("express-validator");
+const { check } = require("express-validator");
+const { Op } = require('sequelize')
 const { handleValidationErrors } = require("../../utils/validation");
-const {  singleMulterUpload  , awsImageUpload} = require('../../aws-S3')
+const { singleMulterUpload, awsImageUpload } = require('../../aws-S3')
 
 
 // Saved in pluarl form due to Model naming error
@@ -16,20 +17,20 @@ const Reviews = Review;
 const router = express.Router();
 const validateNewShoe = [
     check('title')
-    .isLength({min:5 })
-    .withMessage("Shoe title must be greater than 5 characters"),
+        .isLength({ min: 5 })
+        .withMessage("Shoe title must be greater than 5 characters"),
     check('shoeSize')
-    .isFloat({min:4 , max:18})
-    .withMessage("Please provide a shoe size in mens between 4 and 18"),
+        .isFloat({ min: 4, max: 18 })
+        .withMessage("Please provide a shoe size in mens between 4 and 18"),
     check('price')
-    .isFloat({min:1})
-    .withMessage("Please provide a price value for this shoe greater than $0.99"),
+        .isFloat({ min: 1 })
+        .withMessage("Please provide a price value for this shoe greater than $0.99"),
     check('brand')
-    .exists({checkFalsy:true})
-    .withMessage("Please select a shoe brand"),
+        .exists({ checkFalsy: true })
+        .withMessage("Please select a shoe brand"),
     check('description')
-    .isLength({min:10})
-    .withMessage("Description must be at least 10 characters long."),
+        .isLength({ min: 10 })
+        .withMessage("Description must be at least 10 characters long."),
     // check('image')
     // .exists({checkFalsy:true})
     // .withMessage("Please enter image url"),
@@ -37,20 +38,20 @@ const validateNewShoe = [
 ]
 const validateEditShoe = [
     check('title')
-    .isLength({min:5 })
-    .withMessage("Shoe title must be greater than 5 characters."),
+        .isLength({ min: 5 })
+        .withMessage("Shoe title must be greater than 5 characters."),
     check('shoeSize')
-    .isFloat({min:4 , max:18})
-    .withMessage("Please provide a shoe size in mens between 4 and 18."),
+        .isFloat({ min: 4, max: 18 })
+        .withMessage("Please provide a shoe size in mens between 4 and 18."),
     check('price')
-    .isFloat({min:1})
-    .withMessage("Please provide a price value for this shoe greater than $0.99 ."),
+        .isFloat({ min: 1 })
+        .withMessage("Please provide a price value for this shoe greater than $0.99 ."),
     check('brand')
-    .exists({checkFalsy:true})
-    .withMessage("Please select a shoe brand."),
+        .exists({ checkFalsy: true })
+        .withMessage("Please select a shoe brand."),
     check('description')
-    .isLength({min:10})
-    .withMessage("Description must be at least 10 characters long."),
+        .isLength({ min: 10 })
+        .withMessage("Description must be at least 10 characters long."),
     handleValidationErrors
 ]
 
@@ -60,41 +61,73 @@ router.get('/', asyncHandler(async (req, res) => {
     })
 
     const allShoes = {}
-
-    // Sets the Key's to the shoes.id so that each key matches the id of the shoe
     shoes.forEach((shoe) => {
         if (!allShoes[shoe.id]) {
             allShoes[shoe.id] = shoe
         }
-
     })
 
     return res.json(allShoes)
-
 }));
+
+router.get('/filter', asyncHandler(async (req, res) => {
+    const { brand, price } = req.query;
+    const query = {
+        where: {},
+    };
+
+    if (brand !== "null" && brand !== "undefined") {
+        query.where.brand = brand;
+    }
+
+
+//TODO: Style Needs to be added to database Schema
+    if (price !== 'undefined' && price !== "") {
+        if (parseInt(price) === 650) {
+            minPrice = 650
+            maxPrice = 50000;
+            query.where.price = {
+                [Op.between]: [minPrice, maxPrice],
+            }
+        }
+        else {
+            const [minPrice, maxPrice] = price.split('-').map(Number);
+            query.where.price = {
+                [Op.between]: [minPrice, maxPrice],
+            }
+        }
+    }
+
+    const shoes = await Shoes.findAll(query);
+
+    return res.json(shoes);
+}));
+
+
 router.get('/:id', asyncHandler(async (req, res) => {
     const shoe = await Shoes.findByPk(req.params.id, {
         include: [Reviews]
     })
+
     return res.send(shoe)
 }))
 
 
-router.put('/:id', singleMulterUpload('image'),validateEditShoe, asyncHandler(async (req, res) => {
-    const shoe = await Shoe.findByPk(req.params.id) ;
-    const imageFile = req.file ;
-    if(req.file){
-        shoe.image = await awsImageUpload(imageFile) ;
+router.put('/:id', singleMulterUpload('image'), validateEditShoe, asyncHandler(async (req, res) => {
+    const shoe = await Shoe.findByPk(req.params.id);
+    const imageFile = req.file;
+    if (req.file) {
+        shoe.image = await awsImageUpload(imageFile);
     }
-    else{
+    else {
         shoe.image = req.body.image
     }
 
 
-    shoe.title = req.body.title ;
-    shoe.shoeSize = req.body.shoeSize ;
-    shoe.price = req.body.price ;
-    shoe.description = req.body.description ;
+    shoe.title = req.body.title;
+    shoe.shoeSize = req.body.shoeSize;
+    shoe.price = req.body.price;
+    shoe.description = req.body.description;
 
     await shoe.save();
     return res.json({ shoe });
@@ -126,9 +159,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(async (req, res) => {
 
     const awsImageObj = req.file;
-    const { sellerId, title, shoeSize, price, brand , description} = req.body;
-
-    // console.log(awsImageObj)
+    const { sellerId, title, shoeSize, price, brand, description } = req.body;
     const image = await awsImageUpload(awsImageObj)
 
     const newShoe = await Shoes.create({
@@ -137,6 +168,9 @@ router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(a
 
     return res.json({ newShoe })
 }))
+
+
+
 
 
 module.exports = router

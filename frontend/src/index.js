@@ -38,8 +38,20 @@ const loadSavedCart = () =>{
   }
 };
 
+const loadFilterState = () =>{
+  try {
+    const cart = localStorage.getItem('filters')
+    if(!cart){
+      return undefined
+    }
+    return JSON.parse(cart)
+  }catch(err){
+    return undefined
+  }
+};
+
 //sets the state to have a key: of shoppingCart and values of the loaded shoes inside the cart
-const savedCart = { shoppingCart: loadSavedCart()}
+const savedCart = { shoppingCart: loadSavedCart(), filters: loadFilterState()}
 
 const store = configureStore(savedCart);
 

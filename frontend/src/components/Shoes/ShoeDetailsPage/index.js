@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
-// import { useParams, useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
-// import * as sessionActions from '../../../store/session';
 import "./ShoeDetails.css"
-// import ShoeReviews from "../../Reviews/ShoeReviews/ShoeReviews"
-// import { addShoeToCart } from "../../../store/shoppingCart"
 import { getOneShoe } from "../../../store/shoes"
-import { fetchMostPopular } from '../../../store/stockX';
+// import { addShoeToCart } from "../../../store/shoppingCart"
+// import { fetchMostPopular } from '../../../store/stockX';
 import AddToCartComponent from './AddToCartCompoent';
 import {
   Center,
@@ -56,6 +53,27 @@ const getRandomDate = () => {
   // const stockXdata = useSelector((state) => state.stockXapi)
   // const testData = stockXdata[0]
 
+  // Function to generate 5 unique random numbers
+  const allShoes = Object.values(useSelector((state) => state.shoes))
+
+  function generateRandomShoes() {
+    let randomNumbers = [];
+    if (allShoes.length > 0) {
+      while (randomNumbers.length < 4) {
+        let num = Math.floor(Math.random() * Object.values(allShoes).length);
+        if (!randomNumbers.includes(num)) {
+          randomNumbers.push(num);
+        }
+      }
+    }
+    return randomNumbers;
+  }
+
+  // // Generate the random numbers
+  const randomShoeIndices = generateRandomShoes();
+  // const randomShoeIndices = [];
+
+
   const userId = useSelector((state) => {
     if (state.session.user) {
       return state.session.user?.id
@@ -64,16 +82,16 @@ const getRandomDate = () => {
   })
 
   const shoe = useSelector((state) => state.shoes[shoeId])
+
   // const cart = useSelector((state) => state.shoppingCart)
 
   //* Checks if Image string contains either jpeg, png, or image inside it's string
-  let imageCheck;
-  if (shoe?.image.includes("jpeg") || shoe?.image.includes("png") || shoe?.image.includes("image")) {
-    imageCheck = <img src={shoe?.image} alt={shoe?.title}></img>
-  } else {
-    imageCheck = <img className="bad-image" alt={shoe?.title}></img>
-  }
-
+  // let imageCheck;
+  // if (shoe?.image.includes("jpeg") || shoe?.image.includes("png") || shoe?.image.includes("image")) {
+  //   imageCheck = <img src={shoe?.image} alt={shoe?.title}></img>
+  // } else {
+  //   imageCheck = <img className="bad-image" alt={shoe?.title}></img>
+  // }
 
   return (
     // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
@@ -100,7 +118,7 @@ const getRandomDate = () => {
 
         <Box pb='3' pt='2'  >
           <Flex fontWeight={'bold'} fontSize='lg' >
-            <Box w='67%' h='10' >Product Detials </Box>
+            <Box w='67%' h='10' >Product Details </Box>
             <Box w='full' h='10' pl='13%' >Product Description </Box>
           </Flex>
         </Box>
@@ -139,79 +157,54 @@ const getRandomDate = () => {
 
 
         </Flex>
-        {/* Related Products () */}
-        {/* Write a while loop while iterating through the Shoes array up to i >= 5 */}
-        <Box>
+        <Box borderTop={'22px'} borderColor='black' pt={'1em'} >
           <Text fontSize={'2xl'} fontWeight='bold' >Related Products</Text>
-          <Flex >
-            <Link href='/shoes/1'>
-              <Image
-                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-1.png"}
-                boxSize='250px'
-                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
-              />
-            </Link>
-
-            <Link href='/shoes/2'>
-              <Image
-                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-2.png"}
-                boxSize='250px'
-                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
-              />
-            </Link>
-
-            <Link href='/shoes/3'>
-              <Image
-                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-3.png"}
-                boxSize='250px'
-                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
-              />
-            </Link>
-
-            <Link href='/shoes/4'>
-              <Image
-                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-4.png"}
-                boxSize='250px'
-                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
-              />
-            </Link>
-
-            <Link href='/shoes/5'>
-              <Image
-                src={"https://theplug-app-aws.s3.us-west-1.amazonaws.com/seed-5.png"}
-                boxSize='250px'
-                _hover={{  boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}
-              />
-            </Link>
+          <Flex justify={'space-between'}>
+            {randomShoeIndices.map(index => (
+              <Box
+                marginLeft={'5px'}
+                _hover={{
+                  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)"
+                }}
+              >
+                <Link href={`/shoes/${index}`}>
+                  <Image
+                    src={allShoes[index]?.image}
+                    boxSize='300px'
+                    p={'3px'}
+                  />
+                </Link>
+              </Box>
+            ))}
           </Flex>
         </Box>
 
-        <Box>
+        {/* Reviews */}
+        <Box pb={'3em'}>
           <Text fontSize={'2xl'} fontWeight='bold' pt={"2%"} >{shoe?.title} Reviews</Text>
-
           <Box py={"2%"}>
             <CreateReviewModal />
           </Box>
 
-          <Grid templateColumns='10% 1fr 1fr' pb={"3"}>
-            <GridItem w='100%' h='10' bg='none' fontSize={"20"} fontWeight={"bold"} >Ratings</GridItem>
-            <GridItem w='100%' h='10' bg='none' fontSize={"20"} fontWeight={"bold"} whiteSpace={"nowrap"} pr={"4%"}>Comments</GridItem>
+          <Grid templateColumns={"repeat(3, 1fr)"} pb={'1em'} gap={6}>
+            <Text ml={"4%"} fontSize={'xl'} >Reviews</Text>
+            <Text ml={"4%"} fontSize={'xl'} >Ratings</Text>
           </Grid>
-
+          
           {shoe?.Reviews.map((review) => {
             if (review.userId === userId) {
               return (
-                <Grid templateColumns='10% 1fr 1fr'>
-                  <GridItem h='10' bg='none'>{review.rating}</GridItem>
-                  <GridItem mr={"8%"} h='10' bg='none' whiteSpace={"nowrap"} pr={"4%"}>{review.comment}</GridItem>
-                  <GridItem ml={"8%"} h='10' bg='none'><EditReviewModal review={review} /></GridItem>
+                <Grid templateColumns={"repeat(3, 1fr)"} gap={6}>
+                  <Text ml={"4%"} pt={'1em'}>{review.comment}</Text>
+                  <Text ml={"2.5em"} pt={'1em'}>{review.rating}</Text>
+                  <EditReviewModal pt={'3em'} review={review} />
                 </Grid>
               )
             }
             return (
-              <Grid templateColumns='10% 1fr 1fr'>
-                <GridItem h='10' bg='none'>{review.rating}</GridItem>
-                <GridItem h='10' bg='none'>{review.comment}</GridItem>
+              <Grid templateColumns={"repeat(3, 1fr)"} gap={6}>
+                <Text ml={"4%"} pt={'1em'} >{review.comment}</Text>
+                <Text ml={"2.5em"} pt={'1em'} >{review.rating}</Text>
               </Grid>
             )
           })}

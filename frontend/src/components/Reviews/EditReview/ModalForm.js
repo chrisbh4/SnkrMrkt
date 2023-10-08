@@ -24,8 +24,8 @@ function EditReviewModal({review}) {
         <>
             <Button
                 onClick={onOpen}
-                // color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
-                color='rgba(255,255,255,1)' background='black' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
+                color='rgba(255,255,255,1)' background='black' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 2em'
+                w={'65%'}
                 _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
             >
                 Edit Review

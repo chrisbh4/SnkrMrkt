@@ -105,15 +105,15 @@ color: rgba(0,0,0,0.8);
 .all-shoes-container{
     display: flex;
     justify-content: space-evenly;
-    /* need to figure out how to have the products be evenly placed */
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
 }
 
 .shoe-container{
     text-align: center;
     background-color: white;
     border: 2px solid white;
-    width:375px;
+    width:325px;
+    /* max-width:351px; */
     max-height: 430px;
     margin-right: 8.5px;
     margin-left: 1px;

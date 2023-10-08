@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_SHOES = 'shoes/LOAD_SHOES';
+export const LOAD_SHOES = 'shoes/LOAD_SHOES';
 const ONE_SHOE = 'shoes/ONE_SHOE';
 const CREATE_SHOE = 'shoes/CREATE_SHOE';
 const EDIT_SHOE = 'shoes/EDIT_SHOE';
@@ -9,7 +9,7 @@ const DELETE_SHOE = 'shoes/DELETE_SHOE';
 
 
 
-const loadShoes = (shoes) => ({
+export const loadShoes = (shoes) => ({
     type: LOAD_SHOES,
     shoes
 });
@@ -55,15 +55,8 @@ export const getOneShoe = (shoeId) => async (dispatch) => {
 };
 
 export const getCreatedShoe = (payload) => async (dispatch) => {
-    const {sellerId, title, shoeSize, imageFile, price, brand, description} = payload;
+    const { sellerId, title, shoeSize, imageFile, price, brand, description } = payload;
     const formData = new FormData()
-    //* used when application wasn't using AWS or having files uploaded
-    // const res = await csrfFetch("/api/shoes/new", {
-    //     method: "POST",
-    //     header: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({payload})
-    // })
-
     // used for aws
     formData.append("sellerId", sellerId);
     formData.append("title", title);
@@ -72,18 +65,18 @@ export const getCreatedShoe = (payload) => async (dispatch) => {
     formData.append("brand", brand);
     formData.append("description", description);
 
-      // for single file
-  if (imageFile) formData.append("image", imageFile);
-
-  const res = await csrfFetch(`/api/shoes/new`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    body: formData,
-  });
+    // for single file
+    if (imageFile) formData.append("image", imageFile);
 
 
+    const res = await csrfFetch(`/api/shoes/new`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        body: formData,
+    });
+  
     const data = await res.json()
     if (data.ok) {
         dispatch(createShoe(data))
@@ -94,30 +87,22 @@ export const getCreatedShoe = (payload) => async (dispatch) => {
 };
 
 export const getEditShoe = (title, shoeSize, image, price, brand, description, shoeId) => async (dispatch) => {
-    //* used when application wasn't using AWS or having files uploaded
-    // const res = await csrfFetch(`/api/shoes/${shoeId}`, {
-    //     method: "PUT",
-    //     header: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ title, shoeSize, image, price, brand, description })
-    // })
-
     const formData = new FormData();
-
     formData.append("title", title);
     formData.append("shoeSize", shoeSize);
     formData.append("price", price);
     formData.append("brand", brand);
     formData.append("description", description);
     formData.append("shoeId", shoeId);
-    if(image) formData.append("image", image);
+    if (image) formData.append("image", image);
 
     const res = await csrfFetch(`/api/shoes/${shoeId}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "multipart/form-data",
+            "Content-Type": "multipart/form-data",
         },
         body: formData,
-      });
+    });
 
     const data = await res.json()
 
@@ -130,7 +115,6 @@ export const getEditShoe = (title, shoeSize, image, price, brand, description, s
 };
 
 export const getDeletedShoe = (shoeId) => async (dispatch) => {
-
     const res = await csrfFetch(`/api/shoes/${shoeId}`, {
         method: 'DELETE'
     })
@@ -143,13 +127,12 @@ export const getDeletedShoe = (shoeId) => async (dispatch) => {
 };
 
 const initialState = {};
-
-
 function reducer(state = initialState, action) {
     let newState = { ...state }
     switch (action.type) {
         case LOAD_SHOES:
-            return { ...state, ...action.shoes }
+            return { ...action.shoes }
+            // return { ...state, ...action.shoes }
         case ONE_SHOE:
             return { ...action.shoes }
         case CREATE_SHOE:
@@ -165,6 +148,5 @@ function reducer(state = initialState, action) {
             return state
     }
 }
-
 
 export default reducer;
