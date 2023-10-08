@@ -18,8 +18,6 @@ function NewHomePage() {
     shoesArray = Object.values(shoes)
   }
 
-
-
   const sizeChart = [
     { id: 1, size: 3 },
     { id: 2, size: 3.5 },
