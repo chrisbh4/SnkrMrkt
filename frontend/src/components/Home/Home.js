@@ -184,14 +184,15 @@ function NewHomePage() {
             })}
           </Box>
 
-          <Box borderTop={'1px'}   >
+          {/* <Box borderTop={'1px'}   >
             <Text fontSize='2xl' position='relative' left='1%'>Shoe Style</Text>
             <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
               <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
                 style={{
                   backgroundColor: filters.style === "men" ? "red" : filterStyleType === "men" ? "green" : ""
                 }}
-              ><Text onClick={() => updateFilterStyle("men")} fontSize={'20px'} textTransform='uppercase' >Men</Text></Text>
+              >
+              <Text onClick={() => updateFilterStyle("men")} fontSize={'20px'} textTransform='uppercase' >Men</Text></Text>
               <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
                 style={{
                   backgroundColor: filters.style === "woman" ? "red" : filterStyleType === "woman" ? "green" : ""
@@ -208,11 +209,11 @@ function NewHomePage() {
                 }}
               ><Text onClick={() => updateFilterStyle("toddler")} fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Text>
             </VStack>
-          </Box>
+          </Box> */}
 
-          {/* <ShoeStyleGrid /> */}
+          <ShoeStyleGrid />
 
-          <Box borderTop={"1px"}  >
+          {/* <Box borderTop={"1px"}  >
             <Text fontSize='2xl' pl='2%'>Shoe Size</Text>
             <Flex pl='2%'>
               <Center>
@@ -236,7 +237,7 @@ function NewHomePage() {
 
               </Center>
             </Flex>
-          </Box>
+          </Box> */}
 
           <Box borderTop={'1px'} pb='27px'>
             <Text pl='2%' fontSize='2xl' >Shop by Price</Text>
