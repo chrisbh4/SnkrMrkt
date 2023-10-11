@@ -112,19 +112,6 @@ function CheckoutForm() {
                     <Box w={"full"}>
                         <FormControl pt={"2%"}   >
                             <Box py={"20px"}>
-                            {/* {
-                                errors?.map((error) => {
-                                    if (error) {
-                                        return (
-                                            <Center key={error.id}>
-                                                <Text  fontSize={"md"} color={'red.400'} fontWeight={'bold'} >{error}</Text>
-                                            </Center>
-                                        )
-                                    }
-                                    return null;
-                                })
-                            } */}
-
                             </Box>
                             <Box pb={8} px='25%'  >
                                 <Box>
@@ -132,7 +119,7 @@ function CheckoutForm() {
                                     <Flex justify={'start'}>
                                         <Box w={'full'}>
                                             <FormLabel>Email Address</FormLabel>
-                                            {errors.includes("Must input a email") && <Center color={'red.400'}>Must input email</Center>}
+                                            {errors.includes("Must input a email") && <Text color={'red.400'}>Must input email</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateEmail} />
                                         </Box>
                                     </Flex>
@@ -144,24 +131,24 @@ function CheckoutForm() {
                                     <Text fontSize={'2xl'}>Payment Details </Text>
                                     <Box w={'full'} mt={"2%"}>
                                         <FormLabel>Name on card</FormLabel>
-                                        {errors.includes("Must input the full name on the card") && <Center color={'red.400'}>Must input the full name on the card</Center>}
+                                        {errors.includes("Must input the full name on the card") && <Text color={'red.400'}>Must input the full name on the card</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updateNameOnCard} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Card Number</FormLabel>
-                                        {errors.includes("Must input a card number") && <Center color={'red.400'}>Must input a card number</Center>}
+                                        {errors.includes("Must input a card number") && <Text color={'red.400'}>Must input a card number</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updateCardNumber} />
                                     </Box>
                                     <Flex w={'full'} mt={"5%"}>
                                         <Box>
                                         <FormLabel>Expiration Date (MM/YY)</FormLabel>
-                                        {errors.includes("Must input an expiration date") && <Center color={'red.400'}>Must input an expiration date</Center>}
+                                        {errors.includes("Must input an expiration date") && <Text color={'red.400'}>Must input an expiration date</Text>}
                                             <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} />
                                         </Box>
 
                                         <Box w={'15%'} ml={'15%'}>
                                             <FormLabel>CVV</FormLabel>
-                                            {errors.includes("Must input a CVV") && <Center color={'red.400'}>CVV required</Center>}
+                                            {errors.includes("Must input a CVV") && <Text color={'red.400'}>CVV required</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateCvvNumber} />
                                         </Box>
                                     </Flex>
@@ -173,12 +160,12 @@ function CheckoutForm() {
                                     <Flex w={'full'} justify={'space-between'}>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>First Name</FormLabel>
-                                            {errors.includes("Must input a first name") && <Center color={'red.400'}>Must input a first name</Center>}
+                                            {errors.includes("Must input a first name") && <Text color={'red.400'}>Must input a first name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateFirstName} />
                                         </Box>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>Last Name</FormLabel>
-                                            {errors.includes("Must input a last name") && <Center color={'red.400'}>Must input a last name</Center>}
+                                            {errors.includes("Must input a last name") && <Text color={'red.400'}>Must input a last name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateLastName} />
                                         </Box>
                                     </Flex>
@@ -189,7 +176,7 @@ function CheckoutForm() {
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Address</FormLabel>
-                                        {errors.includes("Must input a billing address") && <Center color={'red.400'}>Must input a billing address</Center>}
+                                        {errors.includes("Must input a billing address") && <Text color={'red.400'}>Must input a billing address</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updateAddress} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
@@ -199,13 +186,13 @@ function CheckoutForm() {
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>City</FormLabel>
-                                            {errors.includes("Must input a city name") && <Center color={'red.400'}>Must input a city name</Center>}
+                                            {errors.includes("Must input a city name") && <Text color={'red.400'}>Must input a city name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateCity} />
                                         </Box>
 
                                         <Box w={'47%'}>
                                             <FormLabel>Country</FormLabel>
-                                            {errors.includes("Must select a one of the available countries") && <Center color={'red.400'}>Must select a one of the available countries</Center>}
+                                            {errors.includes("Must select a one of the available countries") && <Text color={'red.400'}>Must select a one of the available countries</Text>}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateCountry} >
                                                 <option value=''></option>
                                                 <option value='United States'>United States</option>
@@ -218,7 +205,7 @@ function CheckoutForm() {
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>State/Province</FormLabel>
-                                            {errors.includes("Must input a State or Province") && <Center color={'red.400'}>Must input a State or Province</Center>}
+                                            {errors.includes("Must input a State or Province") && <Text color={'red.400'}>Must input a State or Province</Text>}
                                             {/* <Input borderColor={"black"} bg='gray.50' onChange={updateStateProvince} /> */}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateStateProvince}>
                                                 <option value=""></option>
@@ -231,7 +218,7 @@ function CheckoutForm() {
 
                                         <Box w={'47%'}>
                                             <FormLabel>Postal Code</FormLabel>
-                                            {errors.includes("Must input a Postal Code or Zip code") && <Center color={'red.400'}>Must input a Postal Code or Zip code</Center>}
+                                            {errors.includes("Must input a Postal Code or Zip code") && <Text color={'red.400'}>Must input a Postal Code or Zip code</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updatePostalCode} />
                                         </Box>
 
@@ -239,7 +226,7 @@ function CheckoutForm() {
 
                                     <Box mt={'5%'}>
                                         <FormLabel>Phone Number</FormLabel>
-                                        {errors.includes("Must input a Phone number") && <Center color={'red.400'}>Must input a Phone number</Center>}
+                                        {errors.includes("Must input a Phone number") && <Text color={'red.400'}>Must input a Phone number</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updatePhoneNumber} />
                                     </Box>
 
