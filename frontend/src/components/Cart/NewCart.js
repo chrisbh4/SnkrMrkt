@@ -17,9 +17,6 @@ import {
 } from '@chakra-ui/react'
 
 
-
-
-
 function CheckoutForm() {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
@@ -45,8 +42,6 @@ function CheckoutForm() {
     const [stateProvince, setStateProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    //* key into the cart state and iterate through the shoes
-    // const [shoeIds, setShoeIds] = useState("");
     const shoeIds = ""
 
     const usStateInitials = [
@@ -56,11 +51,7 @@ function CheckoutForm() {
         'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
         'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
     ];
-
-
-
-
-    // const updateUserName = (e) => setUserName(e.target.value)
+    
     const updateEmail = (e) => setEmail(e.target.value)
     const updateNameOnCard = (e) => setNameOnCard(e.target.value)
     const updateCardNumber = (e) => setCardNumber(e.target.value)
@@ -85,7 +76,6 @@ function CheckoutForm() {
     const feePrices = total * 0.01
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
-    // const emptyCart = <Box pl={'4%'} pt={'2%'} fontSize={'xl'}>Cart is empty</Box>
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -145,9 +135,9 @@ function CheckoutForm() {
                                             <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} />
                                         </Box>
 
-                                        <Box w={'15%'} ml={'15%'}>
+                                        <Box w={'20%'} ml={'15%'}>
                                             <FormLabel>CVV</FormLabel>
-                                            {errors.includes("Must input a CVV") && <Text color={'red.400'}>CVV required</Text>}
+                                            {errors.includes("Must input a CVV") && <Text color={'red.400'}>*required</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateCvvNumber} />
                                         </Box>
                                     </Flex>
@@ -195,8 +185,8 @@ function CheckoutForm() {
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateCountry} >
                                                 <option value=''></option>
                                                 <option value='United States'>United States</option>
-                                                <option value='Canada'>Canada</option>
-                                                <option value='Mexico'>Mexico</option>
+                                                {/* <option value='Canada'>Canada</option> */}
+                                                {/* <option value='Mexico'>Mexico</option> */}
                                             </Select>
                                         </Box>
 
@@ -205,7 +195,6 @@ function CheckoutForm() {
                                         <Box w={'47%'} >
                                             <FormLabel>State/Province</FormLabel>
                                             {errors.includes("Must input a State or Province") && <Text color={'red.400'}>Must input a State or Province</Text>}
-                                            {/* <Input borderColor={"black"} bg='gray.50' onChange={updateStateProvince} /> */}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateStateProvince}>
                                                 <option value=""></option>
                                                 {usStateInitials.map(state => (
