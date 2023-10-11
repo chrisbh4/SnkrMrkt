@@ -10,7 +10,6 @@ import {
     Input,
     InputGroup,
     InputLeftAddon,
-    Text,
     Grid,
     Flex,
     Button,

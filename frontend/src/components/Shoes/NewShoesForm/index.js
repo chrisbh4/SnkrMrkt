@@ -13,7 +13,6 @@ import {
     InputGroup,
     InputLeftAddon,
     Heading,
-    Text,
     Grid,
     Flex,
     Button,

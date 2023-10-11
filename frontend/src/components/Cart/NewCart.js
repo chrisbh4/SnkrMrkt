@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
-import { purchaseFromCart } from "../../store/shoppingCart";
 import CartItem from "./CartItem";
 import { fetchCreateNewOrder } from "../../store/orders";
 import "./Cart.css"
@@ -14,7 +13,6 @@ import {
     Flex,
     Button,
     Center,
-    Checkbox,
     Select,
     Stack,
 } from '@chakra-ui/react'
@@ -26,7 +24,7 @@ import {
 function CheckoutForm() {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const shoppingCart = useSelector((state) => state.shoppingCart);
     const user = useSelector((state) => state.session.user);
     const userId = user?.id
