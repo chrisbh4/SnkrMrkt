@@ -17,6 +17,8 @@ import {
     Flex,
     Button,
     Textarea,
+    Center,
+    Text
 } from '@chakra-ui/react'
 
 
@@ -34,18 +36,6 @@ function NewReviewChakraForm({ onClose }) {
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
 
-    let errorHandler;
-    if (errors.errors) {
-        errorHandler = errors.errors.map((error) => {
-            return (
-                <p key={error.id}>{error}</p>
-            )
-        })
-    }
-    else {
-        errorHandler = null;
-    }
-
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(fetchCreateReview(shoeId, userId, comment, rating, image))
@@ -56,7 +46,7 @@ function NewReviewChakraForm({ onClose }) {
             onClose()
         }
         else {
-            setErrors(data)
+            setErrors(data.errors)
         }
         return data
     }
@@ -70,20 +60,18 @@ function NewReviewChakraForm({ onClose }) {
                         templateRows="repeat(3, 1fr)"
                         templateColumns="repeat(1, 1fr)"
                         gap={4}
-                        p="4%"
-                    // borderBottom={"1px"}
-                    // borderColor={"gray.500"}
-                    >
+                        p="4%">
                         <Box color={"red.400"} hidden={!errors.errors?.length}  >
-                            {errorHandler}
                         </Box>
-                        <Box h={'20'} w={"70%"}>
+                        <Box h={''} w={"90%"}>
                             <FormLabel>Comment </FormLabel>
                             <Textarea borderColor={"black"} bg='gray.50' h={"90px"} placeholder="Seller/Shoe review" onChange={updateComment} />
+                            {errors.includes("Comment must be greater than 5 characters and less than 250") && <Center color={'red.400'}>Comment must be greater than 5 characters and less than 250</Center>}
                         </Box>
-                        <Box h={'20'} w={"35%"} mt={"4%"} >
+                        <Box h={'20'} w={"55%"} mt={"4%"} >
                             <FormLabel>Rating</FormLabel>
                             <Input borderColor={"black"} bg='gray.50' placeholder="Rating" onChange={updateRating} />
+                            {errors.includes("Rating must be between 1 and 5") && <Text color={'red.400'} textAlign={'start'} ml={'3px'}>Rating must be between 1 and 5</Text>}
                         </Box>
 
                         <Flex justify={'flex-start'}>
@@ -93,9 +81,7 @@ function NewReviewChakraForm({ onClose }) {
                     </Grid>
 
                 </Box>
-
             </FormControl>
-
         </>
     )
 }

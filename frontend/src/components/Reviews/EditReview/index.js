@@ -13,6 +13,8 @@ import {
     Flex,
     Button,
     Textarea,
+    Center,
+    Text
 } from '@chakra-ui/react'
 
 
@@ -36,20 +38,6 @@ function EditReviewChakraForm({ onClose, review }) {
     const updateComment = (e) => setComment(e.target.value)
     const updateRating = (e) => setRating(e.target.value)
 
-
-    let errorHandler;
-    if (errors.errors) {
-        errorHandler = errors.errors.map((error) => {
-            return (
-                <p key={error.id}>{error}</p>
-            )
-        })
-    }
-    else {
-        errorHandler = null;
-    }
-
-
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(fetchEditReview(shoeId, userId, comment, rating, image, reviewId))
@@ -57,7 +45,7 @@ function EditReviewChakraForm({ onClose, review }) {
             await dispatch(getAllShoes())
             onClose()
         } else {
-            setErrors(data)
+            setErrors(data.errors)
             return data
         }
     }
@@ -83,15 +71,16 @@ function EditReviewChakraForm({ onClose, review }) {
                         p="4%"
                     >
                         <Box color={"red.400"} hidden={!errors.errors?.length}  >
-                            {errorHandler}
                         </Box>
-                        <Box h={'20'} w={"70%"}>
+                        <Box  w={"90%"}>
                             <FormLabel>Comment </FormLabel>
                             <Textarea borderColor={"black"} bg='gray.50' h={"90px"} placeholder={comment} onChange={updateComment} />
+                            {errors.includes("Comment must be greater than 5 characters and less than 250") && <Center color={'red.400'}>Comment must be greater than 5 characters and less than 250</Center>}
                         </Box>
-                        <Box h={'20'} w={"35%"} mt={"4%"} >
+                        <Box h={'20'} w={"55%"} mt={"4%"} >
                             <FormLabel>Rating</FormLabel>
                             <Input borderColor={"black"} bg='gray.50' placeholder={rating} onChange={updateRating} />
+                            {errors.includes("Rating must be between 1 and 5") && <Text color={'red.400'} textAlign={'start'} ml={'3px'}>Rating must be between 1 and 5</Text>}
                         </Box>
 
                         <Flex justify={'flex-start'}>
