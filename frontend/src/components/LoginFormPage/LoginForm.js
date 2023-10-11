@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Navigation from "../Navigation";
 import * as sessionActions from "../../store/session";
-
-import LoginFormModal from "../LoginFormModal";
 import {
     Button,
     Text,
@@ -17,18 +14,12 @@ import {
     ModalCloseButton,
     useDisclosure,
     FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Input,
     VStack,
-    Select,
     Center,
     Box,
-    Flex,
 } from '@chakra-ui/react'
 import SignUpForm from "../SignupFormPage/SignupForm";
-
 
 
 function LoginForm() {
@@ -40,12 +31,11 @@ function LoginForm() {
     const [errors, setErrors] = useState([]);
 
     const handleCredentials = (e) => setCredential(e.target.value)
-    const handlePassword = (e) => setPassword(e.target.value)
+    // const handlePassword = (e) => setPassword(e.target.value)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(sessionActions.login({ credential, password }))
-
         if (data?.errors) {
             setErrors(data.errors)
             return
@@ -57,11 +47,12 @@ function LoginForm() {
     return (
         <>
             <Button
-            onClick={onOpen}
-            color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.7em 4em'
-            _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            >Log In</Button>
-
+                onClick={onOpen}
+                color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.7em 4em'
+                _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
+            >
+                Log In
+            </Button>
             <Modal isOpen={isOpen} onClose={onClose} size='3xl'>
                 <ModalOverlay
                     backdropFilter='auto'
@@ -85,15 +76,8 @@ function LoginForm() {
                                     Log In
                                 </Center>
                             </Box>
-                            {/* <Button onClick={onClose} bg='white' borderBottom='4px' borderColor='gray.300' width={'35%'} _hover={{ borderColor: 'black', bg: "gray.100" }}>
-                                <Center fontSize={'md'} pb='13px' fontWeight='bold'>Sign Up </Center>
-                            </Button> */}
-
                             <SignUpForm />
                         </Center>
-
-
-
                         <FormControl onSubmit={handleSubmit}>
                             <VStack spacing={8} w='70%'
                                 pos={'relative'}
@@ -101,7 +85,6 @@ function LoginForm() {
                                 <Box color={'red.400'} fontSize='lg' fontWeight={'bold'}>
                                     {errors.map((error, idx) => <Text key={idx}>{error}</Text>)}
                                 </Box>
-
                                 <Input
                                     placeholder='Enter Email'
                                     type="text"
@@ -111,7 +94,6 @@ function LoginForm() {
                                     required
                                     size={'lg'}
                                 />
-
                                 <Input
                                     placeholder='Enter Password'
                                     type="password"
@@ -121,10 +103,7 @@ function LoginForm() {
                                     required
                                     size={'lg'}
                                 />
-
-
                                 <Button
-                                    // className="signup-submit"
                                     type="submit"
                                     onClick={handleSubmit}
                                     bg='black'
@@ -135,7 +114,6 @@ function LoginForm() {
                             </VStack>
                         </FormControl>
                     </ModalBody>
-
                     <ModalFooter>
                         <Button bg='black' color={'white'} mr={3} onClick={onClose}>
                             Close
