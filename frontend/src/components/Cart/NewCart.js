@@ -79,7 +79,8 @@ function CheckoutForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        let payload = { username, userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+        let payload = { username, userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
+                        city, country, stateProvince, postalCode, phoneNumber, shoeIds }
         let data = await dispatch(fetchCreateNewOrder(payload))
 
         if (!data?.errors) {
