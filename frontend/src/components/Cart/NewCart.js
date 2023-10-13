@@ -23,7 +23,7 @@ function CheckoutForm() {
     // const navigate = useNavigate()
     const shoppingCart = useSelector((state) => state.shoppingCart);
     const user = useSelector((state) => state.session.user);
-    const userId = user?.id
+    const buyerId = user?.id
     const username = user?.username
     const cart = Object.values(shoppingCart);
 
@@ -42,7 +42,8 @@ function CheckoutForm() {
     const [stateProvince, setStateProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const shoeIds = ""
+    const shoeIds = "3"
+    const totalAmount = "1000"
 
     const usStateInitials = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -79,8 +80,8 @@ function CheckoutForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        let payload = { username, userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
-                        city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+        let payload = { username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
+                        city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount }
         let data = await dispatch(fetchCreateNewOrder(payload))
 
         if (!data?.errors) {

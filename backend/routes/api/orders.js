@@ -68,7 +68,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
    const {
       username,
-      userId,
+      buyerId,
       email,
       nameOnCard,
       cardNumber,
@@ -84,11 +84,13 @@ router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
       stateProvince,
       postalCode,
       phoneNumber,
-      shoeIds } = req.body
+      shoeIds,
+      totalAmount   
+   } = req.body
 
    const newOrder = await orders.create({
-      userId, username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
-      otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds
+      buyerId, username, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
+      otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount
    })
 
    return res.json({ newOrder })
