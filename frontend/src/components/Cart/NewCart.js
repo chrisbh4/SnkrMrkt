@@ -182,7 +182,7 @@ function CheckoutForm() {
 
                                         <Box w={'47%'}>
                                             <FormLabel>Country</FormLabel>
-                                            {errors.includes("Must select a one of the available countries") && <Text color={'red.400'}>Must select a one of the available countries</Text>}
+                                            {errors.includes("Must select a one of the available countries") && <Text color={'red.400'}>Must select a country</Text>}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateCountry} >
                                                 <option value=''></option>
                                                 <option value='United States'>United States</option>
