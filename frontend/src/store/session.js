@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf.js";
+import { getclearFilters } from "./filters.js";
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
@@ -52,6 +53,7 @@ export const logout = () => async (dispatch) => {
     method: "DELETE",
   });
   dispatch(removeUser());
+  dispatch(getclearFilters())
   return response;
 };
 

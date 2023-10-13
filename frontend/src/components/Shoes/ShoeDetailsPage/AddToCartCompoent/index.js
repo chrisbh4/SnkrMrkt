@@ -45,6 +45,7 @@ function AddToCartComponent({ shoeId }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [size, setSize] = useState("")
+
   useEffect(() => {
     dispatch(getAllShoes())
     dispatch(getOneShoe(shoeId))
@@ -101,17 +102,17 @@ function AddToCartComponent({ shoeId }) {
       <Box w='500px' p='5%'>
         <Box>
           <Box p='10px'>
-            <Select placeholder='Select Size:' variant={"filled"} w='90%' onClick={updateSize}>
+            <Select placeholder='Select Size:' variant={"filled"} w='90%' onChange={updateSize}>
               {sizeChart.map((chart) => {
                 if (filters.size && filters.size === chart.size) {
                   return (
-                    <option key={chart.id} value={chart.size} onChange={updateSize} selected>
+                    <option key={chart.id} value={chart.size}  selected>
                       {chart.size}
                     </option>
                   );
                 } else {
                   return (
-                    <option key={chart.id} value={chart.size} onChange={updateSize}>
+                    <option key={chart.id} value={chart.size} >
                       {chart.size}
                     </option>
                   );

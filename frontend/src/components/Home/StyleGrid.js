@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Button,
-        SimpleGrid,
-        Flex,
-        Center
- } from '@chakra-ui/react'; 
+import {
+  Button,
+  SimpleGrid,
+  Flex,
+  Center,
+  VStack,
+  Text,
+  Box
+} from '@chakra-ui/react';
 
 const ShoeStyleGrid = () => {
-  const [selectedStyle, setSelectedStyle] = useState('');
   const filters = useSelector((state) => state.filters)
   const [filterShoeSize, setFilterShoeSize] = useState({ id: null, size: null })
-
-  const handleStyleClick = (style) => {
-    setSelectedStyle(style);
-  };
+  const [filterStyleType, setFilterStyleType] = useState({})
 
   const updateFilterShoeSize = (filter) => {
     if (filter.id === filterShoeSize.id) {
@@ -23,6 +23,13 @@ const ShoeStyleGrid = () => {
     }
   };
 
+  const updateFilterStyle = (value) => {
+    if (value === filterStyleType) {
+      setFilterStyleType("");
+    } else {
+      setFilterStyleType(value);
+    }
+  };
 
   const youthSizeChart = [
     { id: 1, size: '3Y' },
@@ -99,114 +106,113 @@ const ShoeStyleGrid = () => {
     { id: 10, size: '10T' },
   ];
 
-   
+
   const renderSizeChart = () => {
-    if (selectedStyle === 'men') {
+    if (filterStyleType === 'men') {
       return (
         <div>
-                  <Flex pl='2%'>
-              <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
-                  {menSizeChart.map((chart) => {
-                    return (
-                      <div key={chart.id}>
-                        <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
-                          key={chart.id}
-                          onClick={() => updateFilterShoeSize(chart)}
-                          style={{
-                            backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
-                            color: chart.id === filterShoeSize.id ? "white" : ""
-                          }}
-                        > {chart.size}
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </SimpleGrid>
-
-              </Center>
-            </Flex>
+          <Flex pl='2%'>
+            <Center>
+              <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
+                {menSizeChart.map((chart) => {
+                  return (
+                    <div key={chart.id}>
+                      <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
+                        key={chart.id}
+                        onClick={() => updateFilterShoeSize(chart)}
+                        style={{
+                          backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
+                          color: chart.id === filterShoeSize.id ? "white" : ""
+                        }}
+                      > {chart.size}
+                      </Button>
+                    </div>
+                  )
+                })}
+              </SimpleGrid>
+            </Center>
+          </Flex>
         </div>
       );
-    } else if (selectedStyle === 'women') {
+    } else if (filterStyleType === 'women') {
       return (
         <div>
-         <Flex pl='2%'>
-              <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
-                  {womanSizeChart.map((chart) => {
-                    return (
-                      <div key={chart.id}>
-                        <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
-                          key={chart.id}
-                          onClick={() => updateFilterShoeSize(chart)}
-                          style={{
-                            backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
-                            color: chart.id === filterShoeSize.id ? "white" : ""
-                          }}
-                        > {chart.size}
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </SimpleGrid>
+          <Flex pl='2%'>
+            <Center>
+              <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
+                {womanSizeChart.map((chart) => {
+                  return (
+                    <div key={chart.id}>
+                      <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
+                        key={chart.id}
+                        onClick={() => updateFilterShoeSize(chart)}
+                        style={{
+                          backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
+                          color: chart.id === filterShoeSize.id ? "white" : ""
+                        }}
+                      > {chart.size}
+                      </Button>
+                    </div>
+                  )
+                })}
+              </SimpleGrid>
 
-              </Center>
-            </Flex>
+            </Center>
+          </Flex>
         </div>
       );
-    } else if (selectedStyle === 'youth') {
+    } else if (filterStyleType === 'youth') {
       return (
         <div>
-         <Flex pl='2%'>
-              <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
-                  {youthSizeChart.map((chart) => {
-                    return (
-                      <div key={chart.id}>
-                        <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
-                          key={chart.id}
-                          onClick={() => updateFilterShoeSize(chart)}
-                          style={{
-                            backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
-                            color: chart.id === filterShoeSize.id ? "white" : ""
-                          }}
-                        > {chart.size}
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </SimpleGrid>
+          <Flex pl='2%'>
+            <Center>
+              <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
+                {youthSizeChart.map((chart) => {
+                  return (
+                    <div key={chart.id}>
+                      <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
+                        key={chart.id}
+                        onClick={() => updateFilterShoeSize(chart)}
+                        style={{
+                          backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
+                          color: chart.id === filterShoeSize.id ? "white" : ""
+                        }}
+                      > {chart.size}
+                      </Button>
+                    </div>
+                  )
+                })}
+              </SimpleGrid>
 
-              </Center>
-            </Flex>
+            </Center>
+          </Flex>
         </div>
       );
-    } else if (selectedStyle === 'toddler') {
+    } else if (filterStyleType === 'toddler') {
       return (
         <div>
-         <Flex pl='2%'>
-              <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
-                  {toddlerSizeChart.map((chart) => {
-                    return (
-                      <div key={chart.id}>
-                        <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
-                          key={chart.id}
-                          onClick={() => updateFilterShoeSize(chart)}
-                          style={{
-                            backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
-                            color: chart.id === filterShoeSize.id ? "white" : ""
-                          }}
-                        > {chart.size}
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </SimpleGrid>
+          <Flex pl='2%'>
+            <Center>
+              <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
+                {toddlerSizeChart.map((chart) => {
+                  return (
+                    <div key={chart.id}>
+                      <Button w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
+                        key={chart.id}
+                        onClick={() => updateFilterShoeSize(chart)}
+                        style={{
+                          backgroundColor: filters.size === chart.size ? "red" : chart.id === filterShoeSize.id ? "green" : "",
+                          color: chart.id === filterShoeSize.id ? "white" : ""
+                        }}
+                      > {chart.size}
+                      </Button>
+                    </div>
+                  )
+                })}
+              </SimpleGrid>
 
-              </Center>
-            </Flex>
+            </Center>
+          </Flex>
         </div>
       );
     } else {
@@ -215,17 +221,43 @@ const ShoeStyleGrid = () => {
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={() => handleStyleClick('men')}>Men</button>
-        <button onClick={() => handleStyleClick('women')}>Women</button>
-        <button onClick={() => handleStyleClick('youth')}>Youth</button>
-        <button onClick={() => handleStyleClick('toddler')}>Toddler</button>
-      </div>
+    <Box borderTop={'1px'}>
+      <Text fontSize={'2xl'}>Style & Size</Text>
+      <VStack align={'start'} pt={'.5em'} fontSize={'lg'}>
+        <Text onClick={() => updateFilterStyle('men')}
+          w={'full'}
+          style={{
+            backgroundColor: filterStyleType === 'men' ? 'green' : '',
+            color: filterStyleType === 'men' ? 'white' : ''
+          }}
+          _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Men</Text>
+        <Text onClick={() => updateFilterStyle('women')}
+          w={'full'}
+          style={{
+            backgroundColor: filterStyleType === 'women' ? 'green' : '',
+            color: filterStyleType === 'women' ? 'white' : ''
+          }}
+          _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Women</Text>
+        <Text onClick={() => updateFilterStyle('youth')}
+          w={'full'}
+          style={{
+            backgroundColor: filterStyleType === 'youth' ? 'green' : '',
+            color: filterStyleType === 'youth' ? 'white' : ''
+          }}
+          _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Youth</Text>
+        <Text onClick={() => updateFilterStyle('toddler')}
+          w={'full'}
+          style={{
+            backgroundColor: filterStyleType === 'toddler' ? 'green' : '',
+            color: filterStyleType === 'toddler' ? 'white' : ''
+          }}
+          _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >Toddler</Text>
+
+      </VStack>
       <div>
         {renderSizeChart()}
       </div>
-    </div>
+    </Box>
   );
 };
 

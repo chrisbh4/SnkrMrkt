@@ -13,7 +13,6 @@ import {
     InputGroup,
     InputLeftAddon,
     Heading,
-    Text,
     Grid,
     Flex,
     Button,
@@ -74,26 +73,28 @@ function NewShoesForm({ onClose }) {
                         templateRows="repeat(5, 1fr)"
                         templateColumns="repeat(1, 1fr)"
                         p="4%"
-                    // borderBottom={"1px"}
-                    // borderColor={"gray.500"}
                     >
                         <Flex justify={'start'}>
                             <Box w={'40%'}>
                                 <FormLabel>Shoe Title</FormLabel>
                                 <Input borderColor={"black"} bg='gray.50' placeholder="Shoe Title" onChange={updateTitle} />
+                                {errors.includes("Shoe title must be greater than 5 characters") && <Center color={'red.400'}>Shoe title must be greater than 5 characters</Center>}
                             </Box>
                             <Box w={'40%'}>
                                 <FormLabel ml={'6%'}>Shoe Size</FormLabel>
                                 <Input borderColor={"black"} bg='gray.50' placeholder="Shoe Size" ml={'6%'} onChange={updateShoeSize} />
+                                {errors.includes("Please provide a shoe size in mens between 4 and 18") && <Center color={'red.400'}>Please provide a shoe size in mens between 4 and 18</Center>}
                             </Box>
                         </Flex>
                         <Box w={"70%"}>
                             <FormLabel>Description</FormLabel>
                             <Textarea borderColor={"black"} bg='gray.50' h={"90px"} placeholder="Description" onChange={updateDescription} />
+                                {errors.includes("Description must be at least 10 characters long.") && <Center color={'red.400'}>Description must be at least 10 characters long.</Center>}
                         </Box>
                         <Box w={"35%"} mt={"4%"} >
                             <FormLabel>Brand</FormLabel>
                             <Input borderColor={"black"} bg='gray.50' placeholder="Brand" onChange={updateBrand} />
+                                {errors.includes("Please select a shoe brand") && <Center color={'red.400'}>Please select a shoe brand</Center>}
                         </Box>
                         <Box w={"35%"}>
                             <FormLabel>Price</FormLabel>
@@ -101,6 +102,7 @@ function NewShoesForm({ onClose }) {
                                 <InputLeftAddon children='$' />
                                 <Input borderColor={"black"} bg='gray.50' placeholder="Price" onChange={updatePrice} />
                             </InputGroup>
+                                {errors.includes("Please provide a price value for this shoe greater than $0.99") && <Center color={'red.400'}>Please provide a price value for this shoe greater than $0.99</Center>}
                         </Box>
                         <Box w={"50%"} pb={"5%"} >
                             <FormLabel>Upload Images</FormLabel>
@@ -111,24 +113,10 @@ function NewShoesForm({ onClose }) {
                         <Button w={"30%"} mt={"1%"} ml={"4%"} onClick={onClose} colorScheme="blue">Close</Button>
                         </Flex>
                     </Grid>
-
                     <Box color={"red.400"}  >
-                        {
-                            errors.map((error) => {
-                                if (error) {
-                                    return (
-                                        <Center bg={"white"}>
-                                            <Text key={error.id} fontSize={"2xl"} >{error}</Text>
-                                        </Center>
-                                    )
-                                }
-                                return null;
-                            })
-                        }
                     </Box>
                 </Box>
             </FormControl>
-
         </>
     )
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import { Grid, Center, GridItem, Box, VStack, Checkbox, Button, Text, Flex, SimpleGrid, Link, Input, Stack, Form, FormControl, FormLabel, FormErrorMessage, FormHelperText, } from '@chakra-ui/react'
+import { Center, Box, VStack, Button, Text, Input, FormControl } from '@chakra-ui/react'
 import "./LoginForm.css";
 
 function LoginForm() {
@@ -13,9 +13,9 @@ function LoginForm() {
   const [errors, setErrors] = useState([]);
 
   const handleCredentials = (e) => setCredential(e.target.value)
-  const handlePassword = (e) => {
-    return setPassword(e.target.value)
-  }
+  // const handlePassword = (e) => {
+  //   return setPassword(e.target.value)
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

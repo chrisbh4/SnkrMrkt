@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllShoes } from "../../store/shoes";
 import ShoeList from "../OldHomePage/ShoeList";
 import { getLoadFilters, getclearFilters, setSelectedFilters } from "../../store/filters";
-import ShoeStyleGrid from "./StyleGrid";
+// import ShoeStyleGrid from "./StyleGrid";
 
 function NewHomePage() {
   const dispatch = useDispatch()
@@ -17,8 +17,6 @@ function NewHomePage() {
   } else {
     shoesArray = Object.values(shoes)
   }
-
-
 
   const sizeChart = [
     { id: 1, size: 3 },
@@ -193,7 +191,8 @@ function NewHomePage() {
                 style={{
                   backgroundColor: filters.style === "men" ? "red" : filterStyleType === "men" ? "green" : ""
                 }}
-              ><Text onClick={() => updateFilterStyle("men")} fontSize={'20px'} textTransform='uppercase' >Men</Text></Text>
+              >
+              <Text onClick={() => updateFilterStyle("men")} fontSize={'20px'} textTransform='uppercase' >Men</Text></Text>
               <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
                 style={{
                   backgroundColor: filters.style === "woman" ? "red" : filterStyleType === "woman" ? "green" : ""

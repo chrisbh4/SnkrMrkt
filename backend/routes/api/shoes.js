@@ -127,6 +127,7 @@ router.put('/:id', singleMulterUpload('image'), validateEditShoe, asyncHandler(a
     shoe.title = req.body.title;
     shoe.shoeSize = req.body.shoeSize;
     shoe.price = req.body.price;
+    shoe.brands = req.body.brands;
     shoe.description = req.body.description;
 
     await shoe.save();

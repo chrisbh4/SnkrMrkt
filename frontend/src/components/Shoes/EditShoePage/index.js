@@ -10,11 +10,11 @@ import {
     Input,
     InputGroup,
     InputLeftAddon,
-    Text,
     Grid,
     Flex,
     Button,
     Textarea,
+    Center
 } from '@chakra-ui/react'
 
 
@@ -70,46 +70,35 @@ function EditShoesFormChakra({ shoe, onClose }) {
         <>
             <FormControl pt={"2%"}   >
                 <Box px='25%'  >
-                    {/* <Heading size="lg" fontWeight="semibold" color="gray.900" ml={"4%"}>Edit Shoe Form</Heading> */}
                     <Box color={"red.400"}  >
-                        {
-                            errors.map((error) => {
-                                if (error) {
-                                    return (
-                                        <Box bg={"white"}>
-                                            <Text ml="4%" key={error.id} fontSize={"2xl"} >{error}</Text>
-                                        </Box>
-                                    )
-                                }
-                                return null;
-                            })
-                        }
                     </Box>
                     <Grid
                         templateRows="repeat(5, 1fr)"
                         templateColumns="repeat(1, 1fr)"
                         gap={4}
                         p="4%"
-                    // borderBottom={"1px"}
-                    // borderColor={"gray.500"}
                     >
                         <Flex justify={'start'}>
                             <Box w={'40%'}>
                                 <FormLabel>Shoe Title</FormLabel>
                                 <Input borderColor={"black"} bg='gray.50' onChange={updateTitle} placeholder={shoe?.title} />
+                                {errors.includes("Shoe title must be greater than 5 characters.") && <Center color={'red.400'}>Shoe title must be greater than 5 characters.</Center>}
                             </Box>
                             <Box w={'40%'}>
                                 <FormLabel ml={'6%'}>Shoe Size</FormLabel>
                                 <Input borderColor={"black"} bg='gray.50' ml={'6%'} onChange={updateShoeSize} placeholder={shoe?.shoeSize} />
+                                {errors.includes("Please provide a shoe size in mens between 4 and 18.") && <Center color={'red.400'}>Please provide a shoe size in mens between 4 and 18.</Center>}
                             </Box>
                         </Flex>
                         <Box w={"70%"}>
                             <FormLabel>Description</FormLabel>
                             <Textarea borderColor={"black"} bg='gray.50' h={"100px"} onChange={updateDescription} placeholder={shoe?.description} />
+                                {errors.includes("Description must be at least 10 characters long.") && <Center color={'red.400'}>Description must be at least 10 characters long.</Center>}
                         </Box>
                         <Box w={"35%"} pt={"4%"}  >
                             <FormLabel>Brand</FormLabel>
                             <Input borderColor={"black"} bg='gray.50' onChange={updateBrand} placeholder={shoe?.brand} />
+                                {errors.includes("Please select a shoe brand.") && <Center color={'red.400'}>Brand must be 5 characters long.</Center>}
                         </Box>
                         <Box w={"35%"}   >
                             <FormLabel>Price</FormLabel>
@@ -117,6 +106,7 @@ function EditShoesFormChakra({ shoe, onClose }) {
                                 <InputLeftAddon children='$' />
                                 <Input borderColor={"black"} bg='gray.50' onChange={updatePrice} placeholder={shoe?.price} />
                             </InputGroup>
+                                {errors.includes("Please provide a price value for this shoe greater than $0.99 .") && <Center color={'red.400'}>Please provide a price value for this shoe greater than $0.99 .</Center>}
                         </Box>
                         <Box w={"50%"} >
                             <FormLabel>Upload Images</FormLabel>
