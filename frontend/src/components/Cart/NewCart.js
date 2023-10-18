@@ -43,8 +43,7 @@ function CheckoutForm() {
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const shoeIds = "3"
-    const totalAmount = "1000"
-
+    
     const usStateInitials = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
         'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
@@ -68,7 +67,7 @@ function CheckoutForm() {
     const updateStateProvince = (e) => setStateProvince(e.target.value)
     const updatePostalCode = (e) => setPostalCode(e.target.value)
     const updatePhoneNumber = (e) => setPhoneNumber(e.target.value)
-
+    
     let total = 0.00;
     cart.forEach((item) => {
         total += parseFloat(item.price)
@@ -77,7 +76,8 @@ function CheckoutForm() {
     const feePrices = total * 0.01
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
-
+    const totalAmount = pricePostTaxes
+    
     const onSubmit = async (e) => {
         e.preventDefault();
         let payload = { username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,

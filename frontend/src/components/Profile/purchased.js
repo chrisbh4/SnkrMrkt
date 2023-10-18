@@ -52,6 +52,7 @@ function PurchasedPage() {
                 <Flex h={"14"} fontSize={"lg"} >
                   <Text>Order Number: {order?.id}00{order?.id}0</Text>
                   <Text ml={"3%"}>Purchased Date: {formatDate(order?.createdAt)}</Text>
+                  <Text ml={'3%'}>Amount paid: ${order?.totalAmount}</Text>
                 </Flex>
               )
             })}
