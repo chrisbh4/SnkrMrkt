@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     stateProvince: DataTypes.STRING,
     postalCode: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
-    shoeIds: DataTypes.STRING,
+    shoeIds: DataTypes.ARRAY(DataTypes.STRING),
     totalAmount: DataTypes.STRING,
   }, {
     sequelize,

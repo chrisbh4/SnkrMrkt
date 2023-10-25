@@ -21,11 +21,13 @@ function CheckoutForm() {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
     // const navigate = useNavigate()
-    const shoppingCart = useSelector((state) => state.shoppingCart);
+    const shoppingCartState = useSelector((state) => state.shoppingCart);
+    const cart = Object.values(shoppingCartState);
     const user = useSelector((state) => state.session.user);
     const buyerId = user?.id
     const username = user?.username
-    const cart = Object.values(shoppingCart);
+
+
 
     const [email, setEmail] = useState("");
     const [nameOnCard, setNameOnCard] = useState("");
@@ -42,7 +44,6 @@ function CheckoutForm() {
     const [stateProvince, setStateProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const shoeIds = "3"
     
     const usStateInitials = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -51,7 +52,7 @@ function CheckoutForm() {
         'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
         'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
     ];
-    
+
     const updateEmail = (e) => setEmail(e.target.value)
     const updateNameOnCard = (e) => setNameOnCard(e.target.value)
     const updateCardNumber = (e) => setCardNumber(e.target.value)
@@ -67,7 +68,7 @@ function CheckoutForm() {
     const updateStateProvince = (e) => setStateProvince(e.target.value)
     const updatePostalCode = (e) => setPostalCode(e.target.value)
     const updatePhoneNumber = (e) => setPhoneNumber(e.target.value)
-    
+
     let total = 0.00;
     cart.forEach((item) => {
         total += parseFloat(item.price)
@@ -77,13 +78,13 @@ function CheckoutForm() {
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
     const totalAmount = pricePostTaxes
-    
+
     const onSubmit = async (e) => {
         e.preventDefault();
+        const shoeIds = cart.map(item => item.shoeId);
         let payload = { username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
                         city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount }
         let data = await dispatch(fetchCreateNewOrder(payload))
-
         if (!data?.errors) {
             // dispatch(purchaseFromCart())
             alert("Your order is being processed you will recieve an order confirmation email soon")
