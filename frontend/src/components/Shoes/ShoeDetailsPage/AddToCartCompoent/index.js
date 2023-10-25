@@ -101,12 +101,12 @@ function AddToCartComponent({ shoeId }) {
     addToCartVerfication = (
       <Box w='500px' p='5%'>
         <Box>
-          <Box p='10px'>
-            <Select placeholder='Select Size:' variant={"filled"} w='90%' onChange={updateSize}>
+          <Flex p='10px'>
+            <Select placeholder='Select Size:' variant={"filled"} w='42%' onChange={updateSize}>
               {sizeChart.map((chart) => {
                 if (filters.size && filters.size === chart.size) {
                   return (
-                    <option key={chart.id} value={chart.size}  selected>
+                    <option key={chart.id} value={chart.size} selected>
                       {chart.size}
                     </option>
                   );
@@ -119,9 +119,10 @@ function AddToCartComponent({ shoeId }) {
                 }
               })}
             </Select>
-          </Box>
-          <Button w='40%' ml='2%' onClick={unavialableFeature}>Place Bid</Button>
-          <Button w='40%' ml='5%' onClick={addToCart}> Add to Cart </Button>
+            <Button w='40%' ml='2%' onClick={addToCart}> Add to Cart </Button>
+          </Flex>
+          {/* <Button w='40%' ml='2%' onClick={addToCart}> Add to Cart </Button> */}
+          {/* <Button w='40%' ml='2%' onClick={unavialableFeature}>Place Bid</Button> */}
         </Box>
       </Box>
     )
