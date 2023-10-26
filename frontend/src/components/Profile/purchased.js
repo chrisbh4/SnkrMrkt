@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 // import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Link, Flex, Text } from "@chakra-ui/react";
+import { Box, Link, Flex, Text, Image } from "@chakra-ui/react";
 import { fetchUsersOrdersList } from "../../store/settings";
 
 
@@ -9,7 +9,8 @@ function PurchasedPage() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
   const orders = useSelector(state => state.settings.user?.Orders)
-
+  // const testOrder = orders[0]
+  // console.log(testOrder.shoeIds[0])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -24,7 +25,7 @@ function PurchasedPage() {
 
   useEffect(() => {
     dispatch(fetchUsersOrdersList(user?.id))
-}, [dispatch, user])
+  }, [dispatch, user])
 
 
   return (
@@ -32,9 +33,9 @@ function PurchasedPage() {
       <Flex h='1000px'    >
         <Box w='20%' pl='8px'>
           <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/profile' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} >Profile</Link></Flex>
-          {/* <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/payment' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Payment Settings</Link></Flex> */}
           <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/purchased' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Order History</Link></Flex>
           <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/sell' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Selling</Link></Flex>
+          {/* <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/payment' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Payment Settings</Link></Flex> */}
           {/* <Flex alignItems={'center'} h='60px' borderBottom={'2px'} _hover={{ color: "black", fontWeight: "600" }} ><Link href='/watch' _hover={{ textDecor: 'none' }} w='100%' fontSize={'xl'} pb='3%' >Watching</Link></Flex> */}
         </Box>
         <Box w='100%'>
@@ -47,15 +48,18 @@ function PurchasedPage() {
 
 
             <Box px='5%' pt='2%'>
-            {orders?.map((order) =>{
-              return(
-                <Flex h={"14"} fontSize={"lg"} >
-                  <Text>Order Number: {order?.id}00{order?.id}0</Text>
-                  <Text ml={"3%"}>Purchased Date: {formatDate(order?.createdAt)}</Text>
-                  <Text ml={'3%'}>Amount paid: ${order?.totalAmount}</Text>
-                </Flex>
-              )
-            })}
+              {orders?.map((order) => {
+                return (
+                  <Flex h={"auto"} fontSize={"lg"} align={'center'} borderBottom={'2px'}>
+                    <Text>Order Number: {order?.id}00{order?.id}0</Text>
+                    <Text ml={"3%"}>Purchased Date: {formatDate(order?.createdAt)}</Text>
+                    <Text ml={'3%'}>Amount paid: ${order?.totalAmount}0</Text>
+                    {order?.images.map((img, index) => {
+                      return <Image src={img} key={index}  boxSize={'200px'} ml={'2%'}/>
+                    })}
+                  </Flex>
+                )
+              })}
             </Box>
 
           </Box>
