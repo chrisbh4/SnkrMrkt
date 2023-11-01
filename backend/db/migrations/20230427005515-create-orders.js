@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      buyerId: {
         type: Sequelize.INTEGER,
         allowNull:false,
         // will not allow the same user to sell multiple shoes
@@ -67,6 +67,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       shoeIds: {
+        allowNull: true,
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
+      },
+      totalAmount: {
         allowNull: true,
         type: Sequelize.STRING
       },

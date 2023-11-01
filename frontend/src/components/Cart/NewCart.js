@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import { fetchCreateNewOrder } from "../../store/orders";
+import { purchaseFromCart } from "../../store/shoppingCart";
 import "./Cart.css"
 import {
     FormControl,
@@ -20,12 +21,14 @@ import {
 function CheckoutForm() {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
-    // const navigate = useNavigate()
-    const shoppingCart = useSelector((state) => state.shoppingCart);
+    const navigate = useNavigate()
+    const shoppingCartState = useSelector((state) => state.shoppingCart);
+    const cart = Object.values(shoppingCartState);
     const user = useSelector((state) => state.session.user);
-    const userId = user?.id
+    const buyerId = user?.id
     const username = user?.username
-    const cart = Object.values(shoppingCart);
+
+
 
     const [email, setEmail] = useState("");
     const [nameOnCard, setNameOnCard] = useState("");
@@ -42,7 +45,6 @@ function CheckoutForm() {
     const [stateProvince, setStateProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const shoeIds = ""
 
     const usStateInitials = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -51,7 +53,7 @@ function CheckoutForm() {
         'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
         'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
     ];
-    
+
     const updateEmail = (e) => setEmail(e.target.value)
     const updateNameOnCard = (e) => setNameOnCard(e.target.value)
     const updateCardNumber = (e) => setCardNumber(e.target.value)
@@ -76,17 +78,18 @@ function CheckoutForm() {
     const feePrices = total * 0.01
     const stateTax = 2
     const pricePostTaxes = total + stateTax + feePrices
+    const totalAmount = pricePostTaxes
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        let payload = { username, userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
-                        city, country, stateProvince, postalCode, phoneNumber, shoeIds }
+        const shoeIds = cart.map(item => item.shoeId);
+        let payload = { username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
+                        city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount }
         let data = await dispatch(fetchCreateNewOrder(payload))
-
         if (!data?.errors) {
-            // dispatch(purchaseFromCart())
+            dispatch(purchaseFromCart())
             alert("Your order is being processed you will recieve an order confirmation email soon")
-            // navigate("/home")
+            navigate("/home")
             return data
         }
         else{
@@ -109,7 +112,7 @@ function CheckoutForm() {
                                     <Flex justify={'start'}>
                                         <Box w={'full'}>
                                             <FormLabel>Email Address</FormLabel>
-                                            {errors.includes("Must input a email") && <Text color={'red.400'}>Must input email</Text>}
+                                            {errors.includes("Email must be valid") && <Text color={'red.400'}>Email must be valid</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateEmail} />
                                         </Box>
                                     </Flex>
@@ -215,7 +218,7 @@ function CheckoutForm() {
 
                                     <Box mt={'5%'}>
                                         <FormLabel>Phone Number</FormLabel>
-                                        {errors.includes("Must input a Phone number") && <Text color={'red.400'}>Must input a Phone number</Text>}
+                                        {errors.includes("Must input a Phone number") && <Text color={'red.400'}>Phone number must be valid</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updatePhoneNumber} />
                                     </Box>
 

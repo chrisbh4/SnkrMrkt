@@ -52,9 +52,9 @@ function NewHomePage() {
     { id: 4, title: "Nike" },
     { id: 5, title: "New Balance" },
     { id: 6, title: "Reebok" },
-    { id: 7, title: "converse" },
+    { id: 7, title: "Converse" },
     { id: 8, title: "Puma" },
-    { id: 9, title: "vans" },
+    { id: 9, title: "Vans" },
     // { id: 10, title: "Collections" },
     { id: 11, title: "Gucci" }
   ]

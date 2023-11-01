@@ -27,13 +27,13 @@ export const fetchOrderByID = (orderId) => async (dispatch) => {
 
 export const fetchCreateNewOrder = (payload) => async (dispatch) => {
 
-    const {username,userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
-           otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds} = payload;
+    const {username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
+           otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount} = payload;
     const res = await csrfFetch('/api/orders/new', {
         method: "POST",
         header: { "Content-Type": "application/json" },
-        body: JSON.stringify({username, userId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
-            otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds})
+        body: JSON.stringify({username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address,
+            otherAddress, city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount})
     })
 
     const data = await res.json()

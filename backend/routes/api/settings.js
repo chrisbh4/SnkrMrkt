@@ -1,8 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { Shoe, User, Orders } = require('../../db/models');
-const {check} = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 
 
@@ -20,15 +18,28 @@ router.get('/:id/orders', asyncHandler(async (req, res) => {
     const user = await User.findByPk(req.params.id, {
         include: [Orders]
     })
-    return res.json({user})
-    // return res.send("userId fk needs to be added")
+
+    await Promise.all(user.Orders.map(async (order) => {
+        const shoes = await Shoe.findAll({
+            where: {
+                id: order.shoeIds
+            }
+        });
+        const shoeImages = shoes.map(shoe => shoe.image);
+        order.setDataValue('images', shoeImages);
+    }))
+
+    return res.json({ user })
 }))
+
+
+
 
 router.get('/:id/watching', asyncHandler(async (req, res) => {
     const User = await User.findByPk(req.params.id, {
         include: [Shoe]
     })
-    return res.json({User})
+    return res.json({ User })
 }))
 
 module.exports = router
