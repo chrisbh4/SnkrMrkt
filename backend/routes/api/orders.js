@@ -10,43 +10,46 @@ const validateOrderForm = [
       .isLength({ min: 1, max: 250 })
       .withMessage("Must be a logged in User"),
    check("email")
-      .isLength({ min: 1, max: 250 })
-      .withMessage("Must input a email"),
+      // .isLength({ min: 1, max: 250 })
+      .isEmail()
+      .withMessage("Email must be valid"),
    check("nameOnCard")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 150 })
       .withMessage("Must input the full name on the card"),
    check("cardNumber")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 20 })
+      // .isNumeric()
       .withMessage("Must input a card number"),
    check("expirationDate")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 5 })
+      // .isDate()
       .withMessage("Must input an expiration date"),
    check("cvvNumber")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 3, max: 3 })
       .withMessage("Must input a CVV"),
    check("firstName")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 50 })
       .withMessage("Must input a first name"),
    check("lastName")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 50 })
       .withMessage("Must input a last name"),
    check("address")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 150 })
       .withMessage("Must input a billing address"),
    check("city")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 75 })
       .withMessage("Must input a city name"),
    check("country")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 50 })
       .withMessage("Must select a one of the available countries"),
    check("stateProvince")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 20 })
       .withMessage("Must input a State or Province"),
    check("postalCode")
-      .isLength({ min: 1, max: 250 })
+      .isLength({ min: 1, max: 10 })
       .withMessage("Must input a Postal Code or Zip code"),
    check("phoneNumber")
-      .isLength({ min: 1, max: 250 })
+      .isMobilePhone()
       .withMessage("Must input a Phone number"),
    handleValidationErrors
 ]
@@ -85,7 +88,7 @@ router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
       postalCode,
       phoneNumber,
       shoeIds,
-      totalAmount   
+      totalAmount
    } = req.body
 
    const newOrder = await orders.create({

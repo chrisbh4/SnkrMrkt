@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import { fetchCreateNewOrder } from "../../store/orders";
+import { purchaseFromCart } from "../../store/shoppingCart";
 import "./Cart.css"
 import {
     FormControl,
@@ -20,7 +21,7 @@ import {
 function CheckoutForm() {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const shoppingCartState = useSelector((state) => state.shoppingCart);
     const cart = Object.values(shoppingCartState);
     const user = useSelector((state) => state.session.user);
@@ -44,7 +45,7 @@ function CheckoutForm() {
     const [stateProvince, setStateProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    
+
     const usStateInitials = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
         'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
@@ -86,9 +87,9 @@ function CheckoutForm() {
                         city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount }
         let data = await dispatch(fetchCreateNewOrder(payload))
         if (!data?.errors) {
-            // dispatch(purchaseFromCart())
+            dispatch(purchaseFromCart())
             alert("Your order is being processed you will recieve an order confirmation email soon")
-            // navigate("/home")
+            navigate("/home")
             return data
         }
         else{
@@ -111,7 +112,7 @@ function CheckoutForm() {
                                     <Flex justify={'start'}>
                                         <Box w={'full'}>
                                             <FormLabel>Email Address</FormLabel>
-                                            {errors.includes("Must input a email") && <Text color={'red.400'}>Must input email</Text>}
+                                            {errors.includes("Email must be valid") && <Text color={'red.400'}>Email must be valid</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateEmail} />
                                         </Box>
                                     </Flex>
@@ -217,7 +218,7 @@ function CheckoutForm() {
 
                                     <Box mt={'5%'}>
                                         <FormLabel>Phone Number</FormLabel>
-                                        {errors.includes("Must input a Phone number") && <Text color={'red.400'}>Must input a Phone number</Text>}
+                                        {errors.includes("Must input a Phone number") && <Text color={'red.400'}>Phone number must be valid</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updatePhoneNumber} />
                                     </Box>
 
