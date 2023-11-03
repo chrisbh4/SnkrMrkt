@@ -112,7 +112,7 @@ function CheckoutForm() {
                                     <Flex justify={'start'}>
                                         <Box w={'full'}>
                                             <FormLabel>Email Address</FormLabel>
-                                            {errors.includes("Email must be valid") && <Text color={'red.400'}>Email must be valid</Text>}
+                                            {errors.includes("Email must be valid") && <Text color={'red.400'}>Input a valid email</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateEmail} />
                                         </Box>
                                     </Flex>
@@ -124,25 +124,25 @@ function CheckoutForm() {
                                     <Text fontSize={'2xl'}>Payment Details </Text>
                                     <Box w={'full'} mt={"2%"}>
                                         <FormLabel>Name on card</FormLabel>
-                                        {errors.includes("Must input the full name on the card") && <Text color={'red.400'}>Must input the full name on the card</Text>}
+                                        {errors.includes("Must input the full name on the card") && <Text color={'red.400'}>Input the full name of card owner</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updateNameOnCard} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Card Number</FormLabel>
-                                        {errors.includes("Must input a card number") && <Text color={'red.400'}>Must input a card number</Text>}
-                                        <Input borderColor={"black"} bg='gray.50' onChange={updateCardNumber} />
+                                        {errors.includes("Must input a card number") && <Text color={'red.400'}>*required</Text>}
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updateCardNumber} placeholder="xxxx xxxx xxxx xxxx" />
                                     </Box>
                                     <Flex w={'full'} mt={"5%"}>
                                         <Box>
-                                        <FormLabel>Expiration Date (MM/YY)</FormLabel>
-                                        {errors.includes("Must input an expiration date") && <Text color={'red.400'}>Must input an expiration date</Text>}
-                                            <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} />
+                                        <FormLabel>Expiration Date</FormLabel>
+                                        {errors.includes("Must input an expiration date") && <Text color={'red.400'}>*required</Text>}
+                                            <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} placeholder="MM/YY" />
                                         </Box>
 
                                         <Box w={'20%'} ml={'15%'}>
                                             <FormLabel>CVV</FormLabel>
                                             {errors.includes("Must input a CVV") && <Text color={'red.400'}>*required</Text>}
-                                            <Input borderColor={"black"} bg='gray.50' onChange={updateCvvNumber} />
+                                            <Input borderColor={"black"} bg='gray.50' onChange={updateCvvNumber} placeholder="xxx" />
                                         </Box>
                                     </Flex>
                                 </Box>
@@ -153,12 +153,12 @@ function CheckoutForm() {
                                     <Flex w={'full'} justify={'space-between'}>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>First Name</FormLabel>
-                                            {errors.includes("Must input a first name") && <Text color={'red.400'}>Must input a first name</Text>}
+                                            {errors.includes("Must input a first name") && <Text color={'red.400'}>Input a first name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateFirstName} />
                                         </Box>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>Last Name</FormLabel>
-                                            {errors.includes("Must input a last name") && <Text color={'red.400'}>Must input a last name</Text>}
+                                            {errors.includes("Must input a last name") && <Text color={'red.400'}>Input a last name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateLastName} />
                                         </Box>
                                     </Flex>
@@ -169,7 +169,7 @@ function CheckoutForm() {
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Address</FormLabel>
-                                        {errors.includes("Must input a billing address") && <Text color={'red.400'}>Must input a billing address</Text>}
+                                        {errors.includes("Must input a billing address") && <Text color={'red.400'}>Input a billing address</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updateAddress} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
@@ -179,13 +179,13 @@ function CheckoutForm() {
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>City</FormLabel>
-                                            {errors.includes("Must input a city name") && <Text color={'red.400'}>Must input a city name</Text>}
+                                            {errors.includes("Must input a city name") && <Text color={'red.400'}>Input a city name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateCity} />
                                         </Box>
 
                                         <Box w={'47%'}>
                                             <FormLabel>Country</FormLabel>
-                                            {errors.includes("Must select a one of the available countries") && <Text color={'red.400'}>Must select a country</Text>}
+                                            {errors.includes("Must select a one of the available countries") && <Text color={'red.400'}>*required</Text>}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateCountry} >
                                                 <option value=''></option>
                                                 <option value='United States'>United States</option>
@@ -198,7 +198,7 @@ function CheckoutForm() {
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>State/Province</FormLabel>
-                                            {errors.includes("Must input a State or Province") && <Text color={'red.400'}>Must input a State or Province</Text>}
+                                            {errors.includes("Must input a State or Province") && <Text color={'red.400'}>*required</Text>}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateStateProvince}>
                                                 <option value=""></option>
                                                 {usStateInitials.map(state => (
@@ -210,7 +210,7 @@ function CheckoutForm() {
 
                                         <Box w={'47%'}>
                                             <FormLabel>Postal Code</FormLabel>
-                                            {errors.includes("Must input a Postal Code or Zip code") && <Text color={'red.400'}>Must input a Postal Code or Zip code</Text>}
+                                            {errors.includes("Postal Code or Zip code must be 5 characters") && <Text color={'red.400'}> 5 characters length required</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updatePostalCode} />
                                         </Box>
 

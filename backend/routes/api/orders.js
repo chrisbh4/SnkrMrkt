@@ -10,7 +10,6 @@ const validateOrderForm = [
       .isLength({ min: 1, max: 250 })
       .withMessage("Must be a logged in User"),
    check("email")
-      // .isLength({ min: 1, max: 250 })
       .isEmail()
       .withMessage("Email must be valid"),
    check("nameOnCard")
@@ -18,11 +17,9 @@ const validateOrderForm = [
       .withMessage("Must input the full name on the card"),
    check("cardNumber")
       .isLength({ min: 1, max: 20 })
-      // .isNumeric()
       .withMessage("Must input a card number"),
    check("expirationDate")
       .isLength({ min: 1, max: 5 })
-      // .isDate()
       .withMessage("Must input an expiration date"),
    check("cvvNumber")
       .isLength({ min: 3, max: 3 })
@@ -46,8 +43,10 @@ const validateOrderForm = [
       .isLength({ min: 1, max: 20 })
       .withMessage("Must input a State or Province"),
    check("postalCode")
-      .isLength({ min: 1, max: 10 })
-      .withMessage("Must input a Postal Code or Zip code"),
+      .isNumeric()
+      .withMessage("Input a valid Zip code")
+      .isLength({ min: 5, max: 5 })
+      .withMessage("Postal Code or Zip code must be 5 characters"),
    check("phoneNumber")
       .isMobilePhone()
       .withMessage("Must input a Phone number"),
