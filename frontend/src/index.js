@@ -1,5 +1,8 @@
 import {StrictMode} from 'react';
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import '@fontsource/raleway/400.css'
+import '@fontsource/open-sans/700.css'
+import '@fontsource-variable/jetbrains-mono';
 
 // * Next steps
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
@@ -64,11 +67,18 @@ if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
 }
 
+const theme = extendTheme({
+  fonts: {
+    heading: `'Open Sans', sans-serif`,
+    // body: `'Raleway', sans-serif`,
+    body: `'JetBrains Mono Variable', sans-serif`,
+  },
+})
 
 
 function SnkrMrkt() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <ModalProvider>
         <Provider store={store}>
           <BrowserRouter>

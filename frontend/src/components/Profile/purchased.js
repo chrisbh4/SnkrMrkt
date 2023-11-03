@@ -45,7 +45,7 @@ function PurchasedPage() {
                     <VStack width={'30%'} pt={'4%'} align={'flex-start'} >
                       <Text>Order Number: {order?.id}00{order?.id}0</Text>
                       <Text ml={"3%"}>Purchase Date: {formatDate(order?.createdAt)}</Text>
-                      <Text ml={'3%'}>Total: ${order?.totalAmount}0</Text>
+                      <Text ml={'3%'}>Total: ${(Number(order?.totalAmount)).toLocaleString()}</Text>
                     </VStack>
                     <Flex w={'full'} wrap={'wrap'}>
                       {order?.images.map((img, index) => {
