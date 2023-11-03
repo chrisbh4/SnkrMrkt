@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import { fetchCreateNewOrder } from "../../store/orders";
 import { purchaseFromCart } from "../../store/shoppingCart";
+import currency from "currency.js";
 import "./Cart.css"
 import {
     FormControl,
@@ -211,6 +212,7 @@ function CheckoutForm() {
                                         <Box w={'47%'}>
                                             <FormLabel>Postal Code</FormLabel>
                                             {errors.includes("Postal Code or Zip code must be 5 characters") && <Text color={'red.400'}> 5 characters length required</Text>}
+                                            {errors.includes("Input a valid Zip code") && <Text color={'red.400'}> Input a valid Postal code: 12345</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updatePostalCode} />
                                         </Box>
 
@@ -241,11 +243,11 @@ function CheckoutForm() {
                         <Box>
                             <Flex justify={'space-between'}>
                                 <Text>Subtotal</Text>
-                                <Text>{totalPriceOfShoes > 0 ? `${totalPriceOfShoes}` : '$0.00'}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(totalPriceOfShoes).format()}` : '$0.00'}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Fees</Text>
-                                <Text>{totalPriceOfShoes > 0 ? `${feePrices.toFixed(2)}` : null}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(feePrices).format()}` : null}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Delivery Method</Text>
@@ -253,11 +255,11 @@ function CheckoutForm() {
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Tax</Text>
-                                <Text>{totalPriceOfShoes > 0 ? `${stateTax.toFixed(2)}` : null}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(stateTax).format()}` : null}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Total</Text>
-                                <Text>${totalPriceOfShoes > 0 ? `${pricePostTaxes.toFixed(2)}` : '0.00'}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(pricePostTaxes).format()}` : '0.00'}</Text>
                             </Flex>
                         </Box>
                     </Stack>

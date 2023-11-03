@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react'
 import CreateReviewModal from '../../Reviews/NewReview/ModalForm';
 import EditReviewModal from '../../Reviews/EditReview/ModalForm';
+import currency from 'currency.js';
 
 
 
@@ -84,7 +85,6 @@ const getRandomDate = () => {
   const shoe = useSelector((state) => state.shoes[shoeId])
 
   // const cart = useSelector((state) => state.shoppingCart)
-
   //* Checks if Image string contains either jpeg, png, or image inside it's string
   // let imageCheck;
   // if (shoe?.image.includes("jpeg") || shoe?.image.includes("png") || shoe?.image.includes("image")) {
@@ -129,22 +129,21 @@ const getRandomDate = () => {
               <Box>
                 <Text>Style</Text>
                 <Text>Colorway</Text>
+                <Text>Current Price</Text>
                 <Text>Retial Price</Text>
                 <Text whiteSpace={'nowrap'} >Release Date</Text>
               </Box>
 
               <Box>
-                {/* <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text> */}
                 <Text whiteSpace={'nowrap'} >Lorem ipsum dolor </Text>
-
-                {/* <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text> */}
                 <Text whiteSpace={'nowrap'} >dolor um Lorem  </Text>
-
-                {/* <Text>${testData?.details.retail} </Text> */}
-                <Text>${getRandomRetialPrice()}</Text>
-
-                {/* <Text>{testData?.details.releaseDate} </Text> */}
+                <Text>{currency(shoe?.price).format()}</Text>
+                <Text>{currency(getRandomRetialPrice()).format()}</Text>
                 <Text>{getRandomDate()} </Text>
+
+                {/* <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text> */}
+                {/* <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text> */}
+                {/* <Text>{testData?.details.releaseDate} </Text> */}
               </Box>
             </Flex>
           </Box>
@@ -167,7 +166,7 @@ const getRandomDate = () => {
                   boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)"
                 }}
               >
-                <Link href={`/shoes/${index}`}>
+                <Link href={`/shoes/${allShoes[index]?.id}`}>
                   <Image
                     src={allShoes[index]?.image}
                     boxSize='300px'

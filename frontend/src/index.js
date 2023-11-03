@@ -8,7 +8,6 @@ import '@fontsource-variable/jetbrains-mono';
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
 // https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom
 // https://reactrouter.com/docs/en/v6/upgrading/v5
-
 // Error is coming from Navgiation file and saying I'm destructing an undefined value
 
 
@@ -25,8 +24,6 @@ import * as sessionActions from './store/session';
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
-
-
 
 //grabs the locally-stored cart and loads all of its items inside the cart
 const loadSavedCart = () =>{
@@ -55,9 +52,7 @@ const loadFilterState = () =>{
 
 //sets the state to have a key: of shoppingCart and values of the loaded shoes inside the cart
 const savedCart = { shoppingCart: loadSavedCart(), filters: loadFilterState()}
-
 const store = configureStore(savedCart);
-
 // Testing purposes only
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();

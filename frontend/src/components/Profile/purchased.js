@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Box, Link, Flex, Text, Image, VStack } from "@chakra-ui/react";
 import { fetchUsersOrdersList } from "../../store/settings";
+import currency from "currency.js"
 
 
 function PurchasedPage() {
@@ -21,7 +22,6 @@ function PurchasedPage() {
   useEffect(() => {
     dispatch(fetchUsersOrdersList(user?.id))
   }, [dispatch, user])
-
 
   return (
     <Box pos='relative' top='50px'>
@@ -45,7 +45,7 @@ function PurchasedPage() {
                     <VStack width={'30%'} pt={'4%'} align={'flex-start'} >
                       <Text>Order Number: {order?.id}00{order?.id}0</Text>
                       <Text ml={"3%"}>Purchase Date: {formatDate(order?.createdAt)}</Text>
-                      <Text ml={'3%'}>Total: ${(Number(order?.totalAmount)).toLocaleString()}</Text>
+                      <Text ml={'3%'}>Total: {currency(order?.totalAmount).format()}</Text>
                     </VStack>
                     <Flex w={'full'} wrap={'wrap'}>
                       {order?.images.map((img, index) => {
