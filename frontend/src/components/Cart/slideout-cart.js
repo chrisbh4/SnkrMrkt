@@ -1,10 +1,7 @@
 import React from "react";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom"
-// import { useSelector, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-// import { removeShoeFromCart } from "../../store/shoppingCart";
 import SlideOutCartItem from "./slideout-item";
+import currency from "currency.js";
 import {
   Drawer,
   DrawerBody,
@@ -24,9 +21,7 @@ import {
 function SlideOutCart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
-  // const dispatch = useDispatch()
-  // const navigate = useNavigate()
-
+  
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const cart = Object.values(shoppingCart);
 
@@ -66,10 +61,10 @@ function SlideOutCart() {
                 <SlideOutCartItem item={item} key={item.shoeId} />
               ))}
               <Box>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : $${totalPriceOfShoes}` : emptyCart}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${feePrices.toFixed(2)}` : null}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Tax: ${stateTax.toFixed(2)}` : null}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${pricePostTaxes.toFixed(2)}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : ${currency(totalPriceOfShoes).format()}` : emptyCart}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${currency(feePrices).format()}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Tax: ${currency(stateTax).format()}` : null}</h2>
+                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${currency(pricePostTaxes).format()}` : null}</h2>
                 <Center>
                   {totalPriceOfShoes > 0 ? <Link href='/cart' mt='4%' _hover={{ textDecor: "none"}} > <Button bg='red.300' > Checkout </Button></Link> : null}
                 </Center>

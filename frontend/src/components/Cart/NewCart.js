@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import { fetchCreateNewOrder } from "../../store/orders";
 import { purchaseFromCart } from "../../store/shoppingCart";
+import currency from "currency.js";
 import "./Cart.css"
 import {
     FormControl,
@@ -83,8 +84,10 @@ function CheckoutForm() {
     const onSubmit = async (e) => {
         e.preventDefault();
         const shoeIds = cart.map(item => item.shoeId);
-        let payload = { username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
-                        city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount }
+        let payload = {
+            username, buyerId, email, nameOnCard, cardNumber, expirationDate, cvvNumber, firstName, lastName, company, address, otherAddress,
+            city, country, stateProvince, postalCode, phoneNumber, shoeIds, totalAmount
+        }
         let data = await dispatch(fetchCreateNewOrder(payload))
         if (!data?.errors) {
             dispatch(purchaseFromCart())
@@ -92,7 +95,7 @@ function CheckoutForm() {
             navigate("/home")
             return data
         }
-        else{
+        else {
             setErrors(data?.errors)
             return data
         }
@@ -112,7 +115,7 @@ function CheckoutForm() {
                                     <Flex justify={'start'}>
                                         <Box w={'full'}>
                                             <FormLabel>Email Address</FormLabel>
-                                            {errors.includes("Email must be valid") && <Text color={'red.400'}>Email must be valid</Text>}
+                                            {errors.includes("Email must be valid") && <Text color={'red.400'}>Input a valid email</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateEmail} />
                                         </Box>
                                     </Flex>
@@ -124,27 +127,35 @@ function CheckoutForm() {
                                     <Text fontSize={'2xl'}>Payment Details </Text>
                                     <Box w={'full'} mt={"2%"}>
                                         <FormLabel>Name on card</FormLabel>
-                                        {errors.includes("Must input the full name on the card") && <Text color={'red.400'}>Must input the full name on the card</Text>}
+                                        {errors.includes("Must input the full name on the card") && <Text color={'red.400'}>Input the full name of card owner</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updateNameOnCard} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Card Number</FormLabel>
-                                        {errors.includes("Must input a card number") && <Text color={'red.400'}>Must input a card number</Text>}
-                                        <Input borderColor={"black"} bg='gray.50' onChange={updateCardNumber} />
+                                        {errors.includes("Must be a valid card number") && <Text color={'red.400'}>Must be a valid card number</Text>}
+                                        {errors.includes("Card number must be between 13 and 19 digits") && <Text color={'red.400'}>Card number must be between 13 and 19 digits</Text>}
+                                        <Input borderColor={"black"} bg='gray.50' onChange={updateCardNumber} placeholder="xxxx xxxx xxxx xxxx" />
                                     </Box>
                                     <Flex w={'full'} mt={"5%"}>
                                         <Box>
-                                        <FormLabel>Expiration Date (MM/YY)</FormLabel>
-                                        {errors.includes("Must input an expiration date") && <Text color={'red.400'}>Must input an expiration date</Text>}
-                                            <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} />
+                                            <FormLabel>Expiration Date</FormLabel>
+                                            {errors.includes("Must input an expiration date") && <Text color={'red.400'}>*required</Text>}
+                                            {errors.includes("Must be a valid MM/YY date") && <Text color={'red.400'}>Must be a valid MM/YY date</Text>}
+                                            {errors.includes("Expiration date must be in the future") && <Text color={'red.400'}>Expiration date must be in the future</Text>}
+                                            <Input borderColor={"black"} bg='gray.50' w={'120%'} onChange={updateExpirationDate} placeholder="MM/YY" />
                                         </Box>
 
-                                        <Box w={'20%'} ml={'15%'}>
+                                    </Flex>
+
+                                    <Flex w={'full'} mt={"5%"}>
+                                        <Box w={'full'} >
                                             <FormLabel>CVV</FormLabel>
-                                            {errors.includes("Must input a CVV") && <Text color={'red.400'}>*required</Text>}
-                                            <Input borderColor={"black"} bg='gray.50' onChange={updateCvvNumber} />
+                                            {errors.includes("Must be a valid CVV number") && <Text color={'red.400'}>Must be a valid CVV number.</Text>}
+                                            {errors.includes("CVV must be a 3 digit number") && <Text color={'red.400'}>CVV must be a 3 digit number.</Text>}
+                                            <Input w={'20%'} borderColor={"black"} bg='gray.50' onChange={updateCvvNumber} placeholder="xxx" />
                                         </Box>
                                     </Flex>
+
                                 </Box>
 
                                 <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
@@ -153,12 +164,12 @@ function CheckoutForm() {
                                     <Flex w={'full'} justify={'space-between'}>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>First Name</FormLabel>
-                                            {errors.includes("Must input a first name") && <Text color={'red.400'}>Must input a first name</Text>}
+                                            {errors.includes("Must input a first name") && <Text color={'red.400'}>Input a first name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateFirstName} />
                                         </Box>
                                         <Box w={'47%'} mt={"2%"}>
                                             <FormLabel>Last Name</FormLabel>
-                                            {errors.includes("Must input a last name") && <Text color={'red.400'}>Must input a last name</Text>}
+                                            {errors.includes("Must input a last name") && <Text color={'red.400'}>Input a last name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateLastName} />
                                         </Box>
                                     </Flex>
@@ -169,7 +180,7 @@ function CheckoutForm() {
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
                                         <FormLabel>Address</FormLabel>
-                                        {errors.includes("Must input a billing address") && <Text color={'red.400'}>Must input a billing address</Text>}
+                                        {errors.includes("Must input a billing address") && <Text color={'red.400'}>Input a billing address</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updateAddress} />
                                     </Box>
                                     <Box w={'full'} mt={"5%"}>
@@ -179,13 +190,13 @@ function CheckoutForm() {
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>City</FormLabel>
-                                            {errors.includes("Must input a city name") && <Text color={'red.400'}>Must input a city name</Text>}
+                                            {errors.includes("Must input a city name") && <Text color={'red.400'}>Input a city name</Text>}
                                             <Input borderColor={"black"} bg='gray.50' onChange={updateCity} />
                                         </Box>
 
                                         <Box w={'47%'}>
                                             <FormLabel>Country</FormLabel>
-                                            {errors.includes("Must select a one of the available countries") && <Text color={'red.400'}>Must select a country</Text>}
+                                            {errors.includes("Must select a one of the available countries") && <Text color={'red.400'}>*required</Text>}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateCountry} >
                                                 <option value=''></option>
                                                 <option value='United States'>United States</option>
@@ -198,7 +209,7 @@ function CheckoutForm() {
                                     <Flex w={'full'} mt={"5%"} justify={'space-between'}>
                                         <Box w={'47%'} >
                                             <FormLabel>State/Province</FormLabel>
-                                            {errors.includes("Must input a State or Province") && <Text color={'red.400'}>Must input a State or Province</Text>}
+                                            {errors.includes("Must input a State or Province") && <Text color={'red.400'}>*required</Text>}
                                             <Select borderColor={"black"} bg='gray.50' onChange={updateStateProvince}>
                                                 <option value=""></option>
                                                 {usStateInitials.map(state => (
@@ -208,17 +219,20 @@ function CheckoutForm() {
 
                                         </Box>
 
-                                        <Box w={'47%'}>
-                                            <FormLabel>Postal Code</FormLabel>
-                                            {errors.includes("Must input a Postal Code or Zip code") && <Text color={'red.400'}>Must input a Postal Code or Zip code</Text>}
-                                            <Input borderColor={"black"} bg='gray.50' onChange={updatePostalCode} />
-                                        </Box>
+                                    </Flex>
 
+                                    <Flex w={'full'} mt={"5%"} justify={'space-between'}>
+                                        <Box w={'full%'}>
+                                            <FormLabel>Postal Code</FormLabel>
+                                            {errors.includes("Must be a valid postal code") && <Text color={'red.400'}> Must be a valid postal code</Text>}
+                                            {errors.includes("Postal code must be a 5 digit number") && <Text color={'red.400'}> Postal code must be a 5 digit number</Text>}
+                                            <Input w={'47%'} borderColor={"black"} bg='gray.50' onChange={updatePostalCode} />
+                                        </Box>
                                     </Flex>
 
                                     <Box mt={'5%'}>
                                         <FormLabel>Phone Number</FormLabel>
-                                        {errors.includes("Must input a Phone number") && <Text color={'red.400'}>Phone number must be valid</Text>}
+                                        {errors.includes("Invalid phone number") && <Text color={'red.400'}>Invalid phone number</Text>}
                                         <Input borderColor={"black"} bg='gray.50' onChange={updatePhoneNumber} />
                                     </Box>
 
@@ -241,11 +255,11 @@ function CheckoutForm() {
                         <Box>
                             <Flex justify={'space-between'}>
                                 <Text>Subtotal</Text>
-                                <Text>{totalPriceOfShoes > 0 ? `${totalPriceOfShoes}` : '$0.00'}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(totalPriceOfShoes).format()}` : '$0.00'}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Fees</Text>
-                                <Text>{totalPriceOfShoes > 0 ? `${feePrices.toFixed(2)}` : null}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(feePrices).format()}` : null}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Delivery Method</Text>
@@ -253,11 +267,11 @@ function CheckoutForm() {
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Tax</Text>
-                                <Text>{totalPriceOfShoes > 0 ? `${stateTax.toFixed(2)}` : null}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(stateTax).format()}` : null}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
                                 <Text>Total</Text>
-                                <Text>${totalPriceOfShoes > 0 ? `${pricePostTaxes.toFixed(2)}` : '0.00'}</Text>
+                                <Text>{totalPriceOfShoes > 0 ? `${currency(pricePostTaxes).format()}` : '0.00'}</Text>
                             </Flex>
                         </Box>
                     </Stack>

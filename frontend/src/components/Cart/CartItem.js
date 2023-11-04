@@ -1,28 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { removeShoeFromCart } from "../../store/shoppingCart";
-
+import currency from "currency.js";
 import {
-    FormControl,
-    FormLabel,
-    FormHelperText,
     Box,
-    Input,
-    InputGroup,
-    InputLeftAddon,
-    Heading,
-    Text,
-    Grid,
     Flex,
     Button,
-    Textarea,
-    Center,
     Image,
-    Checkbox,
-    Select,
-    border,
-    VStack,
-    Stack,
 } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 
@@ -42,13 +26,12 @@ function CartItem({item}){
         return
     }
 
-
     return(
         <Box>
             <Flex w={'90%'} justify={'space-between'} alignItems={'center'}>
                 <Image src={item.img} borderRadius='full' boxSize='150px' ></Image>
                 <Box w={'30%'}>{item.title} </Box>
-                <Box>${item.price}</Box>
+                <Box>{currency(item.price).format()}</Box>
                 <Box>Size: {item.size}(M)</Box>
                 <Button onClick={removeShoe} bg='none' fontSize='20px' fontWeight='bold' _hover={{ bg: "none" }}>
                     <DeleteIcon />

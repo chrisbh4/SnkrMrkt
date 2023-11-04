@@ -1,6 +1,7 @@
 import { Box, Center, Image, VStack, Link, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import '../OldHomePage/ShoeList.css'
+import currency from "currency.js";
 
 
 
@@ -23,7 +24,7 @@ function ShoeList({ shoe }) {
                 <Box  w='100%' pl='4%' textAlign={'left'}>
                 <Text w='100%' fontSize={'15px'} fontWeight='550' >{shoe.title}</Text>
                 <Text w='100%' fontSize={'15px'} fontWeight='550' >{shoe.brand}</Text>
-                <Text w='100%' fontSize={'15px'} fontWeight='550' >${shoe.price}</Text>
+                <Text w='100%' fontSize={'15px'} fontWeight='550' >{currency(shoe.price).format()}</Text>
                 </Box>
             </Link>
         </Box>

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeShoeFromCart } from "../../store/shoppingCart";
 import { DeleteIcon } from '@chakra-ui/icons'
+import currency from "currency.js";
 import {
     Button,
     Image,
@@ -32,7 +33,7 @@ function SlideOutCartItem({ item }) {
             </GridItem>
 
             <GridItem w='100%' pos='relative' left='10%' textAlign={'center'} ><Link _hover={{ textDecoration: "none" }} href={`/shoes/${item.shoeId}`} >{item.title}</Link></GridItem>
-            <GridItem w='100%' textAlign={'center'} >${item.price} </GridItem>
+            <GridItem w='100%' textAlign={'center'} >{currency(item.price).format()} </GridItem>
             <GridItem w='100%' textAlign={'center'} >Size: {item.size} (M) </GridItem>
             <GridItem w='100%' >
                 <Button onClick={removeShoe} bg='none' size={"sm"} fontSize='20px' fontWeight='bold' _hover={{ bg: "none" }}>
