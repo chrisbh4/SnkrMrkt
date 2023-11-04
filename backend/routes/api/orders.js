@@ -15,15 +15,37 @@ const validateOrderForm = [
    check("nameOnCard")
       .isLength({ min: 1, max: 150 })
       .withMessage("Must input the full name on the card"),
-   check("cardNumber")
-      .isLength({ min: 1, max: 20 })
-      .withMessage("Must input a card number"),
+   check('cardNumber')
+      .matches(/^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{1,4}$/)
+      .withMessage('Must be a valid card number')
+      .custom((value) => {
+         const digits = value.replace(/\s/g, '');
+         if (digits.length < 13 || digits.length > 19) {
+            throw new Error('Card number must be between 13 and 19 digits');
+         }
+         return true;
+      }),
    check("expirationDate")
-      .isLength({ min: 1, max: 5 })
-      .withMessage("Must input an expiration date"),
-   check("cvvNumber")
-      .isLength({ min: 3, max: 3 })
-      .withMessage("Must input a CVV"),
+      .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/)
+      .withMessage('Must be a valid MM/YY date')
+      .custom((value) => {
+         const dateParts = value.split('/');
+         const year = `20${dateParts[1]}`;
+         const expiryDate = new Date(`${year}-${dateParts[0]}-01`);
+         if (expiryDate < new Date()) {
+            throw new Error('Expiration date must be in the future');
+         }
+         return true;
+      }),
+   check('cvvNumber')
+      .matches(/^[0-9]{3,4}$/)
+      .withMessage('Must be a valid CVV number')
+      .custom((value) => {
+         if (value.length < 3) {
+            throw new Error('CVV must be a 3 digit number');
+         }
+         return true;
+      }),
    check("firstName")
       .isLength({ min: 1, max: 50 })
       .withMessage("Must input a first name"),
@@ -43,13 +65,22 @@ const validateOrderForm = [
       .isLength({ min: 1, max: 20 })
       .withMessage("Must input a State or Province"),
    check("postalCode")
-      .isNumeric()
-      .withMessage("Input a valid Zip code")
-      .isLength({ min: 5, max: 5 })
-      .withMessage("Postal Code or Zip code must be 5 characters"),
+      .matches(/^[0-9]{5}$/)
+      .withMessage('Must be a valid postal code')
+      .custom((value) => {
+         if (value.length !== 5) {
+            throw new Error('Postal code must be a 5 digit number');
+         }
+         return true;
+      }),
    check("phoneNumber")
-      .isMobilePhone()
-      .withMessage("Must input a Phone number"),
+      .custom((value) => {
+         const isValidFormat = /^(\d{10}|\d{3}-\d{3}-\d{4})$/.test(value);
+         if (!isValidFormat) {
+            throw new Error('Invalid phone number');
+         }
+         return true;
+      }),
    handleValidationErrors
 ]
 
@@ -98,8 +129,5 @@ router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
    return res.json({ newOrder })
 
 }))
-
-
-
 
 module.exports = router;
