@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./AboutPage.css"
-import { getLoadCart } from "../../store/shoppingCart"
 import { useDispatch } from "react-redux";
 import { Text, Box, Center, Image } from "@chakra-ui/react";
 
@@ -26,8 +25,8 @@ function AboutPage() {
             </p> */}
 
 
-                    <Center >
-                        <Image src='https://imgur.com/KOgkPYD.png' ></Image>
+                    <Center>
+                        <Image src='https://imgur.com/KOgkPYD.png' boxSize={'xl'} ></Image>
                         <Text w={"50%"} fontSize={'2xl'} px={'1em'} >
                             Welcome to Snkr Mrkt, your premier destination for exclusive sneakers! As passionate sneaker enthusiasts,
                             we're dedicated to offering a secure platform for buying and selling top-tier sneakers at competitive prices,
