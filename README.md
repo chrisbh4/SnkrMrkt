@@ -3,11 +3,12 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 
 
 ## Features
-- User Sign Up/Login with email and password ( Demo account provided )
+- User Sign up/Login with email and password (Demo account provided)
 - Non-Users and Users can view all listed shoes and reviews
-- Users can create, edit, and delete a shoe listings
-- Users can create, edit, and delete a shoe reviews
+- Users can create, edit, and delete a shoe listing
+- Users can create, edit, and delete a shoe's review
 - Users can create, edit, and delete a shoe from the shopping cart
+- Users can create, edit, and delete page filters
 - Users can create a purchase order and view order history
 
 ### Technologies:
@@ -23,23 +24,18 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 - CSS
 - Chakra UI
 
-<!-- <style>
-    #screenshots {
-        width: 70%; height: 450px;
-    }
-</style> -->
+
+## About Page
+<img src="https://imgur.com/MOtW8wz.png" style="width: 80%; height: 500px;" alt="home" />
 
 ## Home Page
-<img src="https://i.imgur.com/nWhSavf.png" style="width: 80%; height: 500px;" alt="home" />
-
-## All Shoes Page
-<img src="https://imgur.com/olGFJxu.png" style="width: 80%; height: 500px;" />
+<img src="https://imgur.com/XbOQzSP.png" style="width: 80%; height: 500px;" />
 
 ## Shoe Details Page
-<img src="https://imgur.com/IUAoMGS.png" style="width: 80%; height: 500px;" />
+<img src="https://imgur.com/KQ9k3W4.png" style="width: 80%; height: 500px;" />
 
 ## Checkout Form Page
-<img src="https://imgur.com/4ujp8MW.png" style="width: 80%; height: 500px;" />
+<img src="https://imgur.com/8UqiqTx.png" style="width: 80%; height: 500px;" />
 
 ### Installation:
 
