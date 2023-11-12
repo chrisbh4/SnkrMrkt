@@ -26,16 +26,16 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 
 
 ## About Page
-<img src="https://imgur.com/MOtW8wz.png" style="width: 80%; height: 500px;" alt="home" />
+<img src="https://imgur.com/MOtW8wz.png" style="width: 80%; height: auto;" alt="home" />
 
 ## Home Page
-<img src="https://imgur.com/XbOQzSP.png" style="width: 80%; height: 500px;" />
+<img src="https://imgur.com/XbOQzSP.png" style="width: 80%; height: auto;" />
 
 ## Shoe Details Page
-<img src="https://imgur.com/KQ9k3W4.png" style="width: 80%; height: 500px;" />
+<img src="https://imgur.com/KQ9k3W4.png" style="width: 80%; height: auto;" />
 
 ## Checkout Form Page
-<img src="https://imgur.com/8UqiqTx.png" style="width: 80%; height: 500px;" />
+<img src="https://imgur.com/8UqiqTx.png" style="width: 80%; height: auto;" />
 
 ### Installation:
 
