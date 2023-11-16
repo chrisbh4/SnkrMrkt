@@ -27,10 +27,11 @@ function AboutPage() {
 
                     <Center>
                         <Image src='https://imgur.com/KOgkPYD.png' boxSize={'xl'} ></Image>
-                        <Text w={"50%"} fontSize={'2xl'} px={'1em'} >
-                            Welcome to Snkr Mrkt, your premier destination for exclusive sneakers! As passionate sneaker enthusiasts,
+                        <Text w={"40%"} fontSize={'2xl'} px={'1em'} >
+                            Welcome to Snkr Mrkt, your premier destination for exclusive sneakers!
+                            {/* As passionate sneaker enthusiasts,
                             we're dedicated to offering a secure platform for buying and selling top-tier sneakers at competitive prices,
-                            all with a focus on customer satisfaction. Thank you for making us your go-to source for the latest sneaker drops!
+                            all with a focus on customer satisfaction. Thank you for making us your go-to source for the latest sneaker drops! */}
                         </Text>
                         {/* <Text w={"50%"} fontSize={'2xl'} px={'1em'} >
                         Welcome to Snkr Mrkt! Your go-to hub for exclusive sneakers, offering secure transactions and unbeatable prices. Thanks for choosing us for the latest drops!

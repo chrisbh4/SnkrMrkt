@@ -1,27 +1,26 @@
-
-button:active{
-    /* background-color: red; */
-    background-color:#55adf0;
+button:active {
+    background-color: #55adf0;
 }
 
-.cart-title{
+.cart-title {
     text-align: center;
     height: 60px;
 
 }
-#user-title{
+
+#user-title {
     color: black;
     position: relative;
     top: 10px;
 }
-#user-title:hover{
+
+#user-title:hover {
     text-align: center;
     font-size: 40px;
 }
 
 /* Cart Item CSS */
-
-.cart-placement{
+.cart-placement {
     background-image: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/cart-background-img.jpg");
     background-size: cover;
     height: 900px;
@@ -33,21 +32,19 @@ button:active{
     top: 50px;
     left: 0px;
     z-index: -1;
-
 }
 
-.cart-container{
+.cart-container {
     background-color: white;
 }
 
-.cart-item-placement{
+.cart-item-placement {
     padding: 10px;
     background-color: white;
     opacity: 0.93;
-
 }
 
-.cart-info{
+.cart-info {
     padding: 40px;
     background-color: white;
     opacity: 0.93;
@@ -56,116 +53,97 @@ button:active{
     flex-direction: column;
 }
 
-
-.cart-item-grid{
+.cart-item-grid {
     display: grid;
     grid-template-areas: "img title size price btn";
     border-bottom: 1px solid black;
     justify-content: space-around;
     align-content: center;
-
 }
 
-
-.cart-item-image{
+.cart-item-image {
     grid-area: img;
-    width:200px;
+    width: 200px;
     height: 180px;
     padding-top: 6px;
     padding-bottom: 10px;
 }
 
-.cart-item-title{
+.cart-item-title {
     grid-area: title;
     display: flex;
     align-items: center;
 }
 
-.cart-item-shoeSize{
+.cart-item-shoeSize {
     grid-area: size;
     display: flex;
     align-items: center;
 }
 
-.cart-item-price{
+.cart-item-price {
     grid-area: price;
     display: flex;
     align-items: center;
 }
 
-
-.cart-remove-button{
- grid-area: btn;
- /* height: 25px;
- width: 110px; */
- align-self: center;
- background: none;
- border-radius: 0;
- padding: 0.7em 3.5em;
- letter-spacing: 0.3em;
- font-size: 0.7em;
- transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-
-}
-.cart-remove-button:hover{
- grid-area: btn;
- color: rgba(255,255,255,1);
-    /* color: rgba(0,0,0,0.8); */
-        background-color: #454c53;
-        /* background-color: #fff; */
-        box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
-
+.cart-remove-button {
+    grid-area: btn;
+    align-self: center;
+    background: none;
+    border-radius: 0;
+    padding: 0.7em 3.5em;
+    letter-spacing: 0.3em;
+    font-size: 0.7em;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
-
-.total-price{
-    text-align: center;
+.cart-remove-button:hover {
+    grid-area: btn;
+    color: rgba(255, 255, 255, 1);
+    background-color: #454c53;
+    box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
 }
 
-
-.cart-purchase-button{
+.cart-purchase-button {
     position: relative;
     left: 550px;
     width: 30%;
-	background: none;
-	border-radius: 0;
-	padding: 0.7em 3.5em;
-	letter-spacing: 0.3em;
-	font-size: 0.7em;
-	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-
-
-
+    background: none;
+    border-radius: 0;
+    padding: 0.7em 3.5em;
+    letter-spacing: 0.3em;
+    font-size: 0.7em;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
-.cart-purchase-button:hover{
-    color: rgba(255,255,255,1);
-    /* color: rgba(0,0,0,0.8); */
-        background-color: #454c53;
-        /* background-color: #fff; */
-        box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
+.cart-purchase-button:hover {
+    color: rgba(255, 255, 255, 1);
+    background-color: #454c53;
+    box-shadow: inset 0 0 0 rgba(7, 7, 7, 0.3), 0 0 1.2em rgba(0, 0, 0, 0.5);
 }
 
-
-.empty-cart{
+.empty-cart {
     text-align: center;
     font-size: 30px;
 }
-.cart-footer-placement{
+
+.cart-footer-placement {
     margin-top: 75px;
-    /* width: 100%; */
     display: flex;
     justify-content: center;
 }
 
-.cart-footer{
+.cart-footer {
     width: 75%;
     border-top: 1px solid black;
 }
-.cart-footer-creator{
+
+.cart-footer-creator {
     font-size: 20px;
 }
-.cart-icon{
+
+.cart-icon {
     width: 25px;
     font-size: 20px;
 }

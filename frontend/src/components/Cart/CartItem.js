@@ -2,16 +2,13 @@ import React from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { removeShoeFromCart } from "../../store/shoppingCart";
 import currency from "currency.js";
+import { DeleteIcon } from '@chakra-ui/icons'
 import {
     Box,
     Flex,
     Button,
     Image,
 } from '@chakra-ui/react'
-import { DeleteIcon } from '@chakra-ui/icons'
-
-
-
 
 
 function CartItem({item}){
@@ -32,7 +29,7 @@ function CartItem({item}){
                 <Image src={item.img} borderRadius='full' boxSize='150px' ></Image>
                 <Box w={'30%'}>{item.title} </Box>
                 <Box>{currency(item.price).format()}</Box>
-                <Box>Size: {item.size}(M)</Box>
+                <Box>Size: {item.size}</Box>
                 <Button onClick={removeShoe} bg='none' fontSize='20px' fontWeight='bold' _hover={{ bg: "none" }}>
                     <DeleteIcon />
                 </Button>

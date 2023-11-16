@@ -184,7 +184,7 @@ function NewHomePage() {
             })}
           </Box>
 
-          <Box borderTop={'1px'}   >
+          {/* <Box borderTop={'1px'}   >
             <Text fontSize='2xl' position='relative' left='1%'>Shoe Style</Text>
             <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
               <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
@@ -209,7 +209,7 @@ function NewHomePage() {
                 }}
               ><Text onClick={() => updateFilterStyle("toddler")} fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Text>
             </VStack>
-          </Box>
+          </Box> */}
 
           {/* <ShoeStyleGrid /> */}
 
@@ -296,7 +296,7 @@ function NewHomePage() {
         </GridItem>
       </Grid>
       </>)
-      
+
       }
 
 

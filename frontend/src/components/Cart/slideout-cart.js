@@ -13,15 +13,15 @@ import {
   Button,
   useDisclosure,
   Link,
-  Box,
-  Center
+  Center,
+  Text,
+  VStack
 } from '@chakra-ui/react'
 
 
 function SlideOutCart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
-  
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const cart = Object.values(shoppingCart);
 
@@ -60,18 +60,19 @@ function SlideOutCart() {
               {cart.map((item) => (
                 <SlideOutCartItem item={item} key={item.shoeId} />
               ))}
-              <Box>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Market Price : ${currency(totalPriceOfShoes).format()}` : emptyCart}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${currency(feePrices).format()}` : null}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Tax: ${currency(stateTax).format()}` : null}</h2>
-                <h2 className="total-price">{totalPriceOfShoes > 0 ? `Total: ${currency(pricePostTaxes).format()}` : null}</h2>
-                <Center>
-                  {totalPriceOfShoes > 0 ? <Link href='/cart' mt='4%' _hover={{ textDecor: "none"}} > <Button bg='red.300' > Checkout </Button></Link> : null}
-                </Center>
-              </Box>
+              <Center>
+                <VStack align={'flex-start'} ml={'8%'}>
+                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Market Price : ${currency(totalPriceOfShoes).format()}` : emptyCart}</Text>
+                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${currency(feePrices).format()}` : null}</Text>
+                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Tax: ${currency(stateTax).format()}` : null}</Text>
+                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Total: ${currency(pricePostTaxes).format()}` : null}</Text>
+                </VStack>
+              </Center>
+              <Center>
+                {totalPriceOfShoes > 0 ? <Link href='/cart' mt='4%' _hover={{ textDecor: "none" }} > <Button bg='red.300' > Checkout </Button></Link> : null}
+              </Center>
             </div>
           </DrawerBody>
-
           <DrawerFooter>
             <Button variant='outline' mr={3} bg='red.300' onClick={onClose}>
               Close

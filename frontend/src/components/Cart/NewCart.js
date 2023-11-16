@@ -254,7 +254,7 @@ function CheckoutForm() {
                         <Box w={"full"} border={'1px'} borderColor={'gray.300'} mt={"8%"}></Box>
                         <Box>
                             <Flex justify={'space-between'}>
-                                <Text>Subtotal</Text>
+                                <Text>Market Price</Text>
                                 <Text>{totalPriceOfShoes > 0 ? `${currency(totalPriceOfShoes).format()}` : '$0.00'}</Text>
                             </Flex>
                             <Flex justify={'space-between'}>
