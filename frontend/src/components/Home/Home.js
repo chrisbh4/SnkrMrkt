@@ -10,6 +10,7 @@ import { getLoadFilters, getclearFilters, setSelectedFilters } from "../../store
 function NewHomePage() {
   const dispatch = useDispatch()
   const shoes = useSelector((state) => state.shoes)
+  const filters = useSelector((state) => state.filters)
 
   let shoesArray;
   if (localStorage.filtered_shoes) {
@@ -59,10 +60,10 @@ function NewHomePage() {
     { id: 11, title: "Gucci" }
   ]
 
-  const [filterBrand, setFilterBrand] = useState({ id: null, brand: null })
-  const [filterShoeSize, setFilterShoeSize] = useState({ id: null, size: null })
+  const [filterBrand, setFilterBrand] = useState({ id: null, brand: filters?.brand })
+  const [filterShoeSize, setFilterShoeSize] = useState({ id: null, size: filters?.size })
   const [filterStyleType, setFilterStyleType] = useState({})
-  const [filterPricing, setFilterPricing] = useState("")
+  const [filterPricing, setFilterPricing] = useState(filters?.price)
 
   // const updateFilterBrand = (filter) => { setFilterBrand({ id: filter.id, brand: filter.title }) };
   // const updateFilterShoeSize = (filter) => { setFilterShoeSize({ id: filter.id, size: filter.size }) };
@@ -86,13 +87,13 @@ function NewHomePage() {
     }
   };
 
-  const updateFilterStyle = (value) => {
-    if (value === filterStyleType) {
-      setFilterStyleType("");
-    } else {
-      setFilterStyleType(value);
-    }
-  };
+  // const updateFilterStyle = (value) => {
+  //   if (value === filterStyleType) {
+  //     setFilterStyleType("");
+  //   } else {
+  //     setFilterStyleType(value);
+  //   }
+  // };
 
   const updateFilterPricing = (value) => {
     if (value === filterPricing) {
@@ -104,7 +105,6 @@ function NewHomePage() {
 
   //TODO: Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
   const payload = { brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType, price: filterPricing }
-  const filters = useSelector((state) => state.filters)
 
   useEffect(() => {
     dispatch(getAllShoes())
@@ -295,10 +295,10 @@ function NewHomePage() {
           </Wrap>
         </GridItem>
       </Grid>
-      </>)
+    </>)
 
-      }
+}
 
 
 
-      export default NewHomePage;
+export default NewHomePage;
