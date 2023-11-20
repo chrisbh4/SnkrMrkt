@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Shoes', {
@@ -10,34 +10,34 @@ module.exports = {
       },
       sellerId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false,
         // will not allow the same user to sell multiple shoes
         // unique:true,
-        references:{model:"Users"}
+        references: { model: 'Users' }
       },
       title: {
         type: Sequelize.STRING(100),
-        allowNull:false,
+        allowNull: false
       },
       brand: {
         type: Sequelize.STRING(50),
-        allowNull: true,
+        allowNull: true
       },
       shoeSize: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false
       },
       image: {
         type: Sequelize.TEXT,
-        allowNull:true,
+        allowNull: true
       },
       price: {
-        type: Sequelize.DECIMAL(10,2),
-        allowNull:false,
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull:false,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -47,9 +47,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Shoes');
+    await queryInterface.dropTable('Shoes')
   }
-};
+}

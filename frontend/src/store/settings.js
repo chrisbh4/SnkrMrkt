@@ -1,50 +1,47 @@
-import { csrfFetch } from "./csrf";
+import { csrfFetch } from './csrf'
 
-const LOAD = 'settings/LOAD';
+const LOAD = 'settings/LOAD'
 
 const loadUsersSellingList = (data) => ({
-    type: LOAD,
-    data
-});
+  type: LOAD,
+  data
+})
 
 const loadUsersOrdersList = (data) => ({
-    type: LOAD,
-    data
-});
+  type: LOAD,
+  data
+})
 
 const loadUsersWatchList = (data) => ({
-    type: LOAD,
-    data
-});
+  type: LOAD,
+  data
+})
 
 export const fetchUserSellingList = (userId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/settings/${userId}/selling`)
-    if (res.ok) {
-        const data = await res.json()
-        dispatch(loadUsersSellingList(data))
-        return data
-    }
-    return
+  const res = await csrfFetch(`/api/settings/${userId}/selling`)
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(loadUsersSellingList(data))
+    return data
+  }
 }
 
 export const fetchUsersOrdersList = (userId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/settings/${userId}/orders`)
-    if (res.ok) {
-        const data = await res.json()
-        dispatch(loadUsersOrdersList(data))
-        return data
-    }
-    return
+  const res = await csrfFetch(`/api/settings/${userId}/orders`)
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(loadUsersOrdersList(data))
+    return data
+  }
 }
 
 export const fetchUsersWatchList = (userId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/settings/${userId}/watching`)
-    if (res.ok) {
-        const data = await res.json()
-        dispatch(loadUsersWatchList(data))
-        return data
-    }
-    return
+  const res = await csrfFetch(`/api/settings/${userId}/watching`)
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(loadUsersWatchList(data))
+    return data
+  }
 }
 
 // export const fetchCreateNewOrder = (payload) => async (dispatch) => {
@@ -67,21 +64,15 @@ export const fetchUsersWatchList = (userId) => async (dispatch) => {
 //     }
 // }
 
+const initialState = {}
 
-
-
-const initialState = {};
-
-function reducer(state = initialState, action) {
-    switch (action.type) {
-        case LOAD:
-            return {...action.data }
-        default:
-            return state
-
-    }
+function reducer (state = initialState, action) {
+  switch (action.type) {
+    case LOAD:
+      return { ...action.data }
+    default:
+      return state
+  }
 }
 
-
-
-export default reducer;
+export default reducer

@@ -1,7 +1,7 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import SlideOutCartItem from "./slideout-item";
-import currency from "currency.js";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import SlideOutCartItem from './slideout-item'
+import currency from 'currency.js'
 import {
   Drawer,
   DrawerBody,
@@ -18,14 +18,13 @@ import {
   VStack
 } from '@chakra-ui/react'
 
-
-function SlideOutCart() {
+function SlideOutCart () {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
-  const shoppingCart = useSelector((state) => state.shoppingCart);
-  const cart = Object.values(shoppingCart);
+  const shoppingCart = useSelector((state) => state.shoppingCart)
+  const cart = Object.values(shoppingCart)
 
-  let total = 0.00;
+  let total = 0.00
   cart.forEach((item) => {
     total += parseFloat(item.price)
   })
@@ -35,12 +34,12 @@ function SlideOutCart() {
   const stateTax = 2
   const pricePostTaxes = total + stateTax + feePrices
 
-  const emptyCart = <h1 className="empty-cart">Cart is empty </h1>
+  const emptyCart = <h1 className='empty-cart'>Cart is empty </h1>
 
   return (
     <>
-      <Button ref={btnRef} colorScheme='black' onClick={onOpen} >
-        <i className="fas fa-shopping-cart" style={{ fontSize: "13px" }}></i>
+      <Button ref={btnRef} colorScheme='black' onClick={onOpen}>
+        <i className='fas fa-shopping-cart' style={{ fontSize: '13px' }} />
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -51,25 +50,24 @@ function SlideOutCart() {
 
       >
         <DrawerOverlay />
-        <DrawerContent  >
+        <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader >
-          </DrawerHeader>
+          <DrawerHeader />
           <DrawerBody>
-            <div className="cart-container">
+            <div className='cart-container'>
               {cart.map((item) => (
                 <SlideOutCartItem item={item} key={item.shoeId} />
               ))}
               <Center>
-                <VStack align={'flex-start'} ml={'8%'}>
-                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Market Price : ${currency(totalPriceOfShoes).format()}` : emptyCart}</Text>
-                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${currency(feePrices).format()}` : null}</Text>
-                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Tax: ${currency(stateTax).format()}` : null}</Text>
-                  <Text className="total-price">{totalPriceOfShoes > 0 ? `Total: ${currency(pricePostTaxes).format()}` : null}</Text>
+                <VStack align='flex-start' ml='8%'>
+                  <Text className='total-price'>{totalPriceOfShoes > 0 ? `Market Price : ${currency(totalPriceOfShoes).format()}` : emptyCart}</Text>
+                  <Text className='total-price'>{totalPriceOfShoes > 0 ? `Site fee 1.5%  : ${currency(feePrices).format()}` : null}</Text>
+                  <Text className='total-price'>{totalPriceOfShoes > 0 ? `Tax: ${currency(stateTax).format()}` : null}</Text>
+                  <Text className='total-price'>{totalPriceOfShoes > 0 ? `Total: ${currency(pricePostTaxes).format()}` : null}</Text>
                 </VStack>
               </Center>
               <Center>
-                {totalPriceOfShoes > 0 ? <Link href='/cart' mt='4%' _hover={{ textDecor: "none" }} > <Button bg='red.300' > Checkout </Button></Link> : null}
+                {totalPriceOfShoes > 0 ? <Link href='/cart' mt='4%' _hover={{ textDecor: 'none' }}> <Button bg='red.300'> Checkout </Button></Link> : null}
               </Center>
             </div>
           </DrawerBody>
@@ -85,4 +83,4 @@ function SlideOutCart() {
   )
 }
 
-export default SlideOutCart;
+export default SlideOutCart
