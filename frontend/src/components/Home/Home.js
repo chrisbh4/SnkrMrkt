@@ -178,7 +178,6 @@ function NewHomePage() {
                     }}
                     textAlign={'left'} fontSize='2xl' textTransform={"uppercase"} _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }} >
                     {brand.title}</Text>
-
                 </div>
               )
             })}

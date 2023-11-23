@@ -53,7 +53,7 @@ if (config.use_env_variable) {
 
     // console.log("URL JSON :",  u)
     // console.log("URL String :",  u.toString())
-    // console.log(`primary:  ${primary}`)
+    console.log(`primary:  ${primary}`)
     // console.log(`current:  ${current}`)
     console.log(`Read Rep DB connected in ${current}`)
 
