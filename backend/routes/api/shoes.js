@@ -80,8 +80,8 @@ router.get('/filter', asyncHandler(async (req, res) => {
   // TODO: Style Needs to be added to database Schema
   if (price !== 'undefined' && price !== '') {
     if (parseInt(price) === 650) {
-      minPrice = 650
-      maxPrice = 50000
+      const minPrice = 650
+      const maxPrice = 50000
       query.where.price = {
         [Op.between]: [minPrice, maxPrice]
       }
@@ -131,13 +131,14 @@ router.delete('/:id', asyncHandler(async (req, res) => {
   })
   const allReviews = await Reviews.findAll()
 
-  if (!shoe) new Error('Shoe does not exist')
+  if (!shoe) new Error('Shoe does not exist') // eslint-disable-line
 
   // TODO: Look into sequelize casacading to be able to delete a shoe and all of its reviews without deleting the shoeId in an Orders table
   allReviews.map((review) => {
     if (review.shoeId === shoe.id) {
       review.destroy()
     }
+    return []
   })
 
   await shoe.destroy()

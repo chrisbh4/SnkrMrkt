@@ -1,7 +1,5 @@
 'use strict'
 
-const randPrice = Math.floor(Math.random() * 1000).toFixed(2)
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**

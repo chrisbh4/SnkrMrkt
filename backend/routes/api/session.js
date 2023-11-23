@@ -35,12 +35,7 @@ router.post(
       err.title = 'Login failed'
       err.errors = ['The provided credentials were invalid']
       return next(err)
-    }
-    // else if (user.errors) {
-    //   return res.json({ user })
-
-    // }
-    else {
+    } else {
       await setTokenCookie(res, user)
 
       return res.json({
@@ -75,15 +70,6 @@ router.get(
 
 router.get('/all-users', asyncHandler(async (req, res) => {
   const users = await User.findAll()
-
-  const allUsers = {}
-  // users.forEach((user)=>{
-  //   if(!allUsers[user.id]){
-  //     allUsers[user.id]=user;
-  //   }
-  // })
-
-  // return res.json({allUsers})
   return res.json({ users })
 }))
 

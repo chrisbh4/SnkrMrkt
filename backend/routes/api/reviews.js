@@ -1,10 +1,9 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
-const { Review, Shoe } = require('../../db/models')
+const { Review } = require('../../db/models')
 const { check } = require('express-validator')
 const { handleValidationErrors } = require('../../utils/validation')
 const Reviews = Review
-const Shoes = Shoe
 
 const validateReview = [
   check('comment')

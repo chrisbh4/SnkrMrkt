@@ -29,10 +29,10 @@ router.get('/:id/orders', asyncHandler(async (req, res) => {
 }))
 
 router.get('/:id/watching', asyncHandler(async (req, res) => {
-  const User = await User.findByPk(req.params.id, {
+  const user = await User.findByPk(req.params.id, {
     include: [Shoe]
   })
-  return res.json({ User })
+  return res.json({ user })
 }))
 
 module.exports = router

@@ -31,7 +31,7 @@ const s3 = new AWS.S3({
 AWS.config.update({ accessKeyId, secretAccessKey, region })
 
 const awsImageUpload = async (file) => {
-  const { originalname, mimetype, buffer } = await file
+  const { originalname, mimetype, buffer } = await file   // eslint-disable-line
 
   const path = require('path')
   // name of the file in your S3 bucket will be the date in ms plus the extension name
