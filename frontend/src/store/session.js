@@ -1,97 +1,94 @@
-import { csrfFetch } from "./csrf.js";
-import { getclearFilters } from "./filters.js";
+import { csrfFetch } from './csrf.js'
+import { getclearFilters } from './filters.js'
 
-const SET_USER = 'session/setUser';
-const REMOVE_USER = 'session/removeUser';
-const ALL_USERS = 'session/all_users';
+const SET_USER = 'session/setUser'
+const REMOVE_USER = 'session/removeUser'
+const ALL_USERS = 'session/all_users'
 
 const setUser = (user) => ({
   type: SET_USER,
-  payload: user,
-});
+  payload: user
+})
 
 const removeUser = () => ({
-  type: REMOVE_USER,
-});
+  type: REMOVE_USER
+})
 const allUsers = (users) => ({
   type: ALL_USERS,
-   users,
-});
+  users
+})
 
-
-let logoutTimer;
+let logoutTimer
 
 const startLogoutTimer = (expirationTime) => (dispatch) => {
   logoutTimer = setTimeout(() => {
-    dispatch(logout());
-  }, expirationTime);
-};
+    dispatch(logout())
+  }, expirationTime)
+}
 
 const clearLogoutTimer = () => {
-  clearTimeout(logoutTimer);
-};
+  clearTimeout(logoutTimer)
+}
 
 export const login = ({ credential, password }) => async (dispatch) => {
-  const response = await csrfFetch("/api/session", {
-    method: "POST",
-    body: JSON.stringify({ credential, password }),
-  });
-  const data = await response.json();
+  const response = await csrfFetch('/api/session', {
+    method: 'POST',
+    body: JSON.stringify({ credential, password })
+  })
+  const data = await response.json()
   if (response.ok) {
-    dispatch(setUser(data.user));
-    const expirationTime = 10 * 60 * 1000; // 10 minutes in milliseconds
-    dispatch(startLogoutTimer(expirationTime)); // Start the logout timer
-    return data;
+    dispatch(setUser(data.user))
+    const expirationTime = 10 * 60 * 1000 // 10 minutes in milliseconds
+    dispatch(startLogoutTimer(expirationTime)) // Start the logout timer
+    return data
   } else {
-    return data;
+    return data
   }
-};
+}
 
 export const logout = () => async (dispatch) => {
-  clearLogoutTimer();
-  const response = await csrfFetch("/api/session", {
-    method: "DELETE",
-  });
-  dispatch(removeUser());
+  clearLogoutTimer()
+  const response = await csrfFetch('/api/session', {
+    method: 'DELETE'
+  })
+  dispatch(removeUser())
   dispatch(getclearFilters())
-  return response;
-};
-
+  return response
+}
 
 export const restoreUser = () => async dispatch => {
-  const response = await csrfFetch("/api/session");
-  const data = await response.json();
-  dispatch(setUser(data.user));
-  return response;
-};
+  const response = await csrfFetch('/api/session')
+  const data = await response.json()
+  dispatch(setUser(data.user))
+  return response
+}
 
 export const signup = (user) => async (dispatch) => {
-  const { username, email, password } = user;
-  const response = await csrfFetch("/api/users", {
-    method: "POST",
+  const { username, email, password } = user
+  const response = await csrfFetch('/api/users', {
+    method: 'POST',
     body: JSON.stringify({
       username,
       email,
-      password,
-    }),
-  });
-  const data = await response.json();
-  if( response.ok){
-    dispatch(setUser(data.user));
-    return data;
-  }else{
+      password
+    })
+  })
+  const data = await response.json()
+  if (response.ok) {
+    dispatch(setUser(data.user))
+    return data
+  } else {
     return data
   }
-};
+}
 
-
-export const fetchAllUsers = () => async (dispatch)=>{
-  const res = await csrfFetch("/api/session/all-users")
-  if(res.ok){
+export const fetchAllUsers = () => async (dispatch) => {
+  const res = await csrfFetch('/api/session/all-users')
+  if (res.ok) {
     const data = await res.json()
     dispatch(allUsers(data))
     return data
-  }else{
+  } else {
     return res
   }
 }
@@ -119,26 +116,22 @@ export const fetchAllUsers = () => async (dispatch)=>{
 //   return response;
 // };
 
+const initialState = { user: null }
 
-
-
-
-const initialState = { user: null };
-
-function reducer(state = initialState, action) {
-  let newState;
+function reducer (state = initialState, action) {
+  let newState
   switch (action.type) {
     case ALL_USERS:
-      return {...state, ...action.users}
+      return { ...state, ...action.users }
     case SET_USER:
-      newState = Object.assign({}, state, { user: action.payload });
-      return newState;
+      newState = Object.assign({}, state, { user: action.payload })
+      return newState
     case REMOVE_USER:
-      newState = Object.assign({}, state, { user: null });
-      return newState;
+      newState = Object.assign({}, state, { user: null })
+      return newState
     default:
-      return state;
+      return state
   }
 }
 
-export default reducer;
+export default reducer

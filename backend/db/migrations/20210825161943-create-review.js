@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Reviews', {
@@ -10,23 +10,23 @@ module.exports = {
       },
       shoeId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false,
         // unique:true,
-        references:{model:'Shoes'}
+        references: { model: 'Shoes' }
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false,
         // unique:true,
-        references:{model:"Users"}
+        references: { model: 'Users' }
       },
       comment: {
         type: Sequelize.STRING,
-        allowNull:false,
+        allowNull: false
       },
       rating: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false
       },
       image: {
         type: Sequelize.TEXT
@@ -39,9 +39,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Reviews');
+    await queryInterface.dropTable('Reviews')
   }
-};
+}
