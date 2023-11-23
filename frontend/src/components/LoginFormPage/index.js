@@ -9,7 +9,7 @@ function LoginFormPage () {
   const sessionUser = useSelector((state) => state.session.user)
   const [credential, setCredential] = useState('')
   const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState([])
+  const [setErrors] = useState([])
 
   if (sessionUser) return Navigate('/')
 

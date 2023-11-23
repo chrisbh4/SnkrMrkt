@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import './ShoeDetails.css'
 import { getOneShoe } from '../../../store/shoes'
-// import { addShoeToCart } from "../../../store/shoppingCart"
-// import { fetchMostPopular } from '../../../store/stockX';
 import AddToCartComponent from './AddToCartCompoent'
+import CreateReviewModal from '../../Reviews/NewReview/ModalForm'
+import EditReviewModal from '../../Reviews/EditReview/ModalForm'
+import currency from 'currency.js'
 import {
   Center,
   Box,
@@ -13,12 +14,8 @@ import {
   Flex,
   Image,
   Link,
-  Grid,
-  GridItem
+  Grid
 } from '@chakra-ui/react'
-import CreateReviewModal from '../../Reviews/NewReview/ModalForm'
-import EditReviewModal from '../../Reviews/EditReview/ModalForm'
-import currency from 'currency.js'
 
 function ShoeDetialsChakra () {
   // const navigate = useNavigate();
@@ -157,6 +154,7 @@ function ShoeDetialsChakra () {
           <Flex justify='space-between'>
             {randomShoeIndices.map(index => (
               <Box
+                key={index}
                 marginLeft='5px'
                 _hover={{
                   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)'
@@ -189,7 +187,7 @@ function ShoeDetialsChakra () {
           {shoe?.Reviews.map((review) => {
             if (review.userId === userId) {
               return (
-                <Grid templateColumns='repeat(3, 1fr)' gap={6}>
+                <Grid templateColumns='repeat(3, 1fr)' gap={6} key={review.id}>
                   <Text ml='4%' pt='1em'>{review.comment}</Text>
                   <Text ml='2.5em' pt='1em'>{review.rating}</Text>
                   <EditReviewModal pt='3em' review={review} />
@@ -197,7 +195,7 @@ function ShoeDetialsChakra () {
               )
             }
             return (
-              <Grid templateColumns='repeat(3, 1fr)' gap={6}>
+              <Grid templateColumns='repeat(3, 1fr)' gap={6} key={review.id}>
                 <Text ml='4%' pt='1em'>{review.comment}</Text>
                 <Text ml='2.5em' pt='1em'>{review.rating}</Text>
               </Grid>

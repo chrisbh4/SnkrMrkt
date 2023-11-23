@@ -3,14 +3,14 @@ import { csrfFetch } from './csrf'
 const ORDER_CREATED = 'orders/ORDER_CREATED'
 const GET_ORDER_ID = 'orders/GET_ORDER_ID'
 
-const createNewOrder = (order_form) => ({
+const createNewOrder = (orderForm) => ({
   type: ORDER_CREATED,
-  order_form
+  orderForm
 })
 
-const getOrderInvoice = (order_form) => ({
+const getOrderInvoice = (orderForm) => ({
   type: GET_ORDER_ID,
-  order_form
+  orderForm
 })
 
 export const fetchOrderByID = (orderId) => async (dispatch) => {

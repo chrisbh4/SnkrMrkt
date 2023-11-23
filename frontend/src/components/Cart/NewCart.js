@@ -126,10 +126,10 @@ function CheckoutForm () {
                   <Text fontSize='2xl'>Contact information</Text>
                   <Flex justify='start'>
                     <Box w='full'>
-                        <FormLabel>Email Address</FormLabel>
-                        {errors.includes('Email must be valid') && <Text color='red.400'>Input a valid email</Text>}
-                        <Input borderColor='black' bg='gray.50' onChange={updateEmail} />
-                      </Box>
+                      <FormLabel>Email Address</FormLabel>
+                      {errors.includes('Email must be valid') && <Text color='red.400'>Input a valid email</Text>}
+                      <Input borderColor='black' bg='gray.50' onChange={updateEmail} />
+                    </Box>
                   </Flex>
                 </Box>
 
@@ -149,22 +149,22 @@ function CheckoutForm () {
                   </Box>
                   <Flex w='full' mt='5%'>
                     <Box>
-                        <FormLabel>Expiration Date</FormLabel>
-                        {errors.includes('Must input an expiration date') && <Text color='red.400'>*required</Text>}
-                        {errors.includes('Must be a valid MM/YY date') && <Text color='red.400'>Must be a valid MM/YY date</Text>}
-                        {errors.includes('Expiration date must be in the future') && <Text color='red.400'>Expiration date must be in the future</Text>}
-                        <Input borderColor='black' bg='gray.50' w='120%' onChange={updateExpirationDate} placeholder='MM/YY' />
-                      </Box>
+                      <FormLabel>Expiration Date</FormLabel>
+                      {errors.includes('Must input an expiration date') && <Text color='red.400'>*required</Text>}
+                      {errors.includes('Must be a valid MM/YY date') && <Text color='red.400'>Must be a valid MM/YY date</Text>}
+                      {errors.includes('Expiration date must be in the future') && <Text color='red.400'>Expiration date must be in the future</Text>}
+                      <Input borderColor='black' bg='gray.50' w='120%' onChange={updateExpirationDate} placeholder='MM/YY' />
+                    </Box>
 
                   </Flex>
 
                   <Flex w='full' mt='5%'>
                     <Box w='full'>
-                        <FormLabel>CVV</FormLabel>
-                        {errors.includes('Must be a valid CVV number') && <Text color='red.400'>Must be a valid CVV number.</Text>}
-                        {errors.includes('CVV must be a 3 digit number') && <Text color='red.400'>CVV must be a 3 digit number.</Text>}
-                        <Input w='20%' borderColor='black' bg='gray.50' onChange={updateCvvNumber} placeholder='xxx' />
-                      </Box>
+                      <FormLabel>CVV</FormLabel>
+                      {errors.includes('Must be a valid CVV number') && <Text color='red.400'>Must be a valid CVV number.</Text>}
+                      {errors.includes('CVV must be a 3 digit number') && <Text color='red.400'>CVV must be a 3 digit number.</Text>}
+                      <Input w='20%' borderColor='black' bg='gray.50' onChange={updateCvvNumber} placeholder='xxx' />
+                    </Box>
                   </Flex>
 
                 </Box>
@@ -174,15 +174,15 @@ function CheckoutForm () {
                   <Text fontSize='2xl'>Shipping Information</Text>
                   <Flex w='full' justify='space-between'>
                     <Box w='47%' mt='2%'>
-                        <FormLabel>First Name</FormLabel>
-                        {errors.includes('Must input a first name') && <Text color='red.400'>Input a first name</Text>}
-                        <Input borderColor='black' bg='gray.50' onChange={updateFirstName} />
-                      </Box>
+                      <FormLabel>First Name</FormLabel>
+                      {errors.includes('Must input a first name') && <Text color='red.400'>Input a first name</Text>}
+                      <Input borderColor='black' bg='gray.50' onChange={updateFirstName} />
+                    </Box>
                     <Box w='47%' mt='2%'>
-                        <FormLabel>Last Name</FormLabel>
-                        {errors.includes('Must input a last name') && <Text color='red.400'>Input a last name</Text>}
-                        <Input borderColor='black' bg='gray.50' onChange={updateLastName} />
-                      </Box>
+                      <FormLabel>Last Name</FormLabel>
+                      {errors.includes('Must input a last name') && <Text color='red.400'>Input a last name</Text>}
+                      <Input borderColor='black' bg='gray.50' onChange={updateLastName} />
+                    </Box>
                   </Flex>
 
                   <Box w='full' mt='2%'>
@@ -200,45 +200,45 @@ function CheckoutForm () {
                   </Box>
                   <Flex w='full' mt='5%' justify='space-between'>
                     <Box w='47%'>
-                        <FormLabel>City</FormLabel>
-                        {errors.includes('Must input a city name') && <Text color='red.400'>Input a city name</Text>}
-                        <Input borderColor='black' bg='gray.50' onChange={updateCity} />
-                      </Box>
+                      <FormLabel>City</FormLabel>
+                      {errors.includes('Must input a city name') && <Text color='red.400'>Input a city name</Text>}
+                      <Input borderColor='black' bg='gray.50' onChange={updateCity} />
+                    </Box>
 
                     <Box w='47%'>
-                        <FormLabel>Country</FormLabel>
-                        {errors.includes('Must select a one of the available countries') && <Text color='red.400'>*required</Text>}
-                        <Select borderColor='black' bg='gray.50' onChange={updateCountry}>
-                            <option value='' />
-                            <option value='United States'>United States</option>
-                            {/* <option value='Canada'>Canada</option> */}
-                            {/* <option value='Mexico'>Mexico</option> */}
-                          </Select>
-                      </Box>
+                      <FormLabel>Country</FormLabel>
+                      {errors.includes('Must select a one of the available countries') && <Text color='red.400'>*required</Text>}
+                      <Select borderColor='black' bg='gray.50' onChange={updateCountry}>
+                        <option value='' />
+                        <option value='United States'>United States</option>
+                        {/* <option value='Canada'>Canada</option> */}
+                        {/* <option value='Mexico'>Mexico</option> */}
+                      </Select>
+                    </Box>
 
                   </Flex>
                   <Flex w='full' mt='5%' justify='space-between'>
                     <Box w='47%'>
-                        <FormLabel>State/Province</FormLabel>
-                        {errors.includes('Must input a State or Province') && <Text color='red.400'>*required</Text>}
-                        <Select borderColor='black' bg='gray.50' onChange={updateStateProvince}>
-                            <option value='' />
-                            {usStateInitials.map(state => (
-                                <option key={state} value={state}>{state}</option>
-                              ))}
-                          </Select>
+                      <FormLabel>State/Province</FormLabel>
+                      {errors.includes('Must input a State or Province') && <Text color='red.400'>*required</Text>}
+                      <Select borderColor='black' bg='gray.50' onChange={updateStateProvince}>
+                        <option value='' />
+                        {usStateInitials.map(state => (
+                          <option key={state} value={state}>{state}</option>
+                        ))}
+                      </Select>
 
-                      </Box>
+                    </Box>
 
                   </Flex>
 
                   <Flex w='full' mt='5%' justify='space-between'>
                     <Box w='full%'>
-                        <FormLabel>Postal Code</FormLabel>
-                        {errors.includes('Must be a valid postal code') && <Text color='red.400'> Must be a valid postal code</Text>}
-                        {errors.includes('Postal code must be a 5 digit number') && <Text color='red.400'> Postal code must be a 5 digit number</Text>}
-                        <Input w='47%' borderColor='black' bg='gray.50' onChange={updatePostalCode} />
-                      </Box>
+                      <FormLabel>Postal Code</FormLabel>
+                      {errors.includes('Must be a valid postal code') && <Text color='red.400'> Must be a valid postal code</Text>}
+                      {errors.includes('Postal code must be a 5 digit number') && <Text color='red.400'> Postal code must be a 5 digit number</Text>}
+                      <Input w='47%' borderColor='black' bg='gray.50' onChange={updatePostalCode} />
+                    </Box>
                   </Flex>
 
                   <Box mt='5%'>

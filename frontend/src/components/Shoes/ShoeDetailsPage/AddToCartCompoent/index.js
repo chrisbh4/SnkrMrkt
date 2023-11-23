@@ -80,10 +80,6 @@ function AddToCartComponent ({ shoeId }) {
     setSize(e.target.value)
   }
 
-  const unavialableFeature = async () => {
-    alert('Functionality coming soon!')
-  }
-
   let sellerChecker
   if (userId) {
     if (userId === shoeSellerId) {

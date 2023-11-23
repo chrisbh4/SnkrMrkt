@@ -1,22 +1,9 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { Box, Button, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
-import * as sessionActions from '../../store/session'
-import { purchaseFromCart } from '../../store/shoppingCart'
+import { useSelector } from 'react-redux'
+import { Box, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
 
 function ProfilePage () {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
   const user = useSelector(state => state.session.user)
-
-  const logout = async (e) => {
-    e.preventDefault()
-    dispatch(purchaseFromCart())
-    dispatch(sessionActions.logout())
-    navigate('/')
-  }
 
   return (
     <Box pos='relative' top='50px'>

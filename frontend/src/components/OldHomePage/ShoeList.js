@@ -1,4 +1,4 @@
-import { Box, Center, Image, VStack, Link, Flex, Text } from '@chakra-ui/react'
+import { Box, Center, Image, Link, Text } from '@chakra-ui/react'
 import React from 'react'
 import '../OldHomePage/ShoeList.css'
 import currency from 'currency.js'

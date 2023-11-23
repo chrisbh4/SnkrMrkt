@@ -40,7 +40,7 @@ function PurchasedPage () {
             <Box px='5%'>
               {orders?.map((order) => {
                 return (
-                  <Flex h='auto' fontSize='lg' borderBottom='2px'>
+                  <Flex h='auto' fontSize='lg' borderBottom='2px' key={order?.id}>
                     <VStack width='30%' pt='4%' align='flex-start'>
                       <Text>Order Number: {order?.id}00{order?.id}0</Text>
                       <Text ml='3%'>Purchase Date: {formatDate(order?.createdAt)}</Text>

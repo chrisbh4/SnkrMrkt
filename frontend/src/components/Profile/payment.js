@@ -1,12 +1,7 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import { Box, Button, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
 
 function PaymentPage () {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.session.user)
 
   return (
     <Box pos='relative' top='50px'>

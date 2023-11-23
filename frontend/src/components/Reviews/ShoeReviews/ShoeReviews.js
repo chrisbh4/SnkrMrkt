@@ -36,7 +36,7 @@ function ShoeReviews ({ shoe }) {
     if (userId === review.userId) {
       // if logged in user is the owner of the review then an edit button will appear
       return (
-        <div className='review-container-border'>
+        <div className='review-container-border' key={review.id}>
           <div className='review-container'>
 
             <p className='review-comment'>
@@ -71,7 +71,7 @@ function ShoeReviews ({ shoe }) {
       // If the logged in user is not the owner of the reviews then a edit button doesn't show
     } else {
       return (
-        <div className='review-container-noEdit'>
+        <div className='review-container-noEdit' key={review.id}>
           <p className='review-comment-noEdit'>
             {review.comment}
           </p>

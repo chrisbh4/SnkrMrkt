@@ -41,7 +41,7 @@ const SearchBar = ({ shoes }) => {
         >
           <List spacing={2}>
             {filteredData.map((item) => (
-              <Link href={`/shoes/${item.id}`} _hover={{ textDecoration: 'none' }}>
+              <Link href={`/shoes/${item.id}`} _hover={{ textDecoration: 'none' }} key={item.id}>
                 <ListItem key={item.id} _hover={{ bg: 'gray.200' }} fontSize='lg'>
                   <ListIcon as={SearchIcon} color='teal.500' />
                   {item.title}

@@ -33,33 +33,6 @@ function NavBtnSignUpForm () {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errors, setErrors] = useState([])
 
-  const sizeChart = [
-    { id: 1, size: 3 },
-    { id: 2, size: 3.5 },
-    { id: 3, size: 4 },
-    { id: 4, size: 4.5 },
-    { id: 5, size: 5 },
-    { id: 6, size: 5.5 },
-    { id: 7, size: 6 },
-    { id: 8, size: 6.5 },
-    { id: 9, size: 7 },
-    { id: 10, size: 7.5 },
-    { id: 11, size: 8 },
-    { id: 12, size: 8.5 },
-    { id: 13, size: 9 },
-    { id: 14, size: 9.5 },
-    { id: 15, size: 10 },
-    { id: 16, size: 10.5 },
-    { id: 17, size: 11 },
-    { id: 18, size: 11.5 },
-    { id: 19, size: 12 },
-    { id: 20, size: 12.5 },
-    { id: 21, size: 13 },
-    { id: 22, size: 13.5 },
-    { id: 23, size: 14.5 },
-    { id: 24, size: 15 }
-  ]
-
   if (sessionUser) return navigate('/')
 
   const handleSubmit = async (e) => {
@@ -173,31 +146,10 @@ function NavBtnSignUpForm () {
                     pos='relative'
                     right='17%'
                   >
-                                    At least 8 characters, 1 uppercase letter, 1 number & 1 symbol
+                    At least 8 characters, 1 uppercase letter, 1 number & 1 symbol
                   </Text>
                 </VStack>
-
-                {/* <Select
-                                    placeholder='Shoe Size'
-                                    size={'lg'}
-                                >
-                                    {sizeChart.map((chart) => {
-                                        return (
-                                            <>
-                                                <option w='0%' bg='gray.400' _hover={{ bg: "gray.100", border: "2px" }}
-                                                    key={chart.id}
-                                                //  onClick={() => handleSizeBg(chart)}
-                                                //  style={{ backgroundColor: chart.id === selectedSize ? "red" : "",  color: chart.id === selectedSize ? "white" : "" }}
-                                                >
-                                                    {chart.size}
-                                                </option>
-                                            </>
-                                        )
-                                    })}
-                                </Select> */}
-
                 <Button
-                                    // className="signup-submit"
                   type='submit'
                   onClick={handleSubmit}
                   bg='black'

@@ -4,9 +4,9 @@ const LOAD_SNKR_API = 'snks_api/LOAD_SNKR_API'
 
 // const LOAD_ONE_SNKR = 'snks_api/LOAD_ONE_SNKR';
 
-const loadSnkr = (stockX_api) => ({
+const loadSnkr = (stockXAPI) => ({
   type: LOAD_SNKR_API,
-  stockX_api
+  stockXAPI
 })
 
 // const loadOneSnkr = (review) => ({
@@ -40,7 +40,7 @@ const initialState = {}
 function reducer (state = initialState, action) {
   switch (action.type) {
     case LOAD_SNKR_API:
-      return { ...state, ...action.stockX_api }
+      return { ...state, ...action.stockXAPI }
     default:
       return state
   }

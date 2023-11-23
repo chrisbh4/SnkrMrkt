@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Navigation from '../Navigation'
 import * as sessionActions from '../../store/session'
 import './SignupForm.css'
 

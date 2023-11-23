@@ -1,6 +1,5 @@
 // import { csrfFetch } from "./csrf";
 // import { useDispatch } from "react-redux";
-
 const LOAD_CART = 'shoppingCart/LOAD_CART'
 const ADD_TO_CART = 'shoppingCart/ADD_TO_CART'
 const REMOVE_FROM_CART = 'shoppingCart/REMOVE_FROM_CART'
