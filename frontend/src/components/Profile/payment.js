@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, Button, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
 
 function PaymentPage () {
-
   return (
     <Box pos='relative' top='50px'>
       <Flex h='1000px'>

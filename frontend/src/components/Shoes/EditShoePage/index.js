@@ -94,7 +94,9 @@ function EditShoesFormChakra ({ shoe, onClose }) {
             <Box w='35%'>
               <FormLabel>Price</FormLabel>
               <InputGroup>
+                {/* eslint-disable  */}
                 <InputLeftAddon children='$' />
+                {/* eslint-disable  */}
                 <Input borderColor='black' bg='gray.50' onChange={updatePrice} placeholder={shoe?.price} />
               </InputGroup>
               {errors.includes('Please provide a price value for this shoe greater than $0.99 .') && <Center color='red.400'>Please provide a price value for this shoe greater than $0.99 .</Center>}
