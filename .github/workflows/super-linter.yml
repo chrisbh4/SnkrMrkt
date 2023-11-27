@@ -27,4 +27,4 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILTER_REGEX_EXCLUDE: ./frontend/build, ./frontend/src/components/Navigation/index.js, ./frontend/src/components/Home/StyleGrid.js, ./backend/routes/api/sneaks.js
+          FILTER_REGEX_EXCLUDE: ./frontend/build && ./frontend/src/components/Navigation/index.js && ./frontend/src/components/Home/StyleGrid.js && ./backend/routes/api/sneaks.js
