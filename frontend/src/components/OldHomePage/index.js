@@ -1,48 +1,43 @@
-import { Box } from "@chakra-ui/react";
-import React  ,{useEffect} from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllShoes} from "../../store/shoes";
-import ShoeList from "./ShoeList";
+import { Box } from '@chakra-ui/react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllShoes } from '../../store/shoes'
+import ShoeList from './ShoeList'
 import './ShoeList.css'
-function HomePage(){
+function HomePage () {
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch()
+  const shoes = useSelector((state) => state.shoes)
+  // turns the obejct into an array but still don't understand how the keys are iterable now??
+  const shoesArray = Object.values(shoes)
 
-    const shoes= useSelector((state)=> state.shoes)
-    // turns the obejct into an array but still don't understand how the keys are iterable now??
-    const shoesArray = Object.values(shoes)
+  // Start of Image checker but might just need to implement an Regex expression on the backend validator for the new shoe form
+  // let shoeImage ;
+  // if(shoe.image){
+  //     shoeImage = shoe.image
+  // }else{
+  //     shoeImage = "default"
+  // }
 
+  // Loads new State for the HomePage everytime.
+  //! Need for Create & Edit feature to be able to auto update the state
+  useEffect(() => {
+    dispatch(getAllShoes())
+  }, [dispatch])
 
-    // Start of Image checker but might just need to implement an Regex expression on the backend validator for the new shoe form
-    // let shoeImage ;
-    // if(shoe.image){
-    //     shoeImage = shoe.image
-    // }else{
-    //     shoeImage = "default"
-    // }
-
-
-    // Loads new State for the HomePage everytime.
-    //! Need for Create & Edit feature to be able to auto update the state
-    useEffect(()=>{
-        dispatch(getAllShoes())
-    },[dispatch])
-
-
-
-    return(
-        <div className="page">
-            {/* <div className="homepage-title-container">
+  return (
+    <div className='page'>
+      {/* <div className="homepage-title-container">
             <Link to="/" id="homepage-title" >ThePlug </Link>
             </div> */}
 
-        <div className="all-shoes-container">
-            {shoesArray.map((shoe)=>{
-                return(
-                    <Box key={shoe.id}>
-                        <ShoeList shoe={shoe} key={shoe.id} />
+      <div className='all-shoes-container'>
+        {shoesArray.map((shoe) => {
+          return (
+            <Box key={shoe.id}>
+              <ShoeList shoe={shoe} key={shoe.id} />
 
-                    {/* <div>
+              {/* <div>
 
                         <div className="shoe-image-container">
 
@@ -66,12 +61,12 @@ function HomePage(){
                             <h3>${shoe.price}</h3>
                         </div>
                     </div> */}
-                </Box>
-                )
-                // <ShoeList key={shoe.id} shoe={shoe} />
-    })}
-        </div>
-        <div>
+            </Box>
+          )
+          // <ShoeList key={shoe.id} shoe={shoe} />
+        })}
+      </div>
+      <div>
         {/* <footer>
 
 <p>Christian Brown</p>
@@ -89,18 +84,11 @@ function HomePage(){
 </a>
 </div>
 
-
-
-
-
-
 </footer> */}
-        </div>
-        </div>
+      </div>
+    </div>
 
-    )
-
+  )
 }
 
-
-export default HomePage;
+export default HomePage
