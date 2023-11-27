@@ -49,36 +49,40 @@ sneaks.getMostPopular(5, function(err, products){
 // }));
 
 router.get('/', asyncHandler(async (req, res) => {
-  const box = []
-  //  * Optimized best for Multi single shoe search (Multiple Gender sizes) results in same shoe different genders
-  await stockX.searchProducts('Jordan 1 Clay Green').then((searchedProduct) => {
-    box.push(searchedProduct)
-  })
-
-  res.json({ snks_api: box })
+  res.json({ snks_api: "no data found" })
 }))
 
-router.get('/single', asyncHandler(async (req, res) => {
-  const box = []
+// router.get('/', asyncHandler(async (req, res) => {
+//   const box = []
+//   //  * Optimized best for Multi single shoe search (Multiple Gender sizes) results in same shoe different genders
+//   await stockX.searchProducts('Jordan 1 Clay Green').then((searchedProduct) => {
+//     box.push(searchedProduct)
+//   })
 
-  //  * Optimized best for Single shoe search
-  await stockX.searchProducts('Jordan 1 Clay Green').then(async (searchedProduct) => {
-    await stockX.fetchProductDetails(searchedProduct[0]).then((productDetails) => {
-      box.push([productDetails])
-    })
-  })
+//   res.json({ snks_api: box })
+// }))
 
-  res.json({ snks_api: box })
-}))
+// router.get('/single', asyncHandler(async (req, res) => {
+//   const box = []
 
-router.get('/related-products', asyncHandler(async (req, res) => {
-  const box = []
-  //  * Optimized best for Multi single shoe search (Multiple Gender sizes) results in same shoe different genders
-  await stockX.searchProducts('Jordan 1 Clay Green').then((searchedProduct) => {
-    box.push(searchedProduct)
-  })
+//   //  * Optimized best for Single shoe search
+//   await stockX.searchProducts('Jordan 1 Clay Green').then(async (searchedProduct) => {
+//     await stockX.fetchProductDetails(searchedProduct[0]).then((productDetails) => {
+//       box.push([productDetails])
+//     })
+//   })
 
-  res.json({ snks_api: box })
-}))
+//   res.json({ snks_api: box })
+// }))
+
+// router.get('/related-products', asyncHandler(async (req, res) => {
+//   const box = []
+//   //  * Optimized best for Multi single shoe search (Multiple Gender sizes) results in same shoe different genders
+//   await stockX.searchProducts('Jordan 1 Clay Green').then((searchedProduct) => {
+//     box.push(searchedProduct)
+//   })
+
+//   res.json({ snks_api: box })
+// }))
 
 module.exports = router
