@@ -48,7 +48,7 @@ sneaks.getMostPopular(5, function(err, products){
 // }));
 
 router.get('/', asyncHandler(async (req, res) => {
-  res.json({ snks_api: "no data found" })
+  res.json({ snks_api: 'no data found' })
 }))
 
 // router.get('/', asyncHandler(async (req, res) => {
