@@ -3,9 +3,8 @@ const asyncHandler = require('express-async-handler')
 
 // const SneaksAPI = require('sneaks-api');
 // const sneaks = new SneaksAPI();
-
-const StockXData = require('stockx-data')
-const stockX = new StockXData()
+// const StockXData = require('stockx-data')
+// const stockX = new StockXData()
 
 const router = express.Router()
 
