@@ -17,6 +17,7 @@ import PaymentPage from './components/Profile/payment';
 import PurchasedPage from './components/Profile/purchased';
 import SellingPage from './components/Profile/selling';
 import WatchingPage from './components/Profile/watching';
+import CodePen from './components/AboutPage';
 
 
 function App() {
@@ -58,8 +59,9 @@ function App() {
         <Route path='/sell' element={<SellingPage />} ></Route>
 
         <Route path='/watch' element={<WatchingPage />} ></Route>
-        
-        <Route path="/" element={<AboutPage />}> </Route>
+
+        {/* <Route path="/" element={<AboutPage />}> </Route> */}
+        <Route path="/" element={<CodePen/>}> </Route>
 
 
         <Route>
