@@ -17,7 +17,7 @@ function ShoeList ({ shoe }) {
         <Center paddingBottom='10px'>
           {imageCheck}
         </Center>
-        <Box w='100%' pl='4%' textAlign='left'>
+        <Box w='100%' pl='4%' textAlign='left' display={{sm: 'none'}}>
           <Text w='100%' fontSize='15px' fontWeight='550'>{shoe.title}</Text>
           <Text w='100%' fontSize='15px' fontWeight='550'>{shoe.brand}</Text>
           <Text w='100%' fontSize='15px' fontWeight='550'>{currency(shoe.price).format()}</Text>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Center, GridItem, Box, VStack, Button, Text, Flex, SimpleGrid, Wrap, WrapItem } from '@chakra-ui/react'
+import { Grid, Center, GridItem, Box, VStack, Button, Text, Flex, SimpleGrid, Wrap } from '@chakra-ui/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllShoes } from '../../store/shoes'
 import ShoeList from '../OldHomePage/ShoeList'
@@ -133,20 +133,45 @@ function NewHomePage () {
       )
     }
 
-    return shoesArray.map((shoe) => (
-      <WrapItem className='shoe-container' key={shoe.id}>
-        <ShoeList shoe={shoe} key={shoe.id} />
-      </WrapItem>
-    ))
-  }
+  //   const isSmallScreen = useBreakpointValue({ base: true, sm: false });
 
+  //   return (
+  //   <>
+  //     {isSmallScreen ? (
+  //       // Content for small screens
+  //       <Box>Small Screen Content</Box>
+  //     ) : (
+  //       // Content for larger screens
+  //       <Box>Large Screen Content</Box>
+  //     )}
+  //   </>
+  // );
+
+    
+  //   return shoesArray.map((shoe) => (
+  //     <WrapItem textAlign="center" backgroundColor="white" border="2px solid white" width={{xl: "325px"}} /* maxW="351px" */ maxHeight="430px" marginRight="8.5px" marginLeft="1px" boxShadow="0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" marginBottom="25px" _hover={{   backgroundColor: "#c7d4dd",   boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5)"}} key={shoe.id}>        
+  //       <ShoeList shoe={shoe} key={shoe.id} />
+  //     </WrapItem>
+  //   ))
+  // }
+  
+  return (
+    <SimpleGrid columns={2} spacing={0} px={3}>
+      {shoesArray.map((shoe) => (
+        <Box key={shoe.id}  _hover={{backgroundColor: "#c7d4dd", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5)"}}>
+          <ShoeList shoe={shoe} key={shoe.id} />
+        </Box>
+      ))}
+    </SimpleGrid>
+  );
+}
   return (
     <>
       <Grid
         pl='3px'
         pt='2%'
-        templateRows='repeat(2, 1fr)'
-        templateColumns='repeat(5, 1fr)'
+        templateRows='repeat(3, 1fr)'
+        templateColumns={{ sm: 'repeat(2, 1fr)' }}
         h='1150px'
         w='100%'
       >
@@ -158,6 +183,7 @@ function NewHomePage () {
           w='75%'
           pl='2%'
           pr='5%'
+          display={{ sm: 'none' }}
         >
 
           <Box pl='1%' pt='5%' pb='2%'>
@@ -297,7 +323,8 @@ function NewHomePage () {
         </GridItem>
 
         {/* Shoe Iteration col */}
-        <GridItem rowSpan={2} colSpan={4} minW='100%' overflow='scroll' mt='0.7%'>
+        <GridItem rowSpan={2} colSpan={2} minW='100%' overflow='scroll' mt='0.7%'>
+        {/* <GridItem w='100%' mt='0.7%'> */}
           <Wrap w='100%' minW='100%'>
             {renderShoes()}
           </Wrap>

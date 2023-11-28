@@ -61,12 +61,22 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions
 }
 
+const breakpoints = {
+  base: "0em", // 0px
+  sm: "25.875em", // ~480px. em is a relative unit and is dependant on the font size.
+  md: "48em", // ~768px
+  lg: "62em", // ~992px
+  xl: "80em", // ~1280px
+  "2xl": "96em", // ~1536px
+};
+
 const theme = extendTheme({
   fonts: {
     heading: '\'Open Sans\', sans-serif',
     // body: `'Raleway', sans-serif`,
     body: '\'JetBrains Mono Variable\', sans-serif'
-  }
+  },
+  breakpoints
 })
 
 function SnkrMrkt () {
