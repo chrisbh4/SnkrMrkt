@@ -148,11 +148,24 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 router.post('/new', singleMulterUpload('image'), validateNewShoe, asyncHandler(async (req, res) => {
   const awsImageObj = req.file
   const { sellerId, title, shoeSize, price, brand, description } = req.body
-  const image = await awsImageUpload(awsImageObj)
+
+  console.log(awsImageObj === undefined)
+  if (awsImageObj !== undefined){
+    const image = await awsImageUpload(awsImageObj)
+
+    const newShoe = await Shoes.create({
+      sellerId, title, shoeSize, image, price, brand, description
+    })
+
+    return res.json({ newShoe })
+  }
+
+  const image = "https://theplug-app-aws.s3.us-west-1.amazonaws.com/No-Image-Available.png"
 
   const newShoe = await Shoes.create({
     sellerId, title, shoeSize, image, price, brand, description
   })
+
 
   return res.json({ newShoe })
 }))
