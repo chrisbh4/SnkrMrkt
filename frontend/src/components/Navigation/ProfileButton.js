@@ -26,8 +26,6 @@ function ProfileButton ({ user }) {
 
   const logout = async (e) => {
     e.preventDefault()
-    // Clears cart but need to figure out a way to clear cart for other users but leaves cart for logged out user
-    dispatch(purchaseFromCart())
     dispatch(sessionActions.logout())
     navigate('/')
   }
