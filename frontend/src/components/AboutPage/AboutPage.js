@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './AboutPage.css'
 import { useDispatch } from 'react-redux'
-import { Text, Box, Grid, GridItem, Image, Link, Button, Heading   } from '@chakra-ui/react'
+import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container   } from '@chakra-ui/react'
 
 function AboutPage () {
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ function AboutPage () {
     <Box w="100%" bg={"gray.300"}>
     <Box position="relative" overflow="hidden" bg="gray.900" pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage={"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"}>
       <Image
-        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+        src="https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png"
         alt=""
         position="absolute"
         inset="0"
@@ -82,42 +82,133 @@ function AboutPage () {
           </Box>
         </Box>
       </Box>
-      <Grid
-      templateColumns="repeat(5, 1fr)"
-      gap={8}
-      w="full"
+        <Grid
+        templateColumns="repeat(5, 1fr)"
+        gap={8}
+        w="full"
+        mx="auto"
+        alignItems="center"
+        justifyContent="center"
+        mt={10}
+        mb={10}
+        sm={{
+          maxW: "xl",
+          templateColumns: "repeat(6, 1fr)",
+          gap: 10,
+        }}
+        lg={{
+          maxW: "none",
+          templateColumns: "repeat(5, 1fr)",
+        }}
+      >
+        <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+          <Image src="https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg" alt="Transistor" objectFit="contain" maxH={12} w="full" />
+        </GridItem>
+        <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+          <Image src="https://tailwindui.com/img/logos/158x48/reform-logo-white.svg" alt="Reform" objectFit="contain" maxH={12} w="full" />
+        </GridItem>
+        <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+          <Image src="https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg" alt="Tuple" objectFit="contain" maxH={12} w="full" />
+        </GridItem>
+        <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+          <Image src="https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg" alt="SavvyCal" objectFit="contain" maxH={12} w="full" />
+        </GridItem>
+        <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+          <Image src="https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg" alt="Statamic" objectFit="contain" maxH={12} w="full" />
+        </GridItem>
+      </Grid>
+    </Box>
+    <Box mt={{ base: '32', sm: '56' }}>
+    <Container maxW="7xl" px={{ base: '6', lg: '8' }}>
+      <Box maxW="2xl" mx="auto" textAlign={{ base: 'left', sm: 'center' }}>
+        <Heading as="h2" fontSize="base" fontWeight="semibold" color="indigo.600">
+          Everything you need
+        </Heading>
+        <Text mt="2" fontSize={{ base: '3xl', sm: '4xl' }} fontWeight="bold" lineHeight="tight" color="gray.900">
+          No server? No problem.
+        </Text>
+        <Text mt="6" fontSize="lg" lineHeight="8" color="gray.600">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis.
+        </Text>
+      </Box>
+    </Container>
+    <Box pos="relative" overflow="hidden" pt="16">
+        <Container maxW="7xl" px={{ base: '6', lg: '8' }}>
+          <Box pos="relative" mx="auto" mb="-12%" rounded="xl" shadow="2xl" borderWidth="1px">
+            <img src="https://tailwindui.com/img/component-images/project-app-screenshot.png" alt="App screenshot" width="2432" height="1442" />
+            <Box pos="absolute" insetX="0" bottom="0" bgGradient="linear(to-t, white, transparent)" pt="7%" aria-hidden="true" />
+          </Box>
+        </Container>
+      </Box>
+    </Box>
+    <Box mx="auto" mt={{ base: '16', sm: '20', md: '16' }} maxW="7xl" px={{ base: '6', lg: '8' }} pb={10} bg={"white"}>
+    <Grid
       mx="auto"
-      alignItems="center"
-      justifyContent="center"
-      mt={10}
-      mb={10}
-      sm={{
-        maxW: "xl",
-        templateColumns: "repeat(6, 1fr)",
-        gap: 10,
-      }}
-      lg={{
-        maxW: "none",
-        templateColumns: "repeat(5, 1fr)",
-      }}
+      maxW={{ base: '2xl', sm: 'none', lg: 'none' }}
+      templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+      // gapX={{ base: '6', lg: '8' }}
+      // gapY={{ base: '10', lg: '16' }}
+      gap={10}
+      textBase="base"
+      leading="7"
+      color="gray.600"
     >
-      <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-        <Image src="https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg" alt="Transistor" objectFit="contain" maxH={12} w="full" />
+      {/* Item 1 */}
+      <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl="9" position="relative">
+        <Text as="dt" fontWeight="semibold" color="gray.900" display="inline">
+          {/* <Icon as={MdCloudDownload} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+          Push to deploy.
+        </Text>
+        <Text as="dd" display="inline" ml="6">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.
+        </Text>
       </GridItem>
-      <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-        <Image src="https://tailwindui.com/img/logos/158x48/reform-logo-white.svg" alt="Reform" objectFit="contain" maxH={12} w="full" />
+
+      {/* Item 2 */}
+      <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl="9" position="relative">
+        <Text as="dt" fontWeight="semibold" color="gray.900" display="inline">
+          {/* <Icon as={MdHttps} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+          SSL certificates.
+        </Text>
+        <Text as="dd" display="inline" ml="6">
+          Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
+        </Text>
       </GridItem>
-      <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-        <Image src="https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg" alt="Tuple" objectFit="contain" maxH={12} w="full" />
+
+      {/* Item 3 */}
+      <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl="9" position="relative">
+        <Text as="dt" fontWeight="semibold" color="gray.900" display="inline">
+          {/* <Icon as={MdSettingsEthernet} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+          Simple queues.
+        </Text>
+        <Text as="dd" display="inline" ml="6">
+          Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.
+        </Text>
       </GridItem>
-      <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-        <Image src="https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg" alt="SavvyCal" objectFit="contain" maxH={12} w="full" />
+
+      {/* Item 4 */}
+      <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl="9" position="relative">
+        <Text as="dt" fontWeight="semibold" color="gray.900" display="inline">
+          {/* <Icon as={MdSecurity} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+          Advanced security.
+        </Text>
+        <Text as="dd" display="inline" ml="6">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.
+        </Text>
       </GridItem>
-      <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-        <Image src="https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg" alt="Statamic" objectFit="contain" maxH={12} w="full" />
+
+      {/* Item 5 */}
+      <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl="9" position="relative">
+        <Text as="dt" fontWeight="semibold" color="gray.900" display="inline">
+          {/* <Icon as={MdStorage} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+          Database backups.
+        </Text>
+        <Text as="dd" display="inline" ml="6">
+          Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.
+        </Text>
       </GridItem>
     </Grid>
-    </Box>
+  </Box>
     </Box>
     </>
   )
