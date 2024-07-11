@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './AboutPage.css'
 import { useDispatch } from 'react-redux'
-import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack } from '@chakra-ui/react'
+import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack, AspectRatio} from '@chakra-ui/react'
 
 function AboutPage() {
   const dispatch = useDispatch()
@@ -13,17 +13,24 @@ function AboutPage() {
   return (
     <>
       <Box w='100%' bg='white'>
-        <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage='https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply'>
-          <Image
-            src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png'
+        {/* <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage="url('https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png')"> */}
+        <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} >
+          {/* <Image
+            src='https://imgur.com/KOgkPYD.png'
+            // src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png'
             alt=''
             position='absolute'
             inset='0'
-            zIndex='-10'
+            zIndex='1'
             h='full'
             w='full'
             objectFit='cover'
-          />
+            opacity={0.05}
+          /> */}
+            <video width="full" height="full" autoPlay opacity={"0.05"}>
+              <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/Screen+Recording+2024-07-11+at+12.03.55%E2%80%AFPM.mov' type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
           <Box
             position='absolute'
             insetX='0'
@@ -136,6 +143,7 @@ function AboutPage() {
           <Box pos='relative' overflow='hidden' pt='16'>
             <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
               <Box pos='relative' mx='auto' mb='-12%' rounded='xl' shadow='2xl' borderWidth='1px'>
+                {/* <img src='https://imgur.com/KOgkPYD.png' alt='App screenshot' width='2432' height='1442' /> */}
                 <img src='https://tailwindui.com/img/component-images/project-app-screenshot.png' alt='App screenshot' width='2432' height='1442' />
                 <Box pos='absolute' insetX='0' bottom='0' bgGradient='linear(to-t, white, transparent)' pt='7%' aria-hidden='true' />
               </Box>
