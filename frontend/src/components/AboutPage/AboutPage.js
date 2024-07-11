@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './AboutPage.css'
 import { useDispatch } from 'react-redux'
-import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack, AspectRatio} from '@chakra-ui/react'
+import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack} from '@chakra-ui/react'
 
 function AboutPage() {
   const dispatch = useDispatch()
@@ -14,8 +14,12 @@ function AboutPage() {
     <>
       <Box w='100%' bg='white'>
         {/* <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage="url('https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png')"> */}
-        <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} >
-          {/* <Image
+        <video width="full" height="full" autoPlay loop>
+              <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/Screen+Recording+2024-07-11+at+12.03.55%E2%80%AFPM.mov' type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+        <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} >
+          <Image
             src='https://imgur.com/KOgkPYD.png'
             // src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png'
             alt=''
@@ -26,11 +30,7 @@ function AboutPage() {
             w='full'
             objectFit='cover'
             opacity={0.05}
-          /> */}
-            <video width="full" height="full" autoPlay opacity={"0.05"}>
-              <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/Screen+Recording+2024-07-11+at+12.03.55%E2%80%AFPM.mov' type="video/mp4"/>
-              Your browser does not support the video tag.
-            </video>
+          />
           <Box
             position='absolute'
             insetX='0'
