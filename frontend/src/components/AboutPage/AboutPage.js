@@ -14,7 +14,7 @@ function AboutPage() {
     <>
       <Box w='100%' bg='white'>
         {/* <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage="url('https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png')"> */}
-        <video width="full" height="full" autoPlay loop>
+        <video width="full" height="full" autoPlay muted loop>
               <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/Screen+Recording+2024-07-11+at+12.03.55%E2%80%AFPM.mov' type="video/mp4"/>
               Your browser does not support the video tag.
             </video>
