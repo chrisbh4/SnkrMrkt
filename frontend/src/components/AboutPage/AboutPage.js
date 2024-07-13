@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './AboutPage.css'
 import { useDispatch } from 'react-redux'
-import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack} from '@chakra-ui/react'
+import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack } from '@chakra-ui/react'
 
 function AboutPage() {
   const dispatch = useDispatch()
@@ -14,10 +14,10 @@ function AboutPage() {
     <>
       <Box w='100%' bg='white'>
         {/* <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage="url('https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png')"> */}
-        <video width="full" height="full" autoPlay muted loop>
-              <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/Screen+Recording+2024-07-11+at+12.03.55%E2%80%AFPM.mov' type="video/mp4"/>
-              Your browser does not support the video tag.
-            </video>
+        {/* <video width="full" height="full" autoPlay muted loop>
+          <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
+          Your browser does not support the video tag.
+        </video> */}
         <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} >
           <Image
             src='https://imgur.com/KOgkPYD.png'
@@ -52,7 +52,7 @@ function AboutPage() {
           <Box maxW='7xl' mx='auto' px={{ base: 6, lg: 8 }}>
             <Box maxW='2xl' mx='auto' py={{ base: 32, sm: 48, lg: 56 }}>
               <Box display={{ base: 'none', sm: 'flex' }} mb={{ base: 0, sm: 8 }} justifyContent='center'>
-                <Box
+                {/* <Box
                   position='relative'
                   rounded='full'
                   px={3}
@@ -63,17 +63,17 @@ function AboutPage() {
                   ring='1px'
                   ringColor='whiteAlpha.10'
                   _hover={{ ringColor: 'whiteAlpha.20' }}
-                >
+                 >
                   Announcing our next round of funding.{' '}
                   <Link href='#' fontWeight='semibold' color='white'>
                     <Box as='span' position='absolute' inset='0' aria-hidden='true' />
                     Read more <Box as='span' aria-hidden='true'>&rarr;</Box>
                   </Link>
-                </Box>
+                </Box> */}
               </Box>
               <Box textAlign='center'>
                 <Heading as='h1' size='2xl' fontWeight='bold' color='white' lineHeight='tight' smSize='6xl'>
-                  Deploy to the cloud with confidence
+                  SNKR MRKT is the premier destination for buying and selling exclusive sneakers
                 </Heading>
                 <Text mt={6} fontSize='lg' lineHeight='8' color='gray.300'>
                   Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
@@ -125,6 +125,10 @@ function AboutPage() {
             </GridItem>
           </Grid>
         </Box>
+        <video width="full" height="full" autoPlay muted loop>
+          <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         {/* Spacing for contaier */}
         <Box mt={{ base: '32', sm: '56' }}>
           <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
