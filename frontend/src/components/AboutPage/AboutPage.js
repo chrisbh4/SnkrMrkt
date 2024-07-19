@@ -246,7 +246,7 @@ function AboutPage() {
           <Box w='full' maxW={{ base: '2xl', xl: 'none' }} flex='auto' px={{ xl: '16' }} bg='rbg(59 130 246 / 0.5)'>
             <Box as='figure' w='full' position='relative' isolate pt={{ base: '6', sm: '12' }} ml='9em'>
               <Text as='blockquote' fontSize={{ base: 'xl', sm: '2xl' }} fontWeight='semibold' lineHeight={{ base: '8', sm: '9' }} color='white'>
-                Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere. Nunc eu scelerisque interdum eget tellus non nibh scelerisque bibendum.
+              Our mission is to provide you with the highest quality sneakers and shoes, carefully curated to meet the discerning tastes of collectors and enthusiasts like you. We understand the thrill of the hunt for that perfect pair, the excitement of unboxing a new addition, and the pride in showcasing a collection that reflects your personal style.
               </Text>
               <VStack mt='8' fontSize='xl' align='start'>
                 <Text fontWeight='semibold' color='white'>Christian Brown</Text>
