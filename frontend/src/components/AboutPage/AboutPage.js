@@ -73,19 +73,16 @@ function AboutPage() {
               </Box>
               <Box textAlign='center'>
                 <Heading as='h1' size='2xl' fontWeight='bold' color='white' lineHeight='tight' smSize='6xl'>
-                  SNKR MRKT is the premier destination for buying and selling exclusive sneakers
+                  SNKR MRKT
+                </Heading>
+                <Heading as='h1' size='xl' fontWeight='bold' color='white' lineHeight='tight' smSize='6xl'>
+                Elevate Your Sneaker Game
+                  {/* the premier destination for selling and buying exclusive sneakers */}
                 </Heading>
                 <Text mt={6} fontSize='lg' lineHeight='8' color='gray.300'>
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+                Welcome to Snkr Mrkt, the ultimate destination for high-valued sneakers and shoes. We cater to sneaker enthusiasts, collectors, and anyone who appreciates the artistry and craftsmanship of premium footwear. At Snkr Mrkt, you'll find the rarest, most coveted sneakers that define style and status.
                 </Text>
-                <Box mt={10} display='flex' alignItems='center' justifyContent='center' gapX={6}>
-                  <Button as='a' href='#' bg='indigo.500' color='white' px={3.5} py={2.5} fontSize='sm' fontWeight='semibold' shadow='sm' _hover={{ bg: 'indigo.400' }} _focus={{ outline: 'none', boxShadow: 'outline' }}>
-                    Get started
-                  </Button>
-                  <Link href='#' fontSize='sm' fontWeight='semibold' color='white'>
-                    Live demo <Box as='span' aria-hidden='true'>→</Box>
-                  </Link>
-                </Box>
+                <Box mt={10} display='flex' alignItems='center' justifyContent='center' gapX={6}></Box>
               </Box>
             </Box>
           </Box>
@@ -109,14 +106,18 @@ function AboutPage() {
             }}
           >
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              {/* Nike Logo */}
               <Image src='https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg' alt='Transistor' objectFit='contain' maxH={12} w='full' />
             </GridItem>
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              {/* Jordan Logo */}
               <Image src='https://tailwindui.com/img/logos/158x48/reform-logo-white.svg' alt='Reform' objectFit='contain' maxH={12} w='full' />
             </GridItem>
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              {/* Adidas */}
               <Image src='https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg' alt='Tuple' objectFit='contain' maxH={12} w='full' />
             </GridItem>
+            {/*  */}
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
               <Image src='https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg' alt='SavvyCal' objectFit='contain' maxH={12} w='full' />
             </GridItem>
