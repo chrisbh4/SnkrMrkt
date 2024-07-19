@@ -126,22 +126,22 @@ function AboutPage() {
             </GridItem>
           </Grid>
         </Box>
-        <video width="full" height="full" autoPlay muted loop>
+        {/* <video width="full" height="full" autoPlay muted loop>
           <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
         {/* Spacing for contaier */}
-        <Box mt={{ base: '32', sm: '56' }}>
+        <Box mt={{ base: '32', sm: '24' }}>
           <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
             <Box maxW='2xl' mx='auto' textAlign={{ base: 'left', sm: 'center' }}>
-              <Heading as='h2' fontSize='base' fontWeight='semibold' color='indigo.600'>
+              {/* <Heading as='h2' fontSize='base' fontWeight='semibold' color='indigo.600'>
                 Everything you need
-              </Heading>
+              </Heading> */}
               <Text mt='2' fontSize={{ base: '3xl', sm: '4xl' }} fontWeight='bold' lineHeight='tight' color='gray.900'>
-                No server? No problem.
+                No sneakers? No problem.
               </Text>
               <Text mt='6' fontSize='lg' lineHeight='8' color='gray.600'>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis.
+              Explore our collection, find your grail, and elevate your sneaker game today. At Snkr Mrkt, your next great find is just a click away.
               </Text>
             </Box>
           </Container>
@@ -149,7 +149,11 @@ function AboutPage() {
             <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
               <Box pos='relative' mx='auto' mb='-12%' rounded='xl' shadow='2xl' borderWidth='1px'>
                 {/* <img src='https://imgur.com/KOgkPYD.png' alt='App screenshot' width='2432' height='1442' /> */}
-                <img src='https://tailwindui.com/img/component-images/project-app-screenshot.png' alt='App screenshot' width='2432' height='1442' />
+                {/* <img src='https://tailwindui.com/img/component-images/project-app-screenshot.png' alt='App screenshot' width='2432' height='1442' /> */}
+                <video width='2432' height='1442' autoPlay muted loop>
+                  <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
                 <Box pos='absolute' insetX='0' bottom='0' bgGradient='linear(to-t, white, transparent)' pt='7%' aria-hidden='true' />
               </Box>
             </Container>
