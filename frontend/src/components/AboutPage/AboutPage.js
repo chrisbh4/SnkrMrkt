@@ -171,10 +171,10 @@ function AboutPage() {
             <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
               <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
                 {/* <Icon as={MdCloudDownload} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
-                Push to deploy.
+                Exclusive Drops:
               </Text>
               <Text as='dd' display='inline' ml='6'>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.
+               Stay ahead with limited edition releases and rare finds that you won't see anywhere else.
               </Text>
             </GridItem>
 
@@ -182,10 +182,10 @@ function AboutPage() {
             <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
               <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
                 {/* <Icon as={MdHttps} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
-                SSL certificates.
+                Designer Collaborations:
               </Text>
               <Text as='dd' display='inline' ml='6'>
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
+               Discover unique pieces born from the collaboration between top designers and leading brands.
               </Text>
             </GridItem>
 
@@ -193,10 +193,10 @@ function AboutPage() {
             <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
               <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
                 {/* <Icon as={MdSettingsEthernet} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
-                Simple queues.
+                Vintage Classics:
               </Text>
               <Text as='dd' display='inline' ml='6'>
-                Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.
+               Relive the glory days with our selection of vintage and retro sneakers that have stood the test of time.
               </Text>
             </GridItem>
 
@@ -204,10 +204,10 @@ function AboutPage() {
             <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
               <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
                 {/* <Icon as={MdSecurity} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
-                Advanced security.
+                High-End Footwear:
               </Text>
               <Text as='dd' display='inline' ml='6'>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.
+               Step into luxury with our curated range of high-end shoes, crafted with the finest materials and unparalleled attention to detail.
               </Text>
             </GridItem>
 
@@ -215,10 +215,19 @@ function AboutPage() {
             <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
               <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
                 {/* <Icon as={MdStorage} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
-                Database backups.
+                Authenticity Guaranteed:
               </Text>
               <Text as='dd' display='inline' ml='6'>
-                Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.
+               Every pair we sell is 100% authentic, verified by our team of experts.
+              </Text>
+            </GridItem>
+            <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
+              <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
+                {/* <Icon as={MdStorage} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+                Community Driven:
+              </Text>
+              <Text as='dd' display='inline' ml='6'>
+               Join a community of like-minded sneakerheads and collectors. Share your passion, discover new trends, and stay updated with the latest sneaker news.
               </Text>
             </GridItem>
           </Grid>
