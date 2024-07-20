@@ -126,10 +126,10 @@ function AboutPage() {
             </GridItem>
           </Grid>
         </Box>
-        {/* <video width="full" height="full" autoPlay muted loop>
+        <video width="full" height="full" autoPlay muted loop>
           <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
           Your browser does not support the video tag.
-        </video> */}
+        </video>
         {/* Spacing for contaier */}
         <Box mt={{ base: '32', sm: '24' }}>
           <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
@@ -237,7 +237,7 @@ function AboutPage() {
           </Grid>
         </Box>
         <Box position='relative' zIndex='10' mt={{ base: '32', sm: '56' }} bg='gray.900' pb={{ base: '20', sm: '24', xl: '0' }} />
-        <Box w='full' h='auto' bg='black' display='flex' flexDirection={{ base: 'column', xl: 'row' }} alignItems='center' px='23em' py={{ base: '8', sm: '12', xl: '24' }}>
+        {/* <Box w='full' h='auto' bg='black' display='flex' flexDirection={{ base: 'column', xl: 'row' }} alignItems='center' px='23em' py={{ base: '8', sm: '12', xl: '24' }}>
           <Box mt={{ base: '-8', xl: '0' }} w='full' maxW={{ base: '2xl', xl: '96' }} flex='none'>
             <Box position='relative' h='aspect-[2/1]' mx='-8' rounded='2xl' overflow='hidden' boxShadow='2xl' bg='gray.800'>
               <Image src='https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80' alt='' objectFit='cover' w='full' h='full' />
@@ -254,7 +254,7 @@ function AboutPage() {
               </VStack>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
     </>
   )
