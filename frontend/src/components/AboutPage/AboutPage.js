@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import './AboutPage.css'
 import { useDispatch } from 'react-redux'
-import { Text, Box, Center, Image } from '@chakra-ui/react'
+import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack } from '@chakra-ui/react'
 
-function AboutPage () {
+function AboutPage() {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -11,50 +11,252 @@ function AboutPage () {
   }, [dispatch])
 
   return (
-    <div className='splash-page-img'>
-      <div className='about-formatter'>
-        <div className='about-info-placement'>
-          {/* <p className="about-info">
-                This application is a clone based off the E-Commerce designer clothing/shoes store 'GOAT'.
-                This site allows logged in users to buy or sell high-end designer shoes and also high end
-                athletic shoes. All shoes sizes are dispalyed in mens until future features are added to where kids,woman, and men shoe sizes are available.
-                Future features that plan to be added are Images for shoes and comments , personal user profile, shopping cart , user purchases, search bar , category filters
-            </p> */}
-
-          <Center>
-            <Image src='https://imgur.com/KOgkPYD.png' boxSize='xl' />
-            <Text w='40%' fontSize='2xl' px='1em'>
-              Welcome to Snkr Mrkt, your premier destination for exclusive sneakers!
-              {/* As passionate sneaker enthusiasts,
-                            we're dedicated to offering a secure platform for buying and selling top-tier sneakers at competitive prices,
-                            all with a focus on customer satisfaction. Thank you for making us your go-to source for the latest sneaker drops! */}
-            </Text>
-            {/* <Text w={"50%"} fontSize={'2xl'} px={'1em'} >
-                        Welcome to Snkr Mrkt! Your go-to hub for exclusive sneakers, offering secure transactions and unbeatable prices. Thanks for choosing us for the latest drops!
-                        </Text> */}
-
-          </Center>
-
-          <Box pt='3%'>
-
-            <div className='networking'>
-              <p className='splash-name'>Christian Brown</p>
-              <a href='https://www.linkedin.com/in/christian-brown-8770311ba/'>
-                <i class='splash-icon fab fa-linkedin' />
-              </a>
-              <a href='mailto:Chrismbh4@gmail.com'>
-                <i class='splash-icon fas fa-envelope-square' />
-              </a>
-
-              <a href='https://github.com/chrisbh4'>
-                <i class='splash-icon fab fa-github' />
-              </a>
-            </div>
+    <>
+      <Box w='100%' bg='white'>
+        {/* <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage="url('https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png')"> */}
+        {/* <video width="full" height="full" autoPlay muted loop>
+          <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
+          Your browser does not support the video tag.
+        </video> */}
+        <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} >
+          <Image
+            src='https://imgur.com/KOgkPYD.png'
+            // src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png'
+            alt=''
+            position='absolute'
+            inset='0'
+            zIndex='1'
+            h='full'
+            w='full'
+            objectFit='cover'
+            opacity={0.05}
+          />
+          <Box
+            position='absolute'
+            insetX='0'
+            top={{ base: '-40', sm: '-80' }}
+            zIndex='-10'
+            transform='translateY(-50%) blur(3xl)'
+            aria-hidden='true'
+          >
+            <Box
+              position='relative'
+              left={{ base: 'calc(50% - 11rem)', sm: 'calc(50% - 30rem)' }}
+              w={{ base: '36.125rem', sm: '72.1875rem' }}
+              transform='translateX(-50%) rotate(30deg)'
+              bgGradient='linear(to-tr, #ff80b5, #9089fc)'
+              opacity='0.2'
+              style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)' }}
+            />
           </Box>
-        </div>
+          <Box maxW='7xl' mx='auto' px={{ base: 6, lg: 8 }}>
+            <Box maxW='2xl' mx='auto' py={{ base: 32, sm: 48, lg: 56 }}>
+              <Box display={{ base: 'none', sm: 'flex' }} mb={{ base: 0, sm: 8 }} justifyContent='center'>
+                {/* <Box
+                  position='relative'
+                  rounded='full'
+                  px={3}
+                  py={1}
+                  textAlign='center'
+                  textColor='gray.400'
+                  fontSize='sm'
+                  ring='1px'
+                  ringColor='whiteAlpha.10'
+                  _hover={{ ringColor: 'whiteAlpha.20' }}
+                 >
+                  Announcing our next round of funding.{' '}
+                  <Link href='#' fontWeight='semibold' color='white'>
+                    <Box as='span' position='absolute' inset='0' aria-hidden='true' />
+                    Read more <Box as='span' aria-hidden='true'>&rarr;</Box>
+                  </Link>
+                </Box> */}
+              </Box>
+              <Box textAlign='center'>
+                <Heading as='h1' size='2xl' fontWeight='bold' color='white' lineHeight='tight' smSize='6xl'>
+                  SNKR MRKT
+                </Heading>
+                <Heading as='h1' size='xl' fontWeight='bold' color='white' lineHeight='tight' smSize='6xl'>
+                Elevate Your Sneaker Game
+                  {/* the premier destination for selling and buying exclusive sneakers */}
+                </Heading>
+                <Text mt={6} fontSize='lg' lineHeight='8' color='gray.300'>
+                Welcome to Snkr Mrkt, the ultimate destination for high-valued sneakers and shoes. We cater to sneaker enthusiasts, collectors, and anyone who appreciates the artistry and craftsmanship of premium footwear. At Snkr Mrkt, you'll find the rarest, most coveted sneakers that define style and status.
+                </Text>
+                <Box mt={10} display='flex' alignItems='center' justifyContent='center' gapX={6}></Box>
+              </Box>
+            </Box>
+          </Box>
+          <Grid
+            templateColumns='repeat(5, 1fr)'
+            gap={8}
+            w='full'
+            mx='auto'
+            alignItems='center'
+            justifyContent='center'
+            mt={10}
+            mb={10}
+            sm={{
+              maxW: 'xl',
+              templateColumns: 'repeat(6, 1fr)',
+              gap: 10
+            }}
+            lg={{
+              maxW: 'none',
+              templateColumns: 'repeat(5, 1fr)'
+            }}
+          >
+            <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              {/* Nike Logo */}
+              <Image src='https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg' alt='Transistor' objectFit='contain' maxH={12} w='full' />
+            </GridItem>
+            <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              {/* Jordan Logo */}
+              <Image src='https://tailwindui.com/img/logos/158x48/reform-logo-white.svg' alt='Reform' objectFit='contain' maxH={12} w='full' />
+            </GridItem>
+            <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              {/* Adidas */}
+              <Image src='https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg' alt='Tuple' objectFit='contain' maxH={12} w='full' />
+            </GridItem>
+            {/*  */}
+            <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              <Image src='https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg' alt='SavvyCal' objectFit='contain' maxH={12} w='full' />
+            </GridItem>
+            <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              <Image src='https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg' alt='Statamic' objectFit='contain' maxH={12} w='full' />
+            </GridItem>
+          </Grid>
+        </Box>
+        <video width="full" height="full" autoPlay muted loop>
+          <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Spacing for contaier */}
+        <Box mt={{ base: '32', sm: '24' }}>
+          <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
+            <Box maxW='2xl' mx='auto' textAlign={{ base: 'left', sm: 'center' }}>
+              {/* <Heading as='h2' fontSize='base' fontWeight='semibold' color='indigo.600'>
+                Everything you need
+              </Heading> */}
+              <Text mt='2' fontSize={{ base: '3xl', sm: '4xl' }} fontWeight='bold' lineHeight='tight' color='gray.900'>
+                No sneakers? No problem.
+              </Text>
+              <Text mt='6' fontSize='lg' lineHeight='8' color='gray.600'>
+              Explore our collection, find your grail, and elevate your sneaker game today. At Snkr Mrkt, your next great find is just a click away.
+              </Text>
+            </Box>
+          </Container>
+          <Box pos='relative' overflow='hidden' pt='16'>
+            <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
+              <Box pos='relative' mx='auto' mb='-12%' rounded='xl' shadow='2xl' borderWidth='1px'>
+                {/* <img src='https://imgur.com/KOgkPYD.png' alt='App screenshot' width='2432' height='1442' /> */}
+                {/* <img src='https://tailwindui.com/img/component-images/project-app-screenshot.png' alt='App screenshot' width='2432' height='1442' /> */}
+                <video width='2432' height='1442' autoPlay muted loop>
+                  <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <Box pos='absolute' insetX='0' bottom='0' bgGradient='linear(to-t, white, transparent)' pt='7%' aria-hidden='true' />
+              </Box>
+            </Container>
+          </Box>
+        </Box>
+        <Box mx='auto' mt={{ base: '16', sm: '20', md: '16' }} maxW='7xl' px={{ base: '6', lg: '8' }} pb={10}>
+          <Grid
+            mx='auto'
+            maxW={{ base: '2xl', sm: 'none', lg: 'none' }}
+            templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+            // gapX={{ base: '6', lg: '8' }}
+            // gapY={{ base: '10', lg: '16' }}
+            gap={10}
+            textBase='base'
+            leading='7'
+            color='gray.600'
+          >
+            {/* Item 1 */}
+            <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
+              <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
+                {/* <Icon as={MdCloudDownload} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+                Exclusive Drops:
+              </Text>
+              <Text as='dd' display='inline' ml='6'>
+               Stay ahead with limited edition releases and rare finds that you won't see anywhere else.
+              </Text>
+            </GridItem>
 
-      </div>
-    </div>
+            {/* Item 2 */}
+            <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
+              <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
+                {/* <Icon as={MdHttps} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+                Designer Collaborations:
+              </Text>
+              <Text as='dd' display='inline' ml='6'>
+               Discover unique pieces born from the collaboration between top designers and leading brands.
+              </Text>
+            </GridItem>
+
+            {/* Item 3 */}
+            <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
+              <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
+                {/* <Icon as={MdSettingsEthernet} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+                Vintage Classics:
+              </Text>
+              <Text as='dd' display='inline' ml='6'>
+               Relive the glory days with our selection of vintage and retro sneakers that have stood the test of time.
+              </Text>
+            </GridItem>
+
+            {/* Item 4 */}
+            <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
+              <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
+                {/* <Icon as={MdSecurity} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+                High-End Footwear:
+              </Text>
+              <Text as='dd' display='inline' ml='6'>
+               Step into luxury with our curated range of high-end shoes, crafted with the finest materials and unparalleled attention to detail.
+              </Text>
+            </GridItem>
+
+            {/* Item 5 */}
+            <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
+              <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
+                {/* <Icon as={MdStorage} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+                Authenticity Guaranteed:
+              </Text>
+              <Text as='dd' display='inline' ml='6'>
+               Every pair we sell is 100% authentic, verified by our team of experts.
+              </Text>
+            </GridItem>
+            <GridItem colSpan={{ base: '1', sm: '1', lg: '1' }} pl='9' position='relative'>
+              <Text as='dt' fontWeight='semibold' color='gray.900' display='inline'>
+                {/* <Icon as={MdStorage} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
+                Community Driven:
+              </Text>
+              <Text as='dd' display='inline' ml='6'>
+               Join a community of like-minded sneakerheads and collectors. Share your passion, discover new trends, and stay updated with the latest sneaker news.
+              </Text>
+            </GridItem>
+          </Grid>
+        </Box>
+        <Box position='relative' zIndex='10' mt={{ base: '32', sm: '56' }} bg='gray.900' pb={{ base: '20', sm: '24', xl: '0' }} />
+        {/* <Box w='full' h='auto' bg='black' display='flex' flexDirection={{ base: 'column', xl: 'row' }} alignItems='center' px='23em' py={{ base: '8', sm: '12', xl: '24' }}>
+          <Box mt={{ base: '-8', xl: '0' }} w='full' maxW={{ base: '2xl', xl: '96' }} flex='none'>
+            <Box position='relative' h='aspect-[2/1]' mx='-8' rounded='2xl' overflow='hidden' boxShadow='2xl' bg='gray.800'>
+              <Image src='https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80' alt='' objectFit='cover' w='full' h='full' />
+            </Box>
+          </Box>
+          <Box w='full' maxW={{ base: '2xl', xl: 'none' }} flex='auto' px={{ xl: '16' }} bg='rbg(59 130 246 / 0.5)'>
+            <Box as='figure' w='full' position='relative' isolate pt={{ base: '6', sm: '12' }} ml='9em'>
+              <Text as='blockquote' fontSize={{ base: 'xl', sm: '2xl' }} fontWeight='semibold' lineHeight={{ base: '8', sm: '9' }} color='white'>
+              Our mission is to provide you with the highest quality sneakers and shoes, carefully curated to meet the discerning tastes of collectors and enthusiasts like you. We understand the thrill of the hunt for that perfect pair, the excitement of unboxing a new addition, and the pride in showcasing a collection that reflects your personal style.
+              </Text>
+              <VStack mt='8' fontSize='xl' align='start'>
+                <Text fontWeight='semibold' color='white'>Christian Brown</Text>
+                <Text mt='1' color='gray.400'>CEO of Snkr Mrkt</Text>
+              </VStack>
+            </Box>
+          </Box>
+        </Box> */}
+      </Box>
+    </>
   )
 }
 
