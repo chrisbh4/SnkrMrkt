@@ -152,6 +152,7 @@ function AboutPage() {
                 {/* <img src='https://tailwindui.com/img/component-images/project-app-screenshot.png' alt='App screenshot' width='2432' height='1442' /> */}
                 <video width='2432' height='1442' autoPlay muted loop>
                   <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
+                  {/* <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video-2.mov' type="video/mp4" /> */}
                   Your browser does not support the video tag.
                 </video>
                 <Box pos='absolute' insetX='0' bottom='0' bgGradient='linear(to-t, white, transparent)' pt='7%' aria-hidden='true' />
@@ -177,7 +178,7 @@ function AboutPage() {
                 {/* <Icon as={MdCloudDownload} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
                 Exclusive Drops:
               </Text>
-              <Text as='dd' display='inline' ml='6'>
+              <Text as='dd' display='inline' ml='1'>
                Stay ahead with limited edition releases and rare finds that you won't see anywhere else.
               </Text>
             </GridItem>
@@ -188,7 +189,7 @@ function AboutPage() {
                 {/* <Icon as={MdHttps} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
                 Designer Collaborations:
               </Text>
-              <Text as='dd' display='inline' ml='6'>
+              <Text as='dd' display='inline' ml='1'>
                Discover unique pieces born from the collaboration between top designers and leading brands.
               </Text>
             </GridItem>
@@ -199,7 +200,7 @@ function AboutPage() {
                 {/* <Icon as={MdSettingsEthernet} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
                 Vintage Classics:
               </Text>
-              <Text as='dd' display='inline' ml='6'>
+              <Text as='dd' display='inline' ml='1'>
                Relive the glory days with our selection of vintage and retro sneakers that have stood the test of time.
               </Text>
             </GridItem>
@@ -210,7 +211,7 @@ function AboutPage() {
                 {/* <Icon as={MdSecurity} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
                 High-End Footwear:
               </Text>
-              <Text as='dd' display='inline' ml='6'>
+              <Text as='dd' display='inline' ml='1'>
                Step into luxury with our curated range of high-end shoes, crafted with the finest materials and unparalleled attention to detail.
               </Text>
             </GridItem>
@@ -221,7 +222,7 @@ function AboutPage() {
                 {/* <Icon as={MdStorage} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
                 Authenticity Guaranteed:
               </Text>
-              <Text as='dd' display='inline' ml='6'>
+              <Text as='dd' display='inline' ml='1'>
                Every pair we sell is 100% authentic, verified by our team of experts.
               </Text>
             </GridItem>
@@ -230,7 +231,7 @@ function AboutPage() {
                 {/* <Icon as={MdStorage} boxSize="5" color="indigo.600" position="absolute" left="1" top="1" aria-hidden="true" /> */}
                 Community Driven:
               </Text>
-              <Text as='dd' display='inline' ml='6'>
+              <Text as='dd' display='inline' ml='1'>
                Join a community of like-minded sneakerheads and collectors. Share your passion, discover new trends, and stay updated with the latest sneaker news.
               </Text>
             </GridItem>
