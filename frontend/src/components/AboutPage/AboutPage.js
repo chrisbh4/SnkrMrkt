@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './AboutPage.css'
 import { useDispatch } from 'react-redux'
-import { Text, Box, Grid, GridItem, Image, Link, Button, Heading, Container, VStack } from '@chakra-ui/react'
+import { Text, Box, Grid, GridItem, Image, Heading, Container } from '@chakra-ui/react'
 
 function AboutPage() {
   const dispatch = useDispatch()
@@ -13,11 +13,6 @@ function AboutPage() {
   return (
     <>
       <Box w='100%' bg='white'>
-        {/* <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} pt={{ base: 14 }} bgImage="url('https://theplug-app-aws.s3.us-west-1.amazonaws.com/spalsh-page-background-img-2.png')"> */}
-        {/* <video width="full" height="full" autoPlay muted loop>
-          <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
-          Your browser does not support the video tag.
-        </video> */}
         <Box position='relative' overflow='hidden' bg='gray.900' pb={{ base: 16, sm: 20 }} >
           <Image
             src='https://imgur.com/KOgkPYD.png'
@@ -134,9 +129,6 @@ function AboutPage() {
         <Box mt={{ base: '32', sm: '24' }}>
           <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
             <Box maxW='2xl' mx='auto' textAlign={{ base: 'left', sm: 'center' }}>
-              {/* <Heading as='h2' fontSize='base' fontWeight='semibold' color='indigo.600'>
-                Everything you need
-              </Heading> */}
               <Text mt='2' fontSize={{ base: '3xl', sm: '4xl' }} fontWeight='bold' lineHeight='tight' color='gray.900'>
                 No sneakers? No problem.
               </Text>
@@ -146,15 +138,9 @@ function AboutPage() {
             </Box>
           </Container>
           <Box pos='relative' overflow='hidden' pt='16'>
-            <Container maxW='7xl' px={{ base: '6', lg: '8' }}>
-              <Box pos='relative' mx='auto' mb='-12%' rounded='xl' shadow='2xl' borderWidth='1px'>
-                {/* <img src='https://imgur.com/KOgkPYD.png' alt='App screenshot' width='2432' height='1442' /> */}
-                {/* <img src='https://tailwindui.com/img/component-images/project-app-screenshot.png' alt='App screenshot' width='2432' height='1442' /> */}
-                <video width='2432' height='1442' autoPlay muted loop>
-                  <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video.mp4' type="video/mp4" />
-                  {/* <source src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-video-2.mov' type="video/mp4" /> */}
-                  Your browser does not support the video tag.
-                </video>
+            <Container maxW='7xl' maxH={'lg'} px={{ base: '6', lg: '8' }}>
+              <Box pos='relative' mx='auto' mb='-12%' rounded='xl' shadow='2xl' borderWidth='1px' rotate={'45'}>
+                <img src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/landing-page-img.png' alt='App screenshot' />
                 <Box pos='absolute' insetX='0' bottom='0' bgGradient='linear(to-t, white, transparent)' pt='7%' aria-hidden='true' />
               </Box>
             </Container>
