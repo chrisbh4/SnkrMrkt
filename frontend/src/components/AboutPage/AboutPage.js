@@ -88,7 +88,6 @@ function AboutPage() {
             mx='auto'
             alignItems='center'
             justifyContent='center'
-            mt={10}
             mb={10}
             sm={{
               maxW: 'xl',
@@ -101,23 +100,19 @@ function AboutPage() {
             }}
           >
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-              {/* Nike Logo */}
-              <Image src='https://tailwindui.com/img/logos/158x48/transistor-logo-white.svg' alt='Transistor' objectFit='contain' maxH={12} w='full' />
+              <Image src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/002_nike-logos-swoosh-white.png' alt='Transistor' objectFit='contain' maxH={24} w='full' />
             </GridItem>
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-              {/* Jordan Logo */}
-              <Image src='https://tailwindui.com/img/logos/158x48/reform-logo-white.svg' alt='Reform' objectFit='contain' maxH={12} w='full' />
+              <Text color='white' textAlign={'center'} fontSize={'5xl'} fontWeight={'extrabold'}>YEEZY</Text>
             </GridItem>
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-              {/* Adidas */}
-              <Image src='https://tailwindui.com/img/logos/158x48/tuple-logo-white.svg' alt='Tuple' objectFit='contain' maxH={12} w='full' />
-            </GridItem>
-            {/*  */}
-            <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-              <Image src='https://tailwindui.com/img/logos/158x48/savvycal-logo-white.svg' alt='SavvyCal' objectFit='contain' maxH={12} w='full' />
+              <Image src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/006_nike-logos-jordan-white.png' alt='Reform' objectFit='contain' maxH={32} w='full' />
             </GridItem>
             <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
-              <Image src='https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg' alt='Statamic' objectFit='contain' maxH={12} w='full' />
+              <Image src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/004_nike-logos-converse-white.png' alt='Tuple' objectFit='contain' maxH={28} w='full' />
+            </GridItem>
+            <GridItem colSpan={{ base: 2, sm: 1, lg: 1 }}>
+              <Image src='https://theplug-app-aws.s3.us-west-1.amazonaws.com/adidas-logo-png-adidas-icon-transparent-png_19766239.png' alt='Tuple' objectFit='contain' maxH={32} w='full' />
             </GridItem>
           </Grid>
         </Box>
@@ -223,7 +218,8 @@ function AboutPage() {
             </GridItem>
           </Grid>
         </Box>
-        <Box position='relative' zIndex='10' mt={{ base: '32', sm: '56' }} bg='gray.900' pb={{ base: '20', sm: '24', xl: '0' }} />
+        <Box pb={'20'}></Box>
+        {/* <Box position='relative' zIndex='10' mt={{ base: '32', sm: '56' }} bg='gray.900' pb={{ base: '20', sm: '24', xl: '0' }} /> */}
         {/* <Box w='full' h='auto' bg='black' display='flex' flexDirection={{ base: 'column', xl: 'row' }} alignItems='center' px='23em' py={{ base: '8', sm: '12', xl: '24' }}>
           <Box mt={{ base: '-8', xl: '0' }} w='full' maxW={{ base: '2xl', xl: '96' }} flex='none'>
             <Box position='relative' h='aspect-[2/1]' mx='-8' rounded='2xl' overflow='hidden' boxShadow='2xl' bg='gray.800'>
