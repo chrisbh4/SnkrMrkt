@@ -42,7 +42,7 @@ function PurchasedPage () {
                 return (
                   <Flex h='auto' fontSize='lg' borderBottom='2px' key={order?.id}>
                     <VStack width='30%' pt='4%' align='flex-start'>
-                      <Text>Order Number: {order?.id}00{order?.id}0</Text>
+                      <Text>Order Number: {order?.orderNumber}</Text>
                       <Text ml='3%'>Purchase Date: {formatDate(order?.createdAt)}</Text>
                       <Text ml='3%'>Total: {currency(order?.totalAmount).format()}</Text>
                     </VStack>

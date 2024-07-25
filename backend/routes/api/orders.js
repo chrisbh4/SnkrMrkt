@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler')
 const { check } = require('express-validator')
 const { handleValidationErrors } = require('../../utils/validation')
 const { Orders } = require('../../db/models')
+const orderid = require('order-id')('key');
 const orders = Orders
 
 const validateOrderForm = [
@@ -119,6 +120,8 @@ router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
     totalAmount
   } = req.body
 
+  const orderNumber = orderid.generate()
+
   const newOrder = await orders.create({
     buyerId,
     username,
@@ -138,7 +141,8 @@ router.post('/new', validateOrderForm, asyncHandler(async (req, res) => {
     postalCode,
     phoneNumber,
     shoeIds,
-    totalAmount
+    totalAmount,
+    orderNumber
   })
 
   return res.json({ newOrder })

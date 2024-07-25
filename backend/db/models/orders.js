@@ -33,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     postalCode: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     shoeIds: DataTypes.ARRAY(DataTypes.INTEGER),
-    totalAmount: DataTypes.STRING
+    totalAmount: DataTypes.STRING,
+    orderNumber: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Orders'
