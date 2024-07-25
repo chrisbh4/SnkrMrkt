@@ -47,24 +47,6 @@ function AboutPage() {
           <Box maxW='7xl' mx='auto' px={{ base: 6, lg: 8 }}>
             <Box maxW='2xl' mx='auto' py={{ base: 32, sm: 48, lg: 56 }}>
               <Box display={{ base: 'none', sm: 'flex' }} mb={{ base: 0, sm: 8 }} justifyContent='center'>
-                {/* <Box
-                  position='relative'
-                  rounded='full'
-                  px={3}
-                  py={1}
-                  textAlign='center'
-                  textColor='gray.400'
-                  fontSize='sm'
-                  ring='1px'
-                  ringColor='whiteAlpha.10'
-                  _hover={{ ringColor: 'whiteAlpha.20' }}
-                 >
-                  Announcing our next round of funding.{' '}
-                  <Link href='#' fontWeight='semibold' color='white'>
-                    <Box as='span' position='absolute' inset='0' aria-hidden='true' />
-                    Read more <Box as='span' aria-hidden='true'>&rarr;</Box>
-                  </Link>
-                </Box> */}
               </Box>
               <Box textAlign='center'>
                 <Heading as='h1' size='2xl' fontWeight='bold' color='white' lineHeight='tight' smSize='6xl'>
@@ -77,7 +59,7 @@ function AboutPage() {
                 <Text mt={6} fontSize='lg' lineHeight='8' color='gray.300'>
                 Welcome to Snkr Mrkt, the ultimate destination for high-valued sneakers and shoes. We cater to sneaker enthusiasts, collectors, and anyone who appreciates the artistry and craftsmanship of premium footwear. At Snkr Mrkt, you'll find the rarest, most coveted sneakers that define style and status.
                 </Text>
-                <Box mt={10} display='flex' alignItems='center' justifyContent='center' gapX={6}></Box>
+                <Box display='flex' alignItems='center' justifyContent='center' gapX={6}></Box>
               </Box>
             </Box>
           </Box>
@@ -146,8 +128,6 @@ function AboutPage() {
             mx='auto'
             maxW={{ base: '2xl', sm: 'none', lg: 'none' }}
             templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
-            // gapX={{ base: '6', lg: '8' }}
-            // gapY={{ base: '10', lg: '16' }}
             gap={10}
             textBase='base'
             leading='7'
