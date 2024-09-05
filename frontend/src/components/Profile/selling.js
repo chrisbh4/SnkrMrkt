@@ -37,7 +37,7 @@ function SellingPage () {
                     <ShoeList shoe={shoe} key={shoe.id} />
                   </WrapItem>
                 )
-              })}p
+              })}
             </Wrap>
 
           </Box>
