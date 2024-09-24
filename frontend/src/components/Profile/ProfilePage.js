@@ -45,10 +45,10 @@ function ProfilePage () {
                 <Text>Email :</Text>
                 <Text>{user?.email}</Text>
               </Box>
-              <Box height='80px'>
+              {/* <Box height='80px'>
                 <Text>Phone Number :</Text>
                 <Text>{user?.phoneNumber}</Text>
-              </Box>
+              </Box> */}
               <Box height='80px' w={'full'}>
                 <BasicUsage bg='black' textColor={'white'} />
               </Box>

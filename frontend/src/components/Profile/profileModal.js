@@ -17,7 +17,7 @@ import {
     Input,
     Select,
     Box,
-    Text
+    Text,
 } from '@chakra-ui/react'
 
 
@@ -25,7 +25,7 @@ import {
 function BasicUsage() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch = useDispatch()
-    // const sessionUser = useSelector((state) => state.session.user)
+    const sessionUser = useSelector((state) => state.session.user)
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [firstName, setFirstname] = useState('')
@@ -37,7 +37,7 @@ function BasicUsage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = await dispatch(sessionActions.signup({ email, username, password, firstName, lastName, shoeSize }))
+        const data = await dispatch(sessionActions.update({ email, username, password, firstName, lastName, shoeSize }))
 
         if (data?.errors) {
             if (password !== confirmPassword) {
@@ -63,15 +63,21 @@ function BasicUsage() {
                     <ModalCloseButton />
                     <ModalBody>
                         <FormControl>
-                            <Input my={'3'} type='email' placeholder='Email' _placeholder={{ color: 'black' }} onChange={(e) => setEmail(e.target.value)} />
-                            <Input my={'3'} type='text' placeholder='Username' _placeholder={{ color: 'black' }} onChange={(e) => setUsername(e.target.value)} />
-                            <Input my={'3'} type='text' placeholder='First Name' _placeholder={{ color: 'black' }} onChange={(e) => setFirstname(e.target.value)} />
-                            <Input my={'3'} type='text' placeholder='Last Name' _placeholder={{ color: 'black' }} onChange={(e) => setLastName(e.target.value)} />
-                            <Input my={'3'} type='password' placeholder='Password' _placeholder={{ color: 'black' }} onChange={(e) => setPassword(e.target.value)} />
+                            <FormLabel fontWeight={'bold'} my={'3'}>Email</FormLabel>
+                            <Input type='email' value={sessionUser?.email} placeholder='Email' _placeholder={{ color: 'black' }} onChange={(e) => setEmail(e.target.value)} />
+                            <FormLabel fontWeight={'bold'} my={'3'}>Username</FormLabel>
+                            <Input type='text' value={sessionUser?.text} placeholder='Username' _placeholder={{ color: 'black' }} onChange={(e) => setUsername(e.target.value)} />
+                            <FormLabel fontWeight={'bold'} my={'3'}>First Name</FormLabel>
+                            <Input type='text' value={sessionUser?.firstName} placeholder='First Name' _placeholder={{ color: 'black' }} onChange={(e) => setFirstname(e.target.value)} />
+                            <FormLabel fontWeight={'bold'} my={'3'}>Last Name</FormLabel>
+                            <Input  type='text' value={sessionUser?.lastName} placeholder='Last Name' _placeholder={{ color: 'black' }} onChange={(e) => setLastName(e.target.value)} />
+                            {/* Keep styling basic until I figure out what I want to do about Changing password */}
+                            <FormLabel fontWeight={'bold'} my={'3'}>Password</FormLabel>
+                            <Input my={'3'} type='password' placeholder='New Password' _placeholder={{ color: 'black' }} onChange={(e) => setPassword(e.target.value)} />
                             <Input my={'3'} type='password' placeholder='Confirm Password' _placeholder={{ color: 'black' }} onChange={(e) => setConfirmPassword(e.target.value)} />
                             <FormHelperText ml={'1.5'}>At least 8 characters, 1 uppercase letter, 1 number & 1 symbol.</FormHelperText>
                             <FormLabel mt={'8'}>Shoe Size</FormLabel>
-                            <Select my={'3'} onChange={(e) => setShoeSize(e.target.value)} value={shoeSize}>
+                            <Select my={'3'} onChange={(e) => setShoeSize(e.target.value)} value={shoeSize || sessionUser?.shoeSize}>
                                 {[...Array(25)].map((_, i) => {
                                     const size = (i / 2) + 3;
                                     return <option key={size} value={size}>{size}</option>;
