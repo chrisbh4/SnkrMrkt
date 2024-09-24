@@ -2,12 +2,13 @@ import React from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Box, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
+import BasicUsage from './profileModal'
 
 function ProfilePage () {
   const user = useSelector(state => state.session.user)
 
   return (
-    <Box pos='relative' top='50px' bg={'gray.500'}>
+    <Box pos='relative' top='50px'>
       <Flex h='1000px'>
         <Box w='20%' pl='8px'>
           <Flex alignItems='center' h='60px' borderBottom='2px' _hover={{ color: 'black', fontWeight: '600' }}><Link href='/profile' _hover={{ textDecor: 'none' }} w='100%' fontSize='xl'>Profile</Link></Flex>
@@ -48,9 +49,10 @@ function ProfilePage () {
                 <Text>Phone Number :</Text>
                 <Text>{user?.phoneNumber}</Text>
               </Box>
-              {/* <Box height='80px'><Button bg='red.400'>Reset Password</Button></Box> */}
+              <Box height='80px' w={'full'}>
+                <BasicUsage bg='black' textColor={'white'} />
+              </Box>
             </SimpleGrid>
-
           </Box>
         </Box>
       </Flex>
