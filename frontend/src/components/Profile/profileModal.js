@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import * as sessionActions from '../../store/session'
 import {
     Modal,
@@ -16,7 +15,9 @@ import {
     FormLabel,
     FormHelperText,
     Input,
-    Select
+    Select,
+    Box,
+    Text
 } from '@chakra-ui/react'
 
 
@@ -24,8 +25,7 @@ import {
 function BasicUsage() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const sessionUser = useSelector((state) => state.session.user)
+    // const sessionUser = useSelector((state) => state.session.user)
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [firstName, setFirstname] = useState('')
@@ -35,22 +35,22 @@ function BasicUsage() {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [errors, setErrors] = useState([])
 
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = await dispatch(sessionActions.signup({ email, username, password, firstName, lastName, shoeSize }))
 
         if (data?.errors) {
-          if (password !== confirmPassword) {
-            const err = [...data?.errors, 'Password and Confirm Password must match']
-            setErrors(err)
-          } else {
-            setErrors(data?.errors)
-          }
+            if (password !== confirmPassword) {
+                const err = [...data?.errors, 'Password and Confirm Password must match']
+                setErrors(err)
+            } else {
+                setErrors(data?.errors)
+            }
         }
-        navigate('/')
+        //* */ Might need to do a data refresh after updating the user profile
+        onClose()
         return data
-      }
+    }
 
     return (
         <>
@@ -78,6 +78,9 @@ function BasicUsage() {
                                 })}
                             </Select>
                         </FormControl>
+                        <Box color='red.400' fontSize='lg' fontWeight='bold'>
+                            {errors.map((error, idx) => <Text key={idx}>{error}</Text>)}
+                        </Box>
                     </ModalBody>
 
                     <ModalFooter>

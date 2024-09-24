@@ -5,6 +5,7 @@ const asyncHandler = require('express-async-handler')
 const { handleValidationErrors } = require('../../utils/validation')
 const { setTokenCookie } = require('../../utils/auth')
 const { User } = require('../../db/models')
+const bcrypt = require('bcryptjs')
 
 const router = express.Router()
 
@@ -26,6 +27,45 @@ const validateSignup = [
   handleValidationErrors
 ]
 
+// Get user by ID
+router.get(
+  '/:id',
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.json(
+      user
+    );
+  })
+);
+
+// Update user
+router.put(
+  '/:id',
+  validateSignup,
+  asyncHandler(async (req, res) => {
+    const { id } = req.params
+    const { email, password, username, firstName, lastName, shoeSize } = req.body
+
+    const user = await User.findByPk(id)
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+
+    const updatedPassword = bcrypt.hashSync(password)
+    await user.save({ email, username, firstName, lastName, shoeSize, updatedPassword })
+
+    return res.json(
+      user
+    )
+  })
+)
+
 // Sign up
 router.post(
   '',
@@ -35,9 +75,9 @@ router.post(
     const user = await User.signup({ email, username, firstName, lastName, shoeSize, password })
     await setTokenCookie(res, user)
 
-    return res.json({
+    return res.json(
       user
-    })
+    )
   })
 )
 
