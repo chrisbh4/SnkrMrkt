@@ -146,7 +146,7 @@ function SignUpForm () {
                     pos='relative'
                     right='17%'
                   >
-                    At least 8 characters, 1 uppercase letter, 1 number & 1 symbol
+                    At least 8 characters, 1 uppercase letter, 1 number & 1 symbol.
                   </Text>
                 </VStack>
 

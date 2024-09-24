@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import * as sessionActions from '../../store/session'
-
 import {
   Button,
   Text,
@@ -105,7 +104,6 @@ function NavBtnSignUpForm () {
               >
                 <Box color='red.400' fontSize='lg' fontWeight='bold'>
                   {errors.map((error, idx) => <Text key={idx}>{error}</Text>)}
-
                 </Box>
 
                 <Input
