@@ -7,7 +7,7 @@ function ProfilePage () {
   const user = useSelector(state => state.session.user)
 
   return (
-    <Box pos='relative' top='50px'>
+    <Box pos='relative' top='50px' bg={'gray.500'}>
       <Flex h='1000px'>
         <Box w='20%' pl='8px'>
           <Flex alignItems='center' h='60px' borderBottom='2px' _hover={{ color: 'black', fontWeight: '600' }}><Link href='/profile' _hover={{ textDecor: 'none' }} w='100%' fontSize='xl'>Profile</Link></Flex>
@@ -30,7 +30,7 @@ function ProfilePage () {
             <SimpleGrid columns={3} spacing={10} px='5%' pt='2%'>
               <Box height='80px'>
                 <Text>Full Name :</Text>
-                <Text>Demo User</Text>
+                <Text>{user?.firstName} {user?.lastName}</Text>
               </Box>
               <Box height='80px'>
                 <Text>Username :</Text>
@@ -38,7 +38,7 @@ function ProfilePage () {
               </Box>
               <Box height='80px'>
                 <Text>Shoe Size :</Text>
-                <Text>13 Mens</Text>
+                <Text>{user?.shoeSize}</Text>
               </Box>
               <Box height='80px'>
                 <Text>Email :</Text>
@@ -46,7 +46,7 @@ function ProfilePage () {
               </Box>
               <Box height='80px'>
                 <Text>Phone Number :</Text>
-                <Text>333-444-5555</Text>
+                <Text>{user?.phoneNumber}</Text>
               </Box>
               {/* <Box height='80px'><Button bg='red.400'>Reset Password</Button></Box> */}
             </SimpleGrid>
