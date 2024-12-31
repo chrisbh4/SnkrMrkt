@@ -2,11 +2,16 @@ import { csrfFetch } from './csrf.js'
 import { getclearFilters } from './filters.js'
 
 const SET_USER = 'session/setUser'
+const UPDATE_USER = 'session/updateUser'
 const REMOVE_USER = 'session/removeUser'
 const ALL_USERS = 'session/all_users'
 
 const setUser = (user) => ({
   type: SET_USER,
+  payload: user
+})
+const updateUser = (user) => ({
+  type: UPDATE_USER,
   payload: user
 })
 
@@ -81,6 +86,29 @@ export const signup = (user) => async (dispatch) => {
     return data
   }
 }
+export const update = (user) => async (dispatch) => {
+  const { id, username, email, password, firstName, lastName, shoeSize } = user
+  console.log(user, 'user')
+  const response = await csrfFetch(`/api/users/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      id,
+      username,
+      email,
+      password,
+      firstName,
+      lastName,
+      shoeSize
+    })
+  })
+  const data = await response.json()
+  if (response.ok) {
+    dispatch(updateUser(data.user))
+    return data
+  } else {
+    return data
+  }
+}
 
 export const fetchAllUsers = () => async (dispatch) => {
   const res = await csrfFetch('/api/session/all-users')
@@ -124,6 +152,9 @@ function reducer (state = initialState, action) {
     case ALL_USERS:
       return { ...state, ...action.users }
     case SET_USER:
+      newState = Object.assign({}, state, { user: action.payload })
+      return newState
+    case UPDATE_USER:
       newState = Object.assign({}, state, { user: action.payload })
       return newState
     case REMOVE_USER:

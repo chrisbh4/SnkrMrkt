@@ -26,6 +26,19 @@ const validateSignup = [
     .withMessage('Password must be 5 to 10 characters'),
   handleValidationErrors
 ]
+const validateUpdate = [
+  check('email')
+    // .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
+  check('username')
+    .not()
+    .isEmail()
+    .withMessage('Username cannot be an email.')
+    .isLength({ min: 5, max: 20 })
+    .withMessage('Username must be 5 to 20 characters '),
+  handleValidationErrors
+]
 
 // Get user by ID
 router.get(
@@ -47,18 +60,17 @@ router.get(
 // Update user
 router.put(
   '/:id',
-  validateSignup,
+  validateUpdate,
   asyncHandler(async (req, res) => {
     const { id } = req.params
-    const { email, password, username, firstName, lastName, shoeSize } = req.body
+    const { email, username, firstName, lastName, shoeSize } = req.body
 
     const user = await User.findByPk(id)
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
 
-    const updatedPassword = bcrypt.hashSync(password)
-    await user.save({ email, username, firstName, lastName, shoeSize, updatedPassword })
+    await user.save({ email, username, firstName, lastName, shoeSize })
 
     return res.json(
       user

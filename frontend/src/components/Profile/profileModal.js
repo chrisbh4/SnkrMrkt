@@ -26,18 +26,20 @@ function BasicUsage() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user)
-    const [email, setEmail] = useState('')
-    const [username, setUsername] = useState('')
-    const [firstName, setFirstname] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [shoeSize, setShoeSize] = useState('')
+    const id = sessionUser?.id
+    const [email, setEmail] = useState(sessionUser?.email)
+    const [username, setUsername] = useState(sessionUser?.username)
+    const [firstName, setFirstname] = useState(sessionUser?.firstName)
+    const [lastName, setLastName] = useState(sessionUser?.lastName)
+    const [shoeSize, setShoeSize] = useState(sessionUser?.shoeSize)
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [errors, setErrors] = useState([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = await dispatch(sessionActions.update({ email, username, password, firstName, lastName, shoeSize }))
+        // * No inputed data is showing up as null instead of orginal data
+        const data = await dispatch(sessionActions.update({ id, email, username, password, firstName, lastName, shoeSize }))
 
         if (data?.errors) {
             if (password !== confirmPassword) {
@@ -48,6 +50,7 @@ function BasicUsage() {
             }
         }
         //* */ Might need to do a data refresh after updating the user profile
+        await dispatch(sessionActions.restoreUser())
         onClose()
         return data
     }
@@ -64,9 +67,9 @@ function BasicUsage() {
                     <ModalBody>
                         <FormControl>
                             <FormLabel fontWeight={'bold'} my={'3'}>Email</FormLabel>
-                            <Input type='email' value={sessionUser?.email} placeholder='Email' _placeholder={{ color: 'black' }} onChange={(e) => setEmail(e.target.value)} />
+                            <Input type='email' placeholder={sessionUser?.email}  _placeholder={{ color: 'black' }} onChange={(e) => setEmail(e.target.value)} />
                             <FormLabel fontWeight={'bold'} my={'3'}>Username</FormLabel>
-                            <Input type='text' value={sessionUser?.text} placeholder='Username' _placeholder={{ color: 'black' }} onChange={(e) => setUsername(e.target.value)} />
+                            <Input type='text' value={sessionUser?.text} placeholder={sessionUser?.username} _placeholder={{ color: 'black' }} onChange={(e) => setUsername(e.target.value)} />
                             <FormLabel fontWeight={'bold'} my={'3'}>First Name</FormLabel>
                             <Input type='text' value={sessionUser?.firstName} placeholder='First Name' _placeholder={{ color: 'black' }} onChange={(e) => setFirstname(e.target.value)} />
                             <FormLabel fontWeight={'bold'} my={'3'}>Last Name</FormLabel>
