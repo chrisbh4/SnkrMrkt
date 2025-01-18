@@ -3,6 +3,9 @@ live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 
 https://github.com/david-dozer/Modified-Sneaks-API
 
+https://sneakersapi.dev/pricing
+´
+
 
 ## Features
 - User Sign up/Login with email and password (Demo account provided)
