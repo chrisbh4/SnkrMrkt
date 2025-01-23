@@ -87,7 +87,7 @@ function LoginForm () {
                   {errors.map((error, idx) => <Text key={idx}>{error}</Text>)}
                 </Box>
                 <Input
-                  placeholder='Enter Email'
+                  placeholder='Email'
                   type='text'
                   id='email'
                   value={credential}
@@ -96,7 +96,7 @@ function LoginForm () {
                   size='lg'
                 />
                 <Input
-                  placeholder='Enter Password'
+                  placeholder='Password'
                   type='password'
                   id='password'
                   value={password}
