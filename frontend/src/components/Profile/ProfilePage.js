@@ -50,7 +50,7 @@ function ProfilePage () {
                 <Text>{user?.phoneNumber}</Text>
               </Box> */}
               <Box height='80px' w={'full'}>
-                <BasicUsage bg='black' textColor={'white'} />
+                <BasicUsage user={user} bg='black' textColor={'white'} />
               </Box>
             </SimpleGrid>
           </Box>
