@@ -2,6 +2,7 @@ import React from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Box, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
+import ProfileUpdateForm from './profileModal'
 
 function ProfilePage () {
   const user = useSelector(state => state.session.user)
@@ -30,7 +31,7 @@ function ProfilePage () {
             <SimpleGrid columns={3} spacing={10} px='5%' pt='2%'>
               <Box height='80px'>
                 <Text>Full Name :</Text>
-                <Text>Demo User</Text>
+                <Text>{user?.firstName} {user?.lastName}</Text>
               </Box>
               <Box height='80px'>
                 <Text>Username :</Text>
@@ -38,19 +39,20 @@ function ProfilePage () {
               </Box>
               <Box height='80px'>
                 <Text>Shoe Size :</Text>
-                <Text>13 Mens</Text>
+                <Text>{user?.shoeSize}</Text>
               </Box>
               <Box height='80px'>
                 <Text>Email :</Text>
                 <Text>{user?.email}</Text>
               </Box>
-              <Box height='80px'>
+              {/* <Box height='80px'>
                 <Text>Phone Number :</Text>
-                <Text>333-444-5555</Text>
+                <Text>{user?.phoneNumber}</Text>
+              </Box> */}
+              <Box height='80px' w={'full'}>
+                <ProfileUpdateForm user={user} bg='black' textColor={'white'} />
               </Box>
-              {/* <Box height='80px'><Button bg='red.400'>Reset Password</Button></Box> */}
             </SimpleGrid>
-
           </Box>
         </Box>
       </Flex>

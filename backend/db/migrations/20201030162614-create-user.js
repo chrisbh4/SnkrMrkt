@@ -18,6 +18,20 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      firstName: {
+        type: Sequelize.STRING(30),
+        allowNull: true,
+        unique: false
+      },
+      lastName: {
+        type: Sequelize.STRING(30),
+        allowNull: true,
+        unique: false
+      },
+      shoeSize: {
+        type: Sequelize.STRING(),
+        allowNull: true
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false
