@@ -20,12 +20,12 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING(30),
-        allowNull: false,
+        allowNull: true,
         unique: false
       },
       lastName: {
         type: Sequelize.STRING(30),
-        allowNull: false,
+        allowNull: true,
         unique: false
       },
       shoeSize: {

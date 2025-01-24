@@ -70,7 +70,9 @@ router.put(
       return res.status(404).json({ message: 'User not found' })
     }
 
-    await user.save({ email, username, firstName, lastName, shoeSize })
+    const updatedUser = { email, username, firstName, lastName, shoeSize };
+    Object.assign(user, updatedUser);
+    await user.save();
 
     return res.json(
       user

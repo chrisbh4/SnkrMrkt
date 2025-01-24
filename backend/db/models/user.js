@@ -75,21 +75,21 @@ module.exports = (sequelize, DataTypes) => {
       },
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate:{
           len: [1,30]
         }
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate:{
           len: [1,30]
         }
       },
       shoeSize: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
