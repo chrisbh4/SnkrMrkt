@@ -47,7 +47,7 @@ function SignUpForm () {
         setErrors(data?.errors)
       }
     }
-    navigate('/')
+    navigate('/home')
     return data
   }
 
