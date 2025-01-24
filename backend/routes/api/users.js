@@ -63,12 +63,20 @@ router.put(
   validateUpdate,
   asyncHandler(async (req, res) => {
     const { id } = req.params
-    const { email, username, firstName, lastName, shoeSize } = req.body
+    const { email, username, password, firstName, lastName, shoeSize } = req.body
     const user = await User.findByPk(id)
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
+    if (password.length > 0) {
+      const hashedPassword = await bcrypt.hashSync(password)
+      Object.assign(user, { email, username, firstName, lastName, shoeSize, hashedPassword });
+      await user.save();
 
+      return res.json(
+        user
+      )
+    }
     Object.assign(user, { email, username, firstName, lastName, shoeSize });
     await user.save();
 
@@ -84,6 +92,7 @@ router.post(
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username, firstName, lastName, shoeSize } = req.body
+    console.log('password ', password)
     const user = await User.signup({ email, username, firstName, lastName, shoeSize, password })
     console.log(user)
     await setTokenCookie(res, user)
