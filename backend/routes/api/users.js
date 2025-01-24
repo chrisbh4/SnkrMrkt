@@ -64,14 +64,12 @@ router.put(
   asyncHandler(async (req, res) => {
     const { id } = req.params
     const { email, username, firstName, lastName, shoeSize } = req.body
-
     const user = await User.findByPk(id)
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
 
-    const updatedUser = { email, username, firstName, lastName, shoeSize };
-    Object.assign(user, updatedUser);
+    Object.assign(user, { email, username, firstName, lastName, shoeSize });
     await user.save();
 
     return res.json(

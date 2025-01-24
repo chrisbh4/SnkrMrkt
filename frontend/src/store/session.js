@@ -88,7 +88,6 @@ export const signup = (user) => async (dispatch) => {
 }
 export const update = (user) => async (dispatch) => {
   const { id, username, email, password, firstName, lastName, shoeSize } = user
-  console.log(user, 'user')
   const response = await csrfFetch(`/api/users/${id}`, {
     method: 'PUT',
     body: JSON.stringify({

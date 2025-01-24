@@ -2,7 +2,7 @@ import React from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Box, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
-import BasicUsage from './profileModal'
+import ProfileUpdateForm from './profileModal'
 
 function ProfilePage () {
   const user = useSelector(state => state.session.user)
@@ -50,7 +50,7 @@ function ProfilePage () {
                 <Text>{user?.phoneNumber}</Text>
               </Box> */}
               <Box height='80px' w={'full'}>
-                <BasicUsage user={user} bg='black' textColor={'white'} />
+                <ProfileUpdateForm user={user} bg='black' textColor={'white'} />
               </Box>
             </SimpleGrid>
           </Box>
