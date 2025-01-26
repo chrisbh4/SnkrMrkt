@@ -42,8 +42,10 @@ function NavBtnSignUpForm () {
       if (password !== confirmPassword) {
         const err = [...data?.errors, 'Password and Confirm Password must match']
         setErrors(err)
+        return data
       } else {
         setErrors(data?.errors)
+        return data
       }
     }
     navigate('/home')
