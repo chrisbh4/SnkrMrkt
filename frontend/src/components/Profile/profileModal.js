@@ -13,13 +13,11 @@ import {
     Button,
     FormControl,
     FormLabel,
-    FormHelperText,
     Input,
     Select,
     Box,
     Text,
 } from '@chakra-ui/react'
-
 
 
 function ProfileUpdateForm({user}) {
