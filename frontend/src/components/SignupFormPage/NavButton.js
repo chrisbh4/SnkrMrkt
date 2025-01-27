@@ -35,23 +35,24 @@ function NavBtnSignUpForm () {
   if (sessionUser) return navigate('/')
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const data = await dispatch(sessionActions.signup({ email, username, password }))
-
-    if (data?.errors) {
+      e.preventDefault()
       if (password !== confirmPassword) {
-        const err = [...data?.errors, 'Password and Confirm Password must match']
+        const err = ['Password and Confirm Password must match']
         setErrors(err)
-        return data
-      } else {
-        setErrors(data?.errors)
+        return {}
+      } 
+      else {
+        const data = await dispatch(sessionActions.signup({ email, username, password }))
+        if (data?.errors) {
+          setErrors(data?.errors)
+          return data
+        }
+        setErrors([])
+        navigate('/home')
         return data
       }
     }
-    navigate('/home')
-    return data
-  }
-
+  
   return (
     <>
       <Button

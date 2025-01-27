@@ -33,30 +33,7 @@ function ProfileUpdateForm({user}) {
 
     /* 
     TODO:
-        [] Remove "Password" from Profile update Flow
-            [x] UI/UX updated
-            [x] React Store
-            [x] User's API & error handling
-        [] "Change Password" Form with API created 
-            [] Backend API created
-            [] UI/UX form created
-            [] React Store updated
-
         [] User model updated to include: Phone Number, Address
-         
-    Passsowrd error handling
-    1.  if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
-                const err = [...data?.errors, 'Password must be at least 8 characters long, contain 1 uppercase letter, 1 number, and 1 special character']
-                setErrors(err)
-                return data
-
-    2.  if (password !== confirmPassword) {
-                const err = [...data?.errors, 'Password and Confirm Password must match']
-                setErrors(err)
-                return data
-            }
-    
-    
     */
 
     const handleSubmit = async (e) => {
@@ -68,7 +45,6 @@ function ProfileUpdateForm({user}) {
             } else {
                 setErrors([])
             }
-
         await dispatch(sessionActions.restoreUser())
         onClose()
         return data
