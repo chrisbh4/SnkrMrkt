@@ -22,13 +22,15 @@ const validateSignup = [
     .withMessage('Username must be 5 to 20 characters '),
   check('password')
     // .exists({ checkFalsy: true })
-    .isLength({ min: 5, max: 10 })
-    .withMessage('Password must be 5 to 10 characters'),
+    .isLength({ min: 8, max: 10 })
+    .withMessage('Password must be 8 to 10 characters')
+    .matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    .withMessage('Password must contain at least one uppercase letter, one number, and one special character'),
   handleValidationErrors
 ]
+
 const validateUpdate = [
   check('email')
-    // .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email.'),
   check('username')
@@ -37,6 +39,15 @@ const validateUpdate = [
     .withMessage('Username cannot be an email.')
     .isLength({ min: 5, max: 20 })
     .withMessage('Username must be 5 to 20 characters '),
+  handleValidationErrors
+]
+
+const validatePasswordChange = [
+  check('password')
+    .isLength({ min: 8, max: 10 })
+    .withMessage('Password must be 8 to 10 characters')
+    .matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    .withMessage('Password must contain at least one uppercase letter, one number, and one special character'),
   handleValidationErrors
 ]
 
@@ -57,14 +68,34 @@ router.get(
   })
 );
 
+// Update Password
+router.put('/:id/password',
+  validatePasswordChange,
+  asyncHandler(async (req, res ) =>{
+    const { id } = req.params
+    const user = await User.findByPk(id)
+    const { password } = req.body
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+    const hashedPassword = await bcrypt.hashSync(password)
+    Object.assign(user, { hashedPassword });
+    await user.save();
+
+    return res.json({
+       user 
+      })
+  })
+)
+
 // Update user
 router.put(
   '/:id',
   validateUpdate,
   asyncHandler(async (req, res) => {
     const { id } = req.params
-    const { email, username, firstName, lastName, shoeSize } = req.body
     const user = await User.findByPk(id)
+    const { email, username, firstName, lastName, shoeSize } = req.body
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
@@ -85,7 +116,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const { email, password, username, firstName, lastName, shoeSize } = req.body
     const user = await User.signup({ email, username, firstName, lastName, shoeSize, password })
-    console.log(user)
     await setTokenCookie(res, user)
 
     return res.json(

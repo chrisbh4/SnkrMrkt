@@ -3,6 +3,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Box, Link, Flex, Text, SimpleGrid } from '@chakra-ui/react'
 import ProfileUpdateForm from './profileModal'
+import ChangePasswordForm from './changePasswordModal'
 
 function ProfilePage () {
   const user = useSelector(state => state.session.user)
@@ -51,6 +52,9 @@ function ProfilePage () {
               </Box> */}
               <Box height='80px' w={'full'}>
                 <ProfileUpdateForm user={user} bg='black' textColor={'white'} />
+              </Box>
+              <Box height='80px' w={'full'}>
+                <ChangePasswordForm user={user} bg='red' textColor={'white'} />
               </Box>
             </SimpleGrid>
           </Box>
