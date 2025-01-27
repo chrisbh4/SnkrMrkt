@@ -42,6 +42,15 @@ const validateUpdate = [
   handleValidationErrors
 ]
 
+const validatePasswordChange = [
+  check('password')
+    .isLength({ min: 8, max: 10 })
+    .withMessage('Password must be 8 to 10 characters')
+    .matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    .withMessage('Password must contain at least one uppercase letter, one number, and one special character'),
+  handleValidationErrors
+]
+
 // Get user by ID
 router.get(
   '/:id',
@@ -59,6 +68,26 @@ router.get(
   })
 );
 
+// Update Password
+router.put('/:id/password',
+  validatePasswordChange,
+  asyncHandler(async (req, res ) =>{
+    const { id } = req.params
+    const user = await User.findByPk(id)
+    const { password } = req.body
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+    const hashedPassword = await bcrypt.hashSync(password)
+    Object.assign(user, { hashedPassword });
+    await user.save();
+
+    return res.json({
+       user 
+      })
+  })
+)
+
 // Update user
 router.put(
   '/:id',
@@ -66,20 +95,11 @@ router.put(
   asyncHandler(async (req, res) => {
     const { id } = req.params
     const user = await User.findByPk(id)
-    //TODO: remove "password" and logic on line 74
     const { email, username, firstName, lastName, shoeSize } = req.body
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
-    // if (password.length > 0) {
-    //   const hashedPassword = await bcrypt.hashSync(password)
-    //   Object.assign(user, { email, username, firstName, lastName, shoeSize, hashedPassword });
-    //   await user.save();
 
-    //   return res.json(
-    //     user
-    //   )
-    // }
     Object.assign(user, { email, username, firstName, lastName, shoeSize });
     await user.save();
 

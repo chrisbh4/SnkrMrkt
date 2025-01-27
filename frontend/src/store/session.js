@@ -108,6 +108,25 @@ export const update = (user) => async (dispatch) => {
   }
 }
 
+export const changePassword = (user) => async (dispatch) => {
+  const { id, password } = user
+  const response = await csrfFetch(`/api/users/${id}/password`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      id,
+      password
+    })
+  })
+  const data = await response.json()
+  if (response.ok) {
+    dispatch(updateUser(data.user))
+    return data
+  } else {
+    return data
+  }
+}
+
+
 export const fetchAllUsers = () => async (dispatch) => {
   const res = await csrfFetch('/api/session/all-users')
   if (res.ok) {
