@@ -31,22 +31,46 @@ function ProfileUpdateForm({user}) {
     const [firstName, setFirstname] = useState(user?.firstName)
     const [lastName, setLastName] = useState(user?.lastName)
     const [shoeSize, setShoeSize] = useState(user?.shoeSize)
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
     const [errors, setErrors] = useState([])
+
+    /* 
+    TODO:
+        [] Remove "Password" from Profile update Flow
+            [x] UI/UX updated
+            [x] React Store
+            [x] User's API & error handling
+        [] "Change Password" Form with API created 
+            [] Backend API created
+            [] UI/UX form created
+            [] React Store updated
+
+        [] User model updated to include: Phone Number, Address
+         
+    Passsowrd error handling
+    1.  if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
+                const err = [...data?.errors, 'Password must be at least 8 characters long, contain 1 uppercase letter, 1 number, and 1 special character']
+                setErrors(err)
+                return data
+
+    2.  if (password !== confirmPassword) {
+                const err = [...data?.errors, 'Password and Confirm Password must match']
+                setErrors(err)
+                return data
+            }
+    
+    
+    */
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // * No inputed data is showing up as null instead of orginal data
-        const data = await dispatch(sessionActions.update({ id, email, username, password, firstName, lastName, shoeSize }))
+        const data = await dispatch(sessionActions.update({ id, email, username, firstName, lastName, shoeSize }))
         if (data?.errors) {
-            if (password !== confirmPassword) {
-                const err = [...data?.errors, 'Password and Confirm Password must match']
-                setErrors(err)
-            } else {
                 setErrors(data?.errors)
+                return data
+            } else {
+                setErrors([])
             }
-        }
+
         await dispatch(sessionActions.restoreUser())
         onClose()
         return data
@@ -82,11 +106,13 @@ function ProfileUpdateForm({user}) {
                             <FormLabel fontWeight={'bold'} my={'3'}>Last Name</FormLabel>
                             <Input id='lastName' type='text' value={lastName} placeholder={lastName} _placeholder={{ color: 'black' }} onChange={(e) => setLastName(e.target.value)} />
                             
-                            {/* Keep styling basic until I figure out what I want to do about Changing password */}
-                            <FormLabel fontWeight={'bold'} my={'3'}>Password</FormLabel>
+                            {/* COPY & PASTE */}
+                            {/* <FormLabel fontWeight={'bold'} my={'3'}>Password</FormLabel>
                             <Input id='password' my={'3'} type='password' placeholder='New Password' _placeholder={{ color: 'black' }} onChange={(e) => setPassword(e.target.value)} />
                             <Input id='confirmPassword' my={'3'} type='password' placeholder='Confirm Password' _placeholder={{ color: 'black' }} onChange={(e) => setConfirmPassword(e.target.value)} />
-                            <FormHelperText ml={'1.5'}>At least 8 characters, 1 uppercase letter, 1 number & 1 symbol.</FormHelperText>
+                            <FormHelperText ml={'1.5'}>At least 8 characters, 1 uppercase letter, 1 number & 1 symbol.</FormHelperText> */}
+
+
                             <FormLabel mt={'8'}>Shoe Size</FormLabel>
                             <Select my={'3'} onChange={(e) => setShoeSize(e.target.value)} value={shoeSize || user?.shoeSize}>
                                 {[...Array(25)].map((_, i) => {

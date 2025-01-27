@@ -22,13 +22,15 @@ const validateSignup = [
     .withMessage('Username must be 5 to 20 characters '),
   check('password')
     // .exists({ checkFalsy: true })
-    .isLength({ min: 5, max: 10 })
-    .withMessage('Password must be 5 to 10 characters'),
+    .isLength({ min: 8, max: 10 })
+    .withMessage('Password must be 8 to 10 characters')
+    .matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    .withMessage('Password must contain at least one uppercase letter, one number, and one special character'),
   handleValidationErrors
 ]
+
 const validateUpdate = [
   check('email')
-    // .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email.'),
   check('username')
@@ -63,20 +65,21 @@ router.put(
   validateUpdate,
   asyncHandler(async (req, res) => {
     const { id } = req.params
-    const { email, username, password, firstName, lastName, shoeSize } = req.body
     const user = await User.findByPk(id)
+    //TODO: remove "password" and logic on line 74
+    const { email, username, firstName, lastName, shoeSize } = req.body
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
-    if (password.length > 0) {
-      const hashedPassword = await bcrypt.hashSync(password)
-      Object.assign(user, { email, username, firstName, lastName, shoeSize, hashedPassword });
-      await user.save();
+    // if (password.length > 0) {
+    //   const hashedPassword = await bcrypt.hashSync(password)
+    //   Object.assign(user, { email, username, firstName, lastName, shoeSize, hashedPassword });
+    //   await user.save();
 
-      return res.json(
-        user
-      )
-    }
+    //   return res.json(
+    //     user
+    //   )
+    // }
     Object.assign(user, { email, username, firstName, lastName, shoeSize });
     await user.save();
 
@@ -92,9 +95,7 @@ router.post(
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username, firstName, lastName, shoeSize } = req.body
-    console.log('password ', password)
     const user = await User.signup({ email, username, firstName, lastName, shoeSize, password })
-    console.log(user)
     await setTokenCookie(res, user)
 
     return res.json(
