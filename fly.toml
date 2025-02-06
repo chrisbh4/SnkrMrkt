@@ -12,7 +12,7 @@ kill_timeout = "5s"
   auto_rollback = true
 
 [deploy]
-  release_command = "npx sequelize db:migrate"
+  # release_command = "npx sequelize db:migrate"
 
 [env]
   NODE_ENV = "production"
@@ -22,9 +22,9 @@ kill_timeout = "5s"
   protocol = "tcp"
   internal_port = 4000
   processes = ["app"]
-  auto_stop_machines = "suspend"
-  auto_start_machines = true
-  min_machines_running = 1
+  # auto_stop_machines = "suspend"
+  # auto_start_machines = true
+  # min_machines_running = 1
 
   [[services.ports]]
     port = 80
