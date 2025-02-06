@@ -1,46 +1,57 @@
-# fly.toml app configuration file generated for snkr-mrkt on 2023-05-22T19:27:44-07:00
+# fly.toml app configuration file generated for snkr-mrkt-test on 2025-02-05T23:52:42-08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "snkr-mrkt"
-primary_region = "sjc"
-kill_signal = "SIGINT"
-kill_timeout = "5s"
+app = 'snkr-mrkt-test'
+primary_region = 'sjc'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
 
 [experimental]
   auto_rollback = true
 
+[build]
+
 [deploy]
-  # release_command = "npx sequelize db:migrate"
 
 [env]
-  NODE_ENV = "production"
-  PRIMARY_REGION = "sjc"
+  NODE_ENV = 'production'
+  PRIMARY_REGION = 'sjc'
+
+[http_service]
+  internal_port = 4000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
 [[services]]
-  protocol = "tcp"
+  protocol = 'tcp'
   internal_port = 4000
-  processes = ["app"]
-  # auto_stop_machines = "suspend"
-  # auto_start_machines = true
-  # min_machines_running = 1
+  processes = ['app']
 
   [[services.ports]]
     port = 80
-    handlers = ["http"]
+    handlers = ['http']
     force_https = true
 
   [[services.ports]]
     port = 443
-    handlers = ["tls", "http"]
+    handlers = ['tls', 'http']
+
   [services.concurrency]
-    type = "connections"
+    type = 'connections'
     hard_limit = 25
     soft_limit = 20
 
   [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
-    grace_period = "1s"
-    restart_limit = 0
+    interval = '15s'
+    timeout = '2s'
+    grace_period = '1s'
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
