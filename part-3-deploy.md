@@ -283,3 +283,7 @@ back. You're a web developer!
 [Heroku CLI]: https://devcenter.heroku.com/articles/heroku-command-line
 [Setting Heroku Config Variables]: https://devcenter.heroku.com/articles/config-vars
 [Content Security Policy]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+
+APIs
+https://github.com/david-dozer/Modified-Sneaks-API
+https://sneakersapi.dev/pricing

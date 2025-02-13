@@ -1,12 +1,6 @@
 # SnkrMrkt
 live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
 
-https://github.com/david-dozer/Modified-Sneaks-API
-
-https://sneakersapi.dev/pricing
-´
-
-
 ## Features
 - User Sign up/Login with email and password (Demo account provided)
 - Non-Users and Users can view all listed shoes and reviews
@@ -31,7 +25,7 @@ https://sneakersapi.dev/pricing
 
 
 ## About Page
-<img src="https://imgur.com/MOtW8wz.png" style="width: 80%; height: auto;" alt="home" />
+<img src="https://imgur.com/oOcv5cp.png" style="width: 80%; height: auto;" alt="home" />
 
 ## Home Page
 <img src="https://imgur.com/XbOQzSP.png" style="width: 80%; height: auto;" />
