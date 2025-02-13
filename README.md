@@ -1,5 +1,5 @@
 # SnkrMrkt
-live link: [SnkrMrkt](http://snkr-mrkt.fly.dev)
+live link: [SnkrMrkt](https://snkrmrkt.org)
 
 ## Features
 - User Sign up/Login with email and password (Demo account provided)
