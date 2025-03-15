@@ -30,13 +30,13 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
+    "node-fetch": "^2.7.0",
     "order-id": "^2.1.2",
     "per-env": "^1.0.2",
     "pg": "^8.4.2",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
-    "sneaks-api": "^1.2.3",
-    "stockx-data": "^1.0.3"
+    "sneaks-api": "^1.2.3"
   },
   "devDependencies": {
     "dotenv-cli": "^4.0.0",

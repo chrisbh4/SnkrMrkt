@@ -6,6 +6,7 @@ const reviewsRouter = require('./reviews.js')
 const sneaksRouter = require('./sneaks.js')
 const ordersRouter = require('./orders.js')
 const settingsRouter = require('./settings.js')
+const stockXRouter = require('./stockx.js')
 
 //* allows heroku app not to sleep
 //* add the google one instead
@@ -20,6 +21,7 @@ router.use('/session', sessionRouter)
 router.use('/settings', settingsRouter)
 router.use('/shoes', shoesRouter)
 router.use('/sneaks', sneaksRouter)
+router.use('/stockx', stockXRouter)
 router.use('/test', sneaksRouter)
 router.use('/orders', ordersRouter)
 router.use('/users', usersRouter)
