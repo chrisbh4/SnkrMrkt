@@ -12,7 +12,7 @@ TODO:
     - [ ] Single Shoe search works and fetched API data includes images
 
 - [ ] Sneaks API
-    - [ ] React.JS store connected
+    - [X] React.JS store connected
     - [ ] Single Shoe search bar works and 
         - [ ] /:shoe UI/UX page rendering and API data rendering
         - [ ] Related Products added to Single Shoe Page
@@ -21,25 +21,16 @@ TODO:
 
  */
 
-router.get('/stockx', asyncHandler(async (req, res) => {
-    res.json({ api: 'StockX API Connected' })
-}
-))
-
 //TODO: This will be the search bar functionality
-router.get('/', asyncHandler(async (req, res) => {
-    const searchBarValue = req.body.shoeNmae
-    const test = "Jordan 1 Clay Green"
-    // await sneaks.getProducts("Yeezy Cinder", 1, function (err, products) {
-    await sneaks.getProducts(test, 1, function (err, products) {
+router.post('/search', asyncHandler(async (req, res) => {
+    
+    console.log(req.body)
+    const shoeNameSearch = req.body.shoe
+    await sneaks.getProducts(shoeNameSearch, 1, function (err, product) {
         // const objPro =Object.values(products)[0]
         // console.log("Func :", objPro.releaseDate)
-        // console.log("Prod :", products)
-        console.log("error :", err)
-        console.log("products : ", products)
-        res.json({"OK": products});
-        // res.json({"OK": products[0]});
-        // res.json({"OK": products[0].description});
+        // console.log("error :", err)
+        res.json(product);
 
     })
 }));
@@ -47,9 +38,7 @@ router.get('/', asyncHandler(async (req, res) => {
 // // router.get('/most-popular', asyncHandler(async (req, res) => {
 router.get('/most', asyncHandler(async (req, res) => {
     await sneaks.getMostPopular(10, function(err, products){
-        console.log(products)
-
-        res.json({"most_popular": products})
+        res.json(products)
     })
 }));
 
@@ -57,39 +46,6 @@ router.get('/most', asyncHandler(async (req, res) => {
 
 
 
-
-//! StoxkX API??? (Outdated)
-// router.get('/single', asyncHandler(async (req, res) => {
-//   const box = []
-//   //  * Optimized best for Single shoe search
-//   await stockX.searchProducts('Jordan 1 Clay Green').then(async (searchedProduct) => {
-//     await stockX.fetchProductDetails(searchedProduct[0]).then((productDetails) => {
-//       box.push([productDetails])
-//     })
-//   })
-
-//   res.json({ snks_api: box })
-// }))
-
-// router.get('/related-products', asyncHandler(async (req, res) => {
-//   const box = []
-//   //  * Optimized best for Multi single shoe search (Multiple Gender sizes) results in same shoe different genders
-//   await stockX.searchProducts('Jordan 1 Clay Green').then((searchedProduct) => {
-//     box.push(searchedProduct)
-//   })
-
-//   res.json({ snks_api: box })
-// }))
-
-// router.get('/', asyncHandler(async (req, res) => {
-//   const box = []
-//   //  * Optimized best for Multi single shoe search (Multiple Gender sizes) results in same shoe different genders
-//   await stockX.searchProducts('Jordan 1 Clay Green').then((searchedProduct) => {
-//     box.push(searchedProduct)
-//   })
-
-//   res.json({ snks_api: box })
-// }))
 
 
 
