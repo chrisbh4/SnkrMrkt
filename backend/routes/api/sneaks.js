@@ -23,7 +23,7 @@ TODO:
 
  */
 
-//TODO: This will be the search bar functionality
+
 router.post('/search', asyncHandler(async (req, res) => {
     
     console.log(req.body)
