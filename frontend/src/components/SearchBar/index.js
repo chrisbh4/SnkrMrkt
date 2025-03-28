@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 import { Input, List, ListItem, ListIcon, Box, Link, Button, Flex } from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
 import { searchStockxApiDatabase } from '../../store/stockX'
 
 const SearchBar = ({ shoes }) => {
+  const navigate = useNavigate()
   const [searchValue, setSearchValue] = useState('')
   const [errors, setErrors] = useState([])
 
@@ -26,7 +28,14 @@ const SearchBar = ({ shoes }) => {
     if (searchValue) {
       let payload = searchValue
       //TODO: Set up page redirect if Submit status code is 200
-      dispatch(searchStockxApiDatabase(payload))
+      let data = await dispatch(searchStockxApiDatabase(payload))
+      if (data){
+        console.log("data :", data)
+        //TODO: change this to /stockx/${data[0].styleID} : This will be the exclusive page for the API shoes
+        navigate(`/shoes/${data.styleID}`)
+        return data
+      }
+
     }
     else {
       setErrors(data?.errors)

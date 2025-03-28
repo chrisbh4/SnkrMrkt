@@ -13,11 +13,13 @@ TODO:
 
 - [ ] Sneaks API
     - [X] React.JS store connected
-    - [ ] Single Shoe search bar works and 
+    - [x] Single Shoe search bar works and 
         - [ ] /:shoe UI/UX page rendering and API data rendering
+            - [ ] Make sure page refresh doesn't cause an error
         - [ ] Related Products added to Single Shoe Page
+        - [ ] Fix Search Bar UI width & spacing 
     - [ ] Most Popular Shoes added to Landing page
-    - [ ]
+    - [ ] Create a Search page UI for when a user searches it make it similar to the Home page UI
 
  */
 
@@ -27,9 +29,7 @@ router.post('/search', asyncHandler(async (req, res) => {
     console.log(req.body)
     const shoeNameSearch = req.body.shoe
     await sneaks.getProducts(shoeNameSearch, 1, function (err, product) {
-        // const objPro =Object.values(products)[0]
-        // console.log("Func :", objPro.releaseDate)
-        // console.log("error :", err)
+        console.log(product[0].styleID)
         res.json(product);
 
     })

@@ -1,16 +1,16 @@
 import { csrfFetch } from './csrf'
 
-const LOAD_MOST_POPULAR_API = 'snks_api/LOAD_MOST_POPULAR_API'
-const LOAD_SEARCH_STOCKX_DB_API = 'snks_api/LOAD_SEARCH_STOCKX_DB_API'
+const LOAD_STOCKX_DB_MOST_POPULAR_API = 'snks_api/LOAD_STOCKX_DB_MOST_POPULAR_API'
+const LOAD_SEARCH_BAR_STOCKX_DB_API = 'snks_api/LOAD_SEARCH_BAR_STOCKX_DB_API'
 
 // const LOAD_ONE_SNKR = 'snks_api/LOAD_ONE_SNKR';
 
 const loadMostPopular = (stockXAPI) => ({
-  type: LOAD_MOST_POPULAR_API,
+  type: LOAD_STOCKX_DB_MOST_POPULAR_API,
   stockXAPI
 })
 const loadSearchStockxApiDatabase = (stockXAPI) => ({
-  type: LOAD_SEARCH_STOCKX_DB_API,
+  type: LOAD_SEARCH_BAR_STOCKX_DB_API,
   stockXAPI
 })
 
@@ -56,22 +56,21 @@ export const searchStockxApiDatabase = (payload) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log(data)
-    await dispatch(loadSearchStockxApiDatabase(data))
-    return data
+    await dispatch(loadSearchStockxApiDatabase(data[0]))
+    return data[0]
   }
   else {
-    console.log('Error in search bar API')
-    return {"error": "Error in search bar API"}
+    console.log('Error in Search API request')
+    return {"error": "Error in Search API request"}
   }
 }
 const initialState = {}
 
 function reducer (state = initialState, action) {
   switch (action.type) {
-    case LOAD_MOST_POPULAR_API:
+    case LOAD_STOCKX_DB_MOST_POPULAR_API:
       return { ...state, ...action.stockXAPI }
-    case LOAD_SEARCH_STOCKX_DB_API:
+    case LOAD_SEARCH_BAR_STOCKX_DB_API:
       return { ...action.stockXAPI }
     default:
       return state

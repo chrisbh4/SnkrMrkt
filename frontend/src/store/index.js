@@ -8,16 +8,18 @@ import stockXapi from './stockX'
 import orders from './orders'
 import filters from './filters'
 import settings from './settings'
+import relatedProducts from './relatedProducts'
 
 const rootReducer = combineReducers({
-  session,
-  shoes,
+  filters,
+  orders,
   reviews,
+  relatedProducts,
+  session,
+  settings,
+  shoes,
   shoppingCart,
   stockXapi,
-  orders,
-  filters,
-  settings
 })
 
 let enhancer
