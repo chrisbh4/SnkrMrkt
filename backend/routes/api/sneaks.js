@@ -14,7 +14,7 @@ TODO:
 - [ ] Sneaks API
     - [X] React.JS store connected
     - [x] Single Shoe search bar works and 
-        - [ ] /:shoe UI/UX page rendering and API data rendering
+        - [x] /:shoe UI/UX page rendering and API data rendering
             - [ ] Make sure page refresh doesn't cause an error
         - [ ] Related Products added to Single Shoe Page
         - [ ] Fix Search Bar UI width & spacing 
@@ -32,6 +32,14 @@ router.post('/search', asyncHandler(async (req, res) => {
         console.log(product[0].styleID)
         res.json(product);
 
+    })
+}));
+
+router.get('/:id', asyncHandler(async (req, res) => {
+    const styleId = req.params.id
+    await sneaks.getProductPrices(styleId, function(err, product){
+        console.log(product)
+        res.json(product)
     })
 }));
 
