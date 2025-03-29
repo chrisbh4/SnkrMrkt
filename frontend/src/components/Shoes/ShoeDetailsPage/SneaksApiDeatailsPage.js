@@ -44,8 +44,7 @@ function StockxApiShoeDetail() {
 
   // Function to generate 5 unique random numbers
   const stockxData = useSelector((state) => state.stockXapi)
-  console.log(stockxData)
-  const shoe = useSelector((state) => state.shoes[shoeId])
+  // const shoe = useSelector((state) => state.shoes[shoeId])
   // const cart = useSelector((state) => state.shoppingCart)
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -60,30 +59,25 @@ function StockxApiShoeDetail() {
   }
 }, [stockxData, shoeId, dispatch]);
 
-
   return (
-    // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
     <Box px='15%' h='full' pb='20px'>
       <Box pl='10%'>
         <Box h='75px' pt='3'>
           <Text
             fontSize='4xl'
             pl='2px'
-          > {shoe?.title}
+          > {stockxData?.shoeName}
           </Text>
         </Box>
 
         <Flex>
-          {/* <Box h='full' w='50%'> */}
           <Box h='full' w='50%'>
             <Image
               src={stockxData?.thumbnail}
-            // boxSize='550px'
             />
           </Box>
           <Center w='45%'>
-            <AddToCartComponent shoeId={shoeId} />
-            {/* <AddToCartComponent shoeId={stockxData} /> */}
+            <AddToCartComponent shoeId={stockxData?.styleID} />
           </Center>
         </Flex>
 
@@ -103,7 +97,6 @@ function StockxApiShoeDetail() {
                 <Text>Retial Price</Text>
                 <Text>Current Price</Text>
                 <Text whiteSpace='nowrap'>Release Date</Text>
-                {/* <Text>StockX.com</Text> */}
               </Box>
 
               <Box w={'50%'}>
@@ -113,12 +106,10 @@ function StockxApiShoeDetail() {
                 <Text>{currency(stockxData?.lowestResellPrice?.stockX).format()}</Text>
                 {/* Fix format Release Date format */}
                 <Text>{stockxData?.releaseDate} </Text>
-                {/* <Text>{stockxData?.releaseDate} </Text> */}
               </Box>
             </Flex>
           </Box>
           <Box w='50%' pb='5' pl='11%'>
-            {/* <Text fontSize='lg' w='full' h='200px' fontWeight='semibold' overflow='scroll'> */}
             <Text fontSize='lg' w='full' fontWeight='semibold' overflow='scroll'>
               {stockxData?.description}
             </Text>
@@ -150,7 +141,7 @@ function StockxApiShoeDetail() {
 
         {/* Reviews */}
         <Box pb='3em'>
-          <Text fontSize='2xl' fontWeight='bold' pt='2%'>{shoe?.title} Reviews</Text>
+          <Text fontSize='2xl' fontWeight='bold' pt='2%'>{stockxData?.shoeName} Reviews</Text>
           <Box py='2%'>
             <CreateReviewModal />
           </Box>
@@ -160,7 +151,7 @@ function StockxApiShoeDetail() {
             <Text ml='4%' fontSize='xl'>Ratings</Text>
           </Grid>
 
-          {shoe?.Reviews.map((review) => {
+          {/* {stockxData?.Reviews.map((review) => {
             if (review.userId === userId) {
               return (
                 <Grid templateColumns='repeat(3, 1fr)' gap={6} key={review.id}>
@@ -176,7 +167,7 @@ function StockxApiShoeDetail() {
                 <Text ml='2.5em' pt='1em'>{review.rating}</Text>
               </Grid>
             )
-          })}
+          })} */}
         </Box>
       </Box>
     </Box>
