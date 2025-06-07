@@ -1,70 +1,111 @@
-# SnkrMrkt
-live link: [SnkrMrkt](https://snkrmrkt.org)
+# SnkrMrkt 👟
 
-## Features
-- User Sign up/Login with email and password (Demo account provided)
-- Non-Users and Users can view all listed shoes and reviews
-- Users can create, edit, and delete a shoe listing
-- Users can create, edit, and delete a shoe's review
-- Users can create, edit, and delete a shoe from the shopping cart
-- Users can create, edit, and delete page filters
-- Users can create a purchase order and view order history
+[![Live Site](https://img.shields.io/badge/Live%20Site-SnkrMrkt-blue)](https://snkrmrkt.org)
 
-### Technologies:
-- JavaScript
-- Express
-- Nodejs
+SnkrMrkt is a full-stack e-commerce platform dedicated to sneaker enthusiasts, offering a seamless experience for buying and selling premium footwear.
+
+## 📋 Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Contact](#contact)
+
+## ✨ Features
+
+### User Authentication
+- Secure sign-up and login with email/password
+- Demo account available for testing
+
+### Shopping Experience
+- Browse comprehensive sneaker catalog
+- Detailed product listings with reviews
+- Advanced filtering system
+- Shopping cart functionality
+- Order processing and history tracking
+
+### User Interactions
+- Create, edit, and manage shoe listings
+- Write and manage product reviews
+- Customizable shopping experience with filters
+
+## 🛠 Technologies
+
+### Backend
+- Node.js
+- Express.js
 - SQL
-- Sequelize
+- Sequelize ORM
+
+### Frontend
 - React
 - Redux
-- AWS
-- HTML
-- CSS
 - Chakra UI
+- HTML5
+- CSS3
 
+### Cloud Services
+- AWS (Amazon Web Services)
 
-## About Page
-<img src="https://imgur.com/oOcv5cp.png" style="width: 80%; height: auto;" alt="home" />
+## 📸 Screenshots
 
-## Home Page
-<img src="https://imgur.com/XbOQzSP.png" style="width: 80%; height: auto;" />
+### About Page
+![About Page](https://imgur.com/oOcv5cp.png)
 
-## Shoe Details Page
-<img src="https://imgur.com/KQ9k3W4.png" style="width: 80%; height: auto;" />
+### Home Page
+![Home Page](https://imgur.com/XbOQzSP.png)
 
-## Checkout Form Page
-<img src="https://imgur.com/8UqiqTx.png" style="width: 80%; height: auto;" />
+### Product Details
+![Shoe Details](https://imgur.com/KQ9k3W4.png)
 
-### Installation:
+### Checkout Process
+![Checkout Form](https://imgur.com/8UqiqTx.png)
 
-1. After cloning the project, from the root folder 'Snkr_Mrkt' run in the terminal
-> npm install
+## 🚀 Installation
 
-2. In the root of the backend folder create the database
-> npx dotenv sequelize db:create
+1. Clone the repository and install dependencies:
+   ```bash
+   git clone [repository-url]
+   cd Snkr_Mrkt
+   npm install
+   ```
 
-3. In the root of the backend folder migrate tables to the database by running in the terminal
-> npx dotenv sequelize db:migrate
+2. Create the database:
+   ```bash
+   cd backend
+   npx dotenv sequelize db:create
+   ```
 
-4. In the root of the backend folder seed the database by running in the terminal
-> npx dotenv sequelize db:seed:all
+3. Run database migrations:
+   ```bash
+   npx dotenv sequelize db:migrate
+   ```
 
-5. In the root of the backend folder start running the backend terminal
-> npm start
+4. Seed the database:
+   ```bash
+   npx dotenv sequelize db:seed:all
+   ```
 
-6. In the root of the frontend folder, start the frontend terminal
-> npm start
+5. Start the backend server:
+   ```bash
+   npm start
+   ```
 
-7. In the browser navigate to 'http://localhost:3000'
+6. In a new terminal, start the frontend:
+   ```bash
+   cd ../frontend
+   npm start
+   ```
 
+7. Visit [http://localhost:3000](http://localhost:3000) in your browser
 
-#### Contact
-<a href='chrismbh4@gmail.com'>
-<img src="https://i.imgur.com/jLLwTjh.png" width="25" height="25">
-</a>
-<a href='https://www.linkedin.com/in/christian-brown-8770311ba/'>
-<img src="https://logodix.com/logo/91031.png" width="25" height="25">
-</a>
-<a href='https://github.com/chrisbh4'>
-<img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" width="25" height="25">
+## 📫 Contact
+
+Connect with me:
+
+[![Email](https://img.shields.io/badge/Email-chrismbh4%40gmail.com-red)](mailto:chrismbh4@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Christian%20Brown-blue)](https://www.linkedin.com/in/christian-brown-8770311ba/)
+[![GitHub](https://img.shields.io/badge/GitHub-chrisbh4-black)](https://github.com/chrisbh4)
+
+---
+© 2024 SnkrMrkt. All rights reserved.
