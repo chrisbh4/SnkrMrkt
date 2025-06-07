@@ -34,6 +34,7 @@ function NewHomePage () {
   const filters = useSelector((state) => state.filters)
   const [isLoading, setIsLoading] = useState(true)
   const [sortBy, setSortBy] = useState('featured')
+  const [selectedSizeCategory, setSelectedSizeCategory] = useState('men')
 
   let shoesArray
   if (localStorage.filtered_shoes) {
@@ -58,33 +59,57 @@ function NewHomePage () {
     }
   })
 
-  const sizeChart = [
-    { id: 1, size: 3 },
-    { id: 2, size: 3.5 },
-    { id: 3, size: 4 },
-    { id: 4, size: 4.5 },
-    { id: 5, size: 5 },
-    { id: 6, size: 5.5 },
-    { id: 7, size: 6 },
-    { id: 8, size: 6.5 },
-    { id: 9, size: 7 },
-    { id: 10, size: 7.5 },
-    { id: 11, size: 8 },
-    { id: 12, size: 8.5 },
-    { id: 13, size: 9 },
-    { id: 14, size: 9.5 },
-    { id: 15, size: 10 },
-    { id: 16, size: 10.5 },
-    { id: 17, size: 11 },
-    { id: 18, size: 11.5 },
-    { id: 19, size: 12 },
-    { id: 20, size: 12.5 },
-    { id: 21, size: 13 },
-    { id: 22, size: 13.5 },
-    { id: 23, size: 14 },
-    { id: 24, size: 14.5 },
-    { id: 25, size: 15 }
-  ]
+  const sizeCharts = {
+    men: [
+      { id: 1, size: 6 },
+      { id: 2, size: 6.5 },
+      { id: 3, size: 7 },
+      { id: 4, size: 7.5 },
+      { id: 5, size: 8 },
+      { id: 6, size: 8.5 },
+      { id: 7, size: 9 },
+      { id: 8, size: 9.5 },
+      { id: 9, size: 10 },
+      { id: 10, size: 10.5 },
+      { id: 11, size: 11 },
+      { id: 12, size: 11.5 },
+      { id: 13, size: 12 },
+      { id: 14, size: 12.5 },
+      { id: 15, size: 13 },
+      { id: 16, size: 13.5 },
+      { id: 17, size: 14 },
+      { id: 18, size: 14.5 },
+      { id: 19, size: 15 }
+    ],
+    women: [
+      { id: 1, size: 5 },
+      { id: 2, size: 5.5 },
+      { id: 3, size: 6 },
+      { id: 4, size: 6.5 },
+      { id: 5, size: 7 },
+      { id: 6, size: 7.5 },
+      { id: 7, size: 8 },
+      { id: 8, size: 8.5 },
+      { id: 9, size: 9 },
+      { id: 10, size: 9.5 },
+      { id: 11, size: 10 },
+      { id: 12, size: 10.5 },
+      { id: 13, size: 11 },
+      { id: 14, size: 11.5 },
+      { id: 15, size: 12 }
+    ],
+    youth: [
+      { id: 1, size: '3Y' },
+      { id: 2, size: '3.5Y' },
+      { id: 3, size: '4Y' },
+      { id: 4, size: '4.5Y' },
+      { id: 5, size: '5Y' },
+      { id: 6, size: '5.5Y' },
+      { id: 7, size: '6Y' },
+      { id: 8, size: '6.5Y' },
+      { id: 9, size: '7Y' }
+    ]
+  }
 
   const brandsList = [
     { id: 1, title: 'Yeezy' },
@@ -112,12 +137,27 @@ function NewHomePage () {
     }
   }
 
-  const updateFilterShoeSize = (filter) => {
-    if (filter.id === filterShoeSize.id) {
-      setFilterShoeSize({})
+  const updateFilterShoeSize = (size) => {
+    if (size.id === filterShoeSize.id) {
+      dispatch(setSelectedFilters({
+        ...filters,
+        size: { id: 0, size: 'All Sizes', category: selectedSizeCategory }
+      }))
     } else {
-      setFilterShoeSize({ id: filter.id, size: filter.size })
+      dispatch(setSelectedFilters({
+        ...filters,
+        size: { ...size, category: selectedSizeCategory }
+      }))
     }
+  }
+
+  const handleSizeCategoryChange = (category) => {
+    setSelectedSizeCategory(category)
+    // Reset size filter when changing category
+    dispatch(setSelectedFilters({
+      ...filters,
+      size: { id: 0, size: 'All Sizes', category }
+    }))
   }
 
   const updateFilterPricing = (value) => {
@@ -235,8 +275,39 @@ function NewHomePage () {
 
                 <Box>
                   <Text fontWeight="semibold" mb={2}>Size</Text>
+                  <Flex mb={4}>
+                    <Button
+                      size="sm"
+                      variant={selectedSizeCategory === 'men' ? 'solid' : 'ghost'}
+                      colorScheme={selectedSizeCategory === 'men' ? 'blue' : 'gray'}
+                      onClick={() => handleSizeCategoryChange('men')}
+                      mr={2}
+                      flex={1}
+                    >
+                      Men
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant={selectedSizeCategory === 'women' ? 'solid' : 'ghost'}
+                      colorScheme={selectedSizeCategory === 'women' ? 'blue' : 'gray'}
+                      onClick={() => handleSizeCategoryChange('women')}
+                      mr={2}
+                      flex={1}
+                    >
+                      Women
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant={selectedSizeCategory === 'youth' ? 'solid' : 'ghost'}
+                      colorScheme={selectedSizeCategory === 'youth' ? 'blue' : 'gray'}
+                      onClick={() => handleSizeCategoryChange('youth')}
+                      flex={1}
+                    >
+                      Youth
+                    </Button>
+                  </Flex>
                   <SimpleGrid columns={4} spacing={2}>
-                    {sizeChart.map((chart) => (
+                    {sizeCharts[selectedSizeCategory].map((chart) => (
                       <Button
                         key={chart.id}
                         size="sm"
