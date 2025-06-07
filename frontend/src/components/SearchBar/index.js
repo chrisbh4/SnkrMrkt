@@ -98,7 +98,7 @@ const SearchBar = () => {
             {searchResults.map((shoe) => (
               <Link
                 key={shoe.styleID}
-                href={`/shoes/${shoe.styleID}`}
+                href={`/sneaker/${shoe.styleID}`}
                 _hover={{ textDecoration: 'none' }}
               >
                 <ListItem

@@ -7,6 +7,7 @@ import AboutPage from './components/AboutPage/AboutPage'
 import HomePage from './components/Home/Home'
 import ProfilePage from './components/Profile/ProfilePage'
 import ShoeDetialsChakra from './components/Shoes/ShoeDetailsPage/index'
+import SneakerDetailsPage from './components/Shoes/SneakerDetailsPage'
 import NewReviewChakraForm from './components/Reviews/NewReview'
 import EditReviewChakraForm from './components/Reviews/EditReview'
 import NewShoeModalForm from './components/Shoes/NewShoesForm/modalForm'
@@ -39,6 +40,8 @@ function App () {
         <Route path='/home' element={<HomePage />}> </Route>
 
         <Route exact path='/shoes/:id' element={<ShoeDetialsChakra />} />
+
+        <Route exact path='/sneaker/:styleId' element={<SneakerDetailsPage />} />
 
         <Route exact path='/shoes/:id/reviews/new' element={<NewReviewChakraForm />} />
 

@@ -105,4 +105,25 @@ router.get('/search', asyncHandler(async (req, res) => {
   }
 }))
 
+router.get('/details', asyncHandler(async (req, res) => {
+  const { styleId } = req.query
+  if (!styleId) {
+    return res.status(400).json({ error: 'Style ID is required' })
+  }
+
+  try {
+    const product = await new Promise((resolve, reject) => {
+      sneaks.getProductPrices(styleId, (err, product) => {
+        if (err) reject(err)
+        resolve(product)
+      })
+    })
+
+    res.json({ product })
+  } catch (error) {
+    console.error('Product details error:', error)
+    res.status(500).json({ error: 'Failed to fetch product details' })
+  }
+}))
+
 module.exports = router
