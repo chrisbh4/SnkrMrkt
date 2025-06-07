@@ -1,5 +1,5 @@
-// import { csrfFetch } from "./csrf";
-// import { useDispatch } from "react-redux";
+import { csrfFetch } from './csrf'
+
 const LOAD_CART = 'shoppingCart/LOAD_CART'
 const ADD_TO_CART = 'shoppingCart/ADD_TO_CART'
 const REMOVE_FROM_CART = 'shoppingCart/REMOVE_FROM_CART'
@@ -10,9 +10,9 @@ export const loadCart = (cart) => ({
   cart
 })
 
-const removeFromCart = (shoeId) => ({
+const removeFromCart = (cartItemId) => ({
   type: REMOVE_FROM_CART,
-  shoeId
+  cartItemId
 })
 
 const purchaseCart = () => ({
@@ -24,7 +24,7 @@ const saveCart = (cart) => {
     const jsonCart = JSON.stringify(cart)
     localStorage.setItem('cart', jsonCart)
   } catch (err) {
-
+    console.error('Error saving cart:', err)
   }
 }
 
@@ -35,23 +35,30 @@ export const getLoadCart = () => async (dispatch) => {
 
 export const addShoeToCart = (shoe, cart) => async (dispatch) => {
   if (shoe) {
-    if (shoe.id === cart[shoe.id]) {
-      return
-    } else {
-      cart[shoe.id] = { shoeId: shoe.id, title: shoe.title, price: shoe.price, size: shoe.shoeSize, img: shoe.image }
+    // Generate a unique cart item ID that includes the shoe ID, size, and gender
+    const cartItemId = `${shoe.id}-${shoe.shoeSize}`
+
+    // Add the shoe with its unique cart item ID
+    cart[cartItemId] = {
+      cartItemId,
+      shoeId: shoe.id,
+      title: shoe.title,
+      price: shoe.price,
+      size: shoe.shoeSize,
+      img: shoe.image
     }
+
     dispatch(loadCart(cart))
-    //  loadCart(cart)
     saveCart(cart)
   } else {
     return 'cannot find shoe for cart'
   }
 }
 
-export const removeShoeFromCart = (shoeId, cart) => async (dispatch) => {
-  if (cart[shoeId]) {
-    await dispatch(removeFromCart(shoeId))
-    delete cart[shoeId]
+export const removeShoeFromCart = (cartItemId, cart) => async (dispatch) => {
+  if (cart[cartItemId]) {
+    await dispatch(removeFromCart(cartItemId))
+    delete cart[cartItemId]
   } else {
     return 'wrong shoe'
   }
@@ -63,17 +70,17 @@ export const purchaseFromCart = () => async (dispatch) => {
   localStorage.removeItem('cart')
 }
 
-const initlaState = {}
+const initialState = {}
 
-function reducer (state = initlaState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
       return { ...state, ...action.cart }
     case ADD_TO_CART:
-      state[action.shoe.id] = action.shoe
+      state[action.shoe.cartItemId] = action.shoe
       return { ...state }
     case REMOVE_FROM_CART:
-      delete state[action.shoeId]
+      delete state[action.cartItemId]
       return { ...state }
     case PURCHASE_CART:
       state = {}

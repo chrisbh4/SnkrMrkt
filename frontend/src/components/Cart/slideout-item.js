@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { removeShoeFromCart } from '../../store/shoppingCart'
 import { DeleteIcon } from '@chakra-ui/icons'
 import currency from 'currency.js'
@@ -8,31 +9,59 @@ import {
   Image,
   GridItem,
   SimpleGrid,
-  Link
+  Text
 } from '@chakra-ui/react'
 
-function SlideOutCartItem ({ item }) {
+function SlideOutCartItem({ item }) {
   const dispatch = useDispatch()
-
-  // Built out cart and destructure the item thats being passed in as a prop
+  const navigate = useNavigate()
   const cart = useSelector((state) => state.shoppingCart)
 
-  // Needs to be in a function to be able to useDispatch inside the store
   const removeShoe = async () => {
-    await dispatch(removeShoeFromCart(item.shoeId, cart))
+    await dispatch(removeShoeFromCart(item.cartItemId, cart))
+  }
+
+  const handleShoeClick = () => {
+    navigate(`/sneaker/${item.shoeId}`)
   }
 
   return (
     <SimpleGrid columns={5} alignContent='center' alignItems='center' rows={1} gap={6}>
       <GridItem w='100%' h='auto'>
-        <Image src={item.img} borderRadius='full' boxSize='150px' />
+        <Image
+          src={item.img}
+          borderRadius='full'
+          boxSize='150px'
+          cursor='pointer'
+          onClick={handleShoeClick}
+        />
       </GridItem>
 
-      <GridItem w='100%' pos='relative' left='10%' textAlign='center'><Link _hover={{ textDecoration: 'none' }} href={`/shoes/${item.shoeId}`}>{item.title}</Link></GridItem>
-      <GridItem w='100%' textAlign='center'>{currency(item.price).format()} </GridItem>
-      <GridItem w='100%' textAlign='center'>Size: {item.size} </GridItem>
+      <GridItem
+        w='100%'
+        pos='relative'
+        left='10%'
+        textAlign='center'
+        cursor='pointer'
+        onClick={handleShoeClick}
+      >
+        <Text>{item.title}</Text>
+      </GridItem>
+      <GridItem w='100%' textAlign='center'>
+        <Text>{currency(item.price).format()}</Text>
+      </GridItem>
+      <GridItem w='100%' textAlign='center'>
+        <Text>Size: {item.size}</Text>
+      </GridItem>
       <GridItem w='100%'>
-        <Button onClick={removeShoe} bg='none' size='sm' fontSize='20px' fontWeight='bold' _hover={{ bg: 'none' }}>
+        <Button
+          onClick={removeShoe}
+          bg='none'
+          size='sm'
+          fontSize='20px'
+          fontWeight='bold'
+          _hover={{ bg: 'none' }}
+        >
           <DeleteIcon />
         </Button>
       </GridItem>

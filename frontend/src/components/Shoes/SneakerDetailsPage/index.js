@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getSneakerDetails } from '../../../store/stockX'
+import AddToCartComponent from './AddToCartComponent'
 import {
   Box,
   Container,
@@ -92,6 +93,10 @@ function SneakerDetailsPage() {
                 </Stat>
               </StatGroup>
             </Box>
+
+            <Divider />
+
+            <AddToCartComponent sneaker={sneaker} />
 
             <Divider />
 
