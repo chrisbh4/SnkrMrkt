@@ -1,9 +1,15 @@
 import { Box, Center, Image, Link, Text } from '@chakra-ui/react'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { searchByExactName } from '../../store/stockX'
 import '../OldHomePage/ShoeList.css'
 import currency from 'currency.js'
 
 function ShoeList ({ shoe }) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   let imageCheck
   if (shoe.image.includes('jpg') || shoe.image.includes('jpeg') || shoe.image.includes('png') || shoe.image.includes('image')) {
     imageCheck = <Image src={shoe.image} alt={shoe.title} zIndex='inherit' />
@@ -11,9 +17,21 @@ function ShoeList ({ shoe }) {
     imageCheck = <Image className='bad-image shoe-image' alt={shoe.title} />
   }
 
+  const handleClick = async (e) => {
+    e.preventDefault()
+    // Search for the shoe in sneaks.js API
+    const styleId = await dispatch(searchByExactName(shoe.title))
+    if (styleId) {
+      navigate(`/sneaker/${styleId}`)
+    } else {
+      // Fallback to the original shoe details page if no match found
+      navigate(`/shoes/${shoe.id}`)
+    }
+  }
+
   return (
     <Box w='100%' pb='20px'>
-      <Link _hover={{ textDecoration: 'none' }} href={`/shoes/${shoe.id}`}>
+      <Box as="a" onClick={handleClick} cursor="pointer" _hover={{ textDecoration: 'none' }}>
         <Center paddingBottom='10px'>
           {imageCheck}
         </Center>
@@ -22,7 +40,7 @@ function ShoeList ({ shoe }) {
           <Text w='100%' fontSize='15px' fontWeight='550'>{shoe.brand}</Text>
           <Text w='100%' fontSize='15px' fontWeight='550'>{currency(shoe.price).format()}</Text>
         </Box>
-      </Link>
+      </Box>
     </Box>
   )
 }

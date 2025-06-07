@@ -36,6 +36,22 @@ const loadSneakerDetails = (details) => ({
 //     }
 // }
 
+export const searchByExactName = (shoeName) => async (dispatch) => {
+  const res = await csrfFetch(`/api/test/search?query=${encodeURIComponent(shoeName)}`)
+
+  if (res.ok) {
+    const data = await res.json()
+    if (data.products && data.products.length > 0) {
+      // Get the first result and fetch its details
+      const firstMatch = data.products[0]
+      await dispatch(getSneakerDetails(firstMatch.styleID))
+      return firstMatch.styleID
+    }
+    return null
+  }
+  return null
+}
+
 export const getSneakerDetails = (styleId) => async (dispatch) => {
   const res = await csrfFetch(`/api/test/details?styleId=${encodeURIComponent(styleId)}`)
 
