@@ -7,6 +7,7 @@ const router = express.Router()
 
 /*
 TODO:
+- https://github.com/druv5319/Sneaks-API
 - [x] StockX API
     - [ ] OAuth connected with credentials
     - [ ] Single Shoe search works and fetched API data includes images
@@ -43,8 +44,28 @@ router.get('/:id', asyncHandler(async (req, res) => {
     })
 }));
 
+router.post('/multiple', asyncHandler(async (req, res) => {
+    const ids = req.body.cartOfIDs; // Expecting an array of IDs in the request body
+    const shoes = [];
+
+    for (const id of ids) {
+        await new Promise((resolve, reject) => {
+            sneaks.getProductPrices(id, function (err, product) {
+                if (err) {
+                    reject(err);
+                } else {
+                    shoes.push(product);
+                    resolve();
+                }
+            });
+        });
+    }
+
+    res.json(shoes);
+}));
+
 // // router.get('/most-popular', asyncHandler(async (req, res) => {
-router.get('/most', asyncHandler(async (req, res) => {
+router.post('/most', asyncHandler(async (req, res) => {
     await sneaks.getMostPopular(10, function(err, products){
         res.json(products)
     })

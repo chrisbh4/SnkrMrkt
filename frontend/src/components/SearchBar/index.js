@@ -32,7 +32,7 @@ const SearchBar = ({ shoes }) => {
       if (data){
         console.log("data :", data)
         //TODO: change this to /stockx/${data[0].styleID} : This will be the exclusive page for the API shoes
-        navigate(`/shoes/${data.styleID}`)
+        navigate(`/stockx/${data.styleID}`)
         return data
       }
 

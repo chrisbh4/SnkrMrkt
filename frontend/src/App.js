@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import * as sessionActions from './store/session'
 import Navigation from './components/Navigation'
@@ -16,6 +16,7 @@ import PaymentPage from './components/Profile/payment'
 import PurchasedPage from './components/Profile/purchased'
 import SellingPage from './components/Profile/selling'
 import WatchingPage from './components/Profile/watching'
+import StockxApiShoeDetail from './components/Shoes/ShoeDetailsPage/SneaksApiDeatailsPage'
 
 function App () {
   const dispatch = useDispatch()
@@ -39,6 +40,8 @@ function App () {
         <Route path='/home' element={<HomePage />}> </Route>
 
         <Route exact path='/shoes/:id' element={<ShoeDetialsChakra />} />
+
+        <Route exact path='/stockx/:id' element={<StockxApiShoeDetail />} />
 
         <Route exact path='/shoes/:id/reviews/new' element={<NewReviewChakraForm />} />
 

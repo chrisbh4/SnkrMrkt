@@ -16,6 +16,7 @@ import {
   Grid
 } from '@chakra-ui/react'
 import { searchStockxApiDatabase } from '../../../store/stockX'
+import { fetchMostPopular } from '../../../store/relatedProducts'
 
 function StockxApiShoeDetail() {
   // const navigate = useNavigate();
@@ -23,11 +24,6 @@ function StockxApiShoeDetail() {
   const params = useParams()
   const shoeId = params.id
   console.log(shoeId)
-
-  // useEffect(() => {
-  //   dispatch(getOneShoe(shoeId))
-  //   // dispatch(fetchMostPopular())
-  // }, [dispatch, shoeId])
 
   // const getRandomDate = () => {
   //   const startDate = new Date('2018-05-20')
@@ -44,18 +40,14 @@ function StockxApiShoeDetail() {
 
   // Function to generate 5 unique random numbers
   const stockxData = useSelector((state) => state.stockXapi)
-  // const shoe = useSelector((state) => state.shoes[shoeId])
+  const relatedProducts = useSelector((state) => state.relatedProducts)
+  console.log('relatedProducts', relatedProducts)
   // const cart = useSelector((state) => state.shoppingCart)
-  const userId = useSelector((state) => {
-    if (state.session.user) {
-      return state.session.user?.id
-    }
-    return 0.5
-  })
 
   useEffect(() => {
   if (!stockxData.styleID) {
     dispatch(searchStockxApiDatabase(shoeId)); // Replace with your action to fetch data
+    dispatch(fetchMostPopular())
   }
 }, [stockxData, shoeId, dispatch]);
 
@@ -118,8 +110,8 @@ function StockxApiShoeDetail() {
         </Flex>
         <Box borderTop='22px' borderColor='black' pt='1em'>
           <Text fontSize='2xl' fontWeight='bold'>Related Products</Text>
-          <Flex justify='space-between'>
-            {/* {randomShoeIndices.map(index => (
+          {/* <Flex justify='space-between'>
+            {relatedProducts.map(index => (
               <Box
                 key={index}
                 marginLeft='5px'
@@ -127,16 +119,16 @@ function StockxApiShoeDetail() {
                   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)'
                 }}
               >
-                <Link href={`/shoes/${allShoes[index]?.id}`}>
+                <Link href={`/stockx/${index?.styleID}`}>
                   <Image
-                    src={allShoes[index]?.image}
+                    src={index?.thumbnail}
                     boxSize='300px'
                     p='3px'
                   />
                 </Link>
               </Box>
-            ))} */}
-          </Flex>
+            ))}
+          </Flex> */}
         </Box>
 
         {/* Reviews */}
