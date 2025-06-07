@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
   Grid,
-  Center,
   GridItem,
   Box,
   VStack,
@@ -9,7 +8,6 @@ import {
   Text,
   Flex,
   SimpleGrid,
-  Wrap,
   WrapItem,
   Container,
   Heading,
