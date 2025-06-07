@@ -1,8 +1,8 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
+const SneaksAPI = require('sneaks-api')
+const sneaks = new SneaksAPI()
 
-// const SneaksAPI = require('sneaks-api');
-// const sneaks = new SneaksAPI();
 // const StockXData = require('stockx-data')
 // const stockX = new StockXData()
 
@@ -83,5 +83,26 @@ router.get('/', asyncHandler(async (req, res) => {
 
 //   res.json({ snks_api: box })
 // }))
+
+router.get('/search', asyncHandler(async (req, res) => {
+  const { query } = req.query
+  if (!query) {
+    return res.json({ products: [] })
+  }
+
+  try {
+    const products = await new Promise((resolve, reject) => {
+      sneaks.getProducts(query, 10, (err, products) => {
+        if (err) reject(err)
+        resolve(products)
+      })
+    })
+
+    res.json({ products })
+  } catch (error) {
+    console.error('Search error:', error)
+    res.status(500).json({ error: 'Failed to search products' })
+  }
+}))
 
 module.exports = router

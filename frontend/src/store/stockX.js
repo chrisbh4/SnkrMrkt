@@ -1,12 +1,18 @@
 import { csrfFetch } from './csrf'
 
 const LOAD_SNKR_API = 'snks_api/LOAD_SNKR_API'
+const LOAD_SEARCH_RESULTS = 'snks_api/LOAD_SEARCH_RESULTS'
 
 // const LOAD_ONE_SNKR = 'snks_api/LOAD_ONE_SNKR';
 
 const loadSnkr = (stockXAPI) => ({
   type: LOAD_SNKR_API,
   stockXAPI
+})
+
+const loadSearchResults = (results) => ({
+  type: LOAD_SEARCH_RESULTS,
+  results
 })
 
 // const loadOneSnkr = (review) => ({
@@ -24,23 +30,37 @@ const loadSnkr = (stockXAPI) => ({
 //     }
 // }
 
+export const searchSneakers = (query) => async (dispatch) => {
+  const res = await csrfFetch(`/api/test/search?query=${encodeURIComponent(query)}`)
+
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(loadSearchResults(data.products))
+    return data.products
+  }
+}
+
 export const fetchMostPopular = () => async (dispatch) => {
   const res = await csrfFetch('/api/test')
 
   if (res.ok) {
     const data = await res.json()
-
     dispatch(loadSnkr(data.snks_api[0]))
     return data
   }
 }
 
-const initialState = {}
+const initialState = {
+  searchResults: [],
+  popularItems: {}
+}
 
 function reducer (state = initialState, action) {
   switch (action.type) {
     case LOAD_SNKR_API:
-      return { ...state, ...action.stockXAPI }
+      return { ...state, popularItems: { ...action.stockXAPI } }
+    case LOAD_SEARCH_RESULTS:
+      return { ...state, searchResults: action.results }
     default:
       return state
   }
