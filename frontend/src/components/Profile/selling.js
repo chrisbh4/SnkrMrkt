@@ -20,19 +20,24 @@ import {
   Button,
   Skeleton,
   Alert,
-  AlertIcon
+  AlertIcon,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton
 } from '@chakra-ui/react'
 import { 
   FiUser, 
   FiShoppingBag, 
   FiTrendingUp,
-  FiPackage,
-  FiDollarSign,
-  FiEye,
   FiEdit
 } from 'react-icons/fi'
 import { fetchUserSellingList } from '../../store/settings'
 import currency from 'currency.js'
+import EditShoesFormChakra from '../Shoes/EditShoePage'
 
 function SellingPage () {
   const dispatch = useDispatch()
@@ -46,6 +51,13 @@ function SellingPage () {
   useEffect(() => {
     dispatch(fetchUserSellingList(user?.id))
   }, [dispatch, user])
+
+  // Function to refresh the selling list data
+  const refreshSellingData = () => {
+    if (user?.id) {
+      dispatch(fetchUserSellingList(user.id))
+    }
+  }
 
   const sidebarItems = [
     { href: '/profile', label: 'Profile', icon: FiUser },
@@ -192,8 +204,11 @@ function SellingPage () {
                       shadow="md"
                       borderWidth="1px"
                       borderColor={borderColor}
+                      h="450px"
+                      display="flex"
+                      flexDirection="column"
                     >
-                      <Box position="relative">
+                      <Box position="relative" flex="0 0 250px">
                         <Image
                           src={shoe.image}
                           alt={shoe.title}
@@ -217,12 +232,16 @@ function SellingPage () {
                         </Badge>
                       </Box>
                       
-                      <Box p={5}>
-                        <VStack align="stretch" spacing={3}>
-                          <Text fontSize="lg" fontWeight="bold" noOfLines={2} color="gray.800">
+                      <Box p={5} flex="1" display="flex" flexDirection="column" justify="space-between">
+                        {/* Title Section - Fixed Height */}
+                        <Box h="60px" mb={3}>
+                          <Text fontSize="lg" fontWeight="bold" noOfLines={2} color="gray.800" lineHeight="1.3">
                             {shoe.title}
                           </Text>
-                          
+                        </Box>
+                        
+                        {/* Brand and Size - Fixed Height */}
+                        <Box h="32px" mb={3}>
                           <HStack justify="space-between">
                             <Text fontSize="sm" color="gray.500" bg="gray.50" px={3} py={1} borderRadius="md">
                               {shoe.brand}
@@ -231,45 +250,19 @@ function SellingPage () {
                               Size {shoe.shoeSize}
                             </Text>
                           </HStack>
-                          
-                          <Flex justify="space-between" align="center">
+                        </Box>
+                        
+                        {/* Price Section - Fixed Height */}
+                        <Box h="32px" mb={4}>
+                          <HStack justify="space-between" align="center">
                             <HStack spacing={1}>
-                              <Icon as={FiDollarSign} color="green.500" boxSize={4} />
                               <Text fontSize="xl" fontWeight="bold" color="green.600">
                                 {currency(shoe.price).format()}
                               </Text>
                             </HStack>
-                          </Flex>
-
-                          <Text fontSize="sm" color="gray.600" noOfLines={2}>
-                            {shoe.description}
-                          </Text>
-
-                          <HStack spacing={2} pt={2}>
-                            <Button
-                              as={ReactRouterLink}
-                              to={`/shoes/${shoe.id}`}
-                              leftIcon={<Icon as={FiEye} />}
-                              colorScheme="blue"
-                              variant="outline"
-                              size="sm"
-                              flex={1}
-                              fontSize="sm"
-                            >
-                              View
-                            </Button>
-                            <Button
-                              leftIcon={<Icon as={FiEdit} />}
-                              colorScheme="gray"
-                              variant="outline"
-                              size="sm"
-                              flex={1}
-                              fontSize="sm"
-                            >
-                              Edit
-                            </Button>
+                            <EditShoeButton shoe={shoe} onRefresh={refreshSellingData} />
                           </HStack>
-                        </VStack>
+                        </Box>
                       </Box>
                     </Box>
                   </GridItem>
@@ -280,6 +273,45 @@ function SellingPage () {
         </Flex>
       </Container>
     </Box>
+  )
+}
+
+// Custom Edit Button Component
+function EditShoeButton({ shoe, onRefresh }) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const handleClose = () => {
+    onClose()
+    // Refresh the selling data after closing the modal
+    if (onRefresh) {
+      onRefresh()
+    }
+  }
+
+  return (
+    <>
+      <Button
+        leftIcon={<Icon as={FiEdit} />}
+        colorScheme="gray"
+        variant="outline"
+        size="sm"
+        fontSize="sm"
+        onClick={onOpen}
+      >
+        Edit
+      </Button>
+
+      <Modal isOpen={isOpen} onClose={handleClose} size='6xl'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit Shoe</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody w='full'>
+            <EditShoesFormChakra onClose={handleClose} shoe={shoe} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   )
 }
 
