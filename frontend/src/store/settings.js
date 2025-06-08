@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf'
 
 const LOAD = 'settings/LOAD'
 const LOAD_ORDER_SUMMARY = 'settings/LOAD_ORDER_SUMMARY'
+const CLEAR_ORDER_SUMMARY = 'settings/CLEAR_ORDER_SUMMARY'
 
 const loadUsersSellingList = (data) => ({
   type: LOAD,
@@ -13,14 +14,13 @@ const loadUsersOrdersList = (data) => ({
   data
 })
 
-const loadUsersWatchList = (data) => ({
-  type: LOAD,
-  data
-})
-
 const loadOrderSummary = (data) => ({
   type: LOAD_ORDER_SUMMARY,
   data
+})
+
+const clearOrderSummary = () => ({
+  type: CLEAR_ORDER_SUMMARY
 })
 
 export const fetchUserSellingList = (userId) => async (dispatch) => {
@@ -51,6 +51,9 @@ export const fetchUsersOrdersList = (userId) => async (dispatch) => {
 }
 
 export const fetchOrderSummary = (userId, orderId) => async (dispatch) => {
+  // Clear previous order summary data first
+  dispatch(clearOrderSummary())
+  
   const res = await csrfFetch(`/api/settings/${userId}/orders/${orderId}/summary`)
   if (res.ok) {
     const data = await res.json()
@@ -60,6 +63,10 @@ export const fetchOrderSummary = (userId, orderId) => async (dispatch) => {
     const errorData = await res.json()
     throw new Error(errorData.message || 'Failed to fetch order summary')
   }
+}
+
+export const clearOrderSummaryData = () => async (dispatch) => {
+  dispatch(clearOrderSummary())
 }
 
 // export const fetchCreateNewOrder = (payload) => async (dispatch) => {
@@ -90,6 +97,8 @@ function reducer (state = initialState, action) {
       return { ...state, ...action.data }
     case LOAD_ORDER_SUMMARY:
       return { ...state, orderSummary: action.data.order }
+    case CLEAR_ORDER_SUMMARY:
+      return { ...state, orderSummary: null }
     default:
       return state
   }

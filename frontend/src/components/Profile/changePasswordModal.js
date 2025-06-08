@@ -49,7 +49,17 @@ function ChangePasswordForm({user}){
 
     return(
         <>
-         <Button onClick={onOpen} bg='red' textColor={'white'}>Change Password</Button>
+         <Button 
+           onClick={onOpen} 
+           colorScheme="red" 
+           variant="solid"
+           size="md"
+           borderRadius="lg"
+           fontWeight="medium"
+           w="full"
+         >
+           Change Password
+         </Button>
             <Modal isOpen={isOpen} onClose={onClose} size={'3xl'} isCentered >
                 <ModalOverlay />
                 <ModalContent>
