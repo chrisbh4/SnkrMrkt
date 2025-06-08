@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import * as sessionActions from '../../store/session'
-
 import {
   Button,
   Text,
@@ -10,170 +9,146 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  FormControl,
-  Input,
   VStack,
   Center,
-  Box
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  useColorModeValue,
+  useToast
 } from '@chakra-ui/react'
+import { FiUser } from 'react-icons/fi'
+import SignUpFormContent from './SignupFormContent'
+import LoginFormContent from '../LoginFormPage/LoginFormContent'
 
 function SignUpForm () {
   const { isOpen, onOpen, onClose } = useDisclosure()
-
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const sessionUser = useSelector((state) => state.session.user)
-  const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [errors, setErrors] = useState([])
+
+  // Color mode values
+  const bgColor = useColorModeValue('white', 'gray.800')
+  const tabSelectedColor = useColorModeValue('purple.500', 'purple.200')
 
   if (sessionUser) return navigate('/')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (password !== confirmPassword) {
-      const err = ['Password and Confirm sdfasdfPassword must match']
-      setErrors(err)
-      return {}
-    } 
-    else {
-      const data = await dispatch(sessionActions.signup({ email, username, password }))
-      if (data?.errors) {
-        setErrors(data?.errors)
-        return data
-      }
-      setErrors([])
-      navigate('/home')
-      return data
-    }
+  const handleModalClose = () => {
+    onClose()
   }
 
   return (
     <>
-      {/* <Button onClick={onOpen}
-                color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em'
-                _hover={{ color: "rgba(0,0,0,0.8)", background_color: "#fff", box_shadow: "inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)" }}
-            >
-                Sign up
-            </Button> */}
-
       <Button
         onClick={onOpen}
-        borderBottom='4px' borderColor='gray.300' width='35%' pb='13px' bg='white'
-        _hover={{ borderColor: 'black' }}
+        variant="outline"
+        colorScheme="purple"
+        size="lg"
+        fontWeight="semibold"
+        letterSpacing="wide"
+        _hover={{ 
+          transform: 'translateY(-2px)',
+          shadow: 'lg',
+          bg: 'purple.500',
+          color: 'white'
+        }}
+        transition="all 0.2s"
       >
-        Sign up
+        Sign Up
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} size='3xl'>
+      <Modal 
+        isOpen={isOpen} 
+        onClose={handleModalClose} 
+        size="lg"
+        closeOnOverlayClick={true}
+        closeOnEsc={true}
+      >
         <ModalOverlay
-          backdropFilter='auto'
-          backdropInvert='80%'
-          backdropBlur='2px'
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px)"
         />
-        <ModalContent>
+        <ModalContent
+          bg={bgColor}
+          borderRadius="xl"
+          shadow="2xl"
+          mx={4}
+        >
           <ModalHeader
-            bg='black'
-            color='white'
+            bg="gradient-to-r"
+            bgGradient="linear(to-r, purple.500, pink.500)"
+            color="white"
+            borderTopRadius="xl"
+            py={6}
           >
-            <Center fontSize='30px'>
-              SNKR MRKT
+            <Center>
+              <VStack spacing={2}>
+                <Text fontSize="2xl" fontWeight="bold">
+                  SNKR MRKT
+                </Text>
+                <Text fontSize="sm" opacity={0.9}>
+                  Join the sneaker marketplace
+                </Text>
+              </VStack>
             </Center>
           </ModalHeader>
-          <ModalCloseButton mt='3px' backgroundColor='white' _hover={{ bg: 'white' }} />
-          <ModalBody>
-            <Center pb='20px'>
-              <Button onClick={onClose} bg='white' borderBottom='4px' borderColor='gray.300' width='35%' _hover={{ borderColor: 'black', bg: 'gray.100' }}>
-                <Center fontSize='md' pb='13px' fontWeight='bold'>
-                  Log In
-                </Center>
-              </Button>
-              <Box borderBottom='4px' borderColor='gray.300' width='35%' _hover={{ borderColor: 'black' }}>
-                <Center fontSize='md' pb='13px' fontWeight='bold'>Sign Up </Center>
-              </Box>
-            </Center>
+          
+          <ModalCloseButton 
+            color="white" 
+            size="lg"
+            _hover={{ bg: 'whiteAlpha.200' }}
+          />
 
-            <FormControl onSubmit={handleSubmit}>
-
-              <VStack
-                spacing={8} w='70%'
-                pos='relative'
-                left='15%'
-              >
-                <Box color='red.400' fontSize='lg' fontWeight='bold'>
-                  {errors.map((error, idx) => <Text key={idx}>{error}</Text>)}
-
-                </Box>
-
-                <Input
-                  placeholder='Email'
-                  type='text'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  size='lg'
-                />
-                <Input
-                  placeholder='Username'
-                  type='text'
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                  size='lg'
-                />
-                <Input
-                  placeholder='Password'
-                  type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  size='lg'
-                />
-                <VStack w='full' spacing={2}>
-                  <Input
-                    placeholder='Confirm Password'
-                    type='password'
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                    size='lg'
-                  />
-                  <Text
-                    fontSize='10px'
-                    pos='relative'
-                    right='17%'
-                  >
-                    At least 8 characters, 1 uppercase letter, 1 number & 1 symbol.
-                  </Text>
-                </VStack>
-
-                <Button
-                  // className="signup-submit"
-                  type='submit'
-                  onClick={handleSubmit}
-                  bg='black'
-                  color='white'
+          <ModalBody p={0}>
+            <Tabs variant="soft-rounded" colorScheme="purple" p={6} defaultIndex={1}>
+              <TabList mb={6} bg="gray.50" p={1} borderRadius="lg">
+                <Tab 
+                  flex={1}
+                  _selected={{ 
+                    color: 'white', 
+                    bg: 'blue.500',
+                    shadow: 'md'
+                  }}
+                  fontWeight="semibold"
                 >
+                  <FiUser className="mr-2" />
+                  Log In
+                </Tab>
+                <Tab 
+                  flex={1}
+                  _selected={{ 
+                    color: 'white', 
+                    bg: tabSelectedColor,
+                    shadow: 'md'
+                  }}
+                  fontWeight="semibold"
+                >
+                  <FiUser className="mr-2" />
                   Sign Up
-                </Button>
-              </VStack>
-            </FormControl>
-          </ModalBody>
+                </Tab>
+              </TabList>
 
-          <ModalFooter>
-            <Button bg='black' color='white' mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
+              <TabPanels>
+                {/* Login Panel */}
+                <TabPanel p={0}>
+                  <LoginFormContent onClose={handleModalClose} />
+                </TabPanel>
+
+                {/* Signup Panel */}
+                <TabPanel p={0}>
+                  <SignUpFormContent onClose={handleModalClose} />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>
   )
 }
+
 export default SignUpForm

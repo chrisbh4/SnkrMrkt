@@ -9,38 +9,150 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
   FormControl,
+  FormLabel,
+  FormErrorMessage,
   Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
   VStack,
   Center,
-  Box
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  Link,
+  Divider,
+  useColorModeValue,
+  IconButton,
+  Spinner,
+  useToast
 } from '@chakra-ui/react'
-import SignUpForm from '../SignupFormPage/SignupForm'
+import { FiMail, FiLock, FiEye, FiEyeOff, FiUser } from 'react-icons/fi'
+import SignUpFormContent from '../SignupFormPage/SignupFormContent'
 
 function LoginForm () {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const toast = useToast()
+  
+  // Form state
   const [credential, setCredential] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [fieldErrors, setFieldErrors] = useState({})
 
-  const handleCredentials = (e) => setCredential(e.target.value)
-  // const handlePassword = (e) => setPassword(e.target.value)
+  // Color mode values
+  const bgColor = useColorModeValue('white', 'gray.800')
+  const borderColor = useColorModeValue('gray.200', 'gray.600')
+  const tabSelectedColor = useColorModeValue('blue.500', 'blue.200')
+
+  // Form validation
+  const validateField = (field, value) => {
+    const newFieldErrors = { ...fieldErrors }
+    
+    switch (field) {
+      case 'credential':
+        if (!value.trim()) {
+          newFieldErrors.credential = 'Email or username is required'
+        } else if (value.includes('@') && !/\S+@\S+\.\S+/.test(value)) {
+          newFieldErrors.credential = 'Please enter a valid email address'
+        } else {
+          delete newFieldErrors.credential
+        }
+        break
+      case 'password':
+        if (!value) {
+          newFieldErrors.password = 'Password is required'
+        } else if (value.length < 6) {
+          newFieldErrors.password = 'Password must be at least 6 characters'
+        } else {
+          delete newFieldErrors.password
+        }
+        break
+      default:
+        break
+    }
+    
+    setFieldErrors(newFieldErrors)
+    return Object.keys(newFieldErrors).length === 0
+  }
+
+  const handleCredentialChange = (e) => {
+    const value = e.target.value
+    setCredential(value)
+    validateField('credential', value)
+  }
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value
+    setPassword(value)
+    validateField('password', value)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const data = await dispatch(sessionActions.login({ credential, password }))
-    if (data?.errors) {
-      setErrors(data.errors)
+    
+    // Validate all fields
+    const isCredentialValid = validateField('credential', credential)
+    const isPasswordValid = validateField('password', password)
+    
+    if (!isCredentialValid || !isPasswordValid) {
       return
     }
-    navigate('/home')
-    return data
+
+    setIsLoading(true)
+    setErrors([])
+    
+    try {
+      const data = await dispatch(sessionActions.login({ credential, password }))
+      if (data?.errors) {
+        setErrors(data.errors)
+        toast({
+          title: 'Login Failed',
+          description: 'Please check your credentials and try again.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        })
+      } else {
+        toast({
+          title: 'Welcome back!',
+          description: 'You have successfully logged in.',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+        onClose()
+        navigate('/home')
+      }
+    } catch (error) {
+      setErrors(['An unexpected error occurred. Please try again.'])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleModalClose = () => {
+    onClose()
+    // Reset form state
+    setCredential('')
+    setPassword('')
+    setErrors([])
+    setFieldErrors({})
+    setShowPassword(false)
+    setIsLoading(false)
   }
 
   return (
@@ -52,74 +164,203 @@ function LoginForm () {
       >
         Log In
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose} size='3xl'>
+
+      <Modal 
+        isOpen={isOpen} 
+        onClose={handleModalClose} 
+        size="lg"
+        closeOnOverlayClick={!isLoading}
+        closeOnEsc={!isLoading}
+      >
         <ModalOverlay
-          backdropFilter='auto'
-          backdropInvert='80%'
-          backdropBlur='2px'
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px)"
         />
-        <ModalContent>
+        <ModalContent
+          bg={bgColor}
+          borderRadius="xl"
+          shadow="2xl"
+          mx={4}
+        >
           <ModalHeader
-            bg='black'
-            color='white'
+            bg="gradient-to-r"
+            bgGradient="linear(to-r, blue.500, purple.600)"
+            color="white"
+            borderTopRadius="xl"
+            py={6}
           >
-            <Center fontSize='30px'>
-              SNKR MRKT
+            <Center>
+              <VStack spacing={2}>
+                <Text fontSize="2xl" fontWeight="bold">
+                  SNKR MRKT
+                </Text>
+                <Text fontSize="sm" opacity={0.9}>
+                  Welcome to the sneaker marketplace
+                </Text>
+              </VStack>
             </Center>
           </ModalHeader>
-          <ModalCloseButton mt='3px' backgroundColor='white' _hover={{ bg: 'white' }} />
-          <ModalBody>
-            <Center pb='20px'>
-              <Box borderBottom='4px' borderColor='gray.300' width='35%' _hover={{ borderColor: 'black' }}>
-                <Center fontSize='md' pb='13px' fontWeight='bold'>
-                  Log In
-                </Center>
-              </Box>
-              <SignUpForm />
-            </Center>
-            <FormControl onSubmit={handleSubmit}>
-              <VStack
-                spacing={8} w='70%'
-                pos='relative'
-                left='15%'
-              >
-                <Box color='red.400' fontSize='lg' fontWeight='bold'>
-                  {errors.map((error, idx) => <Text key={idx}>{error}</Text>)}
-                </Box>
-                <Input
-                  placeholder='Email'
-                  type='text'
-                  id='email'
-                  value={credential}
-                  onChange={handleCredentials}
-                  required
-                  size='lg'
-                />
-                <Input
-                  placeholder='Password'
-                  type='password'
-                  id='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  size='lg'
-                />
-                <Button
-                  type='submit'
-                  onClick={handleSubmit}
-                  bg='black'
-                  color='white'
+          
+          <ModalCloseButton 
+            color="white" 
+            size="lg"
+            _hover={{ bg: 'whiteAlpha.200' }}
+            disabled={isLoading}
+          />
+
+          <ModalBody p={0}>
+            <Tabs variant="soft-rounded" colorScheme="blue" p={6}>
+              <TabList mb={6} bg="gray.50" p={1} borderRadius="lg">
+                <Tab 
+                  flex={1}
+                  _selected={{ 
+                    color: 'white', 
+                    bg: tabSelectedColor,
+                    shadow: 'md'
+                  }}
+                  fontWeight="semibold"
                 >
+                  <FiUser className="mr-2" />
                   Log In
-                </Button>
-              </VStack>
-            </FormControl>
+                </Tab>
+                <Tab 
+                  flex={1}
+                  _selected={{ 
+                    color: 'white', 
+                    bg: tabSelectedColor,
+                    shadow: 'md'
+                  }}
+                  fontWeight="semibold"
+                >
+                  <FiUser className="mr-2" />
+                  Sign Up
+                </Tab>
+              </TabList>
+
+              <TabPanels>
+                {/* Login Panel */}
+                <TabPanel p={0}>
+                  <form onSubmit={handleSubmit}>
+                    <VStack spacing={6}>
+                      {/* Error Display */}
+                      {errors.length > 0 && (
+                        <Alert status="error" borderRadius="md">
+                          <AlertIcon />
+                          <AlertDescription>
+                            {errors.map((error, idx) => (
+                              <Text key={idx}>{error}</Text>
+                            ))}
+                          </AlertDescription>
+                        </Alert>
+                      )}
+
+                      {/* Email/Username Field */}
+                      <FormControl isInvalid={fieldErrors.credential}>
+                        <FormLabel color="gray.700" fontWeight="semibold">
+                          Email or Username
+                        </FormLabel>
+                        <InputGroup>
+                          <InputLeftElement pointerEvents="none">
+                            <FiMail color="gray.400" />
+                          </InputLeftElement>
+                          <Input
+                            type="text"
+                            value={credential}
+                            onChange={handleCredentialChange}
+                            placeholder="Enter your email or username"
+                            size="lg"
+                            borderColor={borderColor}
+                            _hover={{ borderColor: 'blue.300' }}
+                            _focus={{ 
+                              borderColor: 'blue.500',
+                              shadow: '0 0 0 1px blue.500'
+                            }}
+                            disabled={isLoading}
+                          />
+                        </InputGroup>
+                        <FormErrorMessage>{fieldErrors.credential}</FormErrorMessage>
+                      </FormControl>
+
+                      {/* Password Field */}
+                      <FormControl isInvalid={fieldErrors.password}>
+                        <FormLabel color="gray.700" fontWeight="semibold">
+                          Password
+                        </FormLabel>
+                        <InputGroup>
+                          <InputLeftElement pointerEvents="none">
+                            <FiLock color="gray.400" />
+                          </InputLeftElement>
+                          <Input
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={handlePasswordChange}
+                            placeholder="Enter your password"
+                            size="lg"
+                            borderColor={borderColor}
+                            _hover={{ borderColor: 'blue.300' }}
+                            _focus={{ 
+                              borderColor: 'blue.500',
+                              shadow: '0 0 0 1px blue.500'
+                            }}
+                            disabled={isLoading}
+                          />
+                          <InputRightElement width="3rem">
+                            <IconButton
+                              h="2rem"
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => setShowPassword(!showPassword)}
+                              icon={showPassword ? <FiEyeOff /> : <FiEye />}
+                              disabled={isLoading}
+                            />
+                          </InputRightElement>
+                        </InputGroup>
+                        <FormErrorMessage>{fieldErrors.password}</FormErrorMessage>
+                      </FormControl>
+
+                      {/* Login Button */}
+                      <Button
+                        type="submit"
+                        size="lg"
+                        width="full"
+                        bgGradient="linear(to-r, blue.500, purple.600)"
+                        color="white"
+                        _hover={{
+                          bgGradient: "linear(to-r, blue.600, purple.700)",
+                          transform: 'translateY(-2px)',
+                          shadow: 'lg'
+                        }}
+                        _active={{
+                          transform: 'translateY(0)',
+                        }}
+                        isLoading={isLoading}
+                        loadingText="Logging in..."
+                        spinner={<Spinner size="sm" />}
+                        disabled={Object.keys(fieldErrors).length > 0}
+                        transition="all 0.2s"
+                      >
+                        Log In
+                      </Button>
+
+                      <Divider />
+
+                      <Text fontSize="sm" color="gray.600" textAlign="center">
+                        Don't have an account?{' '}
+                        <Link color="blue.500" fontWeight="semibold">
+                          Sign up here
+                        </Link>
+                      </Text>
+                    </VStack>
+                  </form>
+                </TabPanel>
+
+                {/* Signup Panel */}
+                <TabPanel p={0}>
+                  <SignUpFormContent onClose={handleModalClose} />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </ModalBody>
-          <ModalFooter>
-            <Button bg='black' color='white' mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
