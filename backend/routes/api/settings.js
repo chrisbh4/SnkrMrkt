@@ -70,20 +70,67 @@ router.get('/:userId/orders/:orderId/summary', asyncHandler(async (req, res) => 
       })
     }
 
-    // Fetch sneaker data directly using styleIDs from the shoeIds array
-    const sneakerDataPromises = order.shoeIds.map(async (styleID) => {
+    // First, try to get shoes from local database (for seeded data)
+    // Convert styleIDs to integers in case they match local shoe IDs
+    const potentialShoeIds = order.shoeIds
+      .map(id => parseInt(id, 10))
+      .filter(id => !isNaN(id))
+
+    let localShoes = []
+    if (potentialShoeIds.length > 0) {
+      localShoes = await Shoe.findAll({
+        where: {
+          id: {
+            [Op.in]: potentialShoeIds
+          }
+        }
+      })
+    }
+
+    // Create a map of local shoes by ID for quick lookup
+    const localShoesMap = new Map()
+    localShoes.forEach(shoe => {
+      localShoesMap.set(shoe.id.toString(), shoe)
+    })
+
+    // Process each styleID/shoeId
+    const sneakerDataPromises = order.shoeIds.map(async (shoeIdentifier) => {
+      // Check if this identifier exists in local database first
+      const localShoe = localShoesMap.get(shoeIdentifier)
+      
+      let baseData = {
+        styleID: shoeIdentifier,
+        thumbnail: null,
+        title: `Product ${shoeIdentifier}`,
+        price: 'N/A',
+        source: 'unknown'
+      }
+
+      // If we have local data, use it as the base
+      if (localShoe) {
+        baseData = {
+          styleID: shoeIdentifier,
+          thumbnail: localShoe.image,
+          title: localShoe.title,
+          price: localShoe.price,
+          brand: localShoe.brand,
+          description: localShoe.description,
+          source: 'local'
+        }
+      }
+
+      // Try to enhance with Sneaks API data
       try {
-        // Get product details directly using styleID with timeout
         const productDetails = await new Promise((resolve, reject) => {
           const timeout = setTimeout(() => {
-            console.log(`Timeout getting prices for styleID: ${styleID}`)
+            console.log(`Timeout getting prices for styleID: ${shoeIdentifier}`)
             resolve(null)
           }, 8000)
           
-          sneaks.getProductPrices(styleID, (err, product) => {
+          sneaks.getProductPrices(shoeIdentifier, (err, product) => {
             clearTimeout(timeout)
             if (err) {
-              console.error(`Error getting prices for styleID ${styleID}:`, err.message)
+              console.error(`Error getting prices for styleID ${shoeIdentifier}:`, err.message)
               resolve(null)
             } else {
               resolve(product)
@@ -92,35 +139,28 @@ router.get('/:userId/orders/:orderId/summary', asyncHandler(async (req, res) => 
         })
 
         if (productDetails) {
-          // Return only the requested fields: thumbnail, price, and title
+          // Merge Sneaks API data with local data (Sneaks API takes priority for pricing)
           return {
-            styleID: styleID,
-            thumbnail: productDetails.thumbnail,
-            title: productDetails.shoeName,
-            price: productDetails.retailPrice || productDetails.resellPrices?.stockX || productDetails.resellPrices?.goat || 'N/A'
+            styleID: shoeIdentifier,
+            thumbnail: productDetails.thumbnail || baseData.thumbnail,
+            title: productDetails.shoeName || baseData.title,
+            price: productDetails.retailPrice || productDetails.resellPrices?.stockX || productDetails.resellPrices?.goat || baseData.price,
+            brand: baseData.brand || productDetails.brand,
+            description: baseData.description,
+            source: localShoe ? 'local_enhanced' : 'sneaks_api'
           }
         } else {
-          // Fallback if API call fails
-          return {
-            styleID: styleID,
-            thumbnail: null,
-            title: `Product ${styleID}`,
-            price: 'N/A'
-          }
+          // Use base data (either local or fallback)
+          return baseData
         }
       } catch (error) {
-        console.error(`Error fetching sneaker data for styleID ${styleID}:`, error.message)
-        // Fallback for individual failures
-        return {
-          styleID: styleID,
-          thumbnail: null,
-          title: `Product ${styleID}`,
-          price: 'N/A'
-        }
+        console.error(`Error fetching sneaker data for styleID ${shoeIdentifier}:`, error.message)
+        // Return base data on error
+        return baseData
       }
     })
 
-    // Wait for all sneaker data to be fetched (with individual timeouts)
+    // Wait for all sneaker data to be fetched
     const sneakerData = await Promise.allSettled(sneakerDataPromises)
     const resolvedSneakers = sneakerData.map(result => 
       result.status === 'fulfilled' ? result.value : null
