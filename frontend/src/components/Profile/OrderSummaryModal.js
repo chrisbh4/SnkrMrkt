@@ -38,13 +38,11 @@ import { FiPackage, FiCalendar, FiDollarSign, FiTag } from 'react-icons/fi'
 import { fetchOrderSummary } from '../../store/settings'
 import currency from 'currency.js'
 
-function OrderSummaryModal({ isOpen, onClose, order }) {
+function OrderSummaryModal({ isOpen, onClose, order, isLoadingData }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session?.user)
   const orderSummary = useSelector(state => state.settings?.orderSummary)
-  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [summaryLoaded, setSummaryLoaded] = useState(false)
 
   const bgColor = useColorModeValue('white', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
@@ -61,27 +59,13 @@ function OrderSummaryModal({ isOpen, onClose, order }) {
     })
   }
 
-  const handleViewDetails = async () => {
-    if (!order || !user) return
-
-    setIsLoading(true)
-    setError(null)
-    
-    try {
-      await dispatch(fetchOrderSummary(user.id, order.id))
-      setSummaryLoaded(true)
-    } catch (err) {
-      setError(err.message || 'Failed to load order details')
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   const handleClose = () => {
-    setSummaryLoaded(false)
     setError(null)
     onClose()
   }
+
+  // Check if the order summary matches the current selected order
+  const isCorrectOrderData = orderSummary && order && orderSummary.id === order.id
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="4xl" scrollBehavior="inside">
@@ -187,17 +171,6 @@ function OrderSummaryModal({ isOpen, onClose, order }) {
             <Box>
               <Flex justify="space-between" align="center" mb={4}>
                 <Heading size="md">Order Items</Heading>
-                {!summaryLoaded && (
-                  <Button
-                    colorScheme="blue"
-                    onClick={handleViewDetails}
-                    isLoading={isLoading}
-                    loadingText="Loading Details..."
-                    size="sm"
-                  >
-                    Load Detailed View
-                  </Button>
-                )}
               </Flex>
 
               {error && (
@@ -207,7 +180,7 @@ function OrderSummaryModal({ isOpen, onClose, order }) {
                 </Alert>
               )}
 
-              {isLoading && (
+              {isLoadingData && (
                 <Flex justify="center" p={8}>
                   <VStack>
                     <Spinner size="xl" />
@@ -216,7 +189,7 @@ function OrderSummaryModal({ isOpen, onClose, order }) {
                 </Flex>
               )}
 
-              {summaryLoaded && orderSummary?.sneakers ? (
+              {isCorrectOrderData && orderSummary?.sneakers ? (
                 <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={4}>
                   {orderSummary.sneakers.map((sneaker, index) => (
                     <GridItem key={index}>
@@ -231,7 +204,7 @@ function OrderSummaryModal({ isOpen, onClose, order }) {
                         <Image
                           src={sneaker.thumbnail}
                           alt={sneaker.title}
-                          h="200px"
+                          h="250px"
                           w="100%"
                           objectFit="cover"
                           fallbackSrc="/placeholder-shoe.png"
@@ -260,15 +233,15 @@ function OrderSummaryModal({ isOpen, onClose, order }) {
                     </GridItem>
                   ))}
                 </Grid>
-              ) : !isLoading && !summaryLoaded && (
+              ) : !isLoadingData && (
                 <Box p={8} textAlign="center" bg={cardBg} borderRadius="md">
                   <VStack spacing={3}>
                     <Icon as={FiPackage} size="48px" color="gray.400" />
                     <Text color="gray.500">
-                      Click "Load Detailed View" to see shoe information with live market data
+                      Loading shoe information...
                     </Text>
                     <Text fontSize="sm" color="gray.400">
-                      This will fetch current prices and details using styleIDs from the Sneaks API
+                      Fetching current prices and details using styleIDs from the Sneaks API
                     </Text>
                   </VStack>
                 </Box>

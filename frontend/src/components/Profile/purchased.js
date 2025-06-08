@@ -17,7 +17,7 @@ import {
   Button,
   useDisclosure
 } from '@chakra-ui/react'
-import { fetchUsersOrdersList } from '../../store/settings'
+import { fetchUsersOrdersList, fetchOrderSummary, clearOrderSummaryData } from '../../store/settings'
 import OrderSummaryModal from './OrderSummaryModal'
 import currency from 'currency.js'
 
@@ -29,6 +29,7 @@ function PurchasedPage () {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedOrder, setSelectedOrder] = useState(null)
+  const [isLoadingSummary, setIsLoadingSummary] = useState(false)
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)
@@ -39,9 +40,26 @@ function PurchasedPage () {
     return formattedDate
   }
 
-  const handleViewOrderSummary = (order) => {
+  const handleViewOrderSummary = async (order) => {
+    if (!user) return
+    
     setSelectedOrder(order)
+    setIsLoadingSummary(true)
     onOpen()
+    
+    try {
+      await dispatch(fetchOrderSummary(user.id, order.id))
+    } catch (error) {
+      console.error('Error fetching order summary:', error)
+    } finally {
+      setIsLoadingSummary(false)
+    }
+  }
+
+  const handleCloseModal = () => {
+    dispatch(clearOrderSummaryData())
+    setSelectedOrder(null)
+    onClose()
   }
 
   useEffect(() => {
@@ -114,13 +132,15 @@ function PurchasedPage () {
                             </Text>
                           </VStack>
                           <HStack spacing={3}>
-                            <Badge colorScheme="green" fontSize="md" p={2}>
+                            <Badge colorScheme="green" fontSize="md" mr={5} p={2}>
                               Total: {currency(order?.totalAmount).format()}
                             </Badge>
                             <Button
                               colorScheme="blue"
                               size="sm"
                               onClick={() => handleViewOrderSummary(order)}
+                              isLoading={isLoadingSummary && selectedOrder?.id === order.id}
+                              loadingText="Loading..."
                             >
                               View Details
                             </Button>
@@ -139,8 +159,9 @@ function PurchasedPage () {
       {/* Order Summary Modal */}
       <OrderSummaryModal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={handleCloseModal}
         order={selectedOrder}
+        isLoadingData={isLoadingSummary}
       />
     </Box>
   )
