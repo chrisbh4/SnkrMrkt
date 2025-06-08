@@ -1,30 +1,93 @@
 import { csrfFetch } from './csrf'
-import { loadShoes } from './shoes'
 
 // Action Types
 const LOAD_FILTERS = 'filters/LOAD_FILTERS'
 const CLEAR_FILTERS = 'filters/CLEAR_FILTERS'
 const SET_SELECTED_FILTERS = 'filters/SET_SELECTED_FILTERS'
+const LOAD_FILTERED_SHOES = 'filters/LOAD_FILTERED_SHOES'
 
 // Action Creators
-export const getLoadFilters = () => ({
+const loadFilters = () => ({
   type: LOAD_FILTERS
 })
 
-export const getclearFilters = () => ({
+const clearFilters = () => ({
   type: CLEAR_FILTERS
 })
 
-export const setSelectedFilters = (filters) => ({
+const setFilters = (filters) => ({
   type: SET_SELECTED_FILTERS,
   filters
 })
 
+const loadFilteredShoes = (shoes) => ({
+  type: LOAD_FILTERED_SHOES,
+  shoes
+})
+
+// Thunk Actions
+export const getLoadFilters = () => async (dispatch) => {
+  dispatch(loadFilters())
+}
+
+export const getclearFilters = () => async (dispatch) => {
+  // Clear localStorage
+  localStorage.removeItem('filtered_shoes')
+  dispatch(clearFilters())
+}
+
+export const setSelectedFilters = (payload) => async (dispatch) => {
+  const { size, brand, price } = payload
+  
+  // Build query parameters
+  const params = new URLSearchParams()
+  
+  if (brand && brand !== 'All Brands') {
+    params.append('brand', brand)
+  }
+  
+  if (price && price !== '') {
+    // Handle price ranges
+    if (price === '650+') {
+      params.append('price', '650')
+    } else {
+      params.append('price', price)
+    }
+  }
+  
+  if (size && size !== 'All Sizes') {
+    params.append('size', size)
+  }
+
+  try {
+    const res = await csrfFetch(`/api/shoes/filter?${params.toString()}`)
+    
+    if (res.ok) {
+      const filteredShoes = await res.json()
+      
+      // Store filtered shoes in localStorage for persistence
+      localStorage.setItem('filtered_shoes', JSON.stringify(filteredShoes))
+      
+      dispatch(loadFilteredShoes(filteredShoes))
+      dispatch(setFilters(payload))
+      
+      return { success: true, shoes: filteredShoes }
+    } else {
+      throw new Error('Failed to fetch filtered shoes')
+    }
+  } catch (error) {
+    console.error('Filter error:', error)
+    return { success: false, error: error.message }
+  }
+}
+
 // Initial State
 const initialState = {
-  brand: { id: 0, title: 'All Brands' },
-  size: { id: 0, size: 'All Sizes', category: 'men' },
-  priceRange: { min: 0, max: 1000 }
+  brand: 'All Brands',
+  size: 'All Sizes',
+  price: '',
+  filteredShoes: null,
+  isFiltered: false
 }
 
 // Reducer
@@ -36,12 +99,21 @@ const filtersReducer = (state = initialState, action) => {
       }
     case CLEAR_FILTERS:
       return {
-        ...initialState
+        ...initialState,
+        filteredShoes: null,
+        isFiltered: false
       }
     case SET_SELECTED_FILTERS:
       return {
         ...state,
-        ...action.filters
+        ...action.filters,
+        isFiltered: true
+      }
+    case LOAD_FILTERED_SHOES:
+      return {
+        ...state,
+        filteredShoes: action.shoes,
+        isFiltered: true
       }
     default:
       return state

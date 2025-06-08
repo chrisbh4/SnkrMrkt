@@ -68,18 +68,22 @@ router.get('/', asyncHandler(async (req, res) => {
 }))
 
 router.get('/filter', asyncHandler(async (req, res) => {
-  const { brand, price } = req.query
+  const { brand, price, size } = req.query
   const query = {
-    where: {}
+    where: {},
+    include: [Reviews]
   }
 
-  if (brand !== 'null' && brand !== 'undefined') {
+  if (brand !== 'null' && brand !== 'undefined' && brand) {
     query.where.brand = brand
   }
 
-  // TODO: Style Needs to be added to database Schema
-  if (price !== 'undefined' && price !== '') {
-    if (parseInt(price) === 650) {
+  if (size !== 'null' && size !== 'undefined' && size && size !== 'All Sizes') {
+    query.where.shoeSize = parseFloat(size)
+  }
+
+  if (price !== 'undefined' && price !== '' && price) {
+    if (price === '650+') {
       const minPrice = 650
       const maxPrice = 50000
       query.where.price = {
@@ -95,7 +99,15 @@ router.get('/filter', asyncHandler(async (req, res) => {
 
   const shoes = await Shoes.findAll(query)
 
-  return res.json(shoes)
+  // Convert to the same format as the main endpoint
+  const filteredShoes = {}
+  shoes.forEach((shoe) => {
+    if (!filteredShoes[shoe.id]) {
+      filteredShoes[shoe.id] = shoe
+    }
+  })
+
+  return res.json(filteredShoes)
 }))
 
 router.get('/:id', asyncHandler(async (req, res) => {

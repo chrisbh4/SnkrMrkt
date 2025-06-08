@@ -10,11 +10,9 @@ import {
   SimpleGrid,
   WrapItem,
   Container,
-  Heading,
   Select,
   Skeleton,
   Badge,
-  Image,
   useColorModeValue,
   Icon,
   Divider
@@ -22,7 +20,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllShoes } from '../../store/shoes'
 import ShoeList from '../OldHomePage/ShoeList'
-import { getLoadFilters, getclearFilters, setSelectedFilters } from '../../store/filters'
+import { getclearFilters, setSelectedFilters } from '../../store/filters'
 import { FiFilter } from 'react-icons/fi'
 import { MdSort } from 'react-icons/md'
 
@@ -34,9 +32,13 @@ function NewHomePage () {
   const [sortBy, setSortBy] = useState('featured')
   const [selectedSizeCategory, setSelectedSizeCategory] = useState('men')
 
+  // Use filtered shoes if available, otherwise use all shoes
   let shoesArray
-  if (localStorage.filtered_shoes) {
+  if (filters.isFiltered && filters.filteredShoes) {
+    shoesArray = Object.values(filters.filteredShoes)
+  } else if (localStorage.filtered_shoes) {
     shoesArray = JSON.parse(localStorage.getItem('filtered_shoes'))
+    shoesArray = Object.values(shoesArray)
   } else {
     shoesArray = Object.values(shoes)
   }
@@ -111,7 +113,7 @@ function NewHomePage () {
 
   const brandsList = [
     { id: 1, title: 'Yeezy' },
-    { id: 2, title: 'Air Jordan' },
+    { id: 2, title: 'Air-Jordan' },
     { id: 3, title: 'Adidas' },
     { id: 4, title: 'Nike' },
     { id: 5, title: 'New Balance' },
@@ -122,40 +124,24 @@ function NewHomePage () {
     { id: 11, title: 'Gucci' }
   ]
 
-  const [filterBrand, setFilterBrand] = useState({ id: null, brand: filters?.brand })
-  const [filterShoeSize, setFilterShoeSize] = useState({ id: null, size: filters?.size })
-  const [filterStyleType, setFilterStyleType] = useState({})
-  const [filterPricing, setFilterPricing] = useState(filters?.price)
+  const [filterBrand, setFilterBrand] = useState('')
+  const [filterShoeSize, setFilterShoeSize] = useState('')
+  const [filterPricing, setFilterPricing] = useState('')
 
   const updateFilterBrand = (filter) => {
-    if (filter.id === filterBrand.id) {
-      setFilterBrand({})
+    if (filter.title === filterBrand) {
+      setFilterBrand('')
     } else {
-      setFilterBrand({ id: filter.id, brand: filter.title })
+      setFilterBrand(filter.title)
     }
   }
 
   const updateFilterShoeSize = (size) => {
-    if (size.id === filterShoeSize.id) {
-      dispatch(setSelectedFilters({
-        ...filters,
-        size: { id: 0, size: 'All Sizes', category: selectedSizeCategory }
-      }))
+    if (size.size === filterShoeSize) {
+      setFilterShoeSize('')
     } else {
-      dispatch(setSelectedFilters({
-        ...filters,
-        size: { ...size, category: selectedSizeCategory }
-      }))
+      setFilterShoeSize(size.size)
     }
-  }
-
-  const handleSizeCategoryChange = (category) => {
-    setSelectedSizeCategory(category)
-    // Reset size filter when changing category
-    dispatch(setSelectedFilters({
-      ...filters,
-      size: { id: 0, size: 'All Sizes', category }
-    }))
   }
 
   const updateFilterPricing = (value) => {
@@ -166,158 +152,130 @@ function NewHomePage () {
     }
   }
 
-  const payload = { brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType, price: filterPricing }
-
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true)
       await dispatch(getAllShoes())
-      await dispatch(getLoadFilters(payload))
       setIsLoading(false)
     }
     loadData()
-    // eslint-disable-next-line
   }, [dispatch])
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    const data = await dispatch(setSelectedFilters(payload))
-    return data
+    setIsLoading(true)
+    
+    const payload = { 
+      brand: filterBrand, 
+      size: filterShoeSize, 
+      price: filterPricing 
+    }
+    
+    const result = await dispatch(setSelectedFilters(payload))
+    
+    if (result.success) {
+      console.log('Filters applied successfully')
+    } else {
+      console.error('Filter error:', result.error)
+    }
+    
+    setIsLoading(false)
   }
 
   const clearFilter = async (e) => {
-    const data = await dispatch(getclearFilters())
-    setFilterBrand({})
-    setFilterShoeSize({})
-    setFilterStyleType({})
+    e.preventDefault()
+    setIsLoading(true)
+    
+    await dispatch(getclearFilters())
+    setFilterBrand('')
+    setFilterShoeSize('')
     setFilterPricing('')
-    return data
+    
+    // Refresh all shoes
+    await dispatch(getAllShoes())
+    setIsLoading(false)
   }
-
-  // Featured shoes - get 4 random shoes for the hero section
-  const featuredShoes = sortedShoes.slice(0, 4)
 
   const bgColor = useColorModeValue('white', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   return (
-    <Box>
-      {/* Hero Section */}
-      <Box bg="gray.50" py={8} mb={8}>
-        <Container maxW="container.xl">
-          <Heading mb={6} size="lg">Featured Sneakers</Heading>
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
-            {featuredShoes.map((shoe) => (
-              <Box
-                key={shoe.id}
-                bg={bgColor}
-                borderWidth="1px"
-                borderColor={borderColor}
-                borderRadius="lg"
-                overflow="hidden"
-                transition="transform 0.2s"
-                _hover={{ transform: 'scale(1.02)' }}
-              >
-                <Image src={shoe.image} alt={shoe.title} height="200px" width="100%" objectFit="cover" />
-                <Box p={4}>
-                  <Text fontWeight="bold" fontSize="lg" noOfLines={1}>{shoe.title}</Text>
-                  <Badge colorScheme="blue" mt={2}>{shoe.brand}</Badge>
-                  <Text mt={2} fontSize="xl" color="blue.500">${shoe.price}</Text>
-                </Box>
-              </Box>
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
-
-      <Container maxW="container.xl">
-        <Grid
-          templateColumns={{ base: '1fr', md: '250px 1fr' }}
-          gap={8}
-        >
-          {/* Filters Section */}
+    <Box bg={useColorModeValue('gray.50', 'gray.900')} minH="100vh" pt="60px">
+      <Container maxW="7xl" py={8}>
+        <Grid templateColumns={{ base: '1fr', lg: '280px 1fr' }} gap={8}>
+          {/* Filters Sidebar */}
           <GridItem>
             <Box
-              position="sticky"
-              top="20px"
               bg={bgColor}
+              p={6}
+              borderRadius="xl"
               borderWidth="1px"
               borderColor={borderColor}
-              borderRadius="lg"
-              p={4}
+              shadow="sm"
+              position="sticky"
+              top="80px"
             >
-              <Flex align="center" mb={4}>
-                <Icon as={FiFilter} mr={2} />
-                <Heading size="md">Filters</Heading>
-              </Flex>
+              <VStack spacing={6} align="stretch">
+                <Flex align="center">
+                  <Icon as={FiFilter} mr={2} />
+                  <Text fontSize="lg" fontWeight="bold">Filters</Text>
+                </Flex>
 
-              <VStack spacing={4} align="stretch">
+                <Divider />
+
                 <Box>
-                  <Text fontWeight="semibold" mb={2}>Brands</Text>
-                  {brandsList.map((brand) => (
-                    <Button
-                      key={brand.id}
-                      size="sm"
-                      variant={brand.id === filterBrand.id ? 'solid' : 'ghost'}
-                      colorScheme={brand.id === filterBrand.id ? 'blue' : 'gray'}
-                      onClick={() => updateFilterBrand(brand)}
-                      mb={1}
-                      width="100%"
-                      justifyContent="flex-start"
-                    >
-                      {brand.title}
-                    </Button>
-                  ))}
+                  <Text fontWeight="semibold" mb={3}>Brand</Text>
+                  <VStack spacing={2} align="stretch">
+                    {brandsList.map((brand) => (
+                      <Button
+                        key={brand.id}
+                        size="sm"
+                        variant={filterBrand === brand.title ? 'solid' : 'ghost'}
+                        colorScheme={filterBrand === brand.title ? 'blue' : 'gray'}
+                        onClick={() => updateFilterBrand(brand)}
+                        justifyContent="flex-start"
+                      >
+                        {brand.title}
+                      </Button>
+                    ))}
+                  </VStack>
                 </Box>
 
                 <Divider />
 
                 <Box>
-                  <Text fontWeight="semibold" mb={2}>Size</Text>
-                  <Flex mb={4}>
-                    <Button
-                      size="sm"
-                      variant={selectedSizeCategory === 'men' ? 'solid' : 'ghost'}
-                      colorScheme={selectedSizeCategory === 'men' ? 'blue' : 'gray'}
-                      onClick={() => handleSizeCategoryChange('men')}
-                      mr={2}
-                      flex={1}
-                    >
-                      Men
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant={selectedSizeCategory === 'women' ? 'solid' : 'ghost'}
-                      colorScheme={selectedSizeCategory === 'women' ? 'blue' : 'gray'}
-                      onClick={() => handleSizeCategoryChange('women')}
-                      mr={2}
-                      flex={1}
-                    >
-                      Women
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant={selectedSizeCategory === 'youth' ? 'solid' : 'ghost'}
-                      colorScheme={selectedSizeCategory === 'youth' ? 'blue' : 'gray'}
-                      onClick={() => handleSizeCategoryChange('youth')}
-                      flex={1}
-                    >
-                      Youth
-                    </Button>
-                  </Flex>
-                  <SimpleGrid columns={4} spacing={2}>
-                    {sizeCharts[selectedSizeCategory].map((chart) => (
-                      <Button
-                        key={chart.id}
-                        size="sm"
-                        variant={chart.id === filterShoeSize.id ? 'solid' : 'outline'}
-                        colorScheme={chart.id === filterShoeSize.id ? 'blue' : 'gray'}
-                        onClick={() => updateFilterShoeSize(chart)}
-                      >
-                        {chart.size}
-                      </Button>
-                    ))}
-                  </SimpleGrid>
+                  <Text fontWeight="semibold" mb={3}>Size</Text>
+                  <VStack spacing={3} align="stretch">
+                    <Flex gap={2}>
+                      {['men', 'women', 'youth'].map((category) => (
+                        <Button
+                          key={category}
+                          size="xs"
+                          variant={selectedSizeCategory === category ? 'solid' : 'outline'}
+                          colorScheme={selectedSizeCategory === category ? 'blue' : 'gray'}
+                          onClick={() => setSelectedSizeCategory(category)}
+                          textTransform="capitalize"
+                          flex={1}
+                        >
+                          {category}
+                        </Button>
+                      ))}
+                    </Flex>
+
+                    <SimpleGrid columns={4} spacing={2}>
+                      {sizeCharts[selectedSizeCategory].map((chart) => (
+                        <Button
+                          key={chart.id}
+                          size="sm"
+                          variant={chart.size === filterShoeSize ? 'solid' : 'outline'}
+                          colorScheme={chart.size === filterShoeSize ? 'blue' : 'gray'}
+                          onClick={() => updateFilterShoeSize(chart)}
+                        >
+                          {chart.size}
+                        </Button>
+                      ))}
+                    </SimpleGrid>
+                  </VStack>
                 </Box>
 
                 <Divider />
@@ -325,7 +283,7 @@ function NewHomePage () {
                 <Box>
                   <Text fontWeight="semibold" mb={2}>Price Range</Text>
                   <VStack spacing={2} align="stretch">
-                    {['0-100', '200-300', '300-400', '400-650', '650+'].map((range) => (
+                    {['0-100', '100-200', '200-300', '300-400', '400-650', '650+'].map((range) => (
                       <Button
                         key={range}
                         size="sm"
@@ -348,6 +306,7 @@ function NewHomePage () {
                     size="sm"
                     width="full"
                     onClick={onSubmit}
+                    isLoading={isLoading}
                   >
                     Apply Filters
                   </Button>
@@ -356,6 +315,7 @@ function NewHomePage () {
                     size="sm"
                     width="full"
                     onClick={clearFilter}
+                    isLoading={isLoading}
                   >
                     Clear All
                   </Button>
@@ -369,6 +329,9 @@ function NewHomePage () {
             <Flex justify="space-between" align="center" mb={6}>
               <Text fontSize="lg" fontWeight="semibold">
                 {sortedShoes.length} Products
+                {filters.isFiltered && (
+                  <Badge ml={2} colorScheme="blue">Filtered</Badge>
+                )}
               </Text>
               <Flex align="center">
                 <Icon as={MdSort} mr={2} />
@@ -393,6 +356,15 @@ function NewHomePage () {
                   <Skeleton key={i} height="300px" borderRadius="lg" />
                 ))}
               </SimpleGrid>
+            ) : sortedShoes.length === 0 ? (
+              <Box textAlign="center" py={10}>
+                <Text fontSize="lg" color="gray.500">
+                  No shoes found matching your filters.
+                </Text>
+                <Button mt={4} colorScheme="blue" onClick={clearFilter}>
+                  Clear Filters
+                </Button>
+              </Box>
             ) : (
               <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={6}>
                 {sortedShoes.map((shoe) => (
