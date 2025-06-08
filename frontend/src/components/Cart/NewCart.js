@@ -92,7 +92,24 @@ function CheckoutForm () {
   const updateCountry = (e) => setCountry(e.target.value)
   const updateStateProvince = (e) => setStateProvince(e.target.value)
   const updatePostalCode = (e) => setPostalCode(e.target.value)
-  const updatePhoneNumber = (e) => setPhoneNumber(e.target.value)
+  const updatePhoneNumber = (e) => {
+    const input = e.target.value
+    // Remove all non-numeric characters
+    const numbersOnly = input.replace(/\D/g, '')
+    
+    // Format to xxx-xxx-xxxx if we have enough digits
+    let formattedNumber = numbersOnly
+    if (numbersOnly.length >= 6) {
+      formattedNumber = `${numbersOnly.slice(0, 3)}-${numbersOnly.slice(3, 6)}-${numbersOnly.slice(6, 10)}`
+    } else if (numbersOnly.length >= 3) {
+      formattedNumber = `${numbersOnly.slice(0, 3)}-${numbersOnly.slice(3, 6)}`
+    }
+    
+    // Limit to 10 digits total
+    if (numbersOnly.length <= 10) {
+      setPhoneNumber(formattedNumber)
+    }
+  }
 
   let total = 0.00
   cart.forEach((item) => {
