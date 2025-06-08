@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf'
 
 const LOAD = 'settings/LOAD'
+const LOAD_ORDER_SUMMARY = 'settings/LOAD_ORDER_SUMMARY'
 
 const loadUsersSellingList = (data) => ({
   type: LOAD,
@@ -17,11 +18,25 @@ const loadUsersWatchList = (data) => ({
   data
 })
 
+const loadOrderSummary = (data) => ({
+  type: LOAD_ORDER_SUMMARY,
+  data
+})
+
 export const fetchUserSellingList = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/settings/${userId}/selling`)
   if (res.ok) {
     const data = await res.json()
     dispatch(loadUsersSellingList(data))
+    return data
+  }
+}
+
+export const fetchUsersWatchingList = (userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/settings/${userId}/watching`)
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(loadUsersOrdersList(data))
     return data
   }
 }
@@ -35,12 +50,15 @@ export const fetchUsersOrdersList = (userId) => async (dispatch) => {
   }
 }
 
-export const fetchUsersWatchList = (userId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/settings/${userId}/watching`)
+export const fetchOrderSummary = (userId, orderId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/settings/${userId}/orders/${orderId}/summary`)
   if (res.ok) {
     const data = await res.json()
-    dispatch(loadUsersWatchList(data))
+    dispatch(loadOrderSummary(data))
     return data
+  } else {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Failed to fetch order summary')
   }
 }
 
@@ -69,7 +87,9 @@ const initialState = {}
 function reducer (state = initialState, action) {
   switch (action.type) {
     case LOAD:
-      return { ...action.data }
+      return { ...state, ...action.data }
+    case LOAD_ORDER_SUMMARY:
+      return { ...state, orderSummary: action.data.order }
     default:
       return state
   }

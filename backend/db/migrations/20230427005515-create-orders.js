@@ -68,7 +68,7 @@ module.exports = {
       },
       shoeIds: {
         allowNull: true,
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       totalAmount: {
         allowNull: true,
