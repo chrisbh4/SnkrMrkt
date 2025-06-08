@@ -21,7 +21,6 @@ import {
   InputRightElement,
   VStack,
   Center,
-  Box,
   Tabs,
   TabList,
   TabPanels,

@@ -17,8 +17,6 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
-  Link,
-  Divider,
   useColorModeValue,
   IconButton,
   Spinner,
