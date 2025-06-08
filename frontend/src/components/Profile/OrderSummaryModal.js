@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   Modal,
   ModalOverlay,
@@ -14,10 +14,8 @@ import {
   HStack,
   Text,
   Image,
-  Badge,
   Grid,
   GridItem,
-  Divider,
   Heading,
   useColorModeValue,
   Spinner,
@@ -32,16 +30,12 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon,
-  Container
+  AccordionIcon
 } from '@chakra-ui/react'
 import { FiPackage, FiCalendar, FiDollarSign, FiTag, FiMapPin, FiMail, FiPhone, FiUser } from 'react-icons/fi'
-import { fetchOrderSummary } from '../../store/settings'
 import currency from 'currency.js'
 
 function OrderSummaryModal({ isOpen, onClose, order, isLoadingData }) {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.session?.user)
   const orderSummary = useSelector(state => state.settings?.orderSummary)
   const [error, setError] = useState(null)
 

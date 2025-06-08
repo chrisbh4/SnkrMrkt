@@ -14,11 +14,6 @@ const loadUsersOrdersList = (data) => ({
   data
 })
 
-const loadUsersWatchList = (data) => ({
-  type: LOAD,
-  data
-})
-
 const loadOrderSummary = (data) => ({
   type: LOAD_ORDER_SUMMARY,
   data

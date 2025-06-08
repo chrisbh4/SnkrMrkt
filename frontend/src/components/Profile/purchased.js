@@ -18,7 +18,7 @@ import {
   useDisclosure,
   Container,
   Icon,
-  Divider,
+
   Avatar,
   Stack
 } from '@chakra-ui/react'
@@ -28,7 +28,6 @@ import {
   FiPackage, 
   FiEye,
   FiCalendar,
-  FiDollarSign,
   FiTrendingUp
 } from 'react-icons/fi'
 import { fetchUsersOrdersList, fetchOrderSummary, clearOrderSummaryData } from '../../store/settings'
