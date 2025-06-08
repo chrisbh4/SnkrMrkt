@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf'
 const LOAD_SNKR_API = 'snks_api/LOAD_SNKR_API'
 const LOAD_SEARCH_RESULTS = 'snks_api/LOAD_SEARCH_RESULTS'
 const LOAD_SNEAKER_DETAILS = 'snks_api/LOAD_SNEAKER_DETAILS'
+const LOAD_MOST_POPULAR = 'snks_api/LOAD_MOST_POPULAR'
 
 // const LOAD_ONE_SNKR = 'snks_api/LOAD_ONE_SNKR';
 
@@ -19,6 +20,11 @@ const loadSearchResults = (results) => ({
 const loadSneakerDetails = (details) => ({
   type: LOAD_SNEAKER_DETAILS,
   details
+})
+
+const loadMostPopular = (products) => ({
+  type: LOAD_MOST_POPULAR,
+  products
 })
 
 // const loadOneSnkr = (review) => ({
@@ -82,9 +88,26 @@ export const fetchMostPopular = () => async (dispatch) => {
   }
 }
 
+export const fetchMostPopularShoes = (limit = 8) => async (dispatch) => {
+  try {
+    const res = await csrfFetch(`/api/test/most-popular?limit=${limit}`)
+
+    if (res.ok) {
+      const data = await res.json()
+      dispatch(loadMostPopular(data.products))
+      return data.products
+    } else {
+      console.error('Failed to fetch most popular shoes, status:', res.status)
+    }
+  } catch (error) {
+    console.error('Error fetching most popular shoes:', error)
+  }
+}
+
 const initialState = {
   searchResults: [],
   popularItems: {},
+  mostPopular: [],
   currentSneaker: null
 }
 
@@ -96,6 +119,8 @@ function reducer (state = initialState, action) {
       return { ...state, searchResults: action.results }
     case LOAD_SNEAKER_DETAILS:
       return { ...state, currentSneaker: action.details }
+    case LOAD_MOST_POPULAR:
+      return { ...state, mostPopular: action.products }
     default:
       return state
   }
