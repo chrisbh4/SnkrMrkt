@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { removeShoeFromCart } from '../../store/shoppingCart'
 import currency from 'currency.js'
 import { DeleteIcon } from '@chakra-ui/icons'
@@ -7,28 +8,49 @@ import {
   Box,
   Flex,
   Button,
-  Image
+  Image,
+  Text
 } from '@chakra-ui/react'
 
-function CartItem ({ item }) {
+function CartItem({ item }) {
   const dispatch = useDispatch()
-
-  // Built out cart and destructure the item thats being passed in as a prop
+  const navigate = useNavigate()
   const cart = useSelector((state) => state.shoppingCart)
 
-  // Needs to be in a function to be able to useDispatch inside the store
   const removeShoe = async () => {
-    await dispatch(removeShoeFromCart(item.shoeId, cart))
+    await dispatch(removeShoeFromCart(item.cartItemId, cart))
+  }
+
+  const handleShoeClick = () => {
+    navigate(`/sneaker/${item.shoeId}`)
   }
 
   return (
     <Box>
       <Flex w='90%' justify='space-between' alignItems='center'>
-        <Image src={item.img} borderRadius='full' boxSize='150px' />
-        <Box w='30%'>{item.title} </Box>
+        <Image
+          src={item.img}
+          borderRadius='full'
+          boxSize='150px'
+          cursor='pointer'
+          onClick={handleShoeClick}
+        />
+        <Box
+          w='30%'
+          cursor='pointer'
+          onClick={handleShoeClick}
+        >
+          <Text>{item.title}</Text>
+        </Box>
         <Box>{currency(item.price).format()}</Box>
         <Box>Size: {item.size}</Box>
-        <Button onClick={removeShoe} bg='none' fontSize='20px' fontWeight='bold' _hover={{ bg: 'none' }}>
+        <Button
+          onClick={removeShoe}
+          bg='none'
+          fontSize='20px'
+          fontWeight='bold'
+          _hover={{ bg: 'none' }}
+        >
           <DeleteIcon />
         </Button>
       </Flex>

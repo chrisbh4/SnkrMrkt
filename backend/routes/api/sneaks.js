@@ -1,15 +1,11 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
-
-// const SneaksAPI = require('sneaks-api');
-// const sneaks = new SneaksAPI();
-// const StockXData = require('stockx-data')
-// const stockX = new StockXData()
+const SneaksAPI = require('sneaks-api')
+const sneaks = new SneaksAPI()
 
 const router = express.Router()
 
 /*
-
 * getProducts(keyword, limit, callback) takes in a keyword and limit and returns a product array
 sneaks.getProducts("Yeezy Cinder", 10, function(err, products){
     console.log(products)
@@ -26,53 +22,11 @@ sneaks.getMostPopular(5, function(err, products){
 })
 */
 
-// router.get('/', asyncHandler(async (req, res) => {
-//     await sneaks.getProducts("Yeezy Cinder", 1, function (err, products) {
-//         // const objPro =Object.values(products)[0]
-//         // console.log("Func :", objPro.releaseDate)
-//         // console.log("Prod :", products)
-//         console.log("error :", err)
-//         console.log("products : ", products)
-//         res.json({"OK": products[0].description});
-
-//     })
-// }));
-
-// // router.get('/most-popular', asyncHandler(async (req, res) => {
-// router.get('/most', asyncHandler(async (req, res) => {
-//     await sneaks.getMostPopular(10, function(err, products){
-//         console.log(products)
-
-//         res.json({"most_popular": products})
-//     })
-// }));
 
 router.get('/', asyncHandler(async (req, res) => {
   res.json({ snks_api: 'no data found' })
 }))
 
-// router.get('/', asyncHandler(async (req, res) => {
-//   const box = []
-//   //  * Optimized best for Multi single shoe search (Multiple Gender sizes) results in same shoe different genders
-//   await stockX.searchProducts('Jordan 1 Clay Green').then((searchedProduct) => {
-//     box.push(searchedProduct)
-//   })
-
-//   res.json({ snks_api: box })
-// }))
-
-// router.get('/single', asyncHandler(async (req, res) => {
-//   const box = []
-
-//   //  * Optimized best for Single shoe search
-//   await stockX.searchProducts('Jordan 1 Clay Green').then(async (searchedProduct) => {
-//     await stockX.fetchProductDetails(searchedProduct[0]).then((productDetails) => {
-//       box.push([productDetails])
-//     })
-//   })
-
-//   res.json({ snks_api: box })
-// }))
 
 // router.get('/related-products', asyncHandler(async (req, res) => {
 //   const box = []
@@ -83,5 +37,47 @@ router.get('/', asyncHandler(async (req, res) => {
 
 //   res.json({ snks_api: box })
 // }))
+
+router.get('/search', asyncHandler(async (req, res) => {
+  const { query } = req.query
+  if (!query) {
+    return res.json({ products: [] })
+  }
+
+  try {
+    const products = await new Promise((resolve, reject) => {
+      sneaks.getProducts(query, 10, (err, products) => {
+        if (err) reject(err)
+        resolve(products)
+      })
+    })
+
+    res.json({ products })
+  } catch (error) {
+    console.error('Search error:', error)
+    res.status(500).json({ error: 'Failed to search products' })
+  }
+}))
+
+router.get('/details', asyncHandler(async (req, res) => {
+  const { styleId } = req.query
+  if (!styleId) {
+    return res.status(400).json({ error: 'Style ID is required' })
+  }
+
+  try {
+    const product = await new Promise((resolve, reject) => {
+      sneaks.getProductPrices(styleId, (err, product) => {
+        if (err) reject(err)
+        resolve(product)
+      })
+    })
+
+    res.json({ product })
+  } catch (error) {
+    console.error('Product details error:', error)
+    res.status(500).json({ error: 'Failed to fetch product details' })
+  }
+}))
 
 module.exports = router

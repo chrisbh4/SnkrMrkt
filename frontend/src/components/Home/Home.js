@@ -1,15 +1,38 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Center, GridItem, Box, VStack, Button, Text, Flex, SimpleGrid, Wrap, WrapItem } from '@chakra-ui/react'
+import {
+  Grid,
+  GridItem,
+  Box,
+  VStack,
+  Button,
+  Text,
+  Flex,
+  SimpleGrid,
+  WrapItem,
+  Container,
+  Heading,
+  Select,
+  Skeleton,
+  Badge,
+  Image,
+  useColorModeValue,
+  Icon,
+  Divider
+} from '@chakra-ui/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllShoes } from '../../store/shoes'
 import ShoeList from '../OldHomePage/ShoeList'
 import { getLoadFilters, getclearFilters, setSelectedFilters } from '../../store/filters'
-// import ShoeStyleGrid from "./StyleGrid";
+import { FiFilter } from 'react-icons/fi'
+import { MdSort } from 'react-icons/md'
 
 function NewHomePage () {
   const dispatch = useDispatch()
   const shoes = useSelector((state) => state.shoes)
   const filters = useSelector((state) => state.filters)
+  const [isLoading, setIsLoading] = useState(true)
+  const [sortBy, setSortBy] = useState('featured')
+  const [selectedSizeCategory, setSelectedSizeCategory] = useState('men')
 
   let shoesArray
   if (localStorage.filtered_shoes) {
@@ -18,33 +41,74 @@ function NewHomePage () {
     shoesArray = Object.values(shoes)
   }
 
-  const sizeChart = [
-    { id: 1, size: 3 },
-    { id: 2, size: 3.5 },
-    { id: 3, size: 4 },
-    { id: 4, size: 4.5 },
-    { id: 5, size: 5 },
-    { id: 6, size: 5.5 },
-    { id: 7, size: 6 },
-    { id: 8, size: 6.5 },
-    { id: 9, size: 7 },
-    { id: 10, size: 7.5 },
-    { id: 11, size: 8 },
-    { id: 12, size: 8.5 },
-    { id: 13, size: 9 },
-    { id: 14, size: 9.5 },
-    { id: 15, size: 10 },
-    { id: 16, size: 10.5 },
-    { id: 17, size: 11 },
-    { id: 18, size: 11.5 },
-    { id: 19, size: 12 },
-    { id: 20, size: 12.5 },
-    { id: 21, size: 13 },
-    { id: 22, size: 13.5 },
-    { id: 23, size: 14 },
-    { id: 24, size: 14.5 },
-    { id: 25, size: 15 }
-  ]
+  // Sort shoes based on selected option
+  const sortedShoes = [...shoesArray].sort((a, b) => {
+    switch (sortBy) {
+      case 'price-asc':
+        return a.price - b.price
+      case 'price-desc':
+        return b.price - a.price
+      case 'name-asc':
+        return a.title.localeCompare(b.title)
+      case 'name-desc':
+        return b.title.localeCompare(a.title)
+      default:
+        return 0
+    }
+  })
+
+  const sizeCharts = {
+    men: [
+      { id: 1, size: 6 },
+      { id: 2, size: 6.5 },
+      { id: 3, size: 7 },
+      { id: 4, size: 7.5 },
+      { id: 5, size: 8 },
+      { id: 6, size: 8.5 },
+      { id: 7, size: 9 },
+      { id: 8, size: 9.5 },
+      { id: 9, size: 10 },
+      { id: 10, size: 10.5 },
+      { id: 11, size: 11 },
+      { id: 12, size: 11.5 },
+      { id: 13, size: 12 },
+      { id: 14, size: 12.5 },
+      { id: 15, size: 13 },
+      { id: 16, size: 13.5 },
+      { id: 17, size: 14 },
+      { id: 18, size: 14.5 },
+      { id: 19, size: 15 }
+    ],
+    women: [
+      { id: 1, size: 5 },
+      { id: 2, size: 5.5 },
+      { id: 3, size: 6 },
+      { id: 4, size: 6.5 },
+      { id: 5, size: 7 },
+      { id: 6, size: 7.5 },
+      { id: 7, size: 8 },
+      { id: 8, size: 8.5 },
+      { id: 9, size: 9 },
+      { id: 10, size: 9.5 },
+      { id: 11, size: 10 },
+      { id: 12, size: 10.5 },
+      { id: 13, size: 11 },
+      { id: 14, size: 11.5 },
+      { id: 15, size: 12 }
+    ],
+    youth: [
+      { id: 1, size: '3Y' },
+      { id: 2, size: '3.5Y' },
+      { id: 3, size: '4Y' },
+      { id: 4, size: '4.5Y' },
+      { id: 5, size: '5Y' },
+      { id: 6, size: '5.5Y' },
+      { id: 7, size: '6Y' },
+      { id: 8, size: '6.5Y' },
+      { id: 9, size: '7Y' }
+    ]
+  }
+
   const brandsList = [
     { id: 1, title: 'Yeezy' },
     { id: 2, title: 'Air Jordan' },
@@ -55,7 +119,6 @@ function NewHomePage () {
     { id: 7, title: 'Converse' },
     { id: 8, title: 'Puma' },
     { id: 9, title: 'Vans' },
-    // { id: 10, title: "Collections" },
     { id: 11, title: 'Gucci' }
   ]
 
@@ -63,11 +126,6 @@ function NewHomePage () {
   const [filterShoeSize, setFilterShoeSize] = useState({ id: null, size: filters?.size })
   const [filterStyleType, setFilterStyleType] = useState({})
   const [filterPricing, setFilterPricing] = useState(filters?.price)
-
-  // const updateFilterBrand = (filter) => { setFilterBrand({ id: filter.id, brand: filter.title }) };
-  // const updateFilterShoeSize = (filter) => { setFilterShoeSize({ id: filter.id, size: filter.size }) };
-  // const updateFilterStyle = (value) => { setFilterStyleType(value) };
-  // const updateFilterPricing = (value) => { setFilterPricing(value) };
 
   const updateFilterBrand = (filter) => {
     if (filter.id === filterBrand.id) {
@@ -77,21 +135,28 @@ function NewHomePage () {
     }
   }
 
-  const updateFilterShoeSize = (filter) => {
-    if (filter.id === filterShoeSize.id) {
-      setFilterShoeSize({})
+  const updateFilterShoeSize = (size) => {
+    if (size.id === filterShoeSize.id) {
+      dispatch(setSelectedFilters({
+        ...filters,
+        size: { id: 0, size: 'All Sizes', category: selectedSizeCategory }
+      }))
     } else {
-      setFilterShoeSize({ id: filter.id, size: filter.size })
+      dispatch(setSelectedFilters({
+        ...filters,
+        size: { ...size, category: selectedSizeCategory }
+      }))
     }
   }
 
-  // const updateFilterStyle = (value) => {
-  //   if (value === filterStyleType) {
-  //     setFilterStyleType("");
-  //   } else {
-  //     setFilterStyleType(value);
-  //   }
-  // };
+  const handleSizeCategoryChange = (category) => {
+    setSelectedSizeCategory(category)
+    // Reset size filter when changing category
+    dispatch(setSelectedFilters({
+      ...filters,
+      size: { id: 0, size: 'All Sizes', category }
+    }))
+  }
 
   const updateFilterPricing = (value) => {
     if (value === filterPricing) {
@@ -101,12 +166,17 @@ function NewHomePage () {
     }
   }
 
-  // TODO: Create a payload that can be updated on every click/change for filters that will go to the store then update the redux state
   const payload = { brand: filterBrand.brand, size: filterShoeSize.size, style: filterStyleType, price: filterPricing }
 
   useEffect(() => {
-    dispatch(getAllShoes())
-    dispatch(getLoadFilters(payload))
+    const loadData = async () => {
+      setIsLoading(true)
+      await dispatch(getAllShoes())
+      await dispatch(getLoadFilters(payload))
+      setIsLoading(false)
+    }
+    loadData()
+    // eslint-disable-next-line
   }, [dispatch])
 
   const onSubmit = async (e) => {
@@ -124,186 +194,218 @@ function NewHomePage () {
     return data
   }
 
-  function renderShoes () {
-    if (shoesArray.length === 0) {
-      return (
-        <Text textAlign='center' fontSize='xl' mt='4'>
-          No results found
-        </Text>
-      )
-    }
+  // Featured shoes - get 4 random shoes for the hero section
+  const featuredShoes = sortedShoes.slice(0, 4)
 
-    return shoesArray.map((shoe) => (
-      <WrapItem className='shoe-container' key={shoe.id}>
-        <ShoeList shoe={shoe} key={shoe.id} />
-      </WrapItem>
-    ))
-  }
+  const bgColor = useColorModeValue('white', 'gray.800')
+  const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   return (
-    <>
-      <Grid
-        pl='3px'
-        pt='2%'
-        templateRows='repeat(2, 1fr)'
-        templateColumns='repeat(5, 1fr)'
-        h='1150px'
-        w='100%'
-      >
-        <GridItem
-          rowSpan={2}
-          colSpan={1}
-          overflowY='scroll'
-          overflowX='hidden'
-          w='75%'
-          pl='2%'
-          pr='5%'
-        >
-
-          <Box pl='1%' pt='5%' pb='2%'>
-            {brandsList.map((brand) => {
-              return (
-                <div key={brand.id}>
-                  <Text
-                    onClick={() => updateFilterBrand(brand)}
-                    style={{
-                      // backgroundColor: brand.title === filters.brand ? "red" : brand.title === filterBrand.brand ? "green" : "",
-                      // pointerEvents: brand.title === filters.brand ? "none" : "auto"
-                      backgroundColor: filters.brand === brand.title ? 'red' : brand.id === filterBrand.id ? 'green' : '',
-                      color: brand.id === filterBrand.id ? 'white' : ''
-                    }}
-                    textAlign='left' fontSize='2xl' textTransform='uppercase' _hover={{ color: 'black', fontWeight: '600', bg: 'gray.300' }}
-                  >
-                    {brand.title}
-                  </Text>
-                </div>
-              )
-            })}
-          </Box>
-
-          {/* <Box borderTop={'1px'}   >
-            <Text fontSize='2xl' position='relative' left='1%'>Shoe Style</Text>
-            <VStack align={'start'} position='relative' left={'7.5%'} pb='3%' pt='2%' >
-              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
-                style={{
-                  backgroundColor: filters.style === "men" ? "red" : filterStyleType === "men" ? "green" : ""
-                }}
+    <Box>
+      {/* Hero Section */}
+      <Box bg="gray.50" py={8} mb={8}>
+        <Container maxW="container.xl">
+          <Heading mb={6} size="lg">Featured Sneakers</Heading>
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+            {featuredShoes.map((shoe) => (
+              <Box
+                key={shoe.id}
+                bg={bgColor}
+                borderWidth="1px"
+                borderColor={borderColor}
+                borderRadius="lg"
+                overflow="hidden"
+                transition="transform 0.2s"
+                _hover={{ transform: 'scale(1.02)' }}
               >
-              <Text onClick={() => updateFilterStyle("men")} fontSize={'20px'} textTransform='uppercase' >Men</Text></Text>
-              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
-                style={{
-                  backgroundColor: filters.style === "woman" ? "red" : filterStyleType === "woman" ? "green" : ""
-                }}
-              ><Text onClick={() => updateFilterStyle("woman")} fontSize={'20px'} textTransform='uppercase' >Woman</Text></Text>
-              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
-                style={{
-                  backgroundColor: filters.style === "youth" ? "red" : filterStyleType === "youth" ? "green" : ""
-                }}
-              ><Text onClick={() => updateFilterStyle("youth")} fontSize={'20px'} textTransform='uppercase'>Youth</Text></Text>
-              <Text size={'lg'} w='100%' position='relative' right='6%' borderColor={'black'} colorScheme='red' _hover={{ color: "black", fontWeight: "600", bg: "gray.300" }}
-                style={{
-                  backgroundColor: filters.style === "toddler" ? "red" : filterStyleType === "toddler" ? "green" : ""
-                }}
-              ><Text onClick={() => updateFilterStyle("toddler")} fontSize={'20px'} textTransform='uppercase'   >Toddler</Text></Text>
-            </VStack>
-          </Box> */}
+                <Image src={shoe.image} alt={shoe.title} height="200px" width="100%" objectFit="cover" />
+                <Box p={4}>
+                  <Text fontWeight="bold" fontSize="lg" noOfLines={1}>{shoe.title}</Text>
+                  <Badge colorScheme="blue" mt={2}>{shoe.brand}</Badge>
+                  <Text mt={2} fontSize="xl" color="blue.500">${shoe.price}</Text>
+                </Box>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Box>
 
-          {/* <ShoeStyleGrid /> */}
+      <Container maxW="container.xl">
+        <Grid
+          templateColumns={{ base: '1fr', md: '250px 1fr' }}
+          gap={8}
+        >
+          {/* Filters Section */}
+          <GridItem>
+            <Box
+              position="sticky"
+              top="20px"
+              bg={bgColor}
+              borderWidth="1px"
+              borderColor={borderColor}
+              borderRadius="lg"
+              p={4}
+            >
+              <Flex align="center" mb={4}>
+                <Icon as={FiFilter} mr={2} />
+                <Heading size="md">Filters</Heading>
+              </Flex>
 
-          <Box borderTop='1px'>
-            <Text fontSize='2xl' pl='2%'>Shoe Size</Text>
-            <Flex pl='2%'>
-              <Center>
-                <SimpleGrid columns={4} rows={5} pt='3%' pb='5%' spacing='9px'>
-                  {sizeChart.map((chart) => {
-                    return (
-                      <div key={chart.id}>
-                        <Button
-                          w='0%' bg='gray.400' _hover={{ bg: 'gray.100', border: '2px' }}
-                          key={chart.id}
-                          onClick={() => updateFilterShoeSize(chart)}
-                          style={{
-                            backgroundColor: filters.size === chart.size ? 'red' : chart.id === filterShoeSize.id ? 'green' : '',
-                            color: chart.id === filterShoeSize.id ? 'white' : ''
-                          }}
-                        > {chart.size}
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </SimpleGrid>
+              <VStack spacing={4} align="stretch">
+                <Box>
+                  <Text fontWeight="semibold" mb={2}>Brands</Text>
+                  {brandsList.map((brand) => (
+                    <Button
+                      key={brand.id}
+                      size="sm"
+                      variant={brand.id === filterBrand.id ? 'solid' : 'ghost'}
+                      colorScheme={brand.id === filterBrand.id ? 'blue' : 'gray'}
+                      onClick={() => updateFilterBrand(brand)}
+                      mb={1}
+                      width="100%"
+                      justifyContent="flex-start"
+                    >
+                      {brand.title}
+                    </Button>
+                  ))}
+                </Box>
 
-              </Center>
-            </Flex>
-          </Box>
+                <Divider />
 
-          <Box borderTop='1px' pb='27px'>
-            <Text pl='2%' fontSize='2xl'>Shop by Price</Text>
-            <Box position='relative' left='7.5%' pt='3%'>
-              <VStack columns={2} justifyContent='center'>
-                <Text
-                  fontSize='xl' w='100%' position='relative' right='6%' borderColor='black' colorScheme='red' _hover={{ color: 'black', fontWeight: '600', bg: 'gray.300' }} onClick={() => updateFilterPricing('0-100')}
-                  style={{
-                    backgroundColor: filters.price === '0-100' ? 'red' : filterPricing === '0-100' ? 'green' : ''
-                  }}
-                >$0-$100
-                </Text>
-                <Text
-                  fontSize='xl' w='100%' position='relative' right='6%' borderColor='black' colorScheme='red' _hover={{ color: 'black', fontWeight: '600', bg: 'gray.300' }} onClick={() => updateFilterPricing('200-300')}
-                  style={{
-                    backgroundColor: filters.price === '200-300' ? 'red' : filterPricing === '200-300' ? 'green' : ''
-                  }}
-                >$200-$300
-                </Text>
-                <Text
-                  fontSize='xl' w='100%' position='relative' right='6%' borderColor='black' colorScheme='red' _hover={{ color: 'black', fontWeight: '600', bg: 'gray.300' }} onClick={() => updateFilterPricing('300-400')}
-                  style={{
-                    backgroundColor: filters.price === '300-400' ? 'red' : filterPricing === '300-400' ? 'green' : ''
-                  }}
-                >$300-$400
-                </Text>
-                <Text
-                  fontSize='xl' w='100%' position='relative' right='6%' borderColor='black' colorScheme='red' _hover={{ color: 'black', fontWeight: '600', bg: 'gray.300' }} onClick={() => updateFilterPricing('400-650')}
-                  style={{
-                    backgroundColor: filters.price === '400-650' ? 'red' : filterPricing === '400-650' ? 'green' : ''
-                  }}
-                >$400-$650
-                </Text>
-                <Text
-                  fontSize='xl' w='100%' position='relative' right='6%' borderColor='black' colorScheme='red' _hover={{ color: 'black', fontWeight: '600', bg: 'gray.300' }} onClick={() => updateFilterPricing('650+')}
-                  style={{
-                    backgroundColor: filters.price === '650+' ? 'red' : filterPricing === '650+' ? 'green' : ''
-                  }}
-                >$650+
-                </Text>
+                <Box>
+                  <Text fontWeight="semibold" mb={2}>Size</Text>
+                  <Flex mb={4}>
+                    <Button
+                      size="sm"
+                      variant={selectedSizeCategory === 'men' ? 'solid' : 'ghost'}
+                      colorScheme={selectedSizeCategory === 'men' ? 'blue' : 'gray'}
+                      onClick={() => handleSizeCategoryChange('men')}
+                      mr={2}
+                      flex={1}
+                    >
+                      Men
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant={selectedSizeCategory === 'women' ? 'solid' : 'ghost'}
+                      colorScheme={selectedSizeCategory === 'women' ? 'blue' : 'gray'}
+                      onClick={() => handleSizeCategoryChange('women')}
+                      mr={2}
+                      flex={1}
+                    >
+                      Women
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant={selectedSizeCategory === 'youth' ? 'solid' : 'ghost'}
+                      colorScheme={selectedSizeCategory === 'youth' ? 'blue' : 'gray'}
+                      onClick={() => handleSizeCategoryChange('youth')}
+                      flex={1}
+                    >
+                      Youth
+                    </Button>
+                  </Flex>
+                  <SimpleGrid columns={4} spacing={2}>
+                    {sizeCharts[selectedSizeCategory].map((chart) => (
+                      <Button
+                        key={chart.id}
+                        size="sm"
+                        variant={chart.id === filterShoeSize.id ? 'solid' : 'outline'}
+                        colorScheme={chart.id === filterShoeSize.id ? 'blue' : 'gray'}
+                        onClick={() => updateFilterShoeSize(chart)}
+                      >
+                        {chart.size}
+                      </Button>
+                    ))}
+                  </SimpleGrid>
+                </Box>
+
+                <Divider />
+
+                <Box>
+                  <Text fontWeight="semibold" mb={2}>Price Range</Text>
+                  <VStack spacing={2} align="stretch">
+                    {['0-100', '200-300', '300-400', '400-650', '650+'].map((range) => (
+                      <Button
+                        key={range}
+                        size="sm"
+                        variant={filterPricing === range ? 'solid' : 'ghost'}
+                        colorScheme={filterPricing === range ? 'blue' : 'gray'}
+                        onClick={() => updateFilterPricing(range)}
+                        justifyContent="flex-start"
+                      >
+                        ${range}
+                      </Button>
+                    ))}
+                  </VStack>
+                </Box>
+
+                <Divider />
+
+                <Flex gap={2}>
+                  <Button
+                    colorScheme="blue"
+                    size="sm"
+                    width="full"
+                    onClick={onSubmit}
+                  >
+                    Apply Filters
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    width="full"
+                    onClick={clearFilter}
+                  >
+                    Clear All
+                  </Button>
+                </Flex>
               </VStack>
             </Box>
-          </Box>
+          </GridItem>
 
-          <Flex justify='space-between' paddingBottom='2em'>
-            <Button
-              bg='gray.500' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em' w='35%'
-              onClick={onSubmit}
-            >
-              Submit
-            </Button>
-            <Button
-              bg='gray.500' border-radius='square' letterSpacing='0.35em' fontSize='0.7em' padding='0.9em 4em' w='35%' marginRight='2em'
-              onClick={clearFilter}
-            >
-              Clear
-            </Button>
-          </Flex>
-        </GridItem>
+          {/* Products Grid */}
+          <GridItem>
+            <Flex justify="space-between" align="center" mb={6}>
+              <Text fontSize="lg" fontWeight="semibold">
+                {sortedShoes.length} Products
+              </Text>
+              <Flex align="center">
+                <Icon as={MdSort} mr={2} />
+                <Select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  size="sm"
+                  width="200px"
+                >
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="name-asc">Name: A to Z</option>
+                  <option value="name-desc">Name: Z to A</option>
+                </Select>
+              </Flex>
+            </Flex>
 
-        {/* Shoe Iteration col */}
-        <GridItem rowSpan={2} colSpan={4} minW='100%' overflow='scroll' mt='0.7%'>
-          <Wrap w='100%' minW='100%'>
-            {renderShoes()}
-          </Wrap>
-        </GridItem>
-      </Grid>
-    </>
+            {isLoading ? (
+              <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={6}>
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <Skeleton key={i} height="300px" borderRadius="lg" />
+                ))}
+              </SimpleGrid>
+            ) : (
+              <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={6}>
+                {sortedShoes.map((shoe) => (
+                  <WrapItem key={shoe.id}>
+                    <ShoeList shoe={shoe} />
+                  </WrapItem>
+                ))}
+              </SimpleGrid>
+            )}
+          </GridItem>
+        </Grid>
+      </Container>
+    </Box>
   )
 }
 
