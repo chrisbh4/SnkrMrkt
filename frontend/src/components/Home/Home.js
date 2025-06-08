@@ -176,6 +176,7 @@ function NewHomePage () {
       setIsLoading(false)
     }
     loadData()
+    // eslint-disable-next-line
   }, [dispatch])
 
   const onSubmit = async (e) => {
