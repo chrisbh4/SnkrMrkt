@@ -8,24 +8,33 @@ import CreateReviewModal from '../../Reviews/NewReview/ModalForm'
 import EditReviewModal from '../../Reviews/EditReview/ModalForm'
 import currency from 'currency.js'
 import {
-  Center,
+  Container,
   Box,
   Text,
   Flex,
   Image,
   Link,
-  Grid
+  Grid,
+  GridItem,
+  VStack,
+  HStack,
+  Badge,
+  Heading,
+  Divider,
+  SimpleGrid,
+  Skeleton,
+  useColorModeValue,
+  Icon
 } from '@chakra-ui/react'
+import { FiStar, FiCalendar, FiTag, FiPackage } from 'react-icons/fi'
 
 function ShoeDetialsChakra () {
-  // const navigate = useNavigate();
   const dispatch = useDispatch()
   const params = useParams()
   const shoeId = params.id
 
   useEffect(() => {
     dispatch(getOneShoe(shoeId))
-    // dispatch(fetchMostPopular())
   }, [dispatch, shoeId])
 
   const getRandomRetialPrice = () => {
@@ -41,14 +50,55 @@ function ShoeDetialsChakra () {
     const randomTimestamp = Math.floor(Math.random() * (endTimestamp - startTimestamp + 1) + startTimestamp)
     const randomDate = new Date(randomTimestamp)
     const formattedDate = `${randomDate.getMonth() + 1}/${randomDate.getDate()}/${randomDate.getFullYear()}`
-
     return formattedDate
   }
 
-  // const stockXdata = useSelector((state) => state.stockXapi)
-  // const testData = stockXdata[0]
+  // Calculate competitive Snkr Mrkt price
+  const calculateSnkrMrktPrice = (currentPrice, retailPrice) => {
+    const retail = retailPrice || getRandomRetialPrice()
+    const current = currentPrice || retail * 1.5
+    
+    // Incorporate local marketplace data for competitive analysis
+    // Check if we have access to other local shoes pricing for market comparison
+    const localShoesData = allShoes.filter(s => s && s.price && s.id !== shoeId)
+    const localPrices = localShoesData.map(s => s.price).filter(p => p > 0)
+    
+    // Calculate average local market price for reference
+    const avgLocalPrice = localPrices.length > 0 
+      ? localPrices.reduce((sum, price) => sum + parseFloat(price), 0) / localPrices.length
+      : current
+    
+    // Find comparable price range from local data (similar price tier)
+    const priceRange = current * 0.25 // 25% price range for more precise comparison
+    const comparableLocalShoes = localPrices.filter(price => 
+      Math.abs(parseFloat(price) - current) <= priceRange
+    )
+    const avgComparablePrice = comparableLocalShoes.length > 0
+      ? comparableLocalShoes.reduce((sum, price) => sum + parseFloat(price), 0) / comparableLocalShoes.length
+      : avgLocalPrice
+    
+    // Use the most competitive reference price (current, average local, or comparable local)
+    const referencePrice = Math.min(current, avgComparablePrice)
+    
+    // More conservative pricing: 3-8% discount instead of 8-18%
+    // This ensures we're competitive but not too aggressive with pricing
+    const discountPercentage = 0.03 + (Math.random() * 0.05) // 3-8% discount
+    const calculatedPrice = referencePrice * (1 - discountPercentage)
+    
+    // Higher minimum markup: retail + 35% instead of 25% to ensure better profit margins
+    const minimumPrice = retail * 1.35 // 35% markup from retail to ensure good profit
+    
+    // Additional safety check: don't go below 85% of current market price
+    const marketFloorPrice = current * 0.85
+    
+    // Use the highest of all minimum prices to ensure profitability
+    const finalMinimum = Math.max(minimumPrice, marketFloorPrice)
+    
+    // Ensure we don't go below our minimum profitable price
+    return Math.max(calculatedPrice, finalMinimum)
+  }
 
-  // Function to generate 5 unique random numbers
+  // Function to generate random shoes for related products
   const allShoes = Object.values(useSelector((state) => state.shoes))
 
   function generateRandomShoes () {
@@ -64,9 +114,7 @@ function ShoeDetialsChakra () {
     return randomNumbers
   }
 
-  // // Generate the random numbers
   const randomShoeIndices = generateRandomShoes()
-  // const randomShoeIndices = [];
 
   const userId = useSelector((state) => {
     if (state.session.user) {
@@ -76,134 +124,213 @@ function ShoeDetialsChakra () {
   })
 
   const shoe = useSelector((state) => state.shoes[shoeId])
+  const retailPrice = getRandomRetialPrice()
+  const snkrMrktPrice = shoe ? calculateSnkrMrktPrice(shoe.price, retailPrice) : 0
 
-  // const cart = useSelector((state) => state.shoppingCart)
-  //* Checks if Image string contains either jpeg, png, or image inside it's string
-  // let imageCheck;
-  // if (shoe?.image.includes("jpeg") || shoe?.image.includes("png") || shoe?.image.includes("image")) {
-  //   imageCheck = <img src={shoe?.image} alt={shoe?.title}></img>
-  // } else {
-  //   imageCheck = <img className="bad-image" alt={shoe?.title}></img>
-  // }
+  // Color mode values
+  const bgColor = useColorModeValue('white', 'gray.800')
+  const borderColor = useColorModeValue('gray.200', 'gray.700')
+  const reviewBg = useColorModeValue('gray.50', 'gray.700')
+
+  if (!shoe) {
+    return (
+      <Container maxW="container.xl" py={10}>
+        <VStack spacing={8} align="stretch">
+          <Skeleton height="400px" />
+          <Skeleton height="200px" />
+          <Skeleton height="200px" />
+        </VStack>
+      </Container>
+    )
+  }
 
   return (
-    // <Box px={"15%"} h='full' bg='#f1e7e7' pb='20px' >
-    <Box px='15%' h='full' pb='20px'>
-      <Box pl='10%'>
-        <Box h='75px' pt='3'>
-          <Text
-            fontSize='4xl'
-            pl='2px'
-          > {shoe?.title}
-          </Text>
-        </Box>
-
-        <Flex>
-          <Box h='full' w='50%'>
+    <Container maxW="container.xl" py={10}>
+      <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={8}>
+        {/* Image Section */}
+        <GridItem>
+          <Box>
             <Image
-              src={shoe?.image}
-              boxSize='550px'
+              src={shoe.image}
+              alt={shoe.title}
+              w="100%"
+              h="auto"
+              objectFit="contain"
+              borderRadius="lg"
+              shadow="lg"
             />
           </Box>
-          <Center w='45%'>
+        </GridItem>
+
+        {/* Product Details Section */}
+        <GridItem>
+          <VStack align="stretch" spacing={6}>
+            {/* Title and Brand */}
+            <Box>
+              <Badge colorScheme="green" mb={2}>{shoe.brand}</Badge>
+              <Heading size="lg" mb={2}>{shoe.title}</Heading>
+            </Box>
+
+            <Divider />
+
+            {/* Snkr Mrkt Price Section */}
+            <Box 
+              bg="blue.50" 
+              borderRadius="lg" 
+              p={6} 
+              border="2px solid" 
+              borderColor="blue.200"
+            >
+              <VStack spacing={3} align="center">
+                <Badge colorScheme="blue" fontSize="lg" px={4} py={2}>
+                  🏆 SNKR MRKT PRICE
+                </Badge>
+                <Text fontSize="3xl" fontWeight="bold" color="blue.600">
+                  {currency(snkrMrktPrice).format()}
+                </Text>
+                <Text fontSize="sm" color="gray.600" textAlign="center">
+                💰 No hidden fees compared to other retailers
+                </Text>
+              </VStack>
+            </Box>
+
+            <Divider />
+
             <AddToCartComponent shoeId={shoeId} />
-          </Center>
-        </Flex>
 
-        <Box pb='3' pt='2'>
-          <Flex fontWeight='bold' fontSize='lg'>
-            <Box w='67%' h='10'>Product Details </Box>
-            <Box w='full' h='10' pl='13%'>Product Description </Box>
-          </Flex>
+            <Divider />
+
+            {/* Product Details */}
+            <Box>
+              <Heading size="md" mb={4}>Product Details</Heading>
+              <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+                <VStack align="start" spacing={3}>
+                  <HStack>
+                    <Icon as={FiTag} color="blue.500" />
+                    <Text fontWeight="bold">Current Price:</Text>
+                    <Text>{currency(shoe.price).format()}</Text>
+                  </HStack>
+                  <HStack>
+                    <Icon as={FiPackage} color="green.500" />
+                    <Text fontWeight="bold">Retail Price:</Text>
+                    <Text>{currency(retailPrice).format()}</Text>
+                  </HStack>
+                </VStack>
+                <VStack align="start" spacing={3}>
+                  <HStack>
+                    <Icon as={FiCalendar} color="purple.500" />
+                    <Text fontWeight="bold">Release Date:</Text>
+                    <Text>{getRandomDate()}</Text>
+                  </HStack>
+                  <HStack>
+                    <Icon as={FiStar} color="orange.500" />
+                    <Text fontWeight="bold">Brand:</Text>
+                    <Text>{shoe.brand}</Text>
+                  </HStack>
+                </VStack>
+              </Grid>
+            </Box>
+
+            <Divider />
+
+            {/* Description */}
+            <Box>
+              <Heading size="md" mb={4}>Description</Heading>
+              <Text color="gray.600" lineHeight="tall">
+                {shoe.description}
+              </Text>
+            </Box>
+          </VStack>
+        </GridItem>
+      </Grid>
+
+      {/* Related Products Section */}
+      <Box mt={16}>
+        <Heading size="xl" mb={8} textAlign="center">Related Products</Heading>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={6}>
+          {randomShoeIndices.map(index => (
+            <Box
+              key={index}
+              bg={bgColor}
+              borderRadius="lg"
+              overflow="hidden"
+              borderWidth="1px"
+              borderColor={borderColor}
+              shadow="md"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'translateY(-4px)',
+                shadow: 'xl'
+              }}
+            >
+              <Link href={`/shoes/${allShoes[index]?.id}`}>
+                <Image
+                  src={allShoes[index]?.image}
+                  alt={allShoes[index]?.title}
+                  w="100%"
+                  h="200px"
+                  objectFit="cover"
+                />
+                <Box p={4}>
+                  <Text fontSize="sm" fontWeight="bold" noOfLines={2}>
+                    {allShoes[index]?.title}
+                  </Text>
+                  <Badge colorScheme="blue" mt={2}>
+                    {allShoes[index]?.brand}
+                  </Badge>
+                </Box>
+              </Link>
+            </Box>
+          ))}
+        </SimpleGrid>
+      </Box>
+
+      {/* Reviews Section */}
+      <Box mt={16}>
+        <Heading size="xl" mb={8} textAlign="center">{shoe.title} Reviews</Heading>
+        
+        <Box mb={8} textAlign="center">
+          <CreateReviewModal />
         </Box>
 
-        <Flex>
-          <Box w='40%'>
-            <Flex justify='space-between' w='85%'>
-              <Box>
-                <Text>Style</Text>
-                <Text>Colorway</Text>
-                <Text>Current Price</Text>
-                <Text>Retial Price</Text>
-                <Text whiteSpace='nowrap'>Release Date</Text>
-              </Box>
-
-              <Box>
-                <Text whiteSpace='nowrap'>Lorem ipsum dolor </Text>
-                <Text whiteSpace='nowrap'>dolor um Lorem  </Text>
-                <Text>{currency(shoe?.price).format()}</Text>
-                <Text>{currency(getRandomRetialPrice()).format()}</Text>
-                <Text>{getRandomDate()} </Text>
-
-                {/* <Text whiteSpace={'nowrap'} >{testData?.details.type} </Text> */}
-                {/* <Text whiteSpace={'nowrap'} >{testData?.details.colorway} </Text> */}
-                {/* <Text>{testData?.details.releaseDate} </Text> */}
-              </Box>
-            </Flex>
-          </Box>
-          <Box w='50%' pb='5' pl='11%'>
-            <Text fontSize='lg' w='full' h='200px' fontWeight='semibold' overflow='scroll'>
-              {shoe?.description}
-              {/* {testData?.details.description} */}
+        <Box bg={bgColor} borderRadius="lg" p={6} borderWidth="1px" borderColor={borderColor}>
+          <Grid templateColumns="repeat(2, 1fr)" gap={8} mb={6}>
+            <Text fontSize="lg" fontWeight="bold" color="gray.700">
+              Reviews
             </Text>
-          </Box>
-
-        </Flex>
-        <Box borderTop='22px' borderColor='black' pt='1em'>
-          <Text fontSize='2xl' fontWeight='bold'>Related Products</Text>
-          <Flex justify='space-between'>
-            {randomShoeIndices.map(index => (
-              <Box
-                key={index}
-                marginLeft='5px'
-                _hover={{
-                  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.5)'
-                }}
-              >
-                <Link href={`/shoes/${allShoes[index]?.id}`}>
-                  <Image
-                    src={allShoes[index]?.image}
-                    boxSize='300px'
-                    p='3px'
-                  />
-                </Link>
-              </Box>
-            ))}
-          </Flex>
-        </Box>
-
-        {/* Reviews */}
-        <Box pb='3em'>
-          <Text fontSize='2xl' fontWeight='bold' pt='2%'>{shoe?.title} Reviews</Text>
-          <Box py='2%'>
-            <CreateReviewModal />
-          </Box>
-
-          <Grid templateColumns='repeat(3, 1fr)' pb='1em' gap={6}>
-            <Text ml='4%' fontSize='xl'>Reviews</Text>
-            <Text ml='4%' fontSize='xl'>Ratings</Text>
+            <Text fontSize="lg" fontWeight="bold" color="gray.700">
+              Ratings
+            </Text>
           </Grid>
 
-          {shoe?.Reviews.map((review) => {
-            if (review.userId === userId) {
-              return (
-                <Grid templateColumns='repeat(3, 1fr)' gap={6} key={review.id}>
-                  <Text ml='4%' pt='1em'>{review.comment}</Text>
-                  <Text ml='2.5em' pt='1em'>{review.rating}</Text>
-                  <EditReviewModal pt='3em' review={review} />
+          <VStack spacing={4} align="stretch">
+            {shoe.Reviews?.map((review) => (
+              <Box 
+                key={review.id} 
+                p={4} 
+                bg={reviewBg} 
+                borderRadius="md"
+                borderWidth="1px"
+                borderColor={borderColor}
+              >
+                <Grid templateColumns="2fr 1fr 1fr" gap={6} alignItems="center">
+                  <Text color="gray.700">{review.comment}</Text>
+                  <Flex align="center">
+                    <Text fontWeight="semibold" mr={1}>{review.rating}</Text>
+                    <Icon as={FiStar} color="yellow.400" />
+                  </Flex>
+                  <Box>
+                    {review.userId === userId && (
+                      <EditReviewModal review={review} />
+                    )}
+                  </Box>
                 </Grid>
-              )
-            }
-            return (
-              <Grid templateColumns='repeat(3, 1fr)' gap={6} key={review.id}>
-                <Text ml='4%' pt='1em'>{review.comment}</Text>
-                <Text ml='2.5em' pt='1em'>{review.rating}</Text>
-              </Grid>
-            )
-          })}
+              </Box>
+            ))}
+          </VStack>
         </Box>
       </Box>
-    </Box>
+    </Container>
   )
 }
 

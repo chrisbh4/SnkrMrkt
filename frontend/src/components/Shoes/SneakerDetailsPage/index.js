@@ -50,6 +50,42 @@ function SneakerDetailsPage() {
     }).format(price)
   }
 
+  // Calculate competitive Snkr Mrkt price that's better than competitors but still profitable
+  const calculateSnkrMrktPrice = () => {
+    const stockXPrice = sneaker.lowestResellPrice?.stockX || 0
+    const goatPrice = sneaker.lowestResellPrice?.goat || 0
+    const flightClubPrice = sneaker.lowestResellPrice?.flightClub || 0
+    const retailPrice = sneaker.retailPrice || 0
+    
+    // Find the lowest competitor price from external APIs
+    const competitorPrices = [stockXPrice, goatPrice, flightClubPrice].filter(price => price > 0)
+    const lowestCompetitorPrice = competitorPrices.length > 0 ? Math.min(...competitorPrices) : retailPrice
+    
+    // Consider local marketplace pricing (estimated using retail price multiplier based on seeded data)
+    const estimatedLocalPrice = retailPrice * 1.8 // Based on seeded price range analysis ($400-$750 vs retail)
+    
+    // Use the most relevant price for comparison
+    const referencePrice = competitorPrices.length > 0 ? lowestCompetitorPrice : estimatedLocalPrice
+    
+    // More conservative discount: 3-8% instead of 5-15% to avoid being too aggressive
+    const discountPercentage = 0.03 + (Math.random() * 0.05) // 3-8% discount
+    const calculatedPrice = referencePrice * (1 - discountPercentage)
+    
+    // Higher minimum markup: retail + 35% instead of 20-25% to ensure better profit margins
+    const minimumPrice = retailPrice * 1.35 // 35% markup from retail
+    
+    // Additional safety: don't go below 85% of competitor price to maintain market positioning
+    const marketFloorPrice = referencePrice * 0.85
+    
+    // Use the highest minimum to ensure profitability and market position
+    const finalMinimum = Math.max(minimumPrice, marketFloorPrice)
+    
+    // Ensure we don't go below our minimum profitable price
+    return Math.max(calculatedPrice, finalMinimum)
+  }
+
+  const snkrMrktPrice = calculateSnkrMrktPrice()
+
   return (
     <Container maxW="container.xl" py={10}>
       <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={8}>
@@ -76,8 +112,31 @@ function SneakerDetailsPage() {
 
             <Divider />
 
+            {/* Snkr Mrkt Price Section - Prominently displayed */}
+            <Box 
+              bg="blue.50" 
+              borderRadius="lg" 
+              p={6} 
+              border="2px solid" 
+              borderColor="blue.200"
+            >
+              <VStack spacing={3} align="center">
+                <Badge colorScheme="blue" fontSize="lg" px={4} py={2}>
+                  🏆 SNKR MRKT PRICE
+                </Badge>
+                <Text fontSize="3xl" fontWeight="bold" color="blue.600">
+                  {formatPrice(snkrMrktPrice)}
+                </Text>
+                <Text fontSize="sm" color="gray.600" textAlign="center">
+                💰 No hidden fees compared to other retailers
+                </Text>
+              </VStack>
+            </Box>
+
+            <Divider />
+
             <Box>
-              <Heading size="md" mb={4}>Retail Prices</Heading>
+              <Heading size="md" mb={4}>Competitor Prices</Heading>
               <StatGroup>
                 <Stat>
                   <StatLabel>StockX</StatLabel>
