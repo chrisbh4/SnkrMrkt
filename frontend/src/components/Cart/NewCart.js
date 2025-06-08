@@ -80,8 +80,38 @@ function CheckoutForm () {
 
   const updateEmail = (e) => setEmail(e.target.value)
   const updateNameOnCard = (e) => setNameOnCard(e.target.value)
-  const updateCardNumber = (e) => setCardNumber(e.target.value)
-  const updateExpirationDate = (e) => setExpirationDate(e.target.value)
+  const updateCardNumber = (e) => {
+    const input = e.target.value
+    // Remove all non-numeric characters
+    const numbersOnly = input.replace(/\D/g, '')
+    
+    // Limit to 16 digits maximum (standard credit card length)
+    const limitedNumbers = numbersOnly.slice(0, 16)
+    
+    // Format to xxxx xxxx xxxx xxxx with spaces every 4 digits
+    let formattedNumber = limitedNumbers
+    if (limitedNumbers.length > 0) {
+      formattedNumber = limitedNumbers.match(/.{1,4}/g)?.join(' ') || limitedNumbers
+    }
+    
+    setCardNumber(formattedNumber)
+  }
+  const updateExpirationDate = (e) => {
+    const input = e.target.value
+    // Remove all non-numeric characters
+    const numbersOnly = input.replace(/\D/g, '')
+    
+    // Format to MM/YY
+    let formattedDate = numbersOnly
+    if (numbersOnly.length >= 2) {
+      formattedDate = `${numbersOnly.slice(0, 2)}/${numbersOnly.slice(2, 4)}`
+    }
+    
+    // Limit to 4 digits total (MMYY)
+    if (numbersOnly.length <= 4) {
+      setExpirationDate(formattedDate)
+    }
+  }
   const updateCvvNumber = (e) => setCvvNumber(e.target.value)
   const updateFirstName = (e) => setFirstName(e.target.value)
   const updateLastName = (e) => setLastName(e.target.value)
