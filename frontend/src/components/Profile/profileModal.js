@@ -57,7 +57,17 @@ function ProfileUpdateForm({user}) {
 
     return (
         <>
-            <Button onClick={onOpen} bg='black' textColor={'white'}>Update Profile</Button>
+            <Button 
+              onClick={onOpen} 
+              colorScheme="blue" 
+              variant="solid"
+              size="md"
+              borderRadius="lg"
+              fontWeight="medium"
+              w="full"
+            >
+              Update Profile
+            </Button>
             <Modal isOpen={isOpen} onClose={onClose} size={'3xl'} isCentered>
                 <ModalOverlay />
                 <ModalContent>
