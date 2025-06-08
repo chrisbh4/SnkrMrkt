@@ -94,7 +94,8 @@ function PurchasedPage () {
                     <Box 
                       key={order?.id}
                       bg={bgColor} 
-                      borderWidth="1px" 
+                      w={'40%'}
+                      borderY="2px" 
                       borderColor={borderColor}
                       borderRadius="lg" 
                       p={6} 
