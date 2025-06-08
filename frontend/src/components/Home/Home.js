@@ -308,7 +308,7 @@ function NewHomePage () {
                     onClick={onSubmit}
                     isLoading={isLoading}
                   >
-                    Apply Filters
+                    Submit
                   </Button>
                   <Button
                     variant="ghost"
@@ -317,7 +317,7 @@ function NewHomePage () {
                     onClick={clearFilter}
                     isLoading={isLoading}
                   >
-                    Clear All
+                    Clear
                   </Button>
                 </Flex>
               </VStack>
