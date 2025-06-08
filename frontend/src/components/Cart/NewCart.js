@@ -509,7 +509,7 @@ function CheckoutForm () {
                           <Input
                             value={phoneNumber}
                             onChange={updatePhoneNumber}
-                            placeholder="(555) 123-4567"
+                            placeholder="123-456-7890"
                             borderColor={borderColor}
                             _focus={{ borderColor: 'blue.500', boxShadow: '0 0 0 1px blue.500' }}
                           />

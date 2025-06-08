@@ -29,7 +29,7 @@ export const fetchCreateNewOrder = (payload) => async (dispatch) => {
   } = payload
   const res = await csrfFetch('/api/orders/new', {
     method: 'POST',
-    header: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username,
       buyerId,
