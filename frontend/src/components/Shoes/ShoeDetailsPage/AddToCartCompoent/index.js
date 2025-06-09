@@ -82,8 +82,16 @@ function AddToCartComponent ({ shoeId, setSelectedSize }) {
       return
     }
     
-    shoe.shoeSize = size
-    await dispatch(addShoeToCart(shoe, cart))
+    // Create properly formatted shoe data for the cart - do NOT mutate the original shoe object
+    const shoeData = {
+      id: shoe.id,
+      title: shoe.title,
+      price: parseFloat(shoe.price), // Ensure price is a number
+      shoeSize: size.toString(), // Convert size to string to match cart format
+      image: shoe.image
+    }
+    
+    await dispatch(addShoeToCart(shoeData, cart))
     alert('Shoe has been added to your cart!')
     navigate('/home')
   }
