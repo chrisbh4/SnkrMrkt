@@ -1,5 +1,3 @@
-import { csrfFetch } from './csrf'
-
 const LOAD_CART = 'shoppingCart/LOAD_CART'
 const ADD_TO_CART = 'shoppingCart/ADD_TO_CART'
 const REMOVE_FROM_CART = 'shoppingCart/REMOVE_FROM_CART'
@@ -35,11 +33,33 @@ export const getLoadCart = () => async (dispatch) => {
 
 export const addShoeToCart = (shoe, cart) => async (dispatch) => {
   if (shoe) {
+    // Validate required shoe properties
+    if (!shoe.id) {
+      console.error('Shoe missing required id property:', shoe)
+      return 'shoe missing id'
+    }
+    if (!shoe.title) {
+      console.error('Shoe missing required title property:', shoe)
+      return 'shoe missing title'
+    }
+    if (!shoe.price) {
+      console.error('Shoe missing required price property:', shoe)
+      return 'shoe missing price'
+    }
+    if (!shoe.shoeSize) {
+      console.error('Shoe missing required shoeSize property:', shoe)
+      return 'shoe missing size'
+    }
+    if (!shoe.image) {
+      console.error('Shoe missing required image property:', shoe)
+      return 'shoe missing image'
+    }
+    
     // Generate a unique cart item ID that includes the shoe ID, size, and gender
     const cartItemId = `${shoe.id}-${shoe.shoeSize}`
 
     // Add the shoe with its unique cart item ID
-    cart[cartItemId] = {
+    const cartItem = {
       cartItemId,
       shoeId: shoe.id,
       title: shoe.title,
@@ -47,10 +67,13 @@ export const addShoeToCart = (shoe, cart) => async (dispatch) => {
       size: shoe.shoeSize,
       img: shoe.image
     }
+    
+    cart[cartItemId] = cartItem
 
     dispatch(loadCart(cart))
     saveCart(cart)
   } else {
+    console.error('Cannot add shoe to cart - shoe data is missing')
     return 'cannot find shoe for cart'
   }
 }

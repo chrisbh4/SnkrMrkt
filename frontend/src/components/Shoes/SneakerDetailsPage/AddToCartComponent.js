@@ -151,13 +151,13 @@ function AddToCartComponent({ sneaker, onSizeChange, matchedLocalShoe }) {
     // Use Snkr Mrkt competitive pricing (includes local shoe price if matched)
     const snkrMrktPrice = calculateSnkrMrktPrice()
 
-    // Format the shoe data to match the cart structure
+    // Format the shoe data to match the cart structure exactly
     const shoeData = {
       id: matchedLocalShoe ? matchedLocalShoe.id : sneaker.styleID,
       title: matchedLocalShoe ? matchedLocalShoe.title : sneaker.shoeName,
-      price: snkrMrktPrice, // Use calculated price (local shoe price if matched)
-      shoeSize: `${sizeType.charAt(0).toUpperCase()}${sizeType.slice(1)} ${size}`, // Format as "Mens 10.5", "Womens 8", etc.
-      image: matchedLocalShoe ? matchedLocalShoe.image : sneaker.thumbnail
+      price: snkrMrktPrice,
+      shoeSize: `${sizeType.charAt(0).toUpperCase()}${sizeType.slice(1)} ${size}`, // This gets mapped to cart item.size
+      image: matchedLocalShoe ? matchedLocalShoe.image : sneaker.thumbnail // This gets mapped to cart item.img
     }
 
     await dispatch(addShoeToCart(shoeData, cart))
