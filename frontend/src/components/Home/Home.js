@@ -20,6 +20,7 @@ import {
   Divider
 } from '@chakra-ui/react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { getAllShoes } from '../../store/shoes'
 import ShoeList from '../OldHomePage/ShoeList'
 import { getclearFilters, setSelectedFilters } from '../../store/filters'
@@ -30,6 +31,7 @@ import currency from 'currency.js'
 
 function NewHomePage () {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const shoes = useSelector((state) => state.shoes)
   const filters = useSelector((state) => state.filters)
   const mostPopular = useSelector((state) => state.stockXapi.mostPopular)
@@ -247,7 +249,7 @@ function NewHomePage () {
                     shadow: 'lg',
                     cursor: 'pointer'
                   }}
-                  onClick={() => window.open(`/sneaker/${shoe.styleID}`, '_blank')}
+                  onClick={() => navigate(`/sneaker/${shoe.styleID}`)}
                 >
                   <Box position="relative" height="200px">
                     <Image

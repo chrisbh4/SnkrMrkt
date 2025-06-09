@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addShoeToCart } from '../../../store/shoppingCart'
+import currency from 'currency.js'
 import {
   Box,
   Button,
@@ -67,7 +68,7 @@ const sizeCharts = {
   ]
 }
 
-function AddToCartComponent({ sneaker }) {
+function AddToCartComponent({ sneaker, onSizeChange, matchedLocalShoe }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
@@ -76,13 +77,64 @@ function AddToCartComponent({ sneaker }) {
   const cart = useSelector((state) => state.shoppingCart)
   const userId = useSelector((state) => state.session.user?.id || 0.5)
 
+  // Calculate competitive Snkr Mrkt price that's better than competitors but still profitable
+  const calculateSnkrMrktPrice = () => {
+    // If we have a matching local shoe, use its price
+    if (matchedLocalShoe && matchedLocalShoe.price) {
+      return parseFloat(matchedLocalShoe.price)
+    }
+    
+    // Otherwise, use the original calculation logic
+    const stockXPrice = sneaker.lowestResellPrice?.stockX || 0
+    const goatPrice = sneaker.lowestResellPrice?.goat || 0
+    const flightClubPrice = sneaker.lowestResellPrice?.flightClub || 0
+    const retailPrice = sneaker.retailPrice || 0
+    
+    // Find the lowest competitor price from external APIs
+    const competitorPrices = [stockXPrice, goatPrice, flightClubPrice].filter(price => price > 0)
+    const lowestCompetitorPrice = competitorPrices.length > 0 ? Math.min(...competitorPrices) : retailPrice
+    
+    // Consider local marketplace pricing (estimated using retail price multiplier based on seeded data)
+    const estimatedLocalPrice = retailPrice * 1.8 // Based on seeded price range analysis ($400-$750 vs retail)
+    
+    // Use the most relevant price for comparison
+    const referencePrice = competitorPrices.length > 0 ? lowestCompetitorPrice : estimatedLocalPrice
+    
+    // More conservative discount: 3-8% instead of 5-15% to avoid being too aggressive
+    const discountPercentage = 0.03 + (Math.random() * 0.05) // 3-8% discount
+    const calculatedPrice = referencePrice * (1 - discountPercentage)
+    
+    // Higher minimum markup: retail + 35% instead of 20-25% to ensure better profit margins
+    const minimumPrice = retailPrice * 1.35 // 35% markup from retail
+    
+    // Additional safety: don't go below 85% of competitor price to maintain market positioning
+    const marketFloorPrice = referencePrice * 0.85
+    
+    // Use the highest minimum to ensure profitability and market position
+    const finalMinimum = Math.max(minimumPrice, marketFloorPrice)
+    
+    // Ensure we don't go below our minimum profitable price
+    return Math.max(calculatedPrice, finalMinimum)
+  }
+
   const handleSizeTypeChange = (value) => {
     setSizeType(value)
-    setSize('') // Reset size when changing size type
+    const newSize = '' // Reset size when changing size type
+    setSize(newSize)
+    // Notify parent component about size change
+    if (onSizeChange) {
+      onSizeChange(newSize)
+    }
   }
 
   const handleSizeChange = (e) => {
-    setSize(e.target.value)
+    const newSize = e.target.value
+    setSize(newSize)
+    // Notify parent component about size change
+    if (onSizeChange) {
+      const formattedSize = newSize ? `${sizeType.charAt(0).toUpperCase()}${sizeType.slice(1)} ${newSize}` : ''
+      onSizeChange(formattedSize)
+    }
   }
 
   const addToCart = async () => {
@@ -96,21 +148,29 @@ function AddToCartComponent({ sneaker }) {
       return
     }
 
+    // Use Snkr Mrkt competitive pricing (includes local shoe price if matched)
+    const snkrMrktPrice = calculateSnkrMrktPrice()
+
     // Format the shoe data to match the cart structure
     const shoeData = {
-      id: sneaker.styleID,
-      title: sneaker.shoeName,
-      price: sneaker.lowestResellPrice?.stockX || sneaker.retailPrice,
+      id: matchedLocalShoe ? matchedLocalShoe.id : sneaker.styleID,
+      title: matchedLocalShoe ? matchedLocalShoe.title : sneaker.shoeName,
+      price: snkrMrktPrice, // Use calculated price (local shoe price if matched)
       shoeSize: `${sizeType.charAt(0).toUpperCase()}${sizeType.slice(1)} ${size}`, // Format as "Mens 10.5", "Womens 8", etc.
-      image: sneaker.thumbnail
+      image: matchedLocalShoe ? matchedLocalShoe.image : sneaker.thumbnail
     }
 
     await dispatch(addShoeToCart(shoeData, cart))
+    
+    const successMessage = matchedLocalShoe 
+      ? `Added local inventory item to cart at ${currency(snkrMrktPrice).format()}`
+      : 'The shoe has been added to your cart'
+    
     toast({
       title: 'Added to cart',
-      description: 'The shoe has been added to your cart',
+      description: successMessage,
       status: 'success',
-      duration: 3000,
+      duration: 4000,
       isClosable: true
     })
     navigate('/home')

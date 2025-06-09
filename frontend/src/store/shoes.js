@@ -43,7 +43,7 @@ export const getAllShoes = () => async (dispatch) => {
 export const getOneShoe = (shoeId) => async (dispatch) => {
   const res = await csrfFetch(`/api/shoes/${shoeId}`)
   const data = await res.json()
-  if (data.ok) {
+  if (res.ok) {
     dispatch(loadSingleShoe(data))
   }
   return data
@@ -123,9 +123,8 @@ function reducer (state = initialState, action) {
   switch (action.type) {
     case LOAD_SHOES:
       return { ...action.shoes }
-      // return { ...state, ...action.shoes }
     case ONE_SHOE:
-      return { ...action.shoes }
+      return { ...state, [action.shoes.id]: action.shoes }
     case CREATE_SHOE:
       newState[action.shoe.id] = action.shoe
       return newState
