@@ -106,12 +106,21 @@ router.get('/most-popular', asyncHandler(async (req, res) => {
       const fallbackShoes = [
         {
           styleID: "DZ5485-612",
-          shoeName: "Air Jordan 1 Retro High OG Chicago Reimagined",
+          shoeName: "Jordan 1 Retro High OG Chicago Lost and Found",
           brand: "Jordan",
-          retailPrice: 170,
+          retailPrice: 245,
           thumbnail: "https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-Chicago-Reimagined-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1664919066",
           resellPrice: 400,
           description: "The Air Jordan 1 Retro High OG 'Chicago Reimagined' puts a weathered spin on the iconic 'Chicago' colorway."
+        },
+        {
+          styleID: "DD1391-100",
+          shoeName: "Nike Dunk Low Retro White Black Panda",
+          brand: "Nike",
+          retailPrice: 110,
+          thumbnail: "https://images.stockx.com/images/Nike-Dunk-Low-Retro-White-Black-2021-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1606325289",
+          resellPrice: 150,
+          description: "The Nike Dunk Low Retro brings back the classic basketball shoe with a timeless white and black colorway."
         },
         {
           styleID: "DQ8426-061",
@@ -121,15 +130,6 @@ router.get('/most-popular', asyncHandler(async (req, res) => {
           thumbnail: "https://images.stockx.com/images/Air-Jordan-4-Retro-Military-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1652201023",
           resellPrice: 320,
           description: "The Air Jordan 4 Retro 'Black Canvas' delivers a monochromatic colorway built with mixed materials."
-        },
-        {
-          styleID: "FZ5808-061",
-          shoeName: "Nike Dunk Low Retro White Black Panda",
-          brand: "Nike",
-          retailPrice: 110,
-          thumbnail: "https://images.stockx.com/images/Nike-Dunk-Low-Retro-White-Black-2021-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1606325289",
-          resellPrice: 150,
-          description: "The Nike Dunk Low Retro brings back the classic basketball shoe with a timeless white and black colorway."
         },
         {
           styleID: "GX3542",
