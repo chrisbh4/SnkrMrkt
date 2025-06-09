@@ -25,7 +25,7 @@ function LoginForm () {
       setErrors(data.errors)
       return
     }
-    navigate('/home')
+    navigate('/all-shoes')
     return data
   }
 

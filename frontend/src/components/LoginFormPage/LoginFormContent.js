@@ -116,7 +116,7 @@ function LoginFormContent({ onClose }) {
           isClosable: true,
         })
         onClose()
-        navigate('/home')
+        navigate('/all-shoes')
       }
     } catch (error) {
       setErrors(['An unexpected error occurred. Please try again.'])

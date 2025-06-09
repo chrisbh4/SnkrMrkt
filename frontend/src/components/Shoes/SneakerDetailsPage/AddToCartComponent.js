@@ -173,7 +173,7 @@ function AddToCartComponent({ sneaker, onSizeChange, matchedLocalShoe }) {
       duration: 4000,
       isClosable: true
     })
-    navigate('/home')
+    navigate('/all-shoes')
   }
 
   // Only show add to cart if user is logged in

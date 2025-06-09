@@ -52,7 +52,7 @@ button:hover {
 }
 
 .page {
-  background-image: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/home-page-background-img.jpg");
+  background-image: url("https://theplug-app-aws.s3.us-west-1.amazonaws.com/all-shoes-page-background-img.jpg");
   /* background-size: 100% 99.999%; */
   background-size: 100% 80%;
   min-height: 100%;
