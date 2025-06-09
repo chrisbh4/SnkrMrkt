@@ -9,7 +9,8 @@ import {
   Box,
   Button,
   Flex,
-  Select
+  Select,
+  Text
 } from '@chakra-ui/react'
 import EditShoeModalForm from '../../EditShoePage/ModalForm'
 
@@ -40,20 +41,12 @@ const sizeChart = [
   { id: 24, size: 15 }
 ]
 
-function AddToCartComponent ({ shoeId }) {
+function AddToCartComponent ({ shoeId, setSelectedSize }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [size, setSize] = useState('')
 
-  useEffect(() => {
-    dispatch(getAllShoes())
-    dispatch(getOneShoe(shoeId))
-
-    if (filters.size > 0) {
-      setSize(filters?.size)
-    }
-  }, [dispatch, shoeId])
-
+  // Move all useSelector calls before useEffect
   const shoe = useSelector((state) => state.shoes[shoeId])
   const cart = useSelector((state) => state.shoppingCart)
   const filters = useSelector((state) => state.filters)
@@ -65,11 +58,30 @@ function AddToCartComponent ({ shoeId }) {
     return 0.5
   })
 
+  useEffect(() => {
+    dispatch(getAllShoes())
+    dispatch(getOneShoe(shoeId))
+
+    if (filters.size > 0) {
+      setSize(filters?.size)
+      // Update parent component with initial size if available
+      if (setSelectedSize) {
+        setSelectedSize(filters?.size.toString())
+      }
+    }
+  }, [dispatch, shoeId, filters.size, setSelectedSize])
+
   const addToCart = async () => {
     if (size.length === 0) {
       alert('Select a shoe size before adding to cart')
       return
     }
+    
+    if (!shoe) {
+      alert('Shoe data is not available. Please try again.')
+      return
+    }
+    
     shoe.shoeSize = size
     await dispatch(addShoeToCart(shoe, cart))
     alert('Shoe has been added to your cart!')
@@ -77,28 +89,33 @@ function AddToCartComponent ({ shoeId }) {
   }
 
   const updateSize = async (e) => {
-    setSize(e.target.value)
+    const newSize = e.target.value
+    setSize(newSize)
+    if (setSelectedSize) {
+      setSelectedSize(newSize)
+    }
   }
 
   let sellerChecker
-  if (userId) {
+  if (userId && shoe) {
     if (userId === shoeSellerId) {
       sellerChecker = (
         <EditShoeModalForm px='30px' py='10px' shoe={shoe}>Edit</EditShoeModalForm>
       )
     }
   }
+  
   let addToCartVerfication
   if (userId !== shoeSellerId && userId > 0.99) {
     addToCartVerfication = (
       <Box w='500px' p='5%'>
         <Box>
           <Flex p='10px'>
-            <Select placeholder='Select Size:' variant='filled' w='42%' onChange={updateSize}>
+            <Select placeholder='Select Size:' variant='filled' w='42%' onChange={updateSize} value={size}>
               {sizeChart.map((chart) => {
-                if (filters.size && filters.size === chart.size) {
+                if (filters?.size && filters.size === chart.size) {
                   return (
-                    <option key={chart.id} value={chart.size} selected>
+                    <option key={chart.id} value={chart.size}>
                       {chart.size}
                     </option>
                   )
@@ -111,12 +128,21 @@ function AddToCartComponent ({ shoeId }) {
                 }
               })}
             </Select>
-            <Button w='40%' ml='2%' onClick={addToCart}> Add to Cart </Button>
+            <Button w='40%' ml='2%' onClick={addToCart} isDisabled={!shoe}> 
+              Add to Cart 
+            </Button>
           </Flex>
-          {/* <Button w='40%' ml='2%' onClick={addToCart}> Add to Cart </Button> */}
-          {/* <Button w='40%' ml='2%' onClick={unavialableFeature}>Place Bid</Button> */}
         </Box>
       </Box>
+    )
+  }
+
+  // Show loading state if shoe data is not available
+  if (!shoe) {
+    return (
+      <Flex w='full' justify='center' mt='20px'>
+        <Text>Loading...</Text>
+      </Flex>
     )
   }
 

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import './ShoeDetails.css'
-import { getOneShoe } from '../../../store/shoes'
+import { getOneShoe, getAllShoes } from '../../../store/shoes'
 import AddToCartComponent from './AddToCartCompoent'
 import CreateReviewModal from '../../Reviews/NewReview/ModalForm'
 import EditReviewModal from '../../Reviews/EditReview/ModalForm'
@@ -32,8 +32,12 @@ function ShoeDetialsChakra () {
   const dispatch = useDispatch()
   const params = useParams()
   const shoeId = params.id
+  const [selectedSize, setSelectedSize] = useState('') // Track selected size from AddToCartComponent
 
   useEffect(() => {
+    // Load all shoes first to ensure we have the complete state
+    dispatch(getAllShoes())
+    // Then load the specific shoe details
     dispatch(getOneShoe(shoeId))
   }, [dispatch, shoeId])
 
@@ -132,7 +136,21 @@ function ShoeDetialsChakra () {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   const reviewBg = useColorModeValue('gray.50', 'gray.700')
 
+  // Show loading state while shoe data is being fetched
   if (!shoe) {
+    return (
+      <Container maxW="container.xl" py={10}>
+        <VStack spacing={8} align="stretch">
+          <Skeleton height="400px" />
+          <Skeleton height="200px" />
+          <Skeleton height="200px" />
+        </VStack>
+      </Container>
+    )
+  }
+
+  // Ensure we have all required shoe properties before rendering
+  if (!shoe.title || !shoe.price || !shoe.brand) {
     return (
       <Container maxW="container.xl" py={10}>
         <VStack spacing={8} align="stretch">
@@ -167,8 +185,8 @@ function ShoeDetialsChakra () {
           <VStack align="stretch" spacing={6}>
             {/* Title and Brand */}
             <Box>
-              <Badge colorScheme="green" mb={2}>{shoe.brand}</Badge>
-              <Heading size="lg" mb={2}>{shoe.title}</Heading>
+              <Badge colorScheme="green" mb={2}>{shoe?.brand || 'Loading...'}</Badge>
+              <Heading size="lg" mb={2}>{shoe?.title || 'Loading...'}</Heading>
             </Box>
 
             <Divider />
@@ -186,20 +204,26 @@ function ShoeDetialsChakra () {
                   🎯 SNKR MRKT PRICE
                 </Badge>
                 <Text fontSize="3xl" fontWeight="bold" color="green.600">
-                  {currency(shoe.price).format()}
+                  {shoe?.price ? currency(shoe.price).format() : 'Loading...'}
                 </Text>
                 <Text fontSize="sm" color="gray.600" textAlign="center">
                   🏪 Available for immediate pickup from our local inventory
                 </Text>
                 <Text fontSize="xs" color="green.600" fontWeight="medium">
-                  Size: {shoe.shoeSize} | Brand: {shoe.brand}
+                  Size: {selectedSize || shoe?.shoeSize || 'N/A'} 
+                  {selectedSize && shoe?.shoeSize && selectedSize !== shoe.shoeSize.toString() && (
+                    <Text as="span" ml={2} color="orange.600" fontWeight="bold">
+                      (Custom Size - Original: {shoe.shoeSize})
+                    </Text>
+                  )}
+                  {" | Brand: " + (shoe?.brand || 'N/A')}
                 </Text>
               </VStack>
             </Box>
 
             <Divider />
 
-            <AddToCartComponent shoeId={shoeId} />
+            <AddToCartComponent shoeId={shoeId} setSelectedSize={setSelectedSize} />
 
             <Divider />
 
@@ -211,7 +235,7 @@ function ShoeDetialsChakra () {
                   <HStack>
                     <Icon as={FiTag} color="blue.500" />
                     <Text fontWeight="bold">Current Price:</Text>
-                    <Text>{currency(shoe.price).format()}</Text>
+                    <Text>{shoe?.price ? currency(shoe.price).format() : 'Loading...'}</Text>
                   </HStack>
                   <HStack>
                     <Icon as={FiPackage} color="green.500" />
@@ -228,7 +252,7 @@ function ShoeDetialsChakra () {
                   <HStack>
                     <Icon as={FiStar} color="orange.500" />
                     <Text fontWeight="bold">Brand:</Text>
-                    <Text>{shoe.brand}</Text>
+                    <Text>{shoe?.brand || 'Loading...'}</Text>
                   </HStack>
                 </VStack>
               </Grid>
@@ -240,7 +264,7 @@ function ShoeDetialsChakra () {
             <Box>
               <Heading size="md" mb={4}>Description</Heading>
               <Text color="gray.600" lineHeight="tall">
-                {shoe.description}
+                {shoe?.description || 'Loading description...'}
               </Text>
             </Box>
           </VStack>
@@ -250,47 +274,58 @@ function ShoeDetialsChakra () {
       {/* Related Products Section */}
       <Box mt={16}>
         <Heading size="xl" mb={8} textAlign="center">Related Products</Heading>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={6}>
-          {randomShoeIndices.map(index => (
-            <Box
-              key={index}
-              bg={bgColor}
-              borderRadius="lg"
-              overflow="hidden"
-              borderWidth="1px"
-              borderColor={borderColor}
-              shadow="md"
-              transition="all 0.3s"
-              _hover={{
-                transform: 'translateY(-4px)',
-                shadow: 'xl'
-              }}
-            >
-              <Link href={`/shoes/${allShoes[index]?.id}`}>
-                <Image
-                  src={allShoes[index]?.image}
-                  alt={allShoes[index]?.title}
-                  w="100%"
-                  h="200px"
-                  objectFit="cover"
-                />
-                <Box p={4}>
-                  <Text fontSize="sm" fontWeight="bold" noOfLines={2}>
-                    {allShoes[index]?.title}
-                  </Text>
-                  <Badge colorScheme="blue" mt={2}>
-                    {allShoes[index]?.brand}
-                  </Badge>
+        {allShoes.length > 0 ? (
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={6}>
+            {randomShoeIndices.map(index => {
+              const relatedShoe = allShoes[index]
+              if (!relatedShoe) return null
+              
+              return (
+                <Box
+                  key={index}
+                  bg={bgColor}
+                  borderRadius="lg"
+                  overflow="hidden"
+                  borderWidth="1px"
+                  borderColor={borderColor}
+                  shadow="md"
+                  transition="all 0.3s"
+                  _hover={{
+                    transform: 'translateY(-4px)',
+                    shadow: 'xl'
+                  }}
+                >
+                  <Link href={`/shoes/${relatedShoe.id}`}>
+                    <Image
+                      src={relatedShoe.image}
+                      alt={relatedShoe.title}
+                      w="100%"
+                      h="200px"
+                      objectFit="cover"
+                    />
+                    <Box p={4}>
+                      <Text fontSize="sm" fontWeight="bold" noOfLines={2}>
+                        {relatedShoe.title}
+                      </Text>
+                      <Badge colorScheme="blue" mt={2}>
+                        {relatedShoe.brand}
+                      </Badge>
+                    </Box>
+                  </Link>
                 </Box>
-              </Link>
-            </Box>
-          ))}
-        </SimpleGrid>
+              )
+            })}
+          </SimpleGrid>
+        ) : (
+          <Text textAlign="center" color="gray.500">
+            Loading related products...
+          </Text>
+        )}
       </Box>
 
       {/* Reviews Section */}
       <Box mt={16}>
-        <Heading size="xl" mb={8} textAlign="center">{shoe.title} Reviews</Heading>
+        <Heading size="xl" mb={8} textAlign="center">{shoe?.title || 'Shoe'} Reviews</Heading>
         
         <Box mb={8} textAlign="center">
           <CreateReviewModal />
@@ -307,29 +342,35 @@ function ShoeDetialsChakra () {
           </Grid>
 
           <VStack spacing={4} align="stretch">
-            {shoe.Reviews?.map((review) => (
-              <Box 
-                key={review.id} 
-                p={4} 
-                bg={reviewBg} 
-                borderRadius="md"
-                borderWidth="1px"
-                borderColor={borderColor}
-              >
-                <Grid templateColumns="2fr 1fr 1fr" gap={6} alignItems="center">
-                  <Text color="gray.700">{review.comment}</Text>
-                  <Flex align="center">
-                    <Text fontWeight="semibold" mr={1}>{review.rating}</Text>
-                    <Icon as={FiStar} color="yellow.400" />
-                  </Flex>
-                  <Box>
-                    {review.userId === userId && (
-                      <EditReviewModal review={review} />
-                    )}
-                  </Box>
-                </Grid>
-              </Box>
-            ))}
+            {shoe?.Reviews?.length > 0 ? (
+              shoe.Reviews.map((review) => (
+                <Box 
+                  key={review.id} 
+                  p={4} 
+                  bg={reviewBg} 
+                  borderRadius="md"
+                  borderWidth="1px"
+                  borderColor={borderColor}
+                >
+                  <Grid templateColumns="2fr 1fr 1fr" gap={6} alignItems="center">
+                    <Text color="gray.700">{review.comment}</Text>
+                    <Flex align="center">
+                      <Text fontWeight="semibold" mr={1}>{review.rating}</Text>
+                      <Icon as={FiStar} color="yellow.400" />
+                    </Flex>
+                    <Box>
+                      {review.userId === userId && (
+                        <EditReviewModal review={review} />
+                      )}
+                    </Box>
+                  </Grid>
+                </Box>
+              ))
+            ) : (
+              <Text textAlign="center" color="gray.500">
+                No reviews yet. Be the first to review this shoe!
+              </Text>
+            )}
           </VStack>
         </Box>
       </Box>
