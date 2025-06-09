@@ -1,4 +1,4 @@
-import { Box, Image, Text, Badge, useColorModeValue, VStack } from '@chakra-ui/react'
+import { Box, Image, Text, Badge, useColorModeValue, VStack, Flex } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -65,9 +65,29 @@ function ShoeList ({ shoe }) {
         <Text fontWeight="bold" fontSize="lg" noOfLines={2}>
           {shoe.title}
         </Text>
-        <Badge colorScheme="blue" alignSelf="flex-start">
-          {shoe.brand}
-        </Badge>
+        <Flex justify="space-between" align="center" gap={2}>
+          <Badge 
+            colorScheme="blue" 
+            size="md"
+            px={3}
+            py={1}
+            borderRadius="full"
+            fontWeight="medium"
+          >
+            {shoe.brand}
+          </Badge>
+          <Badge 
+            colorScheme="gray" 
+            size="md"
+            px={3}
+            py={1}
+            borderRadius="full"
+            fontWeight="medium"
+            variant="subtle"
+          >
+            Size {shoe.shoeSize}M
+          </Badge>
+        </Flex>
         <Text fontSize="xl" color="blue.500" fontWeight="semibold">
           {currency(shoe.price).format()}
         </Text>
