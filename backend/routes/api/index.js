@@ -19,7 +19,7 @@ router.use('/reviews', reviewsRouter)
 router.use('/session', sessionRouter)
 router.use('/settings', settingsRouter)
 router.use('/shoes', shoesRouter)
-router.use('/test', sneaksRouter)
+router.use('/stockx', sneaksRouter)
 router.use('/orders', ordersRouter)
 router.use('/users', usersRouter)
 
