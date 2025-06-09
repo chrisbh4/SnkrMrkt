@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addShoeToCart } from '../../../store/shoppingCart'
+import currency from 'currency.js'
 import {
   Box,
   Button,
@@ -67,7 +68,7 @@ const sizeCharts = {
   ]
 }
 
-function AddToCartComponent({ sneaker }) {
+function AddToCartComponent({ sneaker, onSizeChange, matchedLocalShoe }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
@@ -78,6 +79,12 @@ function AddToCartComponent({ sneaker }) {
 
   // Calculate competitive Snkr Mrkt price that's better than competitors but still profitable
   const calculateSnkrMrktPrice = () => {
+    // If we have a matching local shoe, use its price
+    if (matchedLocalShoe && matchedLocalShoe.price) {
+      return parseFloat(matchedLocalShoe.price)
+    }
+    
+    // Otherwise, use the original calculation logic
     const stockXPrice = sneaker.lowestResellPrice?.stockX || 0
     const goatPrice = sneaker.lowestResellPrice?.goat || 0
     const flightClubPrice = sneaker.lowestResellPrice?.flightClub || 0
@@ -112,11 +119,22 @@ function AddToCartComponent({ sneaker }) {
 
   const handleSizeTypeChange = (value) => {
     setSizeType(value)
-    setSize('') // Reset size when changing size type
+    const newSize = '' // Reset size when changing size type
+    setSize(newSize)
+    // Notify parent component about size change
+    if (onSizeChange) {
+      onSizeChange(newSize)
+    }
   }
 
   const handleSizeChange = (e) => {
-    setSize(e.target.value)
+    const newSize = e.target.value
+    setSize(newSize)
+    // Notify parent component about size change
+    if (onSizeChange) {
+      const formattedSize = newSize ? `${sizeType.charAt(0).toUpperCase()}${sizeType.slice(1)} ${newSize}` : ''
+      onSizeChange(formattedSize)
+    }
   }
 
   const addToCart = async () => {
@@ -130,24 +148,29 @@ function AddToCartComponent({ sneaker }) {
       return
     }
 
-    // Use Snkr Mrkt competitive pricing
+    // Use Snkr Mrkt competitive pricing (includes local shoe price if matched)
     const snkrMrktPrice = calculateSnkrMrktPrice()
 
     // Format the shoe data to match the cart structure
     const shoeData = {
-      id: sneaker.styleID,
-      title: sneaker.shoeName,
-      price: snkrMrktPrice, // Use Snkr Mrkt competitive pricing
+      id: matchedLocalShoe ? matchedLocalShoe.id : sneaker.styleID,
+      title: matchedLocalShoe ? matchedLocalShoe.title : sneaker.shoeName,
+      price: snkrMrktPrice, // Use calculated price (local shoe price if matched)
       shoeSize: `${sizeType.charAt(0).toUpperCase()}${sizeType.slice(1)} ${size}`, // Format as "Mens 10.5", "Womens 8", etc.
-      image: sneaker.thumbnail
+      image: matchedLocalShoe ? matchedLocalShoe.image : sneaker.thumbnail
     }
 
     await dispatch(addShoeToCart(shoeData, cart))
+    
+    const successMessage = matchedLocalShoe 
+      ? `Added local inventory item to cart at ${currency(snkrMrktPrice).format()}`
+      : 'The shoe has been added to your cart'
+    
     toast({
       title: 'Added to cart',
-      description: 'The shoe has been added to your cart',
+      description: successMessage,
       status: 'success',
-      duration: 3000,
+      duration: 4000,
       isClosable: true
     })
     navigate('/home')
