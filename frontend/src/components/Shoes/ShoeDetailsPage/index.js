@@ -33,13 +33,38 @@ function ShoeDetialsChakra () {
   const params = useParams()
   const shoeId = params.id
   const [selectedSize, setSelectedSize] = useState('') // Track selected size from AddToCartComponent
+  const [isLoading, setIsLoading] = useState(false)
+
+  // Move all useSelector calls to the top
+  const allShoes = Object.values(useSelector((state) => state.shoes))
+  const shoe = useSelector((state) => state.shoes[shoeId])
+  const userId = useSelector((state) => {
+    if (state.session.user) {
+      return state.session.user?.id
+    }
+    return 0.5
+  })
 
   useEffect(() => {
-    // Load all shoes first to ensure we have the complete state
-    dispatch(getAllShoes())
-    // Then load the specific shoe details
-    dispatch(getOneShoe(shoeId))
-  }, [dispatch, shoeId])
+    // Prevent multiple simultaneous loads
+    if (isLoading) return
+    
+    const loadData = async () => {
+      setIsLoading(true)
+      try {
+        // Load all shoes first to ensure we have the complete state
+        await dispatch(getAllShoes())
+        // Then load the specific shoe details
+        await dispatch(getOneShoe(shoeId))
+      } catch (error) {
+        console.error('Error loading shoe data:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    
+    loadData()
+  }, [dispatch, shoeId]) // Removed isLoading from dependencies to prevent infinite loops
 
   const getRandomRetialPrice = () => {
     const randomNumber = Math.random() < 0.5 ? 180 : 220
@@ -62,9 +87,14 @@ function ShoeDetialsChakra () {
     const retail = retailPrice || getRandomRetialPrice()
     const current = currentPrice || retail * 1.5
     
+    // Only proceed if allShoes is available and not empty
+    if (!allShoes || allShoes.length === 0) {
+      return current
+    }
+    
     // Incorporate local marketplace data for competitive analysis
     // Check if we have access to other local shoes pricing for market comparison
-    const localShoesData = allShoes.filter(s => s && s.price && s.id !== shoeId)
+    const localShoesData = allShoes.filter(s => s && s.price && s.id !== parseInt(shoeId))
     const localPrices = localShoesData.map(s => s.price).filter(p => p > 0)
     
     // Calculate average local market price for reference
@@ -103,31 +133,26 @@ function ShoeDetialsChakra () {
   }
 
   // Function to generate random shoes for related products
-  const allShoes = Object.values(useSelector((state) => state.shoes))
-
   function generateRandomShoes () {
     const randomNumbers = []
-    if (allShoes.length > 0) {
-      while (randomNumbers.length < 4) {
-        const num = Math.floor(Math.random() * Object.values(allShoes).length)
-        if (!randomNumbers.includes(num)) {
-          randomNumbers.push(num)
-        }
+    // Add safety check to prevent infinite loops
+    if (!allShoes || allShoes.length === 0) {
+      return []
+    }
+    
+    const maxShoes = Math.min(4, allShoes.length) // Don't try to get more shoes than available
+    while (randomNumbers.length < maxShoes) {
+      const num = Math.floor(Math.random() * allShoes.length)
+      if (!randomNumbers.includes(num)) {
+        randomNumbers.push(num)
       }
+      // Safety break to prevent infinite loops
+      if (randomNumbers.length >= allShoes.length) break
     }
     return randomNumbers
   }
 
   const randomShoeIndices = generateRandomShoes()
-
-  const userId = useSelector((state) => {
-    if (state.session.user) {
-      return state.session.user?.id
-    }
-    return 0.5
-  })
-
-  const shoe = useSelector((state) => state.shoes[shoeId])
   const retailPrice = getRandomRetialPrice()
   const snkrMrktPrice = shoe ? calculateSnkrMrktPrice(shoe.price, retailPrice) : 0
 
