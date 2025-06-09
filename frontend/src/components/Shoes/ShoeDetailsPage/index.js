@@ -175,21 +175,24 @@ function ShoeDetialsChakra () {
 
             {/* Snkr Mrkt Price Section */}
             <Box 
-              bg="blue.50" 
+              bg="green.50" 
               borderRadius="lg" 
               p={6} 
               border="2px solid" 
-              borderColor="blue.200"
+              borderColor="green.200"
             >
               <VStack spacing={3} align="center">
-                <Badge colorScheme="blue" fontSize="lg" px={4} py={2}>
-                  🏆 SNKR MRKT PRICE
+                <Badge colorScheme="green" fontSize="lg" px={4} py={2}>
+                  🎯 SNKR MRKT PRICE
                 </Badge>
-                <Text fontSize="3xl" fontWeight="bold" color="blue.600">
-                  {currency(snkrMrktPrice).format()}
+                <Text fontSize="3xl" fontWeight="bold" color="green.600">
+                  {currency(shoe.price).format()}
                 </Text>
                 <Text fontSize="sm" color="gray.600" textAlign="center">
-                💰 No hidden fees compared to other retailers
+                  🏪 Available for immediate pickup from our local inventory
+                </Text>
+                <Text fontSize="xs" color="green.600" fontWeight="medium">
+                  Size: {shoe.shoeSize} | Brand: {shoe.brand}
                 </Text>
               </VStack>
             </Box>
