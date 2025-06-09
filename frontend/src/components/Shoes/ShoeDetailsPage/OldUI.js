@@ -38,7 +38,7 @@ function ShoesDetailsPage () {
   const addToCart = async () => {
     await dispatch(addShoeToCart(shoe, cart))
     alert('Shoe has been added to your cart!')
-    navigate('/home')
+    navigate('/all-shoes')
   }
 
   const shoeSellerId = shoe?.sellerId
@@ -103,7 +103,7 @@ function ShoesDetailsPage () {
       {/* Take all of this and place inside a componenet and pass in the shoe as a prop */}
       {/* <div className="reviews-title"> */}
       <h2 id='reviews-title'>
-        <a href='/home'>Reviews</a>
+        <a href='/all-shoes'>Reviews</a>
       </h2>
       {/* </div> */}
 

@@ -37,7 +37,7 @@ function App () {
 
         <Route path='/test' element={<NewShoeModalForm />}> </Route>
 
-        <Route path='/home' element={<HomePage />}> </Route>
+        <Route path='/all-shoes' element={<HomePage />}> </Route>
 
         <Route exact path='/shoes/:id' element={<ShoeDetialsChakra />} />
 
