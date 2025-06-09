@@ -43,7 +43,7 @@ const loadMostPopular = (products) => ({
 // }
 
 export const searchByExactName = (shoeName) => async (dispatch) => {
-  const res = await csrfFetch(`/api/test/search?query=${encodeURIComponent(shoeName)}`)
+  const res = await csrfFetch(`/api/stockx/search?query=${encodeURIComponent(shoeName)}`)
 
   if (res.ok) {
     const data = await res.json()
@@ -59,7 +59,7 @@ export const searchByExactName = (shoeName) => async (dispatch) => {
 }
 
 export const getSneakerDetails = (styleId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/test/details?styleId=${encodeURIComponent(styleId)}`)
+  const res = await csrfFetch(`/api/stockx/details?styleId=${encodeURIComponent(styleId)}`)
 
   if (res.ok) {
     const data = await res.json()
@@ -69,7 +69,7 @@ export const getSneakerDetails = (styleId) => async (dispatch) => {
 }
 
 export const searchSneakers = (query) => async (dispatch) => {
-  const res = await csrfFetch(`/api/test/search?query=${encodeURIComponent(query)}`)
+  const res = await csrfFetch(`/api/stockx/search?query=${encodeURIComponent(query)}`)
 
   if (res.ok) {
     const data = await res.json()
@@ -79,7 +79,7 @@ export const searchSneakers = (query) => async (dispatch) => {
 }
 
 export const fetchMostPopular = () => async (dispatch) => {
-  const res = await csrfFetch('/api/test')
+  const res = await csrfFetch('/api/stockx')
 
   if (res.ok) {
     const data = await res.json()
@@ -90,7 +90,7 @@ export const fetchMostPopular = () => async (dispatch) => {
 
 export const fetchMostPopularShoes = (limit = 8) => async (dispatch) => {
   try {
-    const res = await csrfFetch(`/api/test/most-popular?limit=${limit}`)
+    const res = await csrfFetch(`/api/stockx/most-popular?limit=${limit}`)
 
     if (res.ok) {
       const data = await res.json()
