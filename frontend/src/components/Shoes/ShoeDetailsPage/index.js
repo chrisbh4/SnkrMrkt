@@ -64,6 +64,7 @@ function ShoeDetialsChakra () {
     }
     
     loadData()
+     // eslint-disable-next-line
   }, [dispatch, shoeId]) // Removed isLoading from dependencies to prevent infinite loops
 
   const getRandomRetialPrice = () => {
@@ -80,56 +81,6 @@ function ShoeDetialsChakra () {
     const randomDate = new Date(randomTimestamp)
     const formattedDate = `${randomDate.getMonth() + 1}/${randomDate.getDate()}/${randomDate.getFullYear()}`
     return formattedDate
-  }
-
-  // Calculate competitive Snkr Mrkt price
-  const calculateSnkrMrktPrice = (currentPrice, retailPrice) => {
-    const retail = retailPrice || getRandomRetialPrice()
-    const current = currentPrice || retail * 1.5
-    
-    // Only proceed if allShoes is available and not empty
-    if (!allShoes || allShoes.length === 0) {
-      return current
-    }
-    
-    // Incorporate local marketplace data for competitive analysis
-    // Check if we have access to other local shoes pricing for market comparison
-    const localShoesData = allShoes.filter(s => s && s.price && s.id !== parseInt(shoeId))
-    const localPrices = localShoesData.map(s => s.price).filter(p => p > 0)
-    
-    // Calculate average local market price for reference
-    const avgLocalPrice = localPrices.length > 0 
-      ? localPrices.reduce((sum, price) => sum + parseFloat(price), 0) / localPrices.length
-      : current
-    
-    // Find comparable price range from local data (similar price tier)
-    const priceRange = current * 0.25 // 25% price range for more precise comparison
-    const comparableLocalShoes = localPrices.filter(price => 
-      Math.abs(parseFloat(price) - current) <= priceRange
-    )
-    const avgComparablePrice = comparableLocalShoes.length > 0
-      ? comparableLocalShoes.reduce((sum, price) => sum + parseFloat(price), 0) / comparableLocalShoes.length
-      : avgLocalPrice
-    
-    // Use the most competitive reference price (current, average local, or comparable local)
-    const referencePrice = Math.min(current, avgComparablePrice)
-    
-    // More conservative pricing: 3-8% discount instead of 8-18%
-    // This ensures we're competitive but not too aggressive with pricing
-    const discountPercentage = 0.03 + (Math.random() * 0.05) // 3-8% discount
-    const calculatedPrice = referencePrice * (1 - discountPercentage)
-    
-    // Higher minimum markup: retail + 35% instead of 25% to ensure better profit margins
-    const minimumPrice = retail * 1.35 // 35% markup from retail to ensure good profit
-    
-    // Additional safety check: don't go below 85% of current market price
-    const marketFloorPrice = current * 0.85
-    
-    // Use the highest of all minimum prices to ensure profitability
-    const finalMinimum = Math.max(minimumPrice, marketFloorPrice)
-    
-    // Ensure we don't go below our minimum profitable price
-    return Math.max(calculatedPrice, finalMinimum)
   }
 
   // Function to generate random shoes for related products
@@ -154,7 +105,6 @@ function ShoeDetialsChakra () {
 
   const randomShoeIndices = generateRandomShoes()
   const retailPrice = getRandomRetialPrice()
-  const snkrMrktPrice = shoe ? calculateSnkrMrktPrice(shoe.price, retailPrice) : 0
 
   // Color mode values
   const bgColor = useColorModeValue('white', 'gray.800')
