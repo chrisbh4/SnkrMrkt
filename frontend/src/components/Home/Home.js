@@ -290,11 +290,11 @@ function NewHomePage () {
                     </Badge>
                     <Flex justify="space-between" align="center">
                       <Text fontSize="lg" color="green.600" fontWeight="semibold">
-                        {shoe.retailPrice ? currency(shoe.retailPrice).format() : 'N/A'}
+                        {shoe.lowestResellPrice?.stockX ? currency(shoe.lowestResellPrice.stockX).format() : (shoe.retailPrice ? currency(shoe.retailPrice).format() : 'N/A')}
                       </Text>
                       {shoe.resellPrice && (
                         <Text fontSize="sm" color="gray.500">
-                          Resell: {currency(shoe.resellPrice).format()}
+                          {/* Resell: {currency(shoe.resellPrice).format()} */}
                         </Text>
                       )}
                     </Flex>

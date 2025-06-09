@@ -14,11 +14,7 @@ import {
   Icon,
   Avatar,
   Grid,
-  GridItem,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatGroup
+  GridItem
 } from '@chakra-ui/react'
 import { 
   FiUser, 
@@ -216,7 +212,7 @@ function ProfilePage () {
               </Box>
 
               {/* Account Statistics */}
-              <Box bg={cardBg} borderRadius="xl" p={6} shadow="sm" borderWidth="1px" borderColor={borderColor}>
+              {/* <Box bg={cardBg} borderRadius="xl" p={6} shadow="sm" borderWidth="1px" borderColor={borderColor}>
                 <VStack align="stretch" spacing={6}>
                   <Heading size="md" color="gray.800">Account Overview</Heading>
                   
@@ -243,7 +239,7 @@ function ProfilePage () {
                     </Stat>
                   </StatGroup>
                 </VStack>
-              </Box>
+              </Box> */}
             </VStack>
           </Box>
         </Flex>
