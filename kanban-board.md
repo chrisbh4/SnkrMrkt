@@ -20,6 +20,7 @@
 -  ShoeDetailsPage.js UI updated to match SneakersDetailsPage
 -  Reviews Model updated to include shoe styleID as reference
 -  Seed data shoes updated with real names
+- API: stockX shoe details updates pricing live via 'shoe size' when user inputs a shoe size
 
 ### UI/UX Improvements
 - DB: shoe's table "styleID" added to a row for easier querying
