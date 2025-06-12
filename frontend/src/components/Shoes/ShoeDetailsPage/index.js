@@ -4,14 +4,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import './ShoeDetails.css'
 import { getOneShoe, getAllShoes } from '../../../store/shoes'
 import AddToCartComponent from './AddToCartCompoent'
-import CreateReviewModal from '../../Reviews/NewReview/ModalForm'
-import EditReviewModal from '../../Reviews/EditReview/ModalForm'
+import UniversalReviews from '../../Reviews/UniversalReviews'
 import currency from 'currency.js'
 import {
   Container,
   Box,
   Text,
-  Flex,
   Image,
   Link,
   Grid,
@@ -38,12 +36,6 @@ function ShoeDetialsChakra () {
   // Move all useSelector calls to the top
   const allShoes = Object.values(useSelector((state) => state.shoes))
   const shoe = useSelector((state) => state.shoes[shoeId])
-  const userId = useSelector((state) => {
-    if (state.session.user) {
-      return state.session.user?.id
-    }
-    return 0.5
-  })
 
   useEffect(() => {
     // Prevent multiple simultaneous loads
@@ -109,7 +101,6 @@ function ShoeDetialsChakra () {
   // Color mode values
   const bgColor = useColorModeValue('white', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
-  const reviewBg = useColorModeValue('gray.50', 'gray.700')
 
   // Show loading state while shoe data is being fetched
   if (!shoe) {
@@ -298,56 +289,13 @@ function ShoeDetialsChakra () {
         )}
       </Box>
 
-      {/* Reviews Section */}
-      <Box mt={16}>
-        <Heading size="xl" mb={8} textAlign="center">{shoe?.title || 'Shoe'} Reviews</Heading>
-        
-        <Box mb={8} textAlign="center">
-          <CreateReviewModal />
-        </Box>
-
-        <Box bg={bgColor} borderRadius="lg" p={6} borderWidth="1px" borderColor={borderColor}>
-          <Grid templateColumns="repeat(2, 1fr)" gap={8} mb={6}>
-            <Text fontSize="lg" fontWeight="bold" color="gray.700">
-              Reviews
-            </Text>
-            <Text fontSize="lg" fontWeight="bold" color="gray.700">
-              Ratings
-            </Text>
-          </Grid>
-
-          <VStack spacing={4} align="stretch">
-            {shoe?.Reviews?.length > 0 ? (
-              shoe.Reviews.map((review) => (
-                <Box 
-                  key={review.id} 
-                  p={4} 
-                  bg={reviewBg} 
-                  borderRadius="md"
-                  borderWidth="1px"
-                  borderColor={borderColor}
-                >
-                  <Grid templateColumns="2fr 1fr 1fr" gap={6} alignItems="center">
-                    <Text color="gray.700">{review.comment}</Text>
-                    <Flex align="center">
-                      <Text fontWeight="semibold" mr={1}>{review.rating}</Text>
-                      <Icon as={FiStar} color="yellow.400" />
-                    </Flex>
-                    <Box>
-                      {review.userId === userId && (
-                        <EditReviewModal review={review} />
-                      )}
-                    </Box>
-                  </Grid>
-                </Box>
-              ))
-            ) : (
-              <Text textAlign="center" color="gray.500">
-                No reviews yet. Be the first to review this shoe!
-              </Text>
-            )}
-          </VStack>
-        </Box>
+      {/* Reviews Section - Full Width */}
+      <Box mt={10}>
+        <UniversalReviews 
+          shoeIdentifier={shoeId}
+          shoeType="local"
+          shoeName={shoe?.title}
+        />
       </Box>
     </Container>
   )

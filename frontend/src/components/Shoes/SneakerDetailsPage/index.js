@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getSneakerDetails } from '../../../store/stockX'
 import AddToCartComponent from './AddToCartComponent'
+import UniversalReviews from '../../Reviews/UniversalReviews'
 import {
   Box,
   Container,
@@ -309,6 +310,15 @@ function SneakerDetailsPage() {
           </VStack>
         </GridItem>
       </Grid>
+
+      {/* Reviews Section - Full Width */}
+      <Box mt={10}>
+        <UniversalReviews 
+          shoeIdentifier={sneaker.styleID}
+          shoeType="stockx"
+          shoeName={sneaker.shoeName}
+        />
+      </Box>
     </Container>
   )
 }
