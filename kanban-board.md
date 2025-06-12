@@ -33,7 +33,8 @@
   - Remove Price calculator from ShoesDetailsPage.js
   - Show only current Price
   - Slide out cart: increase cart width
-
+  - Profile (reviews): create a reviews section that fetchs all of the user's reviews and shoe data
+  - (Maintance): delete unused/old UI files
 ### Integration Tasks
 - 🔧 Integrate shoe data creation/editing with current website layout
 - 🔧 Github Actions / Fly deployment actions
