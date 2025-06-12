@@ -61,9 +61,20 @@ function EditReviewForm () {
 
   const handleDelete = async (e) => {
     e.preventDefault()
-    await dispatch(fetchDeleteReview(reviewId))
+    
+    // Determine shoe identifier and type from the review
+    const shoeIdentifier = review?.styleID || review?.shoeId
+    const shoeType = review?.styleID ? 'stockx' : 'local'
+    
+    await dispatch(fetchDeleteReview(reviewId, shoeIdentifier, shoeType))
     alert('Review has been deleted.')
-    navigate(`/shoes/${review?.shoeId}`)
+    
+    // Navigate based on shoe type
+    if (shoeType === 'stockx') {
+      navigate(`/sneaker/${review?.styleID}`)
+    } else {
+      navigate(`/shoes/${review?.shoeId}`)
+    }
   }
 
   return (

@@ -5,6 +5,7 @@ const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE_REVIEW'
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW'
 const EDIT_REVIEW = 'reviews/EDIT_REVIEW'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
+const LOAD_SHOE_REVIEWS = 'reviews/LOAD_SHOE_REVIEWS'
 
 const loadReviews = (reviews) => ({
   type: LOAD_REVIEWS,
@@ -21,14 +22,19 @@ const createReview = (review) => ({
   review
 })
 
-const editReview = (reviewId) => ({
+const editReview = (review) => ({
   type: EDIT_REVIEW,
-  reviewId
+  review
 })
 
 const deleteReview = (reviewId) => ({
   type: DELETE_REVIEW,
   reviewId
+})
+
+const loadShoeReviews = (reviews) => ({
+  type: LOAD_SHOE_REVIEWS,
+  reviews
 })
 
 export const fetchAllReviews = () => async (dispatch) => {
@@ -51,11 +57,37 @@ export const fetchOneReview = (reviewId) => async (dispatch) => {
   }
 }
 
-export const fetchCreateReview = (shoeId, userId, comment, rating, image) => async (dispatch) => {
+// Fetch reviews for a specific shoe (works for both local and StockX shoes)
+export const fetchShoeReviews = (identifier, type = 'local') => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews/shoe/${identifier}?type=${type}`)
+
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(loadShoeReviews(data))
+    return data
+  }
+}
+
+// Create review - now supports both local shoes (shoeId) and StockX shoes (styleID)
+export const fetchCreateReview = (identifier, userId, comment, rating, image, isStockX = false) => async (dispatch) => {
+  const body = {
+    userId,
+    comment,
+    rating,
+    image
+  }
+  
+  // Add the appropriate identifier
+  if (isStockX) {
+    body.styleID = identifier
+  } else {
+    body.shoeId = identifier
+  }
+
   const res = await csrfFetch('/api/reviews/new', {
     method: 'POST',
-    header: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ shoeId, userId, comment, rating, image })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
   })
 
   const data = await res.json()
@@ -67,10 +99,11 @@ export const fetchCreateReview = (shoeId, userId, comment, rating, image) => asy
   }
 }
 
+// Edit review - maintains backward compatibility
 export const fetchEditReview = (shoeId, userId, comment, rating, image, reviewId) => async (dispatch) => {
   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: 'PUT',
-    header: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ shoeId, userId, comment, rating, image })
   })
 
@@ -83,32 +116,42 @@ export const fetchEditReview = (shoeId, userId, comment, rating, image, reviewId
   }
 }
 
-export const fetchDeleteReview = (reviewId) => async (dispatch) => {
+export const fetchDeleteReview = (reviewId, shoeIdentifier = null, shoeType = 'local') => async (dispatch) => {
   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: 'DELETE'
   })
 
   if (res.ok) {
-    const data = res.json()
+    const data = await res.json()
     dispatch(deleteReview(data))
+    
+    // Re-fetch reviews for the specific shoe to ensure UI is in sync
+    if (shoeIdentifier) {
+      await dispatch(fetchShoeReviews(shoeIdentifier, shoeType))
+    }
+    
     return data
   }
 }
 
 const initialState = {}
 
-function reducer (state = initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_REVIEWS:
+      return { ...action.reviews }
+    case LOAD_SHOE_REVIEWS:
       return { ...state, ...action.reviews }
     case LOAD_ONE_REVIEW:
-      return { ...action.review }
+      return { ...state, [action.review.id]: action.review }
+    case CREATE_REVIEW:
+      return { ...state, [action.review.newReview.id]: action.review.newReview }
     case EDIT_REVIEW:
-      state[action.id] = action.review
-      return state
+      return { ...state, [action.review.id]: action.review }
     case DELETE_REVIEW:
-      delete state[action.id]
-      return state
+      const newState = { ...state }
+      delete newState[action.reviewId]
+      return newState
     default:
       return state
   }

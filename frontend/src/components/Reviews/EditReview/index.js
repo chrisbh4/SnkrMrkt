@@ -138,7 +138,11 @@ function EditReviewChakraForm({ onClose, review }) {
     setIsDeleting(true)
     
     try {
-      await dispatch(fetchDeleteReview(reviewId))
+      // Determine shoe identifier and type from the review
+      const shoeIdentifier = review?.styleID || review?.shoeId
+      const shoeType = review?.styleID ? 'stockx' : 'local'
+      
+      await dispatch(fetchDeleteReview(reviewId, shoeIdentifier, shoeType))
       toast({
         title: 'Review Deleted',
         description: 'Your review has been successfully deleted.',
@@ -146,7 +150,12 @@ function EditReviewChakraForm({ onClose, review }) {
         duration: 4000,
         isClosable: true
       })
-      await dispatch(getAllShoes())
+      
+      // Only call getAllShoes for local shoes (legacy compatibility)
+      if (shoeType === 'local') {
+        await dispatch(getAllShoes())
+      }
+      
       onDeleteClose()
       onClose()
     } catch (error) {

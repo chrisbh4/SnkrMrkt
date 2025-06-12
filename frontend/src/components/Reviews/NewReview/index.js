@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 // import { useNavigate, useParams } from "react-router-dom"
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { fetchCreateReview } from '../../../store/reviews'
 import { getAllShoes } from '../../../store/shoes'
 import {
@@ -48,11 +48,16 @@ function StarRating({ rating, onRatingChange, size = 24, isInteractive = true })
   )
 }
 
-function NewReviewChakraForm({ onClose }) {
+function NewReviewChakraForm({ onClose, shoeIdentifier: propShoeIdentifier, shoeType: propShoeType }) {
   const dispatch = useDispatch()
   const toast = useToast()
   const params = useParams()
-  const shoeId = params.id
+  const location = useLocation()
+  
+  // Use props if provided, otherwise fall back to URL detection for backward compatibility
+  const isStockXShoe = propShoeType === 'stockx' || (propShoeType === undefined && location.pathname.includes('/sneaker/'))
+  const shoeIdentifier = propShoeIdentifier || (isStockXShoe ? params.styleId : params.id)
+  
   const userId = useSelector((state) => state.session.user?.id)
   const userName = useSelector((state) => state.session.user?.username)
   
@@ -61,11 +66,16 @@ function NewReviewChakraForm({ onClose }) {
   const [errors, setErrors] = useState([])
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Color mode values
+  // Color mode values - ALL consolidated at the top level
   const bgColor = useColorModeValue('white', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.600')
   const textColor = useColorModeValue('gray.800', 'white')
   const subtleTextColor = useColorModeValue('gray.600', 'gray.400')
+  const userInfoBgColor = useColorModeValue('gray.50', 'gray.700')
+  const textareaBgColor = useColorModeValue('white', 'gray.700')
+  const hoverBgColor = useColorModeValue('gray.50', 'gray.700')
+  const reviewBoxBgColor = useColorModeValue('blue.50', 'blue.900')
+  const reviewTextColor = useColorModeValue('blue.700', 'blue.200')
 
   const updateComment = (e) => setComment(e.target.value)
   const updateRating = (newRating) => setRating(newRating)
@@ -97,12 +107,12 @@ function NewReviewChakraForm({ onClose }) {
     setIsSubmitting(true)
     
     try {
-      const data = await dispatch(fetchCreateReview(shoeId, userId, comment.trim(), rating, ''))
+      const data = await dispatch(fetchCreateReview(shoeIdentifier, userId, comment.trim(), rating, '', isStockXShoe))
       
       if (!data.errors) {
         toast({
           title: 'Review Created!',
-          description: 'Your review has been successfully submitted.',
+          description: `Your review has been successfully submitted for this ${isStockXShoe ? 'StockX' : 'local'} shoe.`,
           status: 'success',
           duration: 4000,
           isClosable: true
@@ -143,7 +153,7 @@ function NewReviewChakraForm({ onClose }) {
             <Box
               w={16}
               h={16}
-              bg="blue.500"
+              bg={isStockXShoe ? "purple.500" : "blue.500"}
               borderRadius="full"
               display="flex"
               alignItems="center"
@@ -156,15 +166,20 @@ function NewReviewChakraForm({ onClose }) {
                 Write a Review
               </Heading>
               <Text color={subtleTextColor} fontSize="sm">
-                Share your experience with this shoe
+                Share your experience with this {isStockXShoe ? 'StockX' : 'marketplace'} shoe
               </Text>
+              {isStockXShoe && (
+                <Text color="purple.500" fontSize="xs" fontWeight="semibold">
+                  StockX Shoe Review
+                </Text>
+              )}
             </VStack>
           </VStack>
 
           <Divider borderColor={borderColor} />
 
           {/* User Info */}
-          <HStack spacing={3} p={4} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="lg">
+          <HStack spacing={3} p={4} bg={userInfoBgColor} borderRadius="lg">
             <Box
               w={10}
               h={10}
@@ -230,9 +245,12 @@ function NewReviewChakraForm({ onClose }) {
               resize="vertical"
               minH="120px"
               borderColor={borderColor}
-              _hover={{ borderColor: 'blue.300' }}
-              _focus={{ borderColor: 'blue.500', boxShadow: '0 0 0 1px #3182CE' }}
-              bg={useColorModeValue('white', 'gray.700')}
+              _hover={{ borderColor: isStockXShoe ? 'purple.300' : 'blue.300' }}
+              _focus={{ 
+                borderColor: isStockXShoe ? 'purple.500' : 'blue.500', 
+                boxShadow: `0 0 0 1px ${isStockXShoe ? '#805AD5' : '#3182CE'}` 
+              }}
+              bg={textareaBgColor}
             />
             <HStack justify="space-between" mt={2}>
               <Text fontSize="xs" color={subtleTextColor}>
@@ -250,7 +268,7 @@ function NewReviewChakraForm({ onClose }) {
           {/* Action Buttons */}
           <HStack spacing={4} pt={4}>
             <Button
-              colorScheme="blue"
+              colorScheme={isStockXShoe ? "purple" : "blue"}
               size="lg"
               onClick={onSubmit}
               isLoading={isSubmitting}
@@ -269,7 +287,7 @@ function NewReviewChakraForm({ onClose }) {
               onClick={handleCancel}
               isDisabled={isSubmitting}
               borderRadius="lg"
-              _hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
+              _hover={{ bg: hoverBgColor }}
             >
               Cancel
             </Button>

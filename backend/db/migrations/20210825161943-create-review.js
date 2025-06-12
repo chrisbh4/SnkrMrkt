@@ -10,7 +10,7 @@ module.exports = {
       },
       shoeId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         // unique:true,
         references: { model: 'Shoes' }
       },
