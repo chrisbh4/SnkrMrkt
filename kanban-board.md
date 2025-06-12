@@ -1,14 +1,13 @@
 # Snkr Prod Deployment Kanban Board
 
 ## 🚀 Done
-- ✅ Reviews MVP intergrated with new UI/UX v.2.5.0
-
+- ✅ Reviews MVP intergrated with new UI/UX V.2.5.0
+- ✅ Deploy application V.2.5.0
 ## 🏃 In Progress
 - 
 
 ## 📋 To Do
 ### High Priority
-- 📌 Deploy application
 - 📌 Create a Staging app for deployment testing
 - 📌 Generate Test files
 - 📌 Shoe Details Page Improvements
