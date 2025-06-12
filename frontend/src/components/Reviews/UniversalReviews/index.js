@@ -38,14 +38,18 @@ function StarDisplay({ rating, size = 16 }) {
 }
 
 // Individual Review Component
-function ReviewItem({ review, currentUserId }) {
+function ReviewItem({ review, currentUserId, currentUser }) {
   const bgColor = useColorModeValue('white', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.600')
   const textColor = useColorModeValue('gray.800', 'white')
   const subtleTextColor = useColorModeValue('gray.600', 'gray.400')
   
   const isOwner = currentUserId === review.userId
-  const username = review.User?.username || 'Anonymous User'
+  
+  // Smart username resolution: prefer review.User.username, fallback to current user if it's their review
+  const username = review.User?.username || 
+                  (isOwner && currentUser?.username) || 
+                  'Anonymous User'
 
   return (
     <Box
@@ -94,6 +98,7 @@ function UniversalReviews({ shoeIdentifier, shoeType = 'local', shoeName }) {
   const dispatch = useDispatch()
   const reviews = useSelector((state) => state.reviews)
   const currentUserId = useSelector((state) => state.session.user?.id)
+  const currentUser = useSelector((state) => state.session.user)
   const isLoggedIn = !!currentUserId
   
   const [isLoading, setIsLoading] = useState(true)
@@ -206,6 +211,7 @@ function UniversalReviews({ shoeIdentifier, shoeType = 'local', shoeName }) {
                   key={review.id} 
                   review={review} 
                   currentUserId={currentUserId}
+                  currentUser={currentUser}
                 />
               ))}
           </VStack>

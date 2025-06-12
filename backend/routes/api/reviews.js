@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
-const { Review } = require('../../db/models')
+const { Review, User } = require('../../db/models')
 const { check } = require('express-validator')
 const { handleValidationErrors } = require('../../utils/validation')
 const Reviews = Review
@@ -110,7 +110,13 @@ router.post('/new', validateReview, asyncHandler(async (req, res) => {
   }
   
   const newReview = await Review.create(reviewData)
-  return res.json({ newReview })
+  
+  // Fetch the review with User association to include username
+  const reviewWithUser = await Review.findByPk(newReview.id, {
+    include: [{ model: User, attributes: ['username'] }]
+  })
+  
+  return res.json({ newReview: reviewWithUser })
 }))
 
 module.exports = router
