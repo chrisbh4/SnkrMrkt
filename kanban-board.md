@@ -1,10 +1,10 @@
 # Snkr Prod Deployment Kanban Board
 
 ## 🚀 Done
-
+- ✅ Reviews MVP intergrated with new UI/UX v.2.5.0
 
 ## 🏃 In Progress
-- 🔄 Reviews MVP intergrated with new UI/UX v.2.5.0
+- 
 
 ## 📋 To Do
 ### High Priority
