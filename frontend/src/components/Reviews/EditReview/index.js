@@ -302,7 +302,7 @@ function EditReviewChakraForm({ onClose, review }) {
 
             {/* Action Buttons */}
             <VStack spacing={4} pt={4}>
-              <HStack spacing={4} w="full">
+              <HStack spacing={4} w="half">
                 <Button
                   colorScheme="orange"
                   size="lg"
@@ -323,7 +323,7 @@ function EditReviewChakraForm({ onClose, review }) {
                   onClick={handleCancel}
                   isDisabled={isSubmitting || isDeleting}
                   borderRadius="lg"
-                  _hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
+                  _hover={{ bg: useColorModeValue('gray.100', 'gray.700'), transform: 'translateY(-2px)', boxShadow: 'lg' }}
                 >
                   Cancel
                 </Button>
@@ -339,7 +339,7 @@ function EditReviewChakraForm({ onClose, review }) {
                 isDisabled={isSubmitting || isDeleting}
                 leftIcon={<Icon as={FiTrash2} />}
                 borderRadius="lg"
-                _hover={{ bg: 'red.50', borderColor: 'red.300' }}
+                _hover={{ bg: 'red.100', borderColor: 'red.300', transform: 'translateY(-2px)', boxShadow: 'lg' }}
               >
                 Delete Review
               </Button>

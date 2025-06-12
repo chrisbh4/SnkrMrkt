@@ -32,6 +32,7 @@
   - Implement Gender size logic on Details page
   - Remove Price calculator from ShoesDetailsPage.js
   - Show only current Price
+  - Slide out cart: increase cart width
 
 ### Integration Tasks
 - 🔧 Integrate shoe data creation/editing with current website layout

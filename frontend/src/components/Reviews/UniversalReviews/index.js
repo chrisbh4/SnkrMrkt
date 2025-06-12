@@ -8,7 +8,6 @@ import {
   VStack,
   HStack,
   Text,
-  Button,
   Heading,
   Divider,
   Avatar,
@@ -16,7 +15,6 @@ import {
   useColorModeValue,
   Icon,
   Flex,
-  Spacer
 } from '@chakra-ui/react'
 import { FiStar, FiUser, FiMessageCircle } from 'react-icons/fi'
 
