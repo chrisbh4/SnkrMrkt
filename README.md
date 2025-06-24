@@ -53,13 +53,13 @@ SnkrMrkt is a full-stack e-commerce platform dedicated to sneaker enthusiasts, o
 ![About Page](https://imgur.com/oOcv5cp.png)
 
 ### Home Page
-![Home Page](https://imgur.com/XbOQzSP.png)
+![Home Page](https://imgur.com/93tLVin.png)
 
 ### Product Details
-![Shoe Details](https://imgur.com/KQ9k3W4.png)
+![Shoe Details](https://imgur.com/0t3XCbX.png)
 
 ### Checkout Process
-![Checkout Form](https://imgur.com/8UqiqTx.png)
+![Checkout Form](https://imgur.com/le4ppsg.png)
 
 ## 🚀 Installation
 
