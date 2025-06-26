@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
   const demoLogin = () => {
     const credential = 'demo@user.io'
     const password = 'password'
-    navigate('/home')
+    navigate('/all-shoes')
     return dispatch(login({ credential, password }))
   }
 
@@ -35,7 +35,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <Box bg='#24292e' height='100px' display='flex' justifyContent='space-between' alignItems='center'>
         <Box>
-          <a href='/home' id='web-title-redirect'>
+          <a href='/all-shoes' id='web-title-redirect'>
             <Image src='https://imgur.com/KOgkPYD.png' boxSize='100px' />
           </a>
         </Box>
@@ -44,7 +44,7 @@ function Navigation({ isLoaded }) {
         </Box>
 
         <Flex justify='center' pr='20px'>
-          <NavLink exact to='/home'>
+          <NavLink exact to='/all-shoes'>
             <Button
               color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
               _hover={{ color: 'rgba(0,0,0,0.8)', background_color: '#fff', box_shadow: 'inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)' }}
@@ -119,7 +119,7 @@ function Navigation({ isLoaded }) {
               </NavLink>
             </GridItem>
             <GridItem w='100%' h='10' >
-              <NavLink exact to='/home'>
+              <NavLink exact to='/all-shoes'>
                 <Button
                   color='rgba(255,255,255,1)' background='none' border-radius='square' letterSpacing='0.35em' fontSize='0.9em' padding='0.9em 4em'
                   _hover={{ color: 'rgba(0,0,0,0.8)', background_color: '#fff', box_shadow: 'inset 0 0 0 rgba(255,255,255,0.3), 0 0 1.2em rgba(255,255,255,0.5)' }}

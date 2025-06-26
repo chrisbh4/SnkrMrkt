@@ -188,7 +188,7 @@ function CheckoutForm () {
         duration: 5000,
         isClosable: true,
       })
-      navigate('/home')
+      navigate('/all-shoes')
       return data
     } else {
       setErrors(data?.errors)

@@ -93,7 +93,7 @@ function AddToCartComponent ({ shoeId, setSelectedSize }) {
     
     await dispatch(addShoeToCart(shoeData, cart))
     alert('Shoe has been added to your cart!')
-    navigate('/home')
+    navigate('/all-shoes')
   }
 
   const updateSize = async (e) => {

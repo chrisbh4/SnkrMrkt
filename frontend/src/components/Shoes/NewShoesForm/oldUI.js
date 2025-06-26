@@ -37,7 +37,7 @@ function NewShoesForm () {
 
     if (!data?.errors) {
       // TODO: Create User Profile and redirect user to show new shoe being listed under them
-      navigate('/home')
+      navigate('/all-shoes')
       alert('Your Shoe has now been listed for sale.')
     } else {
       setErrors(data?.errors)
